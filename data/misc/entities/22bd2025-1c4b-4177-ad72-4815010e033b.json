@@ -1,0 +1,94 @@
+{
+  "id": "22bd2025-1c4b-4177-ad72-4815010e033b",
+  "conversationId": "0e9592c8-16d7-4a40-ba4c-a52e50b6eb43",
+  "userId": "rob_foree",
+  "timestamp": "2025-09-20T18:59:06.063Z",
+  "entities": {
+    "people": [
+      {
+        "name": "Mike",
+        "role": "",
+        "confidence": 0.95
+      },
+      {
+        "name": "Sarah",
+        "role": "",
+        "confidence": 0.95
+      }
+    ],
+    "projects": [
+      {
+        "name": "",
+        "type": "Foundation work",
+        "phase": "Start",
+        "confidence": 0.9
+      }
+    ],
+    "decisions": [
+      {
+        "type": "Permit approval",
+        "description": "Permits approved",
+        "date": "",
+        "confidence": 0.85
+      }
+    ],
+    "timeline": [
+      {
+        "event": "Foundation work",
+        "status": "Starts",
+        "date": "Monday",
+        "confidence": 0.8
+      },
+      {
+        "event": "Review electrical plans",
+        "status": "Needs to be done",
+        "date": "Friday",
+        "confidence": 0.8
+      }
+    ],
+    "locations": [],
+    "materials": [],
+    "costs": [
+      {
+        "amount": "$25,000",
+        "type": "Budget",
+        "category": "",
+        "confidence": 0.9
+      }
+    ],
+    "issues": [],
+    "tasks": [
+      {
+        "description": "Review electrical plans",
+        "assigned_to": "Sarah",
+        "due_date": "Friday",
+        "confidence": 0.85
+      }
+    ],
+    "documents": []
+  },
+  "metadata": {
+    "model": "gpt-4",
+    "provider": "openai",
+    "duration": 10584,
+    "attempt": 1,
+    "confidence": 0.875,
+    "cost": 0.03471,
+    "strategy": "High Accuracy (GPT-4)",
+    "complexity": {
+      "score": 4,
+      "wordCount": 19,
+      "hasNumbers": true,
+      "hasNames": true,
+      "hasDecisions": true,
+      "hasTimeline": true,
+      "level": "high"
+    },
+    "extractionModel": "gpt-4",
+    "extractionProvider": "openai",
+    "processingTime": 10584
+  },
+  "domain": "misc",
+  "migratedFrom": "/home/robforee/analyst-server/entity-extraction-poc/data/mock-diffmem",
+  "migrationTimestamp": "2025-09-21T23:57:24.715Z"
+}

@@ -1,0 +1,39 @@
+{
+  "conversations": [
+    {
+      "id": "conv_001",
+      "text": "Hey Mike, when can we start the foundation work? The permits came through yesterday.",
+      "entities": {
+        "people": [
+          {
+            "name": "Mike",
+            "role": "contractor",
+            "confidence": 0.95
+          }
+        ],
+        "projects": [
+          {
+            "name": "foundation work",
+            "type": "construction_phase",
+            "confidence": 0.9
+          }
+        ],
+        "decisions": [
+          {
+            "type": "permit_approval",
+            "status": "approved",
+            "date": "yesterday",
+            "confidence": 0.85
+          }
+        ],
+        "timeline": [
+          {
+            "event": "start foundation work",
+            "status": "planned",
+            "confidence": 0.8
+          }
+        ]
+      }
+    }
+  ]
+}

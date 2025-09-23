@@ -1,0 +1,43 @@
+{
+  "id": "ef9ded76-f522-4241-9200-f16104902fb4",
+  "conversationId": "doc_1758508398522_hj979t9li",
+  "userId": "rob_foree",
+  "domain": "cybersec",
+  "timestamp": "2025-09-22T02:33:18.523Z",
+  "entities": {
+    "people": [
+      {
+        "name": "Compliance Officer",
+        "role": "Compliance Officer",
+        "confidence": 1
+      },
+      {
+        "name": "Chief Compliance Officer (CCO)",
+        "role": "Chief Compliance Officer",
+        "confidence": 1
+      }
+    ],
+    "projects": [],
+    "decisions": [],
+    "timeline": [],
+    "locations": [],
+    "materials": [],
+    "costs": [],
+    "issues": [],
+    "tasks": [],
+    "documents": []
+  },
+  "metadata": {
+    "source": "/home/robforee/analyst-server/snappy/client-projects/cybersec-dogfood/corpus/roles/compliance-officer-comprehensive.md",
+    "messageId": "compliance-officer-comprehensive.md",
+    "documentType": ".md",
+    "contentLength": 39196,
+    "cost": 0.006286000000000001,
+    "processingTime": 0,
+    "model": "gpt-3.5-turbo",
+    "provider": "openai",
+    "confidence": 1,
+    "extractionModel": "gpt-3.5-turbo",
+    "extractionProvider": "openai"
+  }
+}

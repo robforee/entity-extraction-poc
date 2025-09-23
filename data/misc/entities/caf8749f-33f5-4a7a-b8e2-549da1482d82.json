@@ -1,0 +1,78 @@
+{
+  "id": "caf8749f-33f5-4a7a-b8e2-549da1482d82",
+  "conversationId": "4f902b4b-387f-43b6-a794-fc4f408f899a",
+  "userId": "rob_foree",
+  "timestamp": "2025-09-20T18:47:01.141Z",
+  "entities": {
+    "people": [
+      {
+        "name": "Mike",
+        "role": "unknown",
+        "confidence": 0.95
+      }
+    ],
+    "projects": [
+      {
+        "name": "foundation work",
+        "type": "foundation",
+        "phase": "pre-construction",
+        "confidence": 0.9
+      }
+    ],
+    "decisions": [
+      {
+        "type": "approval",
+        "description": "permits approved",
+        "date": "current",
+        "confidence": 0.95
+      }
+    ],
+    "timeline": [
+      {
+        "event": "foundation work start",
+        "status": "scheduled",
+        "date": "Monday",
+        "confidence": 0.95
+      }
+    ],
+    "locations": [],
+    "materials": [],
+    "costs": [],
+    "issues": [],
+    "tasks": [],
+    "documents": [
+      {
+        "name": "permits",
+        "type": "construction permit",
+        "status": "approved",
+        "confidence": 0.9
+      }
+    ]
+  },
+  "metadata": {
+    "model": "anthropic/claude-3.5-sonnet",
+    "provider": "openrouter",
+    "duration": 5775,
+    "attempt": 1,
+    "confidence": 0.93,
+    "cost": 0,
+    "strategy": "Balanced (Claude 3.5)",
+    "complexity": {
+      "score": 2,
+      "wordCount": 17,
+      "hasNumbers": false,
+      "hasNames": true,
+      "hasDecisions": false,
+      "hasTimeline": true,
+      "level": "medium"
+    },
+    "originalMessage": "Hey Mike, the permits came through! We can start the foundation work Monday. Weather forecast looks good.",
+    "messageId": "msg_1",
+    "extractionModel": "anthropic/claude-3.5-sonnet",
+    "extractionProvider": "openrouter",
+    "processingTime": 5775
+  },
+  "domain": "misc",
+  "migratedFrom": "/home/robforee/analyst-server/entity-extraction-poc/data/mock-diffmem",
+  "migrationTimestamp": "2025-09-21T23:57:24.744Z"
+}

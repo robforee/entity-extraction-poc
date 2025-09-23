@@ -1,0 +1,195 @@
+{
+  "id": "db600851-a8a4-429b-84f6-b2a66a48d2fc",
+  "conversationId": {
+    "people": [
+      {
+        "name": "Rob",
+        "role": "Owner",
+        "confidence": 0.95
+      },
+      {
+        "name": "Mike",
+        "role": "Contractor",
+        "confidence": 0.95
+      },
+      {
+        "name": "Sarah",
+        "role": "Architect",
+        "confidence": 0.95
+      }
+    ],
+    "projects": [
+      {
+        "name": "Kitchen Renovation",
+        "type": "Renovation",
+        "phase": "Budget Review",
+        "confidence": 0.9
+      }
+    ],
+    "decisions": [
+      {
+        "type": "Change Order",
+        "description": "Approve change order #3 for additional outlet in master bedroom",
+        "date": "March 15, 2024",
+        "confidence": 0.85
+      }
+    ],
+    "timeline": [
+      {
+        "event": "Foundation work",
+        "status": "80% complete",
+        "date": "March 15, 2024",
+        "confidence": 0.8
+      },
+      {
+        "event": "Plumbing rough-in",
+        "status": "Delayed",
+        "date": "March 15, 2024",
+        "confidence": 0.8
+      },
+      {
+        "event": "Electrical inspection",
+        "status": "Scheduled",
+        "date": "March 15, 2024",
+        "confidence": 0.8
+      },
+      {
+        "event": "Material deliveries - windows",
+        "status": "Delayed",
+        "date": "March 15, 2024",
+        "confidence": 0.8
+      }
+    ],
+    "locations": [
+      {
+        "name": "On-site",
+        "type": "Construction Site",
+        "confidence": 0.8
+      }
+    ],
+    "materials": [
+      {
+        "name": "Concrete",
+        "category": "Foundation",
+        "confidence": 0.75
+      },
+      {
+        "name": "Custom cabinets",
+        "category": "Kitchen",
+        "confidence": 0.75
+      },
+      {
+        "name": "Appliances",
+        "category": "Kitchen",
+        "confidence": 0.75
+      },
+      {
+        "name": "Electrical work",
+        "category": "Electrical",
+        "confidence": 0.75
+      },
+      {
+        "name": "Windows",
+        "category": "Exterior",
+        "confidence": 0.75
+      }
+    ],
+    "costs": [
+      {
+        "amount": "$15K",
+        "type": "Overrun",
+        "category": "Kitchen Renovation",
+        "confidence": 0.85
+      },
+      {
+        "amount": "$8,000",
+        "type": "Overrun",
+        "category": "Custom cabinets",
+        "confidence": 0.85
+      },
+      {
+        "amount": "$5,000",
+        "type": "Overrun",
+        "category": "Appliance upgrades",
+        "confidence": 0.85
+      },
+      {
+        "amount": "$2,000",
+        "type": "Overrun",
+        "category": "Electrical work",
+        "confidence": 0.85
+      },
+      {
+        "amount": "$450",
+        "type": "Change Order",
+        "category": "Additional outlet in master bedroom",
+        "confidence": 0.85
+      }
+    ],
+    "issues": [
+      {
+        "description": "Plumbing rough-in delayed due to permit issue",
+        "severity": "Medium",
+        "status": "Open",
+        "confidence": 0.75
+      },
+      {
+        "description": "Window delivery delayed",
+        "severity": "Low",
+        "status": "Open",
+        "confidence": 0.75
+      }
+    ],
+    "tasks": [
+      {
+        "description": "Follow up with window supplier",
+        "assigned_to": "Mike",
+        "due_date": "EOD",
+        "confidence": 0.85
+      },
+      {
+        "description": "Submit revised electrical plans to city",
+        "assigned_to": "Sarah",
+        "confidence": 0.85
+      },
+      {
+        "description": "Approve material selections for bathroom tiles",
+        "assigned_to": "Rob",
+        "confidence": 0.85
+      }
+    ],
+    "documents": [
+      {
+        "name": "Foundation plans",
+        "type": "Plan",
+        "status": "Review",
+        "confidence": 0.75
+      },
+      {
+        "name": "Budget",
+        "type": "Financial Document",
+        "status": "Review",
+        "confidence": 0.75
+      }
+    ]
+  },
+  "userId": "rob_foree",
+  "timestamp": "2025-09-21T12:07:19.526Z",
+  "entities": {
+    "conversationId": "doc_1758456439524",
+    "messageId": "sample-conversations.txt",
+    "source": "./data/input/sample-conversations.txt",
+    "timestamp": "2025-09-21T12:07:19.525Z",
+    "documentType": ".txt",
+    "contentLength": 2028
+  },
+  "metadata": {
+    "extractionModel": "unknown",
+    "extractionProvider": "unknown",
+    "confidence": 0,
+    "processingTime": 0
+  },
+  "domain": "misc",
+  "migratedFrom": "/home/robforee/analyst-server/entity-extraction-poc/data/mock-diffmem",
+  "migrationTimestamp": "2025-09-21T23:57:24.753Z"
+}

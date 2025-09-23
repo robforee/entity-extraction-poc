@@ -1,0 +1,86 @@
+{
+  "id": "daf2b694-421e-4a52-8963-1ed0ae22b361",
+  "conversationId": {
+    "people": [
+      {
+        "name": "Incident Response Manager",
+        "role": "Strategic leader and operational coordinator",
+        "confidence": 0.98
+      }
+    ],
+    "projects": [],
+    "decisions": [
+      {
+        "type": "Strategic",
+        "description": "Critical decisions based on incomplete information balancing business continuity, security containment, legal compliance, and stakeholder communication",
+        "date": "",
+        "confidence": 0.95
+      }
+    ],
+    "timeline": [],
+    "locations": [],
+    "materials": [],
+    "costs": [],
+    "issues": [
+      {
+        "description": "Cybersecurity incidents requiring crisis management and multi-team response",
+        "severity": "Critical",
+        "status": "Ongoing",
+        "confidence": 0.9
+      }
+    ],
+    "tasks": [
+      {
+        "description": "Establish and maintain unified command structures",
+        "assigned_to": "Incident Response Manager",
+        "due_date": "",
+        "confidence": 0.85
+      },
+      {
+        "description": "Coordinate technical response teams and external partners",
+        "assigned_to": "Incident Response Manager",
+        "due_date": "",
+        "confidence": 0.85
+      },
+      {
+        "description": "Manage evidence preservation and regulatory compliance",
+        "assigned_to": "Incident Response Manager",
+        "due_date": "",
+        "confidence": 0.85
+      }
+    ],
+    "documents": [
+      {
+        "name": "Root Cause Analysis Reports",
+        "type": "Analysis Document",
+        "status": "Required",
+        "confidence": 0.8
+      },
+      {
+        "name": "Incident Response Procedures",
+        "type": "Process Documentation",
+        "status": "Active",
+        "confidence": 0.85
+      }
+    ]
+  },
+  "userId": "rob_foree",
+  "timestamp": "2025-09-21T20:47:35.898Z",
+  "entities": {
+    "conversationId": "doc_1758487655894",
+    "messageId": "incident-response-manager-comprehensive.md",
+    "source": "/home/robforee/analyst-server/snappy/client-projects/cybersec-dogfood/corpus/roles/incident-response-manager-comprehensive.md",
+    "timestamp": "2025-09-21T20:47:35.894Z",
+    "documentType": ".md",
+    "contentLength": 34336
+  },
+  "metadata": {
+    "extractionModel": "unknown",
+    "extractionProvider": "unknown",
+    "confidence": 0,
+    "processingTime": 0
+  },
+  "domain": "misc",
+  "migratedFrom": "/home/robforee/analyst-server/entity-extraction-poc/data/mock-diffmem",
+  "migrationTimestamp": "2025-09-21T23:57:24.749Z"
+}

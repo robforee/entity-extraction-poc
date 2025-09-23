@@ -1,0 +1,264 @@
+{
+  "cybersecurity": {
+    "name": "Cybersecurity Domain",
+    "description": "Entity extraction schema for cybersecurity documents and communications",
+    "version": "1.0.0",
+    "categories": {
+      "people": {
+        "name": "PEOPLE",
+        "description": "Security professionals, analysts, managers, incident responders",
+        "fields": {
+          "name": {
+            "type": "string",
+            "description": "Full name or role title",
+            "required": true
+          },
+          "role": {
+            "type": "string",
+            "description": "Job title or function (e.g., \"SOC Analyst\", \"CISO\", \"Security Engineer\")",
+            "required": true
+          },
+          "confidence": {
+            "type": "number",
+            "description": "Confidence score",
+            "range": "0.0-1.0",
+            "required": true
+          }
+        }
+      },
+      "projects": {
+        "name": "PROJECTS",
+        "description": "Security initiatives, implementations, assessments",
+        "fields": {
+          "name": {
+            "type": "string",
+            "description": "Project name or initiative",
+            "required": true
+          },
+          "type": {
+            "type": "string",
+            "description": "Project type (e.g., \"Security Assessment\", \"Tool Implementation\", \"Compliance Initiative\")",
+            "required": true
+          },
+          "phase": {
+            "type": "string",
+            "description": "Current phase (e.g., \"Planning\", \"Implementation\", \"Monitoring\")",
+            "required": false
+          },
+          "confidence": {
+            "type": "number",
+            "description": "Confidence score",
+            "range": "0.0-1.0",
+            "required": true
+          }
+        }
+      },
+      "decisions": {
+        "name": "DECISIONS",
+        "description": "Security decisions, policy changes, risk acceptances",
+        "fields": {
+          "type": {
+            "type": "string",
+            "description": "Decision type (e.g., \"Policy\", \"Risk Acceptance\", \"Tool Selection\")",
+            "required": true
+          },
+          "description": {
+            "type": "string",
+            "description": "What was decided",
+            "required": true
+          },
+          "date": {
+            "type": "string",
+            "description": "When decided (if mentioned)",
+            "required": false
+          },
+          "confidence": {
+            "type": "number",
+            "description": "Confidence score",
+            "range": "0.0-1.0",
+            "required": true
+          }
+        }
+      },
+      "timeline": {
+        "name": "TIMELINE",
+        "description": "Security events, incidents, deadlines, milestones",
+        "fields": {
+          "event": {
+            "type": "string",
+            "description": "What happened or needs to happen",
+            "required": true
+          },
+          "status": {
+            "type": "string",
+            "description": "Current status (e.g., \"Completed\", \"In Progress\", \"Planned\")",
+            "required": true
+          },
+          "date": {
+            "type": "string",
+            "description": "When it occurred or is due",
+            "required": false
+          },
+          "confidence": {
+            "type": "number",
+            "description": "Confidence score",
+            "range": "0.0-1.0",
+            "required": true
+          }
+        }
+      },
+      "locations": {
+        "name": "LOCATIONS",
+        "description": "Data centers, offices, network segments, cloud regions",
+        "fields": {
+          "name": {
+            "type": "string",
+            "description": "Location name",
+            "required": true
+          },
+          "type": {
+            "type": "string",
+            "description": "Location type (e.g., \"Data Center\", \"Office\", \"Cloud Region\")",
+            "required": true
+          },
+          "confidence": {
+            "type": "number",
+            "description": "Confidence score",
+            "range": "0.0-1.0",
+            "required": true
+          }
+        }
+      },
+      "materials": {
+        "name": "MATERIALS",
+        "description": "Security tools, software, hardware, documentation",
+        "fields": {
+          "name": {
+            "type": "string",
+            "description": "Tool or material name",
+            "required": true
+          },
+          "type": {
+            "type": "string",
+            "description": "Category (e.g., \"SIEM\", \"Firewall\", \"Documentation\", \"Scanner\")",
+            "required": true
+          },
+          "status": {
+            "type": "string",
+            "description": "Current status (e.g., \"Active\", \"Planned\", \"Deprecated\")",
+            "required": false
+          },
+          "confidence": {
+            "type": "number",
+            "description": "Confidence score",
+            "range": "0.0-1.0",
+            "required": true
+          }
+        }
+      },
+      "costs": {
+        "name": "COSTS",
+        "description": "Security budgets, tool costs, incident costs",
+        "fields": {
+          "amount": {
+            "type": "string",
+            "description": "Dollar amount or budget",
+            "required": true
+          },
+          "category": {
+            "type": "string",
+            "description": "What the cost is for (e.g., \"Tool License\", \"Training\", \"Incident Response\")",
+            "required": true
+          },
+          "confidence": {
+            "type": "number",
+            "description": "Confidence score",
+            "range": "0.0-1.0",
+            "required": true
+          }
+        }
+      },
+      "issues": {
+        "name": "ISSUES",
+        "description": "Security incidents, vulnerabilities, compliance gaps",
+        "fields": {
+          "description": {
+            "type": "string",
+            "description": "What the issue is",
+            "required": true
+          },
+          "severity": {
+            "type": "string",
+            "description": "Severity level (e.g., \"Critical\", \"High\", \"Medium\", \"Low\")",
+            "required": true
+          },
+          "status": {
+            "type": "string",
+            "description": "Current status (e.g., \"Open\", \"In Progress\", \"Resolved\")",
+            "required": true
+          },
+          "confidence": {
+            "type": "number",
+            "description": "Confidence score",
+            "range": "0.0-1.0",
+            "required": true
+          }
+        }
+      },
+      "tasks": {
+        "name": "TASKS",
+        "description": "Security tasks, remediation actions, assessments",
+        "fields": {
+          "description": {
+            "type": "string",
+            "description": "What needs to be done",
+            "required": true
+          },
+          "assigned_to": {
+            "type": "string",
+            "description": "Who is responsible",
+            "required": false
+          },
+          "due_date": {
+            "type": "string",
+            "description": "When it's due (if mentioned)",
+            "required": false
+          },
+          "confidence": {
+            "type": "number",
+            "description": "Confidence score",
+            "range": "0.0-1.0",
+            "required": true
+          }
+        }
+      },
+      "documents": {
+        "name": "DOCUMENTS",
+        "description": "Security policies, procedures, reports, standards",
+        "fields": {
+          "name": {
+            "type": "string",
+            "description": "Document name",
+            "required": true
+          },
+          "type": {
+            "type": "string",
+            "description": "Document type (e.g., \"Policy\", \"Procedure\", \"Report\", \"Standard\")",
+            "required": true
+          },
+          "status": {
+            "type": "string",
+            "description": "Current status (e.g., \"Active\", \"Draft\", \"Under Review\")",
+            "required": false
+          },
+          "confidence": {
+            "type": "number",
+            "description": "Confidence score",
+            "range": "0.0-1.0",
+            "required": true
+          }
+        }
+      }
+    }
+  }
+}

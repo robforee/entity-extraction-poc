@@ -1,0 +1,51 @@
+{
+  "id": "ac691bde-6182-40bf-83ea-1b5965e32462",
+  "conversationId": "doc_1758509642915_3iu274oby",
+  "userId": "rob_foree",
+  "domain": "cybersec",
+  "timestamp": "2025-09-22T02:54:02.916Z",
+  "entities": {
+    "people": [
+      {
+        "name": "Cyber Threat Intelligence Analyst",
+        "role": "Specialized Professional",
+        "confidence": 0.9
+      }
+    ],
+    "projects": [],
+    "decisions": [],
+    "timeline": [],
+    "locations": [],
+    "materials": [
+      {
+        "name": "Maltego",
+        "type": "Tool",
+        "status": "Active",
+        "confidence": 0.8
+      },
+      {
+        "name": "Shodan",
+        "type": "Tool",
+        "status": "Active",
+        "confidence": 0.8
+      }
+    ],
+    "costs": [],
+    "issues": [],
+    "tasks": [],
+    "documents": []
+  },
+  "metadata": {
+    "source": "/home/robforee/analyst-server/snappy/client-projects/cybersec-dogfood/corpus/roles/cyber-threat-intelligence-analyst-comprehensive.md",
+    "messageId": "cyber-threat-intelligence-analyst-comprehensive.md",
+    "documentType": ".md",
+    "contentLength": 32248,
+    "cost": 0.005569999999999999,
+    "processingTime": 0,
+    "model": "gpt-3.5-turbo",
+    "provider": "openai",
+    "confidence": 0.8333333333333334,
+    "extractionModel": "gpt-3.5-turbo",
+    "extractionProvider": "openai"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "id": "084d2d8a-218d-452c-bd15-5eddb53439f0",
+  "conversationId": "doc_1758501919628_srv2i61lt",
+  "userId": "rob_foree",
+  "domain": "cybersec",
+  "timestamp": "2025-09-22T00:45:19.629Z",
+  "entities": {
+    "people": [
+      {
+        "name": "Incident Response Manager",
+        "role": "Strategic Leader and Operational Coordinator",
+        "confidence": 0.95
+      }
+    ],
+    "projects": [],
+    "decisions": [],
+    "timeline": [],
+    "locations": [],
+    "materials": [],
+    "costs": [],
+    "issues": [],
+    "tasks": [],
+    "documents": []
+  },
+  "metadata": {
+    "source": "/home/robforee/analyst-server/snappy/client-projects/cybersec-dogfood/corpus/roles/incident-response-manager-comprehensive.md",
+    "messageId": "incident-response-manager-comprehensive.md",
+    "documentType": ".md",
+    "contentLength": 34336,
+    "cost": 0.005577000000000001,
+    "processingTime": 0,
+    "model": "gpt-3.5-turbo",
+    "provider": "openai",
+    "confidence": 0.95,
+    "extractionModel": "gpt-3.5-turbo",
+    "extractionProvider": "openai"
+  }
+}

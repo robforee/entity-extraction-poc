@@ -1,0 +1,90 @@
+{
+  "id": "f411db72-48d0-4677-9638-92d5c81d1bf2",
+  "conversationId": {
+    "people": [
+      {
+        "name": "Security Engineer",
+        "role": "Technical architect and implementation specialist",
+        "confidence": 0.95
+      },
+      {
+        "name": "CISO",
+        "role": "Executive security leader",
+        "confidence": 0.9
+      }
+    ],
+    "projects": [
+      {
+        "name": "SIEM Implementation",
+        "type": "Security Infrastructure",
+        "phase": "Design and Implementation",
+        "confidence": 0.95
+      },
+      {
+        "name": "Network Security Monitoring",
+        "type": "Security Infrastructure",
+        "phase": "Implementation",
+        "confidence": 0.95
+      },
+      {
+        "name": "SOAR Development",
+        "type": "Security Automation",
+        "phase": "Development",
+        "confidence": 0.9
+      }
+    ],
+    "decisions": [],
+    "timeline": [],
+    "locations": [],
+    "materials": [],
+    "costs": [],
+    "issues": [],
+    "tasks": [
+      {
+        "description": "Design and implement SIEM architectures",
+        "assigned_to": "Security Engineer",
+        "due_date": null,
+        "confidence": 0.9
+      },
+      {
+        "description": "Develop data ingestion pipelines",
+        "assigned_to": "Security Engineer",
+        "due_date": null,
+        "confidence": 0.9
+      },
+      {
+        "description": "Implement network monitoring infrastructure",
+        "assigned_to": "Security Engineer",
+        "due_date": null,
+        "confidence": 0.9
+      }
+    ],
+    "documents": [
+      {
+        "name": "Security Engineer Role Description",
+        "type": "Job Description",
+        "status": "Complete",
+        "confidence": 0.95
+      }
+    ]
+  },
+  "userId": "rob_foree",
+  "timestamp": "2025-09-21T20:47:25.023Z",
+  "entities": {
+    "conversationId": "doc_1758487645023",
+    "messageId": "security-engineer-comprehensive.md",
+    "source": "/home/robforee/analyst-server/snappy/client-projects/cybersec-dogfood/corpus/roles/security-engineer-comprehensive.md",
+    "timestamp": "2025-09-21T20:47:25.023Z",
+    "documentType": ".md",
+    "contentLength": 32816
+  },
+  "metadata": {
+    "extractionModel": "unknown",
+    "extractionProvider": "unknown",
+    "confidence": 0,
+    "processingTime": 0
+  },
+  "domain": "misc",
+  "migratedFrom": "/home/robforee/analyst-server/entity-extraction-poc/data/mock-diffmem",
+  "migrationTimestamp": "2025-09-21T23:57:24.761Z"
+}

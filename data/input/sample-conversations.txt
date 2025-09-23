@@ -1,0 +1,55 @@
+# Sample Construction Project Communications
+
+## SMS Thread 1: Project Timeline Discussion
+**Participants:** Rob (Owner), Mike (Contractor), Sarah (Architect)
+
+Rob: Hey Mike, when can we start the foundation work? The permits came through yesterday.
+
+Mike: Great news! I can start Monday if the weather holds. Need to coordinate with the concrete supplier first.
+
+Sarah: Before you start, can we review the foundation plans one more time? I made some adjustments to the drainage system.
+
+Rob: Sure, let's meet Friday at 2pm on site. Mike, does that work for you?
+
+Mike: Perfect. I'll bring the updated timeline. We're looking at 3 weeks for foundation if everything goes smooth.
+
+## Email Thread 1: Budget Discussion
+**From:** rob@example.com
+**To:** mike@contractor.com, sarah@architect.com
+**Subject:** Budget Review - Kitchen Renovation
+
+Hi team,
+
+I've been reviewing the budget and we're about $15K over on the kitchen renovation. Here are the main overruns:
+
+- Custom cabinets: $8,000 over budget
+- Appliance upgrades: $5,000 over budget  
+- Electrical work: $2,000 over budget
+
+Can we discuss alternatives? I'm flexible on the appliances but really want to keep the custom cabinets.
+
+Let me know your thoughts.
+
+Rob
+
+## Meeting Notes 1: Weekly Progress Review
+**Date:** March 15, 2024
+**Attendees:** Rob Foree (Owner), Mike Johnson (Contractor), Sarah Chen (Architect)
+
+**Agenda Items:**
+1. Foundation progress - 80% complete, on schedule
+2. Plumbing rough-in - delayed 3 days due to permit issue
+3. Electrical - inspector coming Thursday
+4. Material deliveries - windows delayed 1 week
+
+**Decisions Made:**
+- Move electrical inspection to Friday to accommodate inspector schedule
+- Order backup window supplier for faster delivery
+- Approve change order #3 for additional outlet in master bedroom ($450)
+
+**Action Items:**
+- Mike: Follow up with window supplier by EOD
+- Sarah: Submit revised electrical plans to city
+- Rob: Approve material selections for bathroom tiles
+
+**Next Meeting:** March 22, 2024 at 10am on-site

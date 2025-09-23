@@ -1,0 +1,87 @@
+{
+  "id": "e0c885db-283b-4ed5-bf7c-9587d66a32c0",
+  "conversationId": {
+    "people": [
+      {
+        "name": "SOC Analyst Level 3",
+        "role": "Senior Security Analyst",
+        "confidence": 0.95
+      }
+    ],
+    "projects": [
+      {
+        "name": "Advanced Threat Hunting Program",
+        "type": "Security Operations",
+        "phase": "Development",
+        "confidence": 0.9
+      },
+      {
+        "name": "Intelligence-Driven Defense Architecture",
+        "type": "Security Infrastructure",
+        "phase": "Implementation",
+        "confidence": 0.85
+      }
+    ],
+    "decisions": [
+      {
+        "type": "Strategic",
+        "description": "Development of comprehensive training curricula for analyst development",
+        "date": "ongoing",
+        "confidence": 0.9
+      }
+    ],
+    "timeline": [
+      {
+        "event": "Threat landscape assessment",
+        "status": "Continuous",
+        "date": "ongoing",
+        "confidence": 0.85
+      }
+    ],
+    "locations": [],
+    "materials": [],
+    "costs": [],
+    "issues": [],
+    "tasks": [
+      {
+        "description": "Lead SOC process engineering initiatives",
+        "assigned_to": "L3 Analyst",
+        "due_date": "ongoing",
+        "confidence": 0.9
+      },
+      {
+        "description": "Develop executive briefings",
+        "assigned_to": "L3 Analyst",
+        "due_date": "recurring",
+        "confidence": 0.85
+      }
+    ],
+    "documents": [
+      {
+        "name": "Strategic Risk Assessment Reports",
+        "type": "Executive Documentation",
+        "status": "Regular Production",
+        "confidence": 0.9
+      }
+    ]
+  },
+  "userId": "rob_foree",
+  "timestamp": "2025-09-21T20:46:54.780Z",
+  "entities": {
+    "conversationId": "doc_1758487614779",
+    "messageId": "soc-analyst-level-3-comprehensive.md",
+    "source": "/home/robforee/analyst-server/snappy/client-projects/cybersec-dogfood/corpus/roles/soc-analyst-level-3-comprehensive.md",
+    "timestamp": "2025-09-21T20:46:54.779Z",
+    "documentType": ".md",
+    "contentLength": 32700
+  },
+  "metadata": {
+    "extractionModel": "unknown",
+    "extractionProvider": "unknown",
+    "confidence": 0,
+    "processingTime": 0
+  },
+  "domain": "misc",
+  "migratedFrom": "/home/robforee/analyst-server/entity-extraction-poc/data/mock-diffmem",
+  "migrationTimestamp": "2025-09-21T23:57:24.755Z"
+}

@@ -1,0 +1,60 @@
+{
+  "id": "a230722c-b1c8-4d9f-98a1-9ffee563f030",
+  "conversationId": {
+    "people": [
+      {
+        "name": "SOC Analyst Level 1",
+        "role": "First line of defense in cybersecurity monitoring and incident detection",
+        "confidence": 0.95
+      },
+      {
+        "name": "L2 and L3 analysts",
+        "role": "Senior analysts in Security Operations Center",
+        "confidence": 0.9
+      },
+      {
+        "name": "SOC supervisors or shift leads",
+        "role": "Supervisory role in Security Operations Center",
+        "confidence": 0.85
+      },
+      {
+        "name": "Incident response teams",
+        "role": "Specialized teams for responding to security incidents",
+        "confidence": 0.85
+      },
+      {
+        "name": "IT operations personnel",
+        "role": "Technical staff responsible for maintaining IT systems",
+        "confidence": 0.8
+      }
+    ],
+    "projects": [],
+    "decisions": [],
+    "timeline": [],
+    "locations": [],
+    "materials": [],
+    "costs": [],
+    "issues": [],
+    "tasks": [],
+    "documents": []
+  },
+  "userId": "rob_foree",
+  "timestamp": "2025-09-21T20:49:23.813Z",
+  "entities": {
+    "conversationId": "doc_1758487763811",
+    "messageId": "soc-analyst-level-1-comprehensive.md",
+    "source": "/home/robforee/analyst-server/snappy/client-projects/cybersec-dogfood/corpus/roles/soc-analyst-level-1-comprehensive.md",
+    "timestamp": "2025-09-21T20:49:23.811Z",
+    "documentType": ".md",
+    "contentLength": 24378
+  },
+  "metadata": {
+    "extractionModel": "unknown",
+    "extractionProvider": "unknown",
+    "confidence": 0,
+    "processingTime": 0
+  },
+  "domain": "misc",
+  "migratedFrom": "/home/robforee/analyst-server/entity-extraction-poc/data/mock-diffmem",
+  "migrationTimestamp": "2025-09-21T23:57:24.738Z"
+}

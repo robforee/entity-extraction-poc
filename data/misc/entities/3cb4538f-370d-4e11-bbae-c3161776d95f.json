@@ -1,0 +1,81 @@
+{
+  "id": "3cb4538f-370d-4e11-bbae-c3161776d95f",
+  "conversationId": {
+    "people": [
+      {
+        "name": "Threat Hunter",
+        "role": "cybersecurity analyst",
+        "confidence": 0.95
+      }
+    ],
+    "projects": [
+      {
+        "name": "Proactive Defense Program",
+        "type": "cybersecurity",
+        "phase": "operational",
+        "confidence": 0.9
+      }
+    ],
+    "decisions": [
+      {
+        "type": "methodology",
+        "description": "Implementation of hypothesis-driven hunting approach",
+        "date": "ongoing",
+        "confidence": 0.85
+      }
+    ],
+    "timeline": [
+      {
+        "event": "Continuous threat monitoring",
+        "status": "active",
+        "date": "ongoing",
+        "confidence": 0.9
+      }
+    ],
+    "locations": [],
+    "materials": [],
+    "costs": [],
+    "issues": [],
+    "tasks": [
+      {
+        "description": "Develop behavioral analytics frameworks",
+        "assigned_to": "Threat Hunter",
+        "due_date": "ongoing",
+        "confidence": 0.85
+      },
+      {
+        "description": "Integrate machine learning algorithms",
+        "assigned_to": "Threat Hunter",
+        "due_date": "ongoing",
+        "confidence": 0.85
+      }
+    ],
+    "documents": [
+      {
+        "name": "Threat Intelligence Reports",
+        "type": "analysis",
+        "status": "ongoing",
+        "confidence": 0.9
+      }
+    ]
+  },
+  "userId": "rob_foree",
+  "timestamp": "2025-09-21T20:46:44.573Z",
+  "entities": {
+    "conversationId": "doc_1758487604572",
+    "messageId": "threat-hunter-comprehensive.md",
+    "source": "/home/robforee/analyst-server/snappy/client-projects/cybersec-dogfood/corpus/roles/threat-hunter-comprehensive.md",
+    "timestamp": "2025-09-21T20:46:44.572Z",
+    "documentType": ".md",
+    "contentLength": 33771
+  },
+  "metadata": {
+    "extractionModel": "unknown",
+    "extractionProvider": "unknown",
+    "confidence": 0,
+    "processingTime": 0
+  },
+  "domain": "misc",
+  "migratedFrom": "/home/robforee/analyst-server/entity-extraction-poc/data/mock-diffmem",
+  "migrationTimestamp": "2025-09-21T23:57:24.716Z"
+}

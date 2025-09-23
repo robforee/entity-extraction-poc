@@ -1,0 +1,78 @@
+{
+  "id": "036cb13b-65db-4d21-a18c-637da169e3e2",
+  "conversationId": "4f902b4b-387f-43b6-a794-fc4f408f899a",
+  "userId": "rob_foree",
+  "timestamp": "2025-09-20T18:47:21.371Z",
+  "entities": {
+    "people": [],
+    "projects": [
+      {
+        "name": "Kitchen renovation",
+        "type": "Renovation",
+        "phase": "In progress",
+        "confidence": 0.95
+      }
+    ],
+    "decisions": [],
+    "timeline": [],
+    "locations": [],
+    "materials": [
+      {
+        "name": "custom cabinets",
+        "category": "Cabinetry",
+        "confidence": 0.95
+      }
+    ],
+    "costs": [
+      {
+        "amount": 8000,
+        "type": "overage",
+        "category": "cabinets",
+        "confidence": 0.95
+      }
+    ],
+    "issues": [
+      {
+        "description": "Quality issues with first batch of cabinets",
+        "severity": "High",
+        "status": "Unresolved",
+        "confidence": 0.9
+      }
+    ],
+    "tasks": [
+      {
+        "description": "Decide on cabinet alternatives",
+        "assigned_to": "Unspecified",
+        "due_date": "Unspecified",
+        "confidence": 0.85
+      }
+    ],
+    "documents": []
+  },
+  "metadata": {
+    "model": "anthropic/claude-3.5-sonnet",
+    "provider": "openrouter",
+    "duration": 4864,
+    "attempt": 1,
+    "confidence": 0.9199999999999999,
+    "cost": 0,
+    "strategy": "Balanced (Claude 3.5)",
+    "complexity": {
+      "score": 3,
+      "wordCount": 26,
+      "hasNumbers": true,
+      "hasNames": true,
+      "hasDecisions": true,
+      "hasTimeline": false,
+      "level": "medium"
+    },
+    "originalMessage": "Kitchen renovation update: We're $8,000 over budget on the custom cabinets. The supplier had some quality issues with the first batch. Need to decide on alternatives.",
+    "messageId": "msg_4",
+    "extractionModel": "anthropic/claude-3.5-sonnet",
+    "extractionProvider": "openrouter",
+    "processingTime": 4864
+  },
+  "domain": "misc",
+  "migratedFrom": "/home/robforee/analyst-server/entity-extraction-poc/data/mock-diffmem",
+  "migrationTimestamp": "2025-09-21T23:57:24.713Z"
+}

@@ -1,0 +1,219 @@
+{
+  "id": "ad7b7774-7c39-4b40-8a2a-6006aea0fbd4",
+  "conversationId": "doc_1758509724552_m868g4mw2",
+  "userId": "rob_foree",
+  "domain": "cybersec",
+  "timestamp": "2025-09-22T02:55:24.553Z",
+  "entities": {
+    "people": [
+      {
+        "name": "Cybersecurity Consultant",
+        "role": "Strategic Advisory and Implementation Specialist",
+        "confidence": 0.95
+      }
+    ],
+    "projects": [
+      {
+        "name": "Comprehensive Security Assessment Methodology",
+        "type": "Security Assessment",
+        "phase": "Planning",
+        "confidence": 0.85
+      },
+      {
+        "name": "Maturity Assessment and Capability Evaluation",
+        "type": "Maturity Assessment",
+        "phase": "Implementation",
+        "confidence": 0.85
+      },
+      {
+        "name": "Regulatory Compliance Assessment and Requirements Analysis",
+        "type": "Compliance Assessment",
+        "phase": "Monitoring",
+        "confidence": 0.85
+      },
+      {
+        "name": "Enterprise Risk Assessment and Threat Analysis",
+        "type": "Risk Assessment",
+        "phase": "Planning",
+        "confidence": 0.85
+      },
+      {
+        "name": "Strategic Security Planning and Roadmap Development",
+        "type": "Strategic Planning",
+        "phase": "Implementation",
+        "confidence": 0.85
+      },
+      {
+        "name": "Business Case Development and Investment Justification",
+        "type": "Business Case",
+        "phase": "Planning",
+        "confidence": 0.85
+      },
+      {
+        "name": "Security Architecture Design and Technology Strategy",
+        "type": "Security Architecture",
+        "phase": "Implementation",
+        "confidence": 0.85
+      },
+      {
+        "name": "Cloud Security Strategy and Migration Planning",
+        "type": "Cloud Security Strategy",
+        "phase": "Planning",
+        "confidence": 0.85
+      },
+      {
+        "name": "Emerging Technology Integration and Innovation Strategy",
+        "type": "Technology Integration",
+        "phase": "Implementation",
+        "confidence": 0.85
+      },
+      {
+        "name": "Technology Evaluation and Vendor Selection",
+        "type": "Technology Evaluation",
+        "phase": "Planning",
+        "confidence": 0.85
+      },
+      {
+        "name": "Contract Negotiation and Vendor Management Strategy",
+        "type": "Contract Negotiation",
+        "phase": "Implementation",
+        "confidence": 0.85
+      },
+      {
+        "name": "Security Program Development and Implementation Coordination",
+        "type": "Security Program Implementation",
+        "phase": "Implementation",
+        "confidence": 0.85
+      },
+      {
+        "name": "Change Management and Organizational Transformation",
+        "type": "Change Management",
+        "phase": "Implementation",
+        "confidence": 0.85
+      },
+      {
+        "name": "Training and Awareness Program Development",
+        "type": "Training Program",
+        "phase": "Planning",
+        "confidence": 0.85
+      },
+      {
+        "name": "Project Planning and Resource Coordination",
+        "type": "Project Management",
+        "phase": "Planning",
+        "confidence": 0.85
+      },
+      {
+        "name": "Quality Assurance and Delivery Management",
+        "type": "Quality Assurance",
+        "phase": "Monitoring",
+        "confidence": 0.85
+      },
+      {
+        "name": "Client Relationship Development and Trust Building",
+        "type": "Client Relationship Management",
+        "phase": "Implementation",
+        "confidence": 0.85
+      },
+      {
+        "name": "Stakeholder Management and Communication Excellence",
+        "type": "Stakeholder Management",
+        "phase": "Implementation",
+        "confidence": 0.85
+      },
+      {
+        "name": "Value Demonstration and Outcome Measurement",
+        "type": "Value Demonstration",
+        "phase": "Monitoring",
+        "confidence": 0.85
+      },
+      {
+        "name": "Market Analysis and Competitive Positioning",
+        "type": "Market Analysis",
+        "phase": "Planning",
+        "confidence": 0.85
+      },
+      {
+        "name": "Proposal Development and Business Acquisition",
+        "type": "Proposal Development",
+        "phase": "Planning",
+        "confidence": 0.85
+      },
+      {
+        "name": "Financial Services Cybersecurity and Regulatory Compliance",
+        "type": "Industry-Specific Consulting",
+        "phase": "Implementation",
+        "confidence": 0.85
+      },
+      {
+        "name": "Healthcare Cybersecurity and HIPAA Compliance",
+        "type": "Industry-Specific Consulting",
+        "phase": "Implementation",
+        "confidence": 0.85
+      },
+      {
+        "name": "Critical Infrastructure and Industrial Security",
+        "type": "Industry-Specific Consulting",
+        "phase": "Implementation",
+        "confidence": 0.85
+      },
+      {
+        "name": "Incident Response and Crisis Management Consulting",
+        "type": "Advanced Consulting Specialization",
+        "phase": "Implementation",
+        "confidence": 0.85
+      },
+      {
+        "name": "Merger and Acquisition Cybersecurity Due Diligence",
+        "type": "Advanced Consulting Specialization",
+        "phase": "Planning",
+        "confidence": 0.85
+      },
+      {
+        "name": "Senior Consulting and Practice Leadership",
+        "type": "Consulting Career Advancement",
+        "phase": "Implementation",
+        "confidence": 0.85
+      },
+      {
+        "name": "Thought Leadership and Industry Recognition",
+        "type": "Consulting Career Advancement",
+        "phase": "Monitoring",
+        "confidence": 0.85
+      },
+      {
+        "name": "Advanced Certifications and Credential Portfolio",
+        "type": "Professional Development",
+        "phase": "Planning",
+        "confidence": 0.85
+      },
+      {
+        "name": "Continuous Learning and Market Awareness",
+        "type": "Professional Development",
+        "phase": "Monitoring",
+        "confidence": 0.85
+      }
+    ],
+    "decisions": [],
+    "timeline": [],
+    "locations": [],
+    "materials": [],
+    "costs": [],
+    "issues": [],
+    "tasks": [],
+    "documents": []
+  },
+  "metadata": {
+    "source": "/home/robforee/analyst-server/snappy/client-projects/cybersec-dogfood/corpus/roles/cybersecurity-consultant-comprehensive.md",
+    "messageId": "cybersecurity-consultant-comprehensive.md",
+    "documentType": ".md",
+    "contentLength": 29073,
+    "cost": 0.007426,
+    "processingTime": 0,
+    "model": "gpt-3.5-turbo",
+    "provider": "openai",
+    "confidence": 0.8532258064516134,
+    "extractionModel": "gpt-3.5-turbo",
+    "extractionProvider": "openai"
+  }
+}

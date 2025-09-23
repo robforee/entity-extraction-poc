@@ -1,0 +1,78 @@
+{
+  "id": "54dc9096-7aa2-4f47-b676-00c6b28a6390",
+  "conversationId": "4f902b4b-387f-43b6-a794-fc4f408f899a",
+  "userId": "rob_foree",
+  "timestamp": "2025-09-20T18:47:07.625Z",
+  "entities": {
+    "people": [],
+    "projects": [
+      {
+        "name": "foundation work",
+        "type": "foundation",
+        "phase": "planning",
+        "confidence": 0.85
+      }
+    ],
+    "decisions": [],
+    "timeline": [
+      {
+        "event": "foundation completion",
+        "status": "planned",
+        "date": "3 weeks",
+        "confidence": 0.85
+      }
+    ],
+    "locations": [],
+    "materials": [
+      {
+        "name": "concrete",
+        "category": "foundation materials",
+        "confidence": 0.95
+      }
+    ],
+    "costs": [
+      {
+        "amount": 25000,
+        "type": "estimate",
+        "category": "foundation",
+        "confidence": 0.95
+      }
+    ],
+    "issues": [],
+    "tasks": [
+      {
+        "description": "coordinate with concrete supplier",
+        "assigned_to": "sender",
+        "due_date": "immediate",
+        "confidence": 0.85
+      }
+    ],
+    "documents": []
+  },
+  "metadata": {
+    "model": "anthropic/claude-3.5-sonnet",
+    "provider": "openrouter",
+    "duration": 5475,
+    "attempt": 1,
+    "confidence": 0.8899999999999999,
+    "cost": 0,
+    "strategy": "Balanced (Claude 3.5)",
+    "complexity": {
+      "score": 2,
+      "wordCount": 25,
+      "hasNumbers": true,
+      "hasNames": true,
+      "hasDecisions": false,
+      "hasTimeline": false,
+      "level": "medium"
+    },
+    "originalMessage": "Great news! I'll coordinate with the concrete supplier. We're looking at about 3 weeks for the foundation if everything goes smooth. Cost estimate is $25,000.",
+    "messageId": "msg_2",
+    "extractionModel": "anthropic/claude-3.5-sonnet",
+    "extractionProvider": "openrouter",
+    "processingTime": 5475
+  },
+  "domain": "misc",
+  "migratedFrom": "/home/robforee/analyst-server/entity-extraction-poc/data/mock-diffmem",
+  "migrationTimestamp": "2025-09-21T23:57:24.717Z"
+}

@@ -1,0 +1,16 @@
+{
+  "domain": "cybersec",
+  "created": "2025-09-22T00:26:29.435Z",
+  "userId": "test_user",
+  "version": "1.0.0",
+  "entityCount": 161,
+  "conversationCount": 16,
+  "totalCost": 0.09357599999999999,
+  "lastUpdated": "2025-09-22T02:56:07.702Z",
+  "processingStats": {
+    "documentsProcessed": 16,
+    "entitiesExtracted": 161,
+    "averageConfidence": 0,
+    "lastProcessingBatch": null
+  }
+}

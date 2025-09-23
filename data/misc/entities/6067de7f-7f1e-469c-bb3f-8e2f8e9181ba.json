@@ -1,0 +1,87 @@
+{
+  "id": "6067de7f-7f1e-469c-bb3f-8e2f8e9181ba",
+  "conversationId": {
+    "people": [
+      {
+        "name": "SOC Analyst Level 3",
+        "role": "Senior Security Analyst",
+        "confidence": 0.95
+      }
+    ],
+    "projects": [
+      {
+        "name": "Security Operations Center",
+        "type": "Cybersecurity Operations",
+        "phase": "Operational",
+        "confidence": 0.95
+      },
+      {
+        "name": "Advanced Threat Hunting Program",
+        "type": "Security Initiative",
+        "phase": "Development",
+        "confidence": 0.9
+      }
+    ],
+    "decisions": [
+      {
+        "type": "Strategic",
+        "description": "Development of intelligence-driven defense architectures",
+        "date": "Ongoing",
+        "confidence": 0.85
+      }
+    ],
+    "timeline": [
+      {
+        "event": "Attack Campaign Analysis",
+        "status": "Continuous",
+        "date": "Multi-month/year timeframes",
+        "confidence": 0.85
+      }
+    ],
+    "locations": [],
+    "materials": [],
+    "costs": [],
+    "issues": [],
+    "tasks": [
+      {
+        "description": "Lead complex investigations",
+        "assigned_to": "L3 Analyst",
+        "due_date": "Ongoing",
+        "confidence": 0.9
+      },
+      {
+        "description": "Develop threat hunting methodologies",
+        "assigned_to": "L3 Analyst",
+        "due_date": "Continuous",
+        "confidence": 0.9
+      }
+    ],
+    "documents": [
+      {
+        "name": "Executive Briefings",
+        "type": "Strategic Reports",
+        "status": "Regular Production",
+        "confidence": 0.85
+      }
+    ]
+  },
+  "userId": "rob_foree",
+  "timestamp": "2025-09-21T20:51:29.080Z",
+  "entities": {
+    "conversationId": "doc_1758487889080",
+    "messageId": "soc-analyst-level-3-comprehensive.md",
+    "source": "/home/robforee/analyst-server/snappy/client-projects/cybersec-dogfood/corpus/roles/soc-analyst-level-3-comprehensive.md",
+    "timestamp": "2025-09-21T20:51:29.080Z",
+    "documentType": ".md",
+    "contentLength": 32700
+  },
+  "metadata": {
+    "extractionModel": "unknown",
+    "extractionProvider": "unknown",
+    "confidence": 0,
+    "processingTime": 0
+  },
+  "domain": "misc",
+  "migratedFrom": "/home/robforee/analyst-server/entity-extraction-poc/data/mock-diffmem",
+  "migrationTimestamp": "2025-09-21T23:57:24.726Z"
+}

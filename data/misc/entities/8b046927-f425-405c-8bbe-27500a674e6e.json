@@ -1,0 +1,73 @@
+{
+  "id": "8b046927-f425-405c-8bbe-27500a674e6e",
+  "conversationId": {
+    "people": [
+      {
+        "name": "SOC Analyst",
+        "role": "Security Operations Analyst",
+        "confidence": 0.95
+      },
+      {
+        "name": "Security Engineer",
+        "role": "Engineer",
+        "confidence": 0.9
+      },
+      {
+        "name": "Incident Response Manager",
+        "role": "Manager",
+        "confidence": 0.85
+      }
+    ],
+    "projects": [],
+    "decisions": [],
+    "timeline": [],
+    "locations": [],
+    "materials": [],
+    "costs": [],
+    "issues": [],
+    "tasks": [
+      {
+        "description": "Monitor security alerts in the SIEM system",
+        "assigned_to": "SOC Analyst",
+        "confidence": 0.95
+      },
+      {
+        "description": "Escalate incidents to the Incident Response Manager",
+        "assigned_to": "SOC Analyst",
+        "confidence": 0.9
+      },
+      {
+        "description": "Document findings in the ticketing system",
+        "assigned_to": "SOC Analyst",
+        "confidence": 0.9
+      }
+    ],
+    "documents": [
+      {
+        "name": "SOC Analyst Role Document",
+        "type": "Job Description",
+        "status": "Active",
+        "confidence": 0.85
+      }
+    ]
+  },
+  "userId": "rob_foree",
+  "timestamp": "2025-09-21T20:50:12.021Z",
+  "entities": {
+    "conversationId": "doc_1758487812020",
+    "messageId": "test-simple.md",
+    "source": "/home/robforee/analyst-server/snappy/client-projects/cybersec-dogfood/test-simple.md",
+    "timestamp": "2025-09-21T20:50:12.020Z",
+    "documentType": ".md",
+    "contentLength": 444
+  },
+  "metadata": {
+    "extractionModel": "unknown",
+    "extractionProvider": "unknown",
+    "confidence": 0,
+    "processingTime": 0
+  },
+  "domain": "misc",
+  "migratedFrom": "/home/robforee/analyst-server/entity-extraction-poc/data/mock-diffmem",
+  "migrationTimestamp": "2025-09-21T23:57:24.737Z"
+}

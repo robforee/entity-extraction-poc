@@ -1,0 +1,75 @@
+{
+  "id": "e9860629-f346-4c0e-841e-9a9cd00b5b6d",
+  "conversationId": {
+    "people": [
+      {
+        "name": "Compliance Officer",
+        "role": "Strategic compliance and risk management leader",
+        "confidence": 0.98
+      }
+    ],
+    "projects": [],
+    "decisions": [],
+    "timeline": [],
+    "locations": [],
+    "materials": [],
+    "costs": [],
+    "issues": [],
+    "tasks": [
+      {
+        "description": "Implement comprehensive regulatory compliance programs",
+        "assigned_to": "Compliance Officer",
+        "confidence": 0.95
+      },
+      {
+        "description": "Develop and manage risk assessment frameworks",
+        "assigned_to": "Compliance Officer",
+        "confidence": 0.95
+      },
+      {
+        "description": "Coordinate audit preparation and evidence management",
+        "assigned_to": "Compliance Officer",
+        "confidence": 0.95
+      }
+    ],
+    "documents": [
+      {
+        "name": "Security Policies",
+        "type": "Policy Documentation",
+        "status": "Required",
+        "confidence": 0.9
+      },
+      {
+        "name": "Risk Assessment Reports",
+        "type": "Assessment Documentation",
+        "status": "Required",
+        "confidence": 0.9
+      },
+      {
+        "name": "Compliance Training Materials",
+        "type": "Training Documentation",
+        "status": "Required",
+        "confidence": 0.9
+      }
+    ]
+  },
+  "userId": "rob_foree",
+  "timestamp": "2025-09-21T20:52:13.240Z",
+  "entities": {
+    "conversationId": "doc_1758487933240",
+    "messageId": "compliance-officer-comprehensive.md",
+    "source": "/home/robforee/analyst-server/snappy/client-projects/cybersec-dogfood/corpus/roles/compliance-officer-comprehensive.md",
+    "timestamp": "2025-09-21T20:52:13.240Z",
+    "documentType": ".md",
+    "contentLength": 39196
+  },
+  "metadata": {
+    "extractionModel": "unknown",
+    "extractionProvider": "unknown",
+    "confidence": 0,
+    "processingTime": 0
+  },
+  "domain": "misc",
+  "migratedFrom": "/home/robforee/analyst-server/entity-extraction-poc/data/mock-diffmem",
+  "migrationTimestamp": "2025-09-21T23:57:24.756Z"
+}

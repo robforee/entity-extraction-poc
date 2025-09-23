@@ -1,0 +1,92 @@
+{
+  "id": "c78d5863-274f-4ddd-9f0d-8c676f9e96de",
+  "conversationId": "f970985f-917e-4f45-b520-11d8dc8f07a2",
+  "userId": "rob_foree",
+  "timestamp": "2025-09-20T18:53:31.366Z",
+  "entities": {
+    "people": [
+      {
+        "name": "Johnson Construction Supply",
+        "role": "Supplier",
+        "confidence": 0.95
+      }
+    ],
+    "projects": [],
+    "decisions": [
+      {
+        "type": "Coordination",
+        "description": "Coordinate with Johnson Construction Supply for the concrete delivery",
+        "date": "Next week",
+        "confidence": 0.85
+      }
+    ],
+    "timeline": [
+      {
+        "event": "Concrete delivery",
+        "status": "Planned",
+        "date": "Next week",
+        "confidence": 0.8
+      }
+    ],
+    "locations": [],
+    "materials": [
+      {
+        "name": "Concrete",
+        "category": "Construction Material",
+        "quantity": "Not specified",
+        "confidence": 0.75
+      },
+      {
+        "name": "Steel reinforcement",
+        "category": "Construction Material",
+        "quantity": "Not specified",
+        "confidence": 0.75
+      }
+    ],
+    "costs": [
+      {
+        "amount": "$3,000",
+        "type": "Overrun",
+        "category": "Steel reinforcement",
+        "confidence": 0.9
+      }
+    ],
+    "issues": [
+      {
+        "description": "Running into a $3,000 overrun on the steel reinforcement due to recent price increases",
+        "severity": "Not specified",
+        "status": "Current",
+        "confidence": 0.85
+      }
+    ],
+    "tasks": [],
+    "documents": []
+  },
+  "metadata": {
+    "model": "gpt-4",
+    "provider": "openai",
+    "duration": 14525,
+    "attempt": 1,
+    "confidence": 0.8357142857142856,
+    "cost": 0.04037999999999999,
+    "strategy": "High Accuracy (GPT-4)",
+    "complexity": {
+      "score": 3,
+      "wordCount": 39,
+      "hasNumbers": true,
+      "hasNames": true,
+      "hasDecisions": false,
+      "hasTimeline": true,
+      "level": "medium"
+    },
+    "messageId": "msg_2",
+    "messageFrom": "Mike (Contractor)",
+    "originalText": "Perfect timing! I'll coordinate with Johnson Construction Supply for the concrete delivery. The weather forecast looks good for next week. One issue though - we're running into a $3,000 overrun on the steel reinforcement due to recent price increases.",
+    "extractionModel": "gpt-4",
+    "extractionProvider": "openai",
+    "processingTime": 14525
+  },
+  "domain": "misc",
+  "migratedFrom": "/home/robforee/analyst-server/entity-extraction-poc/data/mock-diffmem",
+  "migrationTimestamp": "2025-09-21T23:57:24.744Z"
+}

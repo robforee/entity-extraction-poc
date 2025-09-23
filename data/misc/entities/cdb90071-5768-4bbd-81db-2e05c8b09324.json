@@ -1,0 +1,65 @@
+{
+  "id": "cdb90071-5768-4bbd-81db-2e05c8b09324",
+  "conversationId": "3728a099-e260-4d73-8517-6a092bdcb034",
+  "userId": "rob_foree",
+  "timestamp": "2025-09-20T19:01:06.577Z",
+  "entities": {
+    "people": [
+      {
+        "name": "Mike",
+        "role": null,
+        "confidence": 0.85
+      },
+      {
+        "name": "Sarah",
+        "role": null,
+        "confidence": 0.8
+      }
+    ],
+    "projects": [],
+    "decisions": [],
+    "timeline": [
+      {
+        "event": "Foundation work starts",
+        "status": "scheduled",
+        "date": "Monday",
+        "confidence": 0.75
+      }
+    ],
+    "locations": [],
+    "materials": [],
+    "costs": [
+      {
+        "amount": "$25,000",
+        "type": null,
+        "category": null,
+        "confidence": 0.75
+      }
+    ],
+    "issues": [],
+    "tasks": [
+      {
+        "description": "Review electrical plans",
+        "assigned_to": "Sarah",
+        "due_date": "Friday",
+        "confidence": 0.8
+      }
+    ],
+    "documents": []
+  },
+  "metadata": {
+    "model": "gpt-3.5-turbo",
+    "provider": "openai",
+    "duration": 2393,
+    "attempt": 1,
+    "confidence": 0.79,
+    "cost": 0.0009530000000000001,
+    "source": "cloud",
+    "extractionModel": "gpt-3.5-turbo",
+    "extractionProvider": "openai",
+    "processingTime": 2393
+  },
+  "domain": "misc",
+  "migratedFrom": "/home/robforee/analyst-server/entity-extraction-poc/data/mock-diffmem",
+  "migrationTimestamp": "2025-09-21T23:57:24.747Z"
+}

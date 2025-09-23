@@ -1,0 +1,97 @@
+{
+  "id": "6be10c9b-59d0-438c-8bb0-4353bb5beda0",
+  "conversationId": "f970985f-917e-4f45-b520-11d8dc8f07a2",
+  "userId": "rob_foree",
+  "timestamp": "2025-09-20T18:53:16.834Z",
+  "entities": {
+    "people": [
+      {
+        "name": "Mike",
+        "role": "unknown",
+        "confidence": 0.85
+      },
+      {
+        "name": "Sarah",
+        "role": "unknown",
+        "confidence": 0.85
+      }
+    ],
+    "projects": [
+      {
+        "name": "foundation work",
+        "type": "Construction",
+        "phase": "Foundation",
+        "confidence": 0.9
+      }
+    ],
+    "decisions": [
+      {
+        "type": "Permit Approval",
+        "description": "The permits came through",
+        "date": "unknown",
+        "confidence": 0.85
+      },
+      {
+        "type": "Plan Review",
+        "description": "Sarah wants to review the electrical plans",
+        "date": "unknown",
+        "confidence": 0.85
+      }
+    ],
+    "timeline": [
+      {
+        "event": "Start of foundation work",
+        "status": "Scheduled",
+        "date": "Monday",
+        "confidence": 0.8
+      }
+    ],
+    "locations": [],
+    "materials": [],
+    "costs": [
+      {
+        "amount": "$25,000",
+        "type": "Estimate",
+        "category": "Foundation Phase",
+        "confidence": 0.9
+      }
+    ],
+    "issues": [],
+    "tasks": [],
+    "documents": [
+      {
+        "name": "electrical plans",
+        "type": "Plan",
+        "status": "Review",
+        "confidence": 0.8
+      }
+    ]
+  },
+  "metadata": {
+    "model": "gpt-4",
+    "provider": "openai",
+    "duration": 12461,
+    "attempt": 1,
+    "confidence": 0.85,
+    "cost": 0.0366,
+    "strategy": "High Accuracy (GPT-4)",
+    "complexity": {
+      "score": 3,
+      "wordCount": 41,
+      "hasNumbers": true,
+      "hasNames": true,
+      "hasDecisions": false,
+      "hasTimeline": true,
+      "level": "medium"
+    },
+    "messageId": "msg_1",
+    "messageFrom": "Rob (Owner)",
+    "originalText": "Hey Mike, great news! The permits came through yesterday. We can start the foundation work Monday. I spoke with Sarah about the electrical plans - she wants to review them before we proceed. Budget estimate is $25,000 for the foundation phase.",
+    "extractionModel": "gpt-4",
+    "extractionProvider": "openai",
+    "processingTime": 12461
+  },
+  "domain": "misc",
+  "migratedFrom": "/home/robforee/analyst-server/entity-extraction-poc/data/mock-diffmem",
+  "migrationTimestamp": "2025-09-21T23:57:24.732Z"
+}

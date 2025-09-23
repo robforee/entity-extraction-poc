@@ -1,0 +1,39 @@
+{
+  "id": "621e723b-1d2c-4cc1-a0e3-7ade3375e9aa",
+  "conversationId": "doc_1758508154316_x1493vjwm",
+  "userId": "rob_foree",
+  "domain": "cybersec",
+  "timestamp": "2025-09-22T02:29:14.317Z",
+  "entities": {
+    "people": [],
+    "projects": [],
+    "decisions": [],
+    "timeline": [],
+    "locations": [],
+    "materials": [
+      {
+        "name": "SIEM",
+        "type": "Tool",
+        "status": "Active",
+        "confidence": 0.9
+      }
+    ],
+    "costs": [],
+    "issues": [],
+    "tasks": [],
+    "documents": []
+  },
+  "metadata": {
+    "source": "/home/robforee/analyst-server/snappy/client-projects/cybersec-dogfood/corpus/README.md",
+    "messageId": "README.md",
+    "documentType": ".md",
+    "contentLength": 2558,
+    "cost": 0.001688,
+    "processingTime": 0,
+    "model": "gpt-3.5-turbo",
+    "provider": "openai",
+    "confidence": 0.9,
+    "extractionModel": "gpt-3.5-turbo",
+    "extractionProvider": "openai"
+  }
+}

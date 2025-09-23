@@ -1,0 +1,131 @@
+{
+  "id": "33a6d32a-d26a-4ad2-bc24-73b442e37ebe",
+  "conversationId": "f970985f-917e-4f45-b520-11d8dc8f07a2",
+  "userId": "rob_foree",
+  "timestamp": "2025-09-20T18:53:51.827Z",
+  "entities": {
+    "people": [],
+    "projects": [
+      {
+        "name": "kitchen renovation",
+        "type": "renovation",
+        "phase": "on hold",
+        "confidence": 0.9
+      }
+    ],
+    "decisions": [],
+    "timeline": [
+      {
+        "event": "Meeting",
+        "status": "scheduled",
+        "date": "Friday 2pm",
+        "confidence": 0.95
+      }
+    ],
+    "locations": [
+      {
+        "name": "on-site",
+        "type": "construction site",
+        "address": "",
+        "confidence": 0.85
+      }
+    ],
+    "materials": [
+      {
+        "name": "steel",
+        "category": "metal",
+        "quantity": "",
+        "confidence": 0.8
+      },
+      {
+        "name": "electrical plans",
+        "category": "document",
+        "quantity": "",
+        "confidence": 0.75
+      },
+      {
+        "name": "material specifications",
+        "category": "document",
+        "quantity": "",
+        "confidence": 0.75
+      }
+    ],
+    "costs": [
+      {
+        "amount": "",
+        "type": "overrun",
+        "category": "steel",
+        "confidence": 0.8
+      }
+    ],
+    "issues": [
+      {
+        "description": "cabinet supplier quality issues",
+        "severity": "",
+        "status": "unresolved",
+        "confidence": 0.85
+      }
+    ],
+    "tasks": [
+      {
+        "description": "review electrical plans",
+        "assigned_to": "",
+        "due_date": "Friday 2pm",
+        "confidence": 0.9
+      },
+      {
+        "description": "discuss the steel cost overrun",
+        "assigned_to": "",
+        "due_date": "Friday 2pm",
+        "confidence": 0.9
+      },
+      {
+        "description": "bring the updated material specifications",
+        "assigned_to": "",
+        "due_date": "Friday 2pm",
+        "confidence": 0.9
+      }
+    ],
+    "documents": [
+      {
+        "name": "electrical plans",
+        "type": "plan",
+        "status": "to be reviewed",
+        "confidence": 0.75
+      },
+      {
+        "name": "material specifications",
+        "type": "specification",
+        "status": "updated",
+        "confidence": 0.75
+      }
+    ]
+  },
+  "metadata": {
+    "model": "gpt-4",
+    "provider": "openai",
+    "duration": 20455,
+    "attempt": 1,
+    "confidence": 0.8346153846153845,
+    "cost": 0.0516,
+    "strategy": "High Accuracy (GPT-4)",
+    "complexity": {
+      "score": 2,
+      "wordCount": 37,
+      "hasNumbers": false,
+      "hasNames": true,
+      "hasDecisions": false,
+      "hasTimeline": true,
+      "level": "medium"
+    },
+    "messageId": "msg_3",
+    "messageFrom": "Sarah (Architect)",
+    "originalText": "Meeting scheduled for Friday 2pm on-site to review electrical plans and discuss the steel cost overrun. Please bring the updated material specifications. Also, the kitchen renovation is on hold until we resolve the cabinet supplier quality issues.",
+    "extractionModel": "gpt-4",
+    "extractionProvider": "openai",
+    "processingTime": 20455
+  },
+  "domain": "misc",
+  "migratedFrom": "/home/robforee/analyst-server/entity-extraction-poc/data/mock-diffmem",
+  "migrationTimestamp": "2025-09-21T23:57:24.716Z"
+}

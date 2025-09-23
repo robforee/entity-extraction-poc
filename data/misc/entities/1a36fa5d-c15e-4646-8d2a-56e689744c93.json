@@ -1,0 +1,98 @@
+{
+  "id": "1a36fa5d-c15e-4646-8d2a-56e689744c93",
+  "conversationId": {
+    "people": [
+      {
+        "name": "Security Engineer",
+        "role": "Technical architect and implementation specialist",
+        "confidence": 0.95
+      },
+      {
+        "name": "CISO",
+        "role": "Executive security leader",
+        "confidence": 0.9
+      }
+    ],
+    "projects": [
+      {
+        "name": "SIEM Implementation",
+        "type": "Security Infrastructure",
+        "phase": "Design and Implementation",
+        "confidence": 0.95
+      },
+      {
+        "name": "Network Security Monitoring",
+        "type": "Security Infrastructure",
+        "phase": "Implementation",
+        "confidence": 0.95
+      },
+      {
+        "name": "SOAR Development",
+        "type": "Security Automation",
+        "phase": "Development",
+        "confidence": 0.95
+      }
+    ],
+    "decisions": [
+      {
+        "type": "Architecture",
+        "description": "Design and implement comprehensive SIEM architectures",
+        "date": null,
+        "confidence": 0.9
+      }
+    ],
+    "timeline": [
+      {
+        "event": "Continuous Vulnerability Assessment",
+        "status": "Ongoing",
+        "date": null,
+        "confidence": 0.85
+      }
+    ],
+    "locations": [],
+    "materials": [],
+    "costs": [],
+    "issues": [],
+    "tasks": [
+      {
+        "description": "Develop data ingestion pipelines",
+        "assigned_to": "Security Engineer",
+        "due_date": null,
+        "confidence": 0.85
+      },
+      {
+        "description": "Implement automated patch management",
+        "assigned_to": "Security Engineer",
+        "due_date": null,
+        "confidence": 0.85
+      }
+    ],
+    "documents": [
+      {
+        "name": "Executive Dashboard",
+        "type": "Reporting",
+        "status": "Implementation",
+        "confidence": 0.85
+      }
+    ]
+  },
+  "userId": "rob_foree",
+  "timestamp": "2025-09-21T20:51:56.172Z",
+  "entities": {
+    "conversationId": "doc_1758487916172",
+    "messageId": "security-engineer-comprehensive.md",
+    "source": "/home/robforee/analyst-server/snappy/client-projects/cybersec-dogfood/corpus/roles/security-engineer-comprehensive.md",
+    "timestamp": "2025-09-21T20:51:56.172Z",
+    "documentType": ".md",
+    "contentLength": 32816
+  },
+  "metadata": {
+    "extractionModel": "unknown",
+    "extractionProvider": "unknown",
+    "confidence": 0,
+    "processingTime": 0
+  },
+  "domain": "misc",
+  "migratedFrom": "/home/robforee/analyst-server/entity-extraction-poc/data/mock-diffmem",
+  "migrationTimestamp": "2025-09-21T23:57:24.714Z"
+}

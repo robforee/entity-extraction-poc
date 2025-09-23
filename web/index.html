@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universal Knowledge System - Cybersecurity Corpus Explorer</title>
+    <script src="https://cdn.socket.io/4.7.4/socket.io.min.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <div class="header-left">
+                    <h1>🧠 Universal Knowledge System</h1>
+                    <p>Multi-Domain Knowledge Explorer</p>
+                </div>
+                <div class="header-right">
+                    <div class="domain-selector">
+                        <label for="domain-select">Domain:</label>
+                        <select id="domain-select">
+                            <option value="cybersec">🔒 Cybersecurity</option>
+                            <option value="construction">🏗️ Construction</option>
+                            <option value="misc">📁 Miscellaneous</option>
+                        </select>
+                    </div>
+                    <div class="connection-status">
+                        <span id="connection-indicator" class="status-indicator offline">●</span>
+                        <span id="connection-text">Connecting...</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="app-nav">
+            <button class="nav-btn" data-view="dashboard">📊 Dashboard</button>
+            <button class="nav-btn" data-view="entities">🎯 Entities</button>
+            <button class="nav-btn" data-view="documents">📚 Documents</button>
+            <button class="nav-btn" data-view="analytics">📈 Analytics</button>
+            <button class="nav-btn" data-view="management">🔧 Management</button>
+            <button class="nav-btn active" data-view="network">🕸️ Network</button>
+            <button class="nav-btn" data-view="search">🔍 Search</button>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="app-main">
+            <!-- Dashboard View -->
+            <div id="dashboard-view" class="view">
+                <div class="dashboard-grid">
+                    <div class="stats-panel">
+                        <h3>📊 Corpus Statistics</h3>
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <div class="stat-number" id="total-entities">-</div>
+                                <div class="stat-label">Total Entities</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number" id="total-documents">-</div>
+                                <div class="stat-label">Documents</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number" id="total-categories">-</div>
+                                <div class="stat-label">Categories</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number" id="avg-confidence">-</div>
+                                <div class="stat-label">Avg Confidence</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="categories-panel">
+                        <h3>🎯 Entity Categories</h3>
+                        <div id="categories-chart-container">
+                            <canvas id="categories-chart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="recent-panel">
+                        <h3>🕒 Recent Entities</h3>
+                        <div id="recent-entities" class="entity-list">
+                            <!-- Recent entities will be loaded here -->
+                        </div>
+                    </div>
+
+                    <div class="confidence-panel">
+                        <h3>📈 Confidence Distribution</h3>
+                        <div id="confidence-chart-container">
+                            <canvas id="confidence-chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Entities View -->
+            <div id="entities-view" class="view">
+                <div class="view-header">
+                    <h2>🎯 Entity Explorer</h2>
+                    <div class="view-controls">
+                        <select id="category-filter">
+                            <option value="">All Categories</option>
+                        </select>
+                        <input type="range" id="confidence-slider" min="0" max="1" step="0.1" value="0">
+                        <span id="confidence-value">0%</span>
+                        <button id="export-entities" class="action-btn">📥 Export</button>
+                    </div>
+                </div>
+                <div class="entities-container">
+                    <div id="entities-grid" class="entities-grid">
+                        <!-- Entities will be loaded here -->
+                    </div>
+                    <div id="entity-pagination" class="pagination">
+                        <!-- Pagination controls -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Network View -->
+            <div id="network-view" class="view active">
+                <div class="view-header">
+                    <h2>🕸️ Entity Network</h2>
+                    <div class="network-header">
+                    <div class="network-controls">
+                        <button onclick="app.centerNetwork()" class="btn btn-secondary">
+                            <i class="fas fa-crosshairs"></i> Center
+                        </button>
+                        <button onclick="app.fitNetwork()" class="btn btn-secondary">
+                            <i class="fas fa-expand-arrows-alt"></i> Fit
+                        </button>
+                        <button onclick="app.zoomIn()" class="btn btn-secondary">
+                            <i class="fas fa-search-plus"></i> Zoom In
+                        </button>
+                        <button onclick="app.zoomOut()" class="btn btn-secondary">
+                            <i class="fas fa-search-minus"></i> Zoom Out
+                        </button>
+                        <button onclick="app.resetZoom()" class="btn btn-secondary">
+                            <i class="fas fa-undo"></i> Reset
+                        </button>
+                    </div>
+                    
+                    <!-- Interactive Controls -->
+                    <div class="network-sliders">
+                        <h4>🎛️ Live Controls</h4>
+                        <div class="slider-group">
+                            <label for="cluster-distance">Link Distance:</label>
+                            <input type="range" id="cluster-distance" min="100" max="400" value="200" step="10">
+                            <span id="cluster-distance-value">200px</span>
+                        </div>
+                        <div class="slider-group">
+                            <label for="inter-cluster-distance">Cloud Separation:</label>
+                            <input type="range" id="inter-cluster-distance" min="200" max="800" value="500" step="25">
+                            <span id="inter-cluster-distance-value">500</span>
+                        </div>
+                        <div class="slider-group">
+                            <label for="entity-font-size">Entity Font:</label>
+                            <input type="range" id="entity-font-size" min="8" max="16" value="10" step="1">
+                            <span id="entity-font-size-value">10px</span>
+                        </div>
+                        <div class="slider-group">
+                            <label for="cluster-font-size">Cluster Labels:</label>
+                            <input type="range" id="cluster-font-size" min="12" max="24" value="18" step="1">
+                            <span id="cluster-font-size-value">18px</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Color Legend -->
+                    <div class="color-legend">
+                        <h4>🎨 Entity Categories</h4>
+                        <div id="legend-items" class="legend-items">
+                            <!-- Legend items will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div id="network-container" class="network-container">
+                    <svg id="network-svg"></svg>
+                </div>
+                
+                <!-- Network Tuning Parameters -->
+                <div class="network-tuning">
+                    <h3>🔧 Network Tuning Parameters</h3>
+                    <div class="tuning-grid">
+                        <div class="tuning-section">
+                            <h4>Force Parameters</h4>
+                            <ul>
+                                <li><strong>Link Distance:</strong> 120px (space between connected nodes)</li>
+                                <li><strong>Charge Strength:</strong> -300 (repulsion force between nodes)</li>
+                                <li><strong>Collision Radius:</strong> Dynamic (8-20px based on confidence)</li>
+                                <li><strong>Viewport Constraints:</strong> Removed (zoom/pan enabled)</li>
+                            </ul>
+                        </div>
+                        <div class="tuning-section">
+                            <h4>Visual Settings</h4>
+                            <ul>
+                                <li><strong>Node Size:</strong> 5-15px (based on confidence)</li>
+                                <li><strong>Link Width:</strong> 2px</li>
+                                <li><strong>Link Opacity:</strong> 0.6</li>
+                                <li><strong>Zoom Range:</strong> 0.1x - 4x</li>
+                            </ul>
+                        </div>
+                        <div class="tuning-section">
+                            <h4>Cluster Features</h4>
+                            <ul>
+                                <li><strong>Cluster Detection:</strong> Connected components analysis</li>
+                                <li><strong>Cluster Labels:</strong> Auto-generated with category icons</li>
+                                <li><strong>Cluster Selection:</strong> Click labels to highlight and view details</li>
+                                <li><strong>Background Circles:</strong> Dashed outlines around clusters</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="tuning-tips">
+                        <p><strong>💡 Tuning Tips:</strong></p>
+                        <ul>
+                            <li>Increase <em>charge strength</em> (more negative) to spread nodes apart</li>
+                            <li>Decrease <em>link distance</em> to cluster related nodes closer</li>
+                            <li>Adjust <em>collision radius</em> to prevent/allow node overlap</li>
+                            <li>Modify <em>center strength</em> to control how tightly nodes cluster</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Visualization Tweaks History -->
+                <div class="tweaks-history">
+                    <h3>🧪 Visualization Experiments</h3>
+                    <div class="tweaks-grid">
+                        <div class="tweak-item">
+                            <h4>✅ Current Settings</h4>
+                            <ul>
+                                <li>Link Distance: 200px</li>
+                                <li>Charge Strength: -500</li>
+                                <li>Collision Radius: 12-27px</li>
+                                <li>Full viewport width</li>
+                                <li>18px cluster labels outside clusters</li>
+                            </ul>
+                        </div>
+                        <div class="tweak-item">
+                            <h4>🔄 Previous Attempts</h4>
+                            <ul>
+                                <li>❌ Link: 80px, Charge: -200 (too clustered)</li>
+                                <li>❌ Link: 120px, Charge: -300 (still overlapping)</li>
+                                <li>❌ Viewport constraints (nodes pushed to edges)</li>
+                                <li>❌ 14px labels inside clusters (unreadable when zoomed)</li>
+                            </ul>
+                        </div>
+                        <div class="tweak-item">
+                            <h4>🎯 Next Experiments</h4>
+                            <ul>
+                                <li>🔬 Sub-clustering by entity relationships</li>
+                                <li>🔬 Multi-level zoom perspectives</li>
+                                <li>🔬 Dynamic link strength based on relationship type</li>
+                                <li>🔬 Hierarchical clustering (projects → people/materials)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Visualization Terms -->
+                <div class="viz-terms">
+                    <h3>📖 Visualization Terminology</h3>
+                    <div class="terms-grid">
+                        <div class="term-item">
+                            <h4>🔗 Link Distance</h4>
+                            <p>Controls spacing between directly connected entities within the same cluster. Lower values create tighter clusters, higher values spread entities apart.</p>
+                        </div>
+                        <div class="term-item">
+                            <h4>☁️ Cloud Separation</h4>
+                            <p>Controls the distance between separate entity clusters/clouds. Higher values push cluster clouds further apart across the visualization space.</p>
+                        </div>
+                        <div class="term-item">
+                            <h4>🎯 Perspective View (Radial Layout)</h4>
+                            <p>When selecting a category (e.g., People), those entities are pulled to the center forming a hub, while other categories radiate outward in a spoke pattern. Creates a focused view showing how the selected category connects to everything else.</p>
+                        </div>
+                        <div class="term-item">
+                            <h4>🏷️ Cluster Anchoring</h4>
+                            <p>Each cluster is named after its highest-confidence entity (the "anchor"), providing specific identification rather than generic category names.</p>
+                        </div>
+                        <div class="term-item">
+                            <h4>⚡ Force Simulation</h4>
+                            <p>Uses physics-based forces (attraction, repulsion, collision) to automatically position entities. Link forces pull connected entities together, charge forces push all entities apart, creating natural clustering.</p>
+                        </div>
+                        <div class="term-item">
+                            <h4>🔄 Live Controls</h4>
+                            <p>Real-time sliders that immediately adjust the visualization without requiring a refresh. Allows for interactive exploration and fine-tuning of the network layout.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Documents View -->
+            <div id="documents-view" class="view">
+                <div class="view-header">
+                    <h2>📚 Document Navigator</h2>
+                </div>
+                <div id="documents-list" class="documents-list">
+                    <!-- Documents will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Analytics View -->
+            <div id="analytics-view" class="view">
+                <div class="view-header">
+                    <h2>📈 Visual Analytics</h2>
+                </div>
+                <div class="analytics-grid">
+                    <div class="chart-panel">
+                        <h3>Entity Distribution</h3>
+                        <canvas id="distribution-chart"></canvas>
+                    </div>
+                    <div class="chart-panel">
+                        <h3>Processing Timeline</h3>
+                        <canvas id="timeline-chart"></canvas>
+                    </div>
+                    <div class="chart-panel">
+                        <h3>Confidence Analysis</h3>
+                        <canvas id="confidence-analysis-chart"></canvas>
+                    </div>
+                    <div class="metrics-panel">
+                        <h3>Key Metrics</h3>
+                        <div id="key-metrics">
+                            <!-- Metrics will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Entity Management View -->
+            <div id="management-view" class="view">
+                <div class="view-header">
+                    <h2>🔧 Entity Management</h2>
+                    <div class="management-controls">
+                        <button onclick="app.findMergeCandidates()" class="btn btn-primary">
+                            🔍 Find Merge Candidates
+                        </button>
+                        <button onclick="app.performAutoMerge()" class="btn btn-success">
+                            ⚡ Auto-Merge
+                        </button>
+                        <button onclick="app.showMergeStatistics()" class="btn btn-info">
+                            📊 Merge Statistics
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="management-content">
+                    <!-- Merge Candidates Section -->
+                    <div class="merge-section">
+                        <h3>🎯 Merge Candidates</h3>
+                        <div id="merge-candidates" class="merge-candidates">
+                            <p class="placeholder">Click "Find Merge Candidates" to discover potential entity merges</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Merge Statistics Section -->
+                    <div class="merge-section">
+                        <h3>📈 Merge Statistics</h3>
+                        <div id="merge-statistics" class="merge-statistics">
+                            <div class="stats-grid">
+                                <div class="stat-card">
+                                    <div class="stat-number" id="total-merges">-</div>
+                                    <div class="stat-label">Total Merges</div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-number" id="auto-merges">-</div>
+                                    <div class="stat-label">Auto Merges</div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-number" id="manual-merges">-</div>
+                                    <div class="stat-label">Manual Merges</div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-number" id="avg-similarity">-</div>
+                                    <div class="stat-label">Avg Similarity</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Merge History Section -->
+                    <div class="merge-section">
+                        <h3>📚 Merge History</h3>
+                        <div class="history-controls">
+                            <button onclick="app.loadMergeHistory()" class="btn btn-secondary">
+                                🔄 Refresh History
+                            </button>
+                            <button onclick="app.undoLastMerge()" class="btn btn-warning" id="undo-btn" disabled>
+                                ↶ Undo Last Merge
+                            </button>
+                            <button onclick="app.redoLastMerge()" class="btn btn-info" id="redo-btn" disabled>
+                                ↷ Redo Last Undo
+                            </button>
+                            <button onclick="app.exportMergeHistory()" class="btn btn-outline-primary">
+                                📥 Export History
+                            </button>
+                        </div>
+                        
+                        <div class="history-filters">
+                            <select id="history-type-filter">
+                                <option value="">All Types</option>
+                                <option value="auto">Auto Merges</option>
+                                <option value="manual">Manual Merges</option>
+                                <option value="batch">Batch Merges</option>
+                            </select>
+                            <select id="history-time-filter">
+                                <option value="all">All Time</option>
+                                <option value="today">Today</option>
+                                <option value="week">This Week</option>
+                                <option value="month">This Month</option>
+                            </select>
+                            <input type="text" id="history-entity-filter" placeholder="Filter by entity name...">
+                        </div>
+                        
+                        <div id="merge-history" class="merge-history">
+                            <p class="placeholder">Click "Refresh History" to load merge history</p>
+                        </div>
+                        
+                        <div class="history-pagination">
+                            <button onclick="app.loadMergeHistory('prev')" class="btn btn-sm btn-secondary" id="history-prev" disabled>
+                                ← Previous
+                            </button>
+                            <span id="history-page-info">Page 1 of 1</span>
+                            <button onclick="app.loadMergeHistory('next')" class="btn btn-sm btn-secondary" id="history-next" disabled>
+                                Next →
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Network View -->
+            <div id="network-view" class="view">
+                <div class="view-header">
+                    <h2>🕸️ Entity Network</h2>
+                    <div class="network-controls">
+                        <button id="zoom-center" class="btn btn-secondary">Center</button>
+                        <button id="zoom-fit" class="btn btn-secondary">Fit</button>
+                        <button id="toggle-hierarchy" class="btn btn-secondary">🏗️ Hierarchical</button>
+                        <button id="toggle-force" class="btn btn-secondary">🌐 Force Layout</button>
+                    </div>
+                </div>
+                <div id="network-container" class="network-container">
+                    <svg id="network-svg"></svg>
+                </div>
+            </div>
+
+            <!-- Search View -->
+            <div id="search-view" class="view">
+                <div class="view-header">
+                    <h2>🔍 Entity Search</h2>
+                    <div class="search-controls">
+                        <input type="text" id="search-input" placeholder="Search entities...">
+                        <select id="search-category">
+                            <option value="">All Categories</option>
+                        </select>
+                        <button id="search-btn" class="action-btn">Search</button>
+                    </div>
+                </div>
+                <div id="search-results" class="search-results">
+                    <!-- Search results will be displayed here -->
+                </div>
+            </div>
+        </main>
+
+        <!-- Entity Detail Modal -->
+        <div id="entity-modal" class="modal">
+            <div class="modal-content">
+                <span class="modal-close">&times;</span>
+                <div id="entity-detail">
+                    <!-- Entity details will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading Overlay -->
+        <div id="loading-overlay" class="loading-overlay">
+            <div class="loading-spinner"></div>
+            <p>Loading cybersecurity knowledge corpus...</p>
+        </div>
+
+        <!-- Toast Notifications -->
+        <div id="toast-container" class="toast-container">
+            <!-- Toast notifications will appear here -->
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script src="js/merge-interface.js"></script>
+    <script>
+        // Initialize the application
+        const app = new UniversalKnowledgeApp();
+        
+        // Initialize merge interface after a short delay to ensure app is ready
+        setTimeout(() => {
+            try {
+                window.mergeInterface = new MergeInterface(app);
+                console.log('Merge interface initialized successfully');
+            } catch (error) {
+                console.error('Failed to initialize merge interface:', error);
+            }
+        }, 1000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+{
+  "id": "f5b28d31-60c9-4e83-a76a-0dc4ccf13321",
+  "conversationId": "4f902b4b-387f-43b6-a794-fc4f408f899a",
+  "userId": "rob_foree",
+  "timestamp": "2025-09-20T18:47:15.502Z",
+  "entities": {
+    "people": [
+      {
+        "name": "Sarah",
+        "role": "reviewer",
+        "confidence": 0.95
+      }
+    ],
+    "projects": [
+      {
+        "name": "electrical plans",
+        "type": "electrical",
+        "phase": "review",
+        "confidence": 0.85
+      }
+    ],
+    "decisions": [],
+    "timeline": [
+      {
+        "event": "review meeting",
+        "status": "proposed",
+        "date": "Friday 2pm",
+        "confidence": 0.9
+      }
+    ],
+    "locations": [
+      {
+        "name": "site",
+        "type": "construction site",
+        "confidence": 0.85
+      }
+    ],
+    "materials": [],
+    "costs": [],
+    "issues": [],
+    "tasks": [
+      {
+        "description": "Review electrical plans",
+        "assigned_to": "Sarah",
+        "due_date": "Friday",
+        "confidence": 0.85
+      }
+    ],
+    "documents": [
+      {
+        "name": "electrical plans",
+        "type": "technical drawing",
+        "status": "pending review",
+        "confidence": 0.85
+      }
+    ]
+  },
+  "metadata": {
+    "model": "anthropic/claude-3.5-sonnet",
+    "provider": "openrouter",
+    "duration": 6870,
+    "attempt": 1,
+    "confidence": 0.8749999999999999,
+    "cost": 0,
+    "strategy": "Balanced (Claude 3.5)",
+    "complexity": {
+      "score": 2,
+      "wordCount": 24,
+      "hasNumbers": false,
+      "hasNames": true,
+      "hasDecisions": false,
+      "hasTimeline": true,
+      "level": "medium"
+    },
+    "originalMessage": "Sarah wants to review the electrical plans before we proceed with the next phase. Can we schedule a meeting Friday at 2pm on site?",
+    "messageId": "msg_3",
+    "extractionModel": "anthropic/claude-3.5-sonnet",
+    "extractionProvider": "openrouter",
+    "processingTime": 6870
+  },
+  "domain": "misc",
+  "migratedFrom": "/home/robforee/analyst-server/entity-extraction-poc/data/mock-diffmem",
+  "migrationTimestamp": "2025-09-21T23:57:24.761Z"
+}

@@ -1,0 +1,81 @@
+{
+  "id": "c6fff566-af5a-4ffa-8dd2-3b658a6b13d0",
+  "conversationId": {
+    "people": [
+      {
+        "name": "SOC Analyst Level 2",
+        "role": "Advanced Security Analyst",
+        "confidence": 0.95
+      }
+    ],
+    "projects": [
+      {
+        "name": "Security Operations Center",
+        "type": "Security Operations",
+        "phase": "Operational",
+        "confidence": 0.95
+      }
+    ],
+    "decisions": [
+      {
+        "type": "Role Definition",
+        "description": "SOC Analyst L2 position established as advanced analytical tier bridging L1 and expert-level operations",
+        "date": null,
+        "confidence": 0.9
+      }
+    ],
+    "timeline": [
+      {
+        "event": "Career Progression Path",
+        "status": "Defined",
+        "date": null,
+        "confidence": 0.85
+      }
+    ],
+    "locations": [],
+    "materials": [],
+    "costs": [],
+    "issues": [],
+    "tasks": [
+      {
+        "description": "Multi-Vector Threat Analysis",
+        "assigned_to": "L2 Analyst",
+        "due_date": null,
+        "confidence": 0.9
+      },
+      {
+        "description": "Junior Analyst Mentoring",
+        "assigned_to": "L2 Analyst",
+        "due_date": null,
+        "confidence": 0.9
+      }
+    ],
+    "documents": [
+      {
+        "name": "Standard Operating Procedures",
+        "type": "Process Documentation",
+        "status": "Development Required",
+        "confidence": 0.85
+      }
+    ]
+  },
+  "userId": "rob_foree",
+  "timestamp": "2025-09-21T20:51:38.692Z",
+  "entities": {
+    "conversationId": "doc_1758487898692",
+    "messageId": "soc-analyst-level-2-comprehensive.md",
+    "source": "/home/robforee/analyst-server/snappy/client-projects/cybersec-dogfood/corpus/roles/soc-analyst-level-2-comprehensive.md",
+    "timestamp": "2025-09-21T20:51:38.692Z",
+    "documentType": ".md",
+    "contentLength": 33645
+  },
+  "metadata": {
+    "extractionModel": "unknown",
+    "extractionProvider": "unknown",
+    "confidence": 0,
+    "processingTime": 0
+  },
+  "domain": "misc",
+  "migratedFrom": "/home/robforee/analyst-server/entity-extraction-poc/data/mock-diffmem",
+  "migrationTimestamp": "2025-09-21T23:57:24.744Z"
+}

@@ -1,0 +1,126 @@
+{
+  "id": "b09ebc7f-3d76-434a-8bac-ea8dd392a1c7",
+  "conversationId": "doc_1758509157481_gjbgn5kok",
+  "userId": "rob_foree",
+  "domain": "cybersec",
+  "timestamp": "2025-09-22T02:45:57.482Z",
+  "entities": {
+    "people": [
+      {
+        "name": "SOC Analyst",
+        "role": "Security Operations Center Analyst",
+        "confidence": 0.9
+      },
+      {
+        "name": "SOC Manager",
+        "role": "Security Operations Center Manager",
+        "confidence": 0.85
+      },
+      {
+        "name": "Incident Responder",
+        "role": "Incident Response Specialist",
+        "confidence": 0.8
+      }
+    ],
+    "projects": [
+      {
+        "name": "ISO 27001 Implementation",
+        "type": "Security Standard Implementation",
+        "phase": "Planning",
+        "confidence": 0.85
+      },
+      {
+        "name": "GDPR Compliance Initiative",
+        "type": "Privacy Regulation Compliance",
+        "phase": "Implementation",
+        "confidence": 0.9
+      }
+    ],
+    "decisions": [
+      {
+        "type": "Policy",
+        "description": "Adopt ISO 27001 as the Information Security Management System standard",
+        "date": "2022-05-15",
+        "confidence": 0.9
+      }
+    ],
+    "timeline": [
+      {
+        "event": "ISO 27001 Certification",
+        "status": "In Progress",
+        "date": "2022-09-30",
+        "confidence": 0.85
+      }
+    ],
+    "locations": [
+      {
+        "name": "Singapore Data Center",
+        "type": "Data Center",
+        "confidence": 0.9
+      },
+      {
+        "name": "EU Office",
+        "type": "Office",
+        "confidence": 0.85
+      }
+    ],
+    "materials": [
+      {
+        "name": "SIEM",
+        "type": "Security Tool",
+        "status": "Active",
+        "confidence": 0.9
+      },
+      {
+        "name": "Firewall",
+        "type": "Security Tool",
+        "status": "Active",
+        "confidence": 0.85
+      }
+    ],
+    "costs": [
+      {
+        "amount": "$100,000",
+        "category": "ISO 27001 Certification",
+        "confidence": 0.9
+      }
+    ],
+    "issues": [
+      {
+        "description": "Data Breach Incident",
+        "severity": "High",
+        "status": "Open",
+        "confidence": 0.9
+      }
+    ],
+    "tasks": [
+      {
+        "description": "Implement Two-Factor Authentication",
+        "assigned_to": "Security Engineer",
+        "due_date": "2022-06-30",
+        "confidence": 0.85
+      }
+    ],
+    "documents": [
+      {
+        "name": "Privacy Policy",
+        "type": "Policy",
+        "status": "Active",
+        "confidence": 0.9
+      }
+    ]
+  },
+  "metadata": {
+    "source": "/home/robforee/analyst-server/snappy/client-projects/cybersec-dogfood/corpus/regulatory/international-standards-cross-border-compliance.md",
+    "messageId": "international-standards-cross-border-compliance.md",
+    "documentType": ".md",
+    "contentLength": 26897,
+    "cost": 0.005745,
+    "processingTime": 0,
+    "model": "gpt-3.5-turbo",
+    "provider": "openai",
+    "confidence": 0.8733333333333333,
+    "extractionModel": "gpt-3.5-turbo",
+    "extractionProvider": "openai"
+  }
+}
