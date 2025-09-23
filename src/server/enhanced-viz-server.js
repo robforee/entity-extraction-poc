@@ -105,6 +105,9 @@ class EnhancedVizServer {
             });
         });
 
+        // SIEM perspective endpoint
+        this.app.get('/api/siem/perspective', this.getSIEMPerspective.bind(this));
+
         // Health check
         this.app.get('/api/health', (req, res) => {
             res.json({ 
@@ -981,9 +984,12 @@ class EnhancedVizServer {
 
     async getMergeCandidates(req, res) {
         try {
-            // Get mock data and filter out already merged pairs
-            const allCandidates = this.generateMockMergeCandidates();
-            const availableCandidates = allCandidates.filter(candidate => {
+            // Get real entities from current domain
+            const allEntities = await this.getAllEntitiesFlat();
+            const realCandidates = this.findRealMergeCandidates(allEntities);
+            
+            // Filter out already merged pairs
+            const availableCandidates = realCandidates.filter(candidate => {
                 const mergeKey = [candidate.primary.id, candidate.secondary.id].sort().join('|');
                 return !this.mergedPairs.has(mergeKey);
             });
@@ -991,7 +997,8 @@ class EnhancedVizServer {
             res.json({
                 candidates: availableCandidates,
                 total: availableCandidates.length,
-                autoMergeable: availableCandidates.filter(c => c.autoMergeable).length
+                autoMergeable: availableCandidates.filter(c => c.autoMergeable).length,
+                domain: this.currentDomain
             });
         } catch (error) {
             console.error('Error finding merge candidates:', error);
@@ -1424,6 +1431,123 @@ class EnhancedVizServer {
             }, { spaces: 2 });
         } catch (error) {
             console.error(chalk.red(`❌ Failed to save merged pairs: ${error.message}`));
+        }
+    }
+
+    async getSIEMPerspective(req, res) {
+        try {
+            const allEntities = await this.getAllEntitiesFlat();
+            
+            // Find all SIEM-related entities
+            const siemEntities = allEntities.filter(entity => 
+                entity.name && (
+                    entity.name.toLowerCase().includes('siem') ||
+                    entity.description?.toLowerCase().includes('siem') ||
+                    entity.name.toLowerCase().includes('security information') ||
+                    entity.name.toLowerCase().includes('event management')
+                )
+            );
+
+            // Find entities related to SIEM through co-occurrence
+            const siemDocuments = new Set();
+            siemEntities.forEach(entity => {
+                if (entity.conversationId) {
+                    siemDocuments.add(entity.conversationId);
+                }
+            });
+
+            // Get all entities from documents that contain SIEM
+            const relatedEntities = allEntities.filter(entity => 
+                entity.conversationId && siemDocuments.has(entity.conversationId)
+            );
+
+            // Create hierarchy: SIEM at center, related entities grouped by category
+            const hierarchy = {
+                name: "SIEM Ecosystem",
+                category: "root",
+                children: []
+            };
+
+            // Group related entities by category
+            const categoryGroups = {};
+            relatedEntities.forEach(entity => {
+                const category = entity.category || 'uncategorized';
+                if (!categoryGroups[category]) {
+                    categoryGroups[category] = {
+                        name: category,
+                        category: category,
+                        children: [],
+                        type: 'category'
+                    };
+                }
+                
+                // Don't duplicate SIEM entities in subcategories
+                if (!entity.name.toLowerCase().includes('siem')) {
+                    categoryGroups[category].children.push({
+                        name: entity.name,
+                        id: entity.id,
+                        category: entity.category,
+                        confidence: entity.confidence,
+                        description: entity.description,
+                        type: 'entity'
+                    });
+                }
+            });
+
+            // Add SIEM entities as top-level items
+            siemEntities.forEach(entity => {
+                hierarchy.children.push({
+                    name: entity.name,
+                    id: entity.id,
+                    category: entity.category,
+                    confidence: entity.confidence,
+                    description: entity.description,
+                    type: 'siem_entity'
+                });
+            });
+
+            // Add category groups
+            Object.values(categoryGroups).forEach(group => {
+                if (group.children.length > 0) {
+                    hierarchy.children.push(group);
+                }
+            });
+
+            // Create relationships
+            const relationships = [];
+            siemEntities.forEach(siemEntity => {
+                relatedEntities.forEach(relatedEntity => {
+                    if (siemEntity.conversationId === relatedEntity.conversationId && 
+                        siemEntity.id !== relatedEntity.id) {
+                        relationships.push({
+                            source: siemEntity.id,
+                            target: relatedEntity.id,
+                            type: 'co-occurrence',
+                            strength: 1,
+                            document: siemEntity.conversationId
+                        });
+                    }
+                });
+            });
+
+            res.json({
+                success: true,
+                perspective: 'SIEM',
+                hierarchy: hierarchy,
+                siemEntities: siemEntities,
+                relatedEntities: relatedEntities.filter(e => !e.name.toLowerCase().includes('siem')),
+                relationships: relationships,
+                documentCount: siemDocuments.size,
+                stats: {
+                    totalSIEMEntities: siemEntities.length,
+                    relatedEntitiesCount: relatedEntities.length,
+                    categoriesCount: Object.keys(categoryGroups).length,
+                    documentsWithSIEM: siemDocuments.size
+                }
+            });
+        } catch (error) {
+            console.error('Error getting SIEM perspective:', error);
+            res.status(500).json({ error: error.message });
         }
     }
 }

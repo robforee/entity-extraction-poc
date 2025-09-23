@@ -1,5 +1,11 @@
 {
-  "mergedPairs": [],
-  "lastUpdated": "2025-09-23T00:05:24.220Z",
+  "mergedPairs": [
+    "siem_1|siem_2",
+    "firewall_1|firewall_2",
+    "malicious_software_1|malware_1",
+    "sqli_1|vulnerability_1",
+    "aes_1|encryption_1"
+  ],
+  "lastUpdated": "2025-09-23T00:09:03.827Z",
   "domain": "cybersec"
 }

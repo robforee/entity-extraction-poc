@@ -84,6 +84,7 @@ class UniversalKnowledgeApp {
         document.getElementById('zoom-fit')?.addEventListener('click', () => this.fitNetwork());
         document.getElementById('toggle-hierarchy')?.addEventListener('click', () => this.toggleHierarchicalLayout());
         document.getElementById('toggle-force')?.addEventListener('click', () => this.toggleForceLayout());
+        document.getElementById('siem-perspective')?.addEventListener('click', () => this.showSIEMPerspective());
 
         // Domain selector
         document.getElementById('domain-select').addEventListener('change', (e) => {
@@ -1458,6 +1459,183 @@ class UniversalKnowledgeApp {
         };
     }
 
+    async showSIEMPerspective() {
+        try {
+            this.showToast('Loading SIEM perspective...', 'info');
+            
+            const response = await fetch('/api/siem/perspective');
+            const data = await response.json();
+            
+            if (!data.success) {
+                this.showToast('Failed to load SIEM perspective', 'error');
+                return;
+            }
+            
+            console.log('SIEM perspective data:', data);
+            this.createSIEMVisualization(data);
+            
+        } catch (error) {
+            console.error('Error loading SIEM perspective:', error);
+            this.showToast('Error loading SIEM perspective', 'error');
+        }
+    }
+
+    createSIEMVisualization(data) {
+        const svg = d3.select('#network-svg');
+        svg.selectAll('*').remove();
+
+        const width = svg.node().clientWidth;
+        const height = svg.node().clientHeight;
+
+        // Create a radial layout with SIEM at center
+        const g = svg.append('g');
+
+        // SIEM entities at center
+        const centerX = width / 2;
+        const centerY = height / 2;
+        const siemRadius = 80;
+
+        // Position SIEM entities in a small circle at center
+        const siemPositions = data.siemEntities.map((entity, i) => {
+            const angle = (i / data.siemEntities.length) * 2 * Math.PI;
+            return {
+                ...entity,
+                x: centerX + Math.cos(angle) * (siemRadius / 2),
+                y: centerY + Math.sin(angle) * (siemRadius / 2),
+                type: 'siem'
+            };
+        });
+
+        // Group related entities by category and position them in rings
+        const categoryGroups = {};
+        data.relatedEntities.forEach(entity => {
+            const category = entity.category || 'uncategorized';
+            if (!categoryGroups[category]) {
+                categoryGroups[category] = [];
+            }
+            categoryGroups[category].push(entity);
+        });
+
+        const allNodes = [...siemPositions];
+        const categoryNames = Object.keys(categoryGroups);
+        const ringRadius = 200;
+
+        categoryNames.forEach((category, categoryIndex) => {
+            const entities = categoryGroups[category];
+            const categoryAngle = (categoryIndex / categoryNames.length) * 2 * Math.PI;
+            const categoryX = centerX + Math.cos(categoryAngle) * ringRadius;
+            const categoryY = centerY + Math.sin(categoryAngle) * ringRadius;
+
+            // Position entities in this category around their category center
+            entities.forEach((entity, entityIndex) => {
+                const entityAngle = (entityIndex / entities.length) * 2 * Math.PI;
+                const entityRadius = 60;
+                allNodes.push({
+                    ...entity,
+                    x: categoryX + Math.cos(entityAngle) * entityRadius,
+                    y: categoryY + Math.sin(entityAngle) * entityRadius,
+                    type: 'related',
+                    categoryGroup: category
+                });
+            });
+
+            // Add category label
+            g.append('text')
+                .attr('x', categoryX)
+                .attr('y', categoryY - 80)
+                .attr('text-anchor', 'middle')
+                .attr('font-size', '14px')
+                .attr('font-weight', 'bold')
+                .attr('fill', this.getCategoryColor(category))
+                .text(category.toUpperCase());
+        });
+
+        // Create links from SIEM entities to related entities
+        const links = [];
+        data.relationships.forEach(rel => {
+            const sourceNode = allNodes.find(n => n.id === rel.source);
+            const targetNode = allNodes.find(n => n.id === rel.target);
+            if (sourceNode && targetNode) {
+                links.push({
+                    source: sourceNode,
+                    target: targetNode,
+                    type: rel.type
+                });
+            }
+        });
+
+        // Draw links
+        const link = g.selectAll('.link')
+            .data(links)
+            .enter().append('line')
+            .attr('class', 'link')
+            .attr('x1', d => d.source.x)
+            .attr('y1', d => d.source.y)
+            .attr('x2', d => d.target.x)
+            .attr('y2', d => d.target.y)
+            .attr('stroke', '#999')
+            .attr('stroke-width', 1)
+            .attr('stroke-opacity', 0.6);
+
+        // Draw SIEM center circle
+        g.append('circle')
+            .attr('cx', centerX)
+            .attr('cy', centerY)
+            .attr('r', siemRadius)
+            .attr('fill', 'none')
+            .attr('stroke', '#ff6b6b')
+            .attr('stroke-width', 3)
+            .attr('stroke-dasharray', '5,5')
+            .attr('opacity', 0.5);
+
+        // Add SIEM label
+        g.append('text')
+            .attr('x', centerX)
+            .attr('y', centerY - siemRadius - 10)
+            .attr('text-anchor', 'middle')
+            .attr('font-size', '18px')
+            .attr('font-weight', 'bold')
+            .attr('fill', '#ff6b6b')
+            .text('🔒 SIEM ECOSYSTEM');
+
+        // Draw nodes
+        const node = g.selectAll('.node')
+            .data(allNodes)
+            .enter().append('g')
+            .attr('class', 'node')
+            .attr('transform', d => `translate(${d.x},${d.y})`);
+
+        node.append('circle')
+            .attr('r', d => d.type === 'siem' ? 12 : 8)
+            .attr('fill', d => d.type === 'siem' ? '#ff6b6b' : this.getCategoryColor(d.category))
+            .attr('stroke', d => d.type === 'siem' ? '#fff' : '#333')
+            .attr('stroke-width', d => d.type === 'siem' ? 3 : 1);
+
+        node.append('text')
+            .attr('dx', 15)
+            .attr('dy', 4)
+            .attr('font-size', d => d.type === 'siem' ? '12px' : '10px')
+            .attr('font-weight', d => d.type === 'siem' ? 'bold' : 'normal')
+            .attr('fill', '#333')
+            .text(d => d.name);
+
+        // Add hover tooltips
+        node.append('title')
+            .text(d => `${d.name}\nCategory: ${d.category}\nConfidence: ${(d.confidence * 100).toFixed(0)}%`);
+
+        // Add zoom behavior
+        const zoom = d3.zoom()
+            .scaleExtent([0.1, 4])
+            .on('zoom', (event) => {
+                g.attr('transform', event.transform);
+            });
+
+        svg.call(zoom);
+
+        // Show statistics
+        this.showToast(`SIEM Perspective: ${data.stats.totalSIEMEntities} SIEM entities, ${data.stats.relatedEntitiesCount} related entities across ${data.stats.categoriesCount} categories`, 'success');
+    }
+
     resetZoom() {
         if (this.networkZoom && this.networkSvg) {
             this.networkSvg.transition().call(
@@ -1483,13 +1661,6 @@ class UniversalKnowledgeApp {
                 this.networkZoom.scaleBy, 1 / 1.5
             );
             this.showToast('Zoomed out', 'success');
-        }
-    }
-
-                this.networkZoom.transform,
-                d3.zoomIdentity
-            );
-            this.showToast('Zoom reset', 'success');
         }
     }
 

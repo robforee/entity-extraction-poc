@@ -438,6 +438,7 @@
                         <button id="zoom-fit" class="btn btn-secondary">Fit</button>
                         <button id="toggle-hierarchy" class="btn btn-secondary">🏗️ Hierarchical</button>
                         <button id="toggle-force" class="btn btn-secondary">🌐 Force Layout</button>
+                        <button id="siem-perspective" class="btn btn-primary">🔒 SIEM Perspective</button>
                     </div>
                 </div>
                 <div id="network-container" class="network-container">
@@ -488,18 +489,21 @@
     <script src="js/app.js"></script>
     <script src="js/merge-interface.js"></script>
     <script>
-        // Initialize the application
-        const app = new UniversalKnowledgeApp();
-        
-        // Initialize merge interface after a short delay to ensure app is ready
-        setTimeout(() => {
-            try {
-                window.mergeInterface = new MergeInterface(app);
-                console.log('Merge interface initialized successfully');
-            } catch (error) {
-                console.error('Failed to initialize merge interface:', error);
-            }
-        }, 1000);
+        // Initialize merge interface after app is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                try {
+                    if (window.app) {
+                        window.mergeInterface = new MergeInterface(window.app);
+                        console.log('Merge interface initialized successfully');
+                    } else {
+                        console.error('App not found on window object');
+                    }
+                } catch (error) {
+                    console.error('Failed to initialize merge interface:', error);
+                }
+            }, 1000);
+        });
     </script>
 </body>
 </html>
