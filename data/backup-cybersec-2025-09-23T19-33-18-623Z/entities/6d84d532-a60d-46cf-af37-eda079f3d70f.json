@@ -1,0 +1,127 @@
+{
+  "id": "6d84d532-a60d-46cf-af37-eda079f3d70f",
+  "conversationId": "doc_1758509313240_q7k8elqow",
+  "userId": "rob_foree",
+  "domain": "cybersec",
+  "timestamp": "2025-09-22T02:48:33.243Z",
+  "entities": {
+    "people": [
+      {
+        "name": "SOC Analyst",
+        "role": "Security Operations Center Analyst",
+        "confidence": 0.9
+      },
+      {
+        "name": "SOC Analyst",
+        "role": "Security Operations Center Analyst",
+        "confidence": 0.9
+      },
+      {
+        "name": "SOC Analyst",
+        "role": "Security Operations Center Analyst",
+        "confidence": 0.9
+      },
+      {
+        "name": "SOC Analyst",
+        "role": "Security Operations Center Analyst",
+        "confidence": 0.9
+      },
+      {
+        "name": "SOC Analyst",
+        "role": "Security Operations Center Analyst",
+        "confidence": 0.9
+      },
+      {
+        "name": "SOC Analyst",
+        "role": "Security Operations Center Analyst",
+        "confidence": 0.9
+      },
+      {
+        "name": "SOC Analyst",
+        "role": "Security Operations Center Analyst",
+        "confidence": 0.9
+      },
+      {
+        "name": "SOC Analyst",
+        "role": "Security Operations Center Analyst",
+        "confidence": 0.9
+      },
+      {
+        "name": "SOC Analyst",
+        "role": "Security Operations Center Analyst",
+        "confidence": 0.9
+      },
+      {
+        "name": "SOC Analyst",
+        "role": "Security Operations Center Analyst",
+        "confidence": 0.9
+      },
+      {
+        "name": "SOC Analyst",
+        "role": "Security Operations Center Analyst",
+        "confidence": 0.9
+      },
+      {
+        "name": "SOC Analyst",
+        "role": "Security Operations Center Analyst",
+        "confidence": 0.9
+      },
+      {
+        "name": "SOC Analyst",
+        "role": "Security Operations Center Analyst",
+        "confidence": 0.9
+      },
+      {
+        "name": "SOC Analyst",
+        "role": "Security Operations Center Analyst",
+        "confidence": 0.9
+      },
+      {
+        "name": "SOC Analyst",
+        "role": "Security Operations Center Analyst",
+        "confidence": 0.9
+      },
+      {
+        "name": "SOC Analyst",
+        "role": "Security Operations Center Analyst",
+        "confidence": 0.9
+      }
+    ],
+    "projects": [
+      {
+        "name": "NIST Cybersecurity Framework Mapping",
+        "type": "Compliance Initiative",
+        "phase": "Implementation",
+        "confidence": 0.9
+      }
+    ],
+    "decisions": [],
+    "timeline": [],
+    "locations": [],
+    "materials": [],
+    "costs": [],
+    "issues": [],
+    "tasks": [],
+    "documents": [
+      {
+        "name": "NIST Cybersecurity Framework",
+        "type": "Standard",
+        "status": "Active",
+        "confidence": 0.9
+      }
+    ]
+  },
+  "metadata": {
+    "source": "/home/robforee/analyst-server/snappy/client-projects/cybersec-dogfood/corpus/regulatory/nist-cybersecurity-framework-mapping.md",
+    "messageId": "nist-cybersecurity-framework-mapping.md",
+    "documentType": ".md",
+    "contentLength": 36941,
+    "cost": 0.007063000000000001,
+    "processingTime": 0,
+    "model": "gpt-3.5-turbo",
+    "provider": "openai",
+    "confidence": 0.9000000000000001,
+    "extractionModel": "gpt-3.5-turbo",
+    "extractionProvider": "openai"
+  }
+}

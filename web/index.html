@@ -165,6 +165,18 @@
                             <input type="range" id="cluster-font-size" min="12" max="24" value="18" step="1">
                             <span id="cluster-font-size-value">18px</span>
                         </div>
+                        
+                        <!-- Perspective Controls -->
+                        <div class="slider-group">
+                            <h5>🔍 Perspective Views</h5>
+                            <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 8px;">
+                                <input type="text" id="entity-search" placeholder="Search entity for perspective..." style="width: 100%; padding: 6px; border-radius: 4px; border: 1px solid #ddd;">
+                                <div style="display: flex; gap: 5px;">
+                                    <button id="entity-perspective" class="btn btn-primary btn-sm">🔍 Entity View</button>
+                                    <button id="siem-perspective" class="btn btn-primary btn-sm">🔒 SIEM</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     
                     <!-- Color Legend -->
@@ -336,10 +348,10 @@
                             🔍 Find Merge Candidates
                         </button>
                         <button onclick="app.performAutoMerge()" class="btn btn-success">
-                            ⚡ Auto-Merge
+                            ⚡ Auto-Merge (High Confidence)
                         </button>
-                        <button onclick="app.showMergeStatistics()" class="btn btn-info">
-                            📊 Merge Statistics
+                        <button onclick="app.resetMergedPairs()" class="btn btn-warning">
+                            🔄 Reset Merged Pairs
                         </button>
                     </div>
                 </div>
@@ -434,11 +446,24 @@
                 <div class="view-header">
                     <h2>🕸️ Entity Network</h2>
                     <div class="network-controls">
-                        <button id="zoom-center" class="btn btn-secondary">Center</button>
-                        <button id="zoom-fit" class="btn btn-secondary">Fit</button>
-                        <button id="toggle-hierarchy" class="btn btn-secondary">🏗️ Hierarchical</button>
-                        <button id="toggle-force" class="btn btn-secondary">🌐 Force Layout</button>
-                        <button id="siem-perspective" class="btn btn-primary">🔒 SIEM Perspective</button>
+                        <!-- Layout Controls -->
+                        <div class="control-group">
+                            <label>Layout:</label>
+                            <button id="toggle-force" class="btn btn-secondary">🌐 Force</button>
+                            <button id="toggle-hierarchy" class="btn btn-secondary">🏗️ Hierarchical</button>
+                        </div>
+                        
+                        <!-- Perspective Controls moved to network-sliders -->
+                        
+                        <!-- View Controls -->
+                        <div class="control-group">
+                            <label>View:</label>
+                            <select id="network-category-filter">
+                                <option value="">All Categories</option>
+                            </select>
+                            <button id="zoom-center" class="btn btn-secondary">Center</button>
+                            <button id="zoom-fit" class="btn btn-secondary">Fit</button>
+                        </div>
                     </div>
                 </div>
                 <div id="network-container" class="network-container">
@@ -449,17 +474,25 @@
             <!-- Search View -->
             <div id="search-view" class="view">
                 <div class="view-header">
-                    <h2>🔍 Entity Search</h2>
+                    <h2>🔍 Entity Context Search</h2>
                     <div class="search-controls">
-                        <input type="text" id="search-input" placeholder="Search entities...">
-                        <select id="search-category">
-                            <option value="">All Categories</option>
-                        </select>
-                        <button id="search-btn" class="action-btn">Search</button>
+                        <input type="text" id="entity-context-search" placeholder="Search any entity (e.g., SIEM, SOC, Firewall)...">
+                        <button id="context-search-btn" class="action-btn">🔍 Search & Analyze</button>
                     </div>
                 </div>
-                <div id="search-results" class="search-results">
-                    <!-- Search results will be displayed here -->
+                
+                <div id="entity-analysis-results" class="entity-analysis">
+                    <p class="placeholder">Enter any entity name to see all variants, context, and merge opportunities</p>
+                </div>
+                
+                <!-- Entity Management Panel -->
+                <div id="entity-management-panel" class="entity-panel" style="display: none;">
+                    <h3>📋 Entity Management</h3>
+                    <div class="management-actions">
+                        <button id="merge-selected" class="btn btn-success">🔗 Merge Selected</button>
+                        <button id="split-entity" class="btn btn-warning">✂️ Split Entity</button>
+                        <button id="view-similar" class="btn btn-info">👁️ View Similar</button>
+                    </div>
                 </div>
             </div>
         </main>

@@ -386,7 +386,10 @@ class MergeInterface {
     }
 
     async batchAutoMerge() {
-        if (this.selectedCandidates.size === 0) return;
+        if (this.selectedCandidates.size === 0) {
+            this.app.showToast('No candidates selected for batch merge', 'warning');
+            return;
+        }
         
         const selectedCandidates = Array.from(this.selectedCandidates).map(index => this.allCandidates[index]);
         const autoMergeableCandidates = selectedCandidates.filter(c => c.autoMergeable);
@@ -400,18 +403,34 @@ class MergeInterface {
         if (!confirmed) return;
         
         try {
-            this.app.showLoading();
+            this.app.showToast('Processing batch merge...', 'info');
             
-            // Process each auto-mergeable candidate
+            // Process each auto-mergeable candidate via API
             let successCount = 0;
             for (const candidate of autoMergeableCandidates) {
-                // In a full implementation, this would call individual merge endpoints
-                successCount++;
+                try {
+                    const response = await fetch('/api/merging/manual-merge', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            primaryId: candidate.primary.id,
+                            secondaryId: candidate.secondary.id,
+                            action: 'merge'
+                        })
+                    });
+                    
+                    if (response.ok) {
+                        successCount++;
+                    }
+                } catch (mergeError) {
+                    console.error('Individual merge failed:', mergeError);
+                }
             }
             
-            this.app.showToast(`Successfully batch merged ${successCount} entities`, 'success');
+            this.app.showToast(`Successfully batch merged ${successCount}/${autoMergeableCandidates.length} entities`, 'success');
             
-            // Refresh the candidates list
+            // Clear selection and refresh
+            this.clearSelection();
             this.app.findMergeCandidates();
             
         } catch (error) {

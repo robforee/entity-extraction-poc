@@ -1,0 +1,92 @@
+{
+  "id": "8159d67a-835e-4857-bc2b-06b80b00b77a",
+  "conversationId": "doc_1758501923901_2ca9qct43",
+  "userId": "rob_foree",
+  "domain": "cybersec",
+  "timestamp": "2025-09-22T00:45:23.902Z",
+  "entities": {
+    "people": [
+      {
+        "name": "Qualified Security Assessor (QSA)",
+        "role": "Security Assessor",
+        "confidence": 0.9
+      },
+      {
+        "name": "SOC Analyst",
+        "role": "Security Operations Center Analyst",
+        "confidence": 0.85
+      }
+    ],
+    "projects": [
+      {
+        "name": "PCI DSS Assessment",
+        "type": "Compliance Initiative",
+        "phase": "Validation",
+        "confidence": 0.9
+      },
+      {
+        "name": "Network Segmentation Strategy",
+        "type": "Security Implementation",
+        "phase": "Planning",
+        "confidence": 0.85
+      }
+    ],
+    "decisions": [],
+    "timeline": [],
+    "locations": [],
+    "materials": [],
+    "costs": [],
+    "issues": [
+      {
+        "description": "Vulnerability Scanning Coordination",
+        "severity": "Medium",
+        "status": "Open",
+        "confidence": 0.8,
+        "name": "Vulnerability Scanning Coordination"
+      }
+    ],
+    "tasks": [
+      {
+        "description": "Develop integrated compliance programs",
+        "assigned_to": "Financial Institutions",
+        "due_date": "N/A",
+        "confidence": 0.9,
+        "name": "Develop integrated compliance programs"
+      },
+      {
+        "description": "Implement risk-based compliance",
+        "assigned_to": "Financial Institutions",
+        "due_date": "N/A",
+        "confidence": 0.85,
+        "name": "Implement risk-based compliance"
+      }
+    ],
+    "documents": [
+      {
+        "name": "GLBA Safeguards Rule",
+        "type": "Regulatory Requirement",
+        "status": "Active",
+        "confidence": 0.9
+      },
+      {
+        "name": "FFIEC IT Examination Handbook",
+        "type": "Guidance Document",
+        "status": "Active",
+        "confidence": 0.85
+      }
+    ]
+  },
+  "metadata": {
+    "source": "/home/robforee/analyst-server/snappy/client-projects/cybersec-dogfood/corpus/regulatory/pci-dss-financial-services-compliance.md",
+    "messageId": "pci-dss-financial-services-compliance.md",
+    "documentType": ".md",
+    "contentLength": 34298,
+    "cost": 0.006491,
+    "processingTime": 0,
+    "model": "gpt-3.5-turbo",
+    "provider": "openai",
+    "confidence": 0.8666666666666667,
+    "extractionModel": "gpt-3.5-turbo",
+    "extractionProvider": "openai"
+  }
+}

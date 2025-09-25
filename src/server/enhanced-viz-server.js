@@ -88,6 +88,12 @@ class EnhancedVizServer {
         this.app.post('/api/merging/preview-merge', this.previewManualMerge.bind(this));
         this.app.get('/api/merging/statistics', this.getMergeStatistics.bind(this));
         
+        // Entity context and search endpoints
+        this.app.get('/api/entities/search/:term', this.searchEntityWithContext.bind(this));
+        this.app.get('/api/entities/context/:entityId', this.getEntityContext.bind(this));
+        this.app.post('/api/entities/split', this.splitEntity.bind(this));
+        this.app.get('/api/entities/similar/:entityId', this.findSimilarEntities.bind(this));
+        
         // Merge history endpoints
         this.app.get('/api/merging/history', this.getMergeHistory.bind(this));
         this.app.post('/api/merging/undo', this.undoMerge.bind(this));
@@ -189,8 +195,11 @@ class EnhancedVizServer {
             
             const allEntities = await this.getAllEntitiesFlat();
             
+            // Apply merge consolidation - remove entities that have been merged
+            const consolidatedEntities = this.applyMergeConsolidation(allEntities);
+            
             // Apply filters
-            let filteredEntities = allEntities.filter(entity => {
+            let filteredEntities = consolidatedEntities.filter(entity => {
                 if (category && entity.category !== category) return false;
                 if (entity.confidence < minConfidence) return false;
                 if (source && entity.source !== source) return false;
@@ -738,17 +747,18 @@ class EnhancedVizServer {
     async getRelationships(req, res) {
         try {
             const allEntities = await this.getAllEntitiesFlat();
+            const consolidatedEntities = this.applyMergeConsolidation(allEntities);
             const relationships = [];
             const entityMap = new Map();
             
             // Create entity map for quick lookup
-            allEntities.forEach(entity => {
+            consolidatedEntities.forEach(entity => {
                 entityMap.set(entity.id, entity);
             });
             
             // Find co-occurring entities (entities in same document)
             const documentGroups = {};
-            allEntities.forEach(entity => {
+            consolidatedEntities.forEach(entity => {
                 const docId = entity.conversationId;
                 if (!documentGroups[docId]) {
                     documentGroups[docId] = [];
@@ -781,12 +791,14 @@ class EnhancedVizServer {
             
             res.json({
                 success: true,
-                nodes: allEntities.map(entity => ({
+                nodes: consolidatedEntities.map(entity => ({
                     id: entity.id,
                     name: entity.name,
                     category: entity.category,
                     confidence: entity.confidence || 0,
-                    description: entity.description
+                    description: entity.description,
+                    consolidatedCount: entity.consolidatedCount || null,
+                    mergedFrom: entity.mergedFrom || null
                 })),
                 relationships: relationships,
                 links: relationships // Keep both for compatibility
@@ -998,12 +1010,257 @@ class EnhancedVizServer {
                 candidates: availableCandidates,
                 total: availableCandidates.length,
                 autoMergeable: availableCandidates.filter(c => c.autoMergeable).length,
-                domain: this.currentDomain
+                domain: this.currentDomain,
+                debug: {
+                    totalEntities: allEntities.length,
+                    potentialCandidates: realCandidates.length,
+                    mergedPairsCount: this.mergedPairs.size
+                }
             });
         } catch (error) {
             console.error('Error finding merge candidates:', error);
             res.status(500).json({ error: 'Failed to find merge candidates' });
         }
+    }
+
+    findRealMergeCandidates(entities) {
+        const candidates = [];
+        const nameGroups = {};
+        
+        // Group entities by similar names with more aggressive grouping
+        entities.forEach(entity => {
+            if (!entity.name) return;
+            
+            const normalizedName = entity.name.toLowerCase().trim();
+            
+            // Extract key terms for better grouping
+            let baseKey;
+            if (normalizedName.includes('siem')) {
+                baseKey = 'siem';
+            } else if (normalizedName.includes('soc analyst') || normalizedName.includes('security analyst')) {
+                baseKey = 'socanalyst';
+            } else if (normalizedName.includes('firewall')) {
+                baseKey = 'firewall';
+            } else {
+                // Default: remove all non-alphanumeric and take first significant word
+                const words = normalizedName.replace(/[^a-z0-9\s]/g, '').split(/\s+/).filter(w => w.length > 2);
+                baseKey = words[0] || normalizedName.replace(/[^a-z0-9]/g, '');
+            }
+            
+            if (!nameGroups[baseKey]) {
+                nameGroups[baseKey] = [];
+            }
+            nameGroups[baseKey].push(entity);
+        });
+        
+        // Find potential merges within each group
+        Object.values(nameGroups).forEach(group => {
+            if (group.length < 2) return;
+            
+            for (let i = 0; i < group.length; i++) {
+                for (let j = i + 1; j < group.length; j++) {
+                    const entity1 = group[i];
+                    const entity2 = group[j];
+                    
+                    // Calculate similarity with more aggressive thresholds
+                    const nameSimilarity = this.calculateStringSimilarity(entity1.name, entity2.name);
+                    const categorySimilarity = entity1.category === entity2.category ? 1.0 : 0.5; // More lenient on category
+                    const overallSimilarity = (nameSimilarity * 0.8) + (categorySimilarity * 0.2);
+                    
+                    // More aggressive thresholds for SIEM and SOC entities
+                    const isSpecialEntity = entity1.name.toLowerCase().includes('siem') || 
+                                          entity1.name.toLowerCase().includes('soc') ||
+                                          entity2.name.toLowerCase().includes('siem') || 
+                                          entity2.name.toLowerCase().includes('soc');
+                    
+                    const threshold = isSpecialEntity ? 0.4 : 0.7; // Lower threshold for SIEM/SOC
+                    
+                    if (overallSimilarity > threshold) {
+                        const autoMergeable = overallSimilarity > (isSpecialEntity ? 0.5 : 0.9);
+                        
+                        candidates.push({
+                            primary: {
+                                id: entity1.id,
+                                name: entity1.name,
+                                category: entity1.category,
+                                confidence: entity1.confidence || 0.5,
+                                description: entity1.description || ''
+                            },
+                            secondary: {
+                                id: entity2.id,
+                                name: entity2.name,
+                                category: entity2.category,
+                                confidence: entity2.confidence || 0.5,
+                                description: entity2.description || ''
+                            },
+                            confidence: overallSimilarity,
+                            similarity: {
+                                name: nameSimilarity,
+                                category: categorySimilarity,
+                                overall: overallSimilarity
+                            },
+                            autoMergeable: autoMergeable,
+                            reasons: [
+                                `Name similarity: ${(nameSimilarity * 100).toFixed(0)}%`,
+                                entity1.category === entity2.category ? 'Same category' : 'Different categories',
+                                `Overall confidence: ${(overallSimilarity * 100).toFixed(0)}%`
+                            ]
+                        });
+                    }
+                }
+            }
+        });
+        
+        // Sort by confidence (highest first)
+        return candidates.sort((a, b) => b.confidence - a.confidence);
+    }
+
+    calculateStringSimilarity(str1, str2) {
+        if (!str1 || !str2) return 0;
+        
+        const s1 = str1.toLowerCase();
+        const s2 = str2.toLowerCase();
+        
+        if (s1 === s2) return 1.0;
+        
+        // Levenshtein distance-based similarity
+        const longer = s1.length > s2.length ? s1 : s2;
+        const shorter = s1.length > s2.length ? s2 : s1;
+        
+        if (longer.length === 0) return 1.0;
+        
+        const distance = this.levenshteinDistance(longer, shorter);
+        return (longer.length - distance) / longer.length;
+    }
+
+    levenshteinDistance(str1, str2) {
+        const matrix = [];
+        
+        for (let i = 0; i <= str2.length; i++) {
+            matrix[i] = [i];
+        }
+        
+        for (let j = 0; j <= str1.length; j++) {
+            matrix[0][j] = j;
+        }
+        
+        for (let i = 1; i <= str2.length; i++) {
+            for (let j = 1; j <= str1.length; j++) {
+                if (str2.charAt(i - 1) === str1.charAt(j - 1)) {
+                    matrix[i][j] = matrix[i - 1][j - 1];
+                } else {
+                    matrix[i][j] = Math.min(
+                        matrix[i - 1][j - 1] + 1,
+                        matrix[i][j - 1] + 1,
+                        matrix[i - 1][j] + 1
+                    );
+                }
+            }
+        }
+        
+        return matrix[str2.length][str1.length];
+    }
+
+    async searchEntityWithContext(req, res) {
+        try {
+            const searchTerm = req.params.term.toLowerCase();
+            const allEntities = await this.getAllEntitiesFlat();
+            const consolidatedEntities = this.applyMergeConsolidation(allEntities);
+            
+            const matchingEntities = consolidatedEntities.filter(entity => 
+                entity.name.toLowerCase().includes(searchTerm)
+            ).map(entity => ({
+                ...entity,
+                matchType: entity.name.toLowerCase() === searchTerm ? 'exact' : 'contains',
+                similarity: this.calculateStringSimilarity(entity.name.toLowerCase(), searchTerm)
+            }));
+            
+            res.json({
+                success: true,
+                searchTerm,
+                totalMatches: matchingEntities.length,
+                entities: matchingEntities.sort((a, b) => b.similarity - a.similarity)
+            });
+        } catch (error) {
+            res.status(500).json({ error: 'Search failed' });
+        }
+    }
+
+    async findSimilarEntities(req, res) {
+        try {
+            const entityId = req.params.entityId;
+            const allEntities = await this.getAllEntitiesFlat();
+            const targetEntity = allEntities.find(e => e.id === entityId);
+            
+            if (!targetEntity) {
+                return res.status(404).json({ error: 'Entity not found' });
+            }
+            
+            const candidates = this.findRealMergeCandidates(allEntities)
+                .filter(c => c.primary.id === entityId || c.secondary.id === entityId)
+                .slice(0, 20);
+            
+            res.json({
+                success: true,
+                targetEntity,
+                similarEntities: candidates
+            });
+        } catch (error) {
+            res.status(500).json({ error: 'Failed to find similar entities' });
+        }
+    }
+
+    async getEntityContext(req, res) {
+        res.json({ success: false, message: 'Context feature coming soon' });
+    }
+
+    async splitEntity(req, res) {
+        res.json({ success: false, message: 'Split feature coming soon' });
+    }
+
+    applyMergeConsolidation(entities) {
+        // Create a map of merged entity IDs
+        const mergedEntityIds = new Set();
+        const consolidatedEntities = new Map();
+        
+        // Process merged pairs to identify which entities should be consolidated
+        for (const mergeKey of this.mergedPairs) {
+            const [primaryId, secondaryId] = mergeKey.split('|');
+            
+            // Find the entities
+            const primaryEntity = entities.find(e => e.id === primaryId);
+            const secondaryEntity = entities.find(e => e.id === secondaryId);
+            
+            if (primaryEntity && secondaryEntity) {
+                // Mark secondary entity as merged (to be removed)
+                mergedEntityIds.add(secondaryId);
+                
+                // Create or update consolidated entity (keep primary, enhance with secondary data)
+                if (!consolidatedEntities.has(primaryId)) {
+                    consolidatedEntities.set(primaryId, {
+                        ...primaryEntity,
+                        mergedFrom: [secondaryEntity.name],
+                        consolidatedConfidence: Math.max(primaryEntity.confidence || 0, secondaryEntity.confidence || 0),
+                        consolidatedCount: 2
+                    });
+                } else {
+                    const existing = consolidatedEntities.get(primaryId);
+                    existing.mergedFrom.push(secondaryEntity.name);
+                    existing.consolidatedConfidence = Math.max(existing.consolidatedConfidence, secondaryEntity.confidence || 0);
+                    existing.consolidatedCount++;
+                }
+            }
+        }
+        
+        // Return entities with merged ones removed and consolidated ones updated
+        return entities
+            .filter(entity => !mergedEntityIds.has(entity.id))
+            .map(entity => {
+                if (consolidatedEntities.has(entity.id)) {
+                    return consolidatedEntities.get(entity.id);
+                }
+                return entity;
+            });
     }
 
     generateMockMergeCandidates() {
@@ -1158,28 +1415,56 @@ class EnhancedVizServer {
 
     async performAutoMerge(req, res) {
         try {
-            const { default: AutoMerger } = await import('../merging/auto-merger.js');
-            const { default: EnhancedEntity } = await import('../models/enhanced-entity.js');
+            // Get current merge candidates
+            const allEntities = await this.getAllEntitiesFlat();
+            const candidates = this.findRealMergeCandidates(allEntities);
             
-            const merger = new AutoMerger();
-            const entities = (await this.getAllEntitiesFlat()).map(e => new EnhancedEntity(e));
-            const result = await merger.performAutoMerges(entities);
+            // Filter for auto-mergeable candidates only
+            const autoMergeableCandidates = candidates.filter(candidate => {
+                const mergeKey = [candidate.primary.id, candidate.secondary.id].sort().join('|');
+                return candidate.autoMergeable && !this.mergedPairs.has(mergeKey);
+            });
+            
+            if (autoMergeableCandidates.length === 0) {
+                return res.json({
+                    success: true,
+                    message: 'No auto-mergeable candidates found',
+                    mergesPerformed: 0,
+                    autoMergeableCandidates: 0
+                });
+            }
+            
+            // Perform auto-merges (simulate for now)
+            let mergesPerformed = 0;
+            const mergedPairs = [];
+            
+            for (const candidate of autoMergeableCandidates.slice(0, 10)) { // Limit to 10 at a time
+                const mergeKey = [candidate.primary.id, candidate.secondary.id].sort().join('|');
+                this.mergedPairs.add(mergeKey);
+                mergedPairs.push({
+                    primary: candidate.primary.name,
+                    secondary: candidate.secondary.name,
+                    confidence: candidate.confidence
+                });
+                mergesPerformed++;
+            }
+            
+            // Save merged pairs to disk
+            await this.saveMergedPairs();
+            
+            console.log(`Auto-merged ${mergesPerformed} entity pairs in domain: ${this.currentDomain}`);
             
             res.json({
                 success: true,
-                mergesPerformed: result.merges.length,
-                entitiesRemaining: result.entities.length,
-                suggestions: result.suggestions.length,
-                merges: result.merges.map(m => ({
-                    result: m.result.toJSON(),
-                    merged: m.merged.toJSON(),
-                    type: m.type,
-                    similarity: m.similarity
-                }))
+                message: `Auto-merged ${mergesPerformed} high-confidence entity pairs`,
+                mergesPerformed: mergesPerformed,
+                autoMergeableCandidates: autoMergeableCandidates.length,
+                mergedPairs: mergedPairs,
+                domain: this.currentDomain
             });
         } catch (error) {
-            console.error('Error performing auto merge:', error);
-            res.status(500).json({ error: 'Failed to perform auto merge' });
+            console.error('Auto-merge error:', error);
+            res.status(500).json({ error: error.message });
         }
     }
 

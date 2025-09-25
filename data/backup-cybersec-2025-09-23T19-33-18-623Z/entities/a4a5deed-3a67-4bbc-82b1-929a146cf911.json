@@ -1,0 +1,79 @@
+{
+  "id": "a4a5deed-3a67-4bbc-82b1-929a146cf911",
+  "conversationId": "doc_1758507413612_dtvcw127a",
+  "userId": "rob_foree",
+  "domain": "cybersec",
+  "timestamp": "2025-09-22T02:16:53.612Z",
+  "entities": {
+    "people": [
+      {
+        "name": "SOC Analyst Level 1",
+        "role": "Security Operations Center Analyst",
+        "confidence": 0.95
+      },
+      {
+        "name": "SOC Supervisors",
+        "role": "Security Operations Center Supervisors",
+        "confidence": 0.85
+      },
+      {
+        "name": "L2 Analysts",
+        "role": "Level 2 Analysts",
+        "confidence": 0.8
+      }
+    ],
+    "projects": [],
+    "decisions": [],
+    "timeline": [],
+    "locations": [],
+    "materials": [
+      {
+        "name": "SIEM platforms",
+        "type": "SIEM",
+        "status": "Active",
+        "confidence": 0.9
+      },
+      {
+        "name": "ServiceNow",
+        "type": "Ticketing System",
+        "status": "Active",
+        "confidence": 0.85
+      },
+      {
+        "name": "Jira",
+        "type": "Ticketing System",
+        "status": "Active",
+        "confidence": 0.8
+      },
+      {
+        "name": "Remedy",
+        "type": "Ticketing System",
+        "status": "Active",
+        "confidence": 0.75
+      },
+      {
+        "name": "SOAR platforms",
+        "type": "SOAR",
+        "status": "Active",
+        "confidence": 0.9
+      }
+    ],
+    "costs": [],
+    "issues": [],
+    "tasks": [],
+    "documents": []
+  },
+  "metadata": {
+    "source": "/home/robforee/analyst-server/snappy/client-projects/cybersec-dogfood/corpus/roles/soc-analyst-level-1-comprehensive.md",
+    "messageId": "soc-analyst-level-1-comprehensive.md",
+    "documentType": ".md",
+    "contentLength": 24378,
+    "cost": 0.0052770000000000004,
+    "processingTime": 0,
+    "model": "gpt-3.5-turbo",
+    "provider": "openai",
+    "confidence": 0.85,
+    "extractionModel": "gpt-3.5-turbo",
+    "extractionProvider": "openai"
+  }
+}

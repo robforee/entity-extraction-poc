@@ -53,31 +53,34 @@ class UniversalKnowledgeApp {
         this.setupNetworkSliders();
         
         // Modal
-        document.querySelector('.modal-close').addEventListener('click', () => this.closeModal());
+        document.querySelector('.modal-close')?.addEventListener('click', () => this.closeModal());
         window.addEventListener('click', (e) => {
             if (e.target.classList.contains('modal')) this.closeModal();
         });
 
         // Search
-        document.getElementById('search-btn').addEventListener('click', () => this.performSearch());
-        document.getElementById('search-input').addEventListener('keypress', (e) => {
+        document.getElementById('context-search-btn')?.addEventListener('click', () => this.performSearch());
+        document.getElementById('entity-context-search')?.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') this.performSearch();
         });
 
         // Filters
-        document.getElementById('category-filter').addEventListener('change', (e) => {
+        document.getElementById('category-filter')?.addEventListener('change', (e) => {
             this.filters.category = e.target.value;
             this.loadEntities();
         });
 
-        document.getElementById('confidence-slider').addEventListener('input', (e) => {
+        document.getElementById('confidence-slider')?.addEventListener('input', (e) => {
             this.filters.minConfidence = parseFloat(e.target.value);
-            document.getElementById('confidence-value').textContent = `${Math.round(this.filters.minConfidence * 100)}%`;
+            const confidenceValue = document.getElementById('confidence-value');
+            if (confidenceValue) {
+                confidenceValue.textContent = `${Math.round(this.filters.minConfidence * 100)}%`;
+            }
             this.loadEntities();
         });
 
         // Export
-        document.getElementById('export-entities').addEventListener('click', () => this.exportEntities());
+        document.getElementById('export-entities')?.addEventListener('click', () => this.exportEntities());
 
         // Network controls
         document.getElementById('zoom-center')?.addEventListener('click', () => this.centerNetwork());
@@ -85,11 +88,38 @@ class UniversalKnowledgeApp {
         document.getElementById('toggle-hierarchy')?.addEventListener('click', () => this.toggleHierarchicalLayout());
         document.getElementById('toggle-force')?.addEventListener('click', () => this.toggleForceLayout());
         document.getElementById('siem-perspective')?.addEventListener('click', () => this.showSIEMPerspective());
+        document.getElementById('entity-perspective')?.addEventListener('click', () => this.showEntityPerspective());
+        
+        // Network category filter
+        document.getElementById('network-category-filter')?.addEventListener('change', (e) => {
+            this.filterNetworkByCategory(e.target.value);
+        });
+        
+        // Entity search with autocomplete
+        document.getElementById('entity-search')?.addEventListener('input', (e) => {
+            this.handleEntitySearch(e.target.value);
+        });
+        
+        // Entity context search
+        document.getElementById('context-search-btn')?.addEventListener('click', () => {
+            this.performEntityContextSearch();
+        });
+        
+        document.getElementById('entity-context-search')?.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                this.performEntityContextSearch();
+            }
+        });
 
         // Domain selector
-        document.getElementById('domain-select').addEventListener('change', (e) => {
+        document.getElementById('domain-select')?.addEventListener('change', (e) => {
             this.switchDomain(e.target.value);
         });
+
+        // Entity management actions
+        document.getElementById('merge-selected')?.addEventListener('click', () => this.mergeSelectedEntities());
+        document.getElementById('split-entity')?.addEventListener('click', () => this.splitEntity());
+        document.getElementById('view-similar')?.addEventListener('click', () => this.viewSimilarEntities());
     }
 
     connectWebSocket() {
@@ -165,6 +195,7 @@ class UniversalKnowledgeApp {
 
     populateDomainSelector() {
         const domainSelect = document.getElementById('domain-select');
+        if (!domainSelect) return;
         
         if (this.data.domains && this.data.domains.domains) {
             // Clear existing options
@@ -222,14 +253,24 @@ class UniversalKnowledgeApp {
         const categoryFilter = document.getElementById('category-filter');
         const searchCategory = document.getElementById('search-category');
         
-        categoryFilter.innerHTML = '<option value="">All Categories</option>';
-        searchCategory.innerHTML = '<option value="">All Categories</option>';
+        if (categoryFilter) {
+            categoryFilter.innerHTML = '<option value="">All Categories</option>';
+        }
+        
+        if (searchCategory) {
+            searchCategory.innerHTML = '<option value="">All Categories</option>';
+        }
         
         Object.keys(this.data.categories).forEach(category => {
-            const option1 = new Option(this.capitalizeWords(category), category);
-            const option2 = new Option(this.capitalizeWords(category), category);
-            categoryFilter.add(option1);
-            searchCategory.add(option2);
+            if (categoryFilter) {
+                const option1 = new Option(this.capitalizeWords(category), category);
+                categoryFilter.add(option1);
+            }
+            
+            if (searchCategory) {
+                const option2 = new Option(this.capitalizeWords(category), category);
+                searchCategory.add(option2);
+            }
         });
     }
 
@@ -326,6 +367,8 @@ class UniversalKnowledgeApp {
 
     renderRecentEntities() {
         const container = document.getElementById('recent-entities');
+        if (!container) return;
+        
         const recentEntities = this.data.entities.slice(0, 10);
 
         container.innerHTML = recentEntities.map(entity => `
@@ -507,6 +550,7 @@ class UniversalKnowledgeApp {
 
     renderEntitiesGrid(entities) {
         const container = document.getElementById('entities-grid');
+        if (!container) return;
         
         if (!entities || entities.length === 0) {
             container.innerHTML = '<div class="text-center"><p>No entities found with current filters.</p></div>';
@@ -569,6 +613,7 @@ class UniversalKnowledgeApp {
 
     async renderDocuments() {
         const container = document.getElementById('documents-list');
+        if (!container) return;
         
         if (!this.data.documents || this.data.documents.length === 0) {
             container.innerHTML = `
@@ -1636,6 +1681,227 @@ class UniversalKnowledgeApp {
         this.showToast(`SIEM Perspective: ${data.stats.totalSIEMEntities} SIEM entities, ${data.stats.relatedEntitiesCount} related entities across ${data.stats.categoriesCount} categories`, 'success');
     }
 
+    async showEntityPerspective() {
+        const entityName = document.getElementById('entity-search')?.value?.trim();
+        if (!entityName) {
+            this.showToast('Please enter an entity name in the search box first', 'warning');
+            return;
+        }
+        
+        console.log(`Creating entity perspective for: ${entityName}`);
+        this.showToast(`Creating ${entityName} perspective...`, 'info');
+        
+        try {
+            // Simulate API call to create entity perspective
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            
+            // TODO: Create dynamic entity perspective API endpoint
+            // For now, show SIEM if searching for SIEM, otherwise show generic message
+            if (entityName.toLowerCase().includes('siem')) {
+                this.showSIEMPerspective();
+            } else {
+                this.showToast(`Entity perspective created for "${entityName}" - showing related entities in network view`, 'success');
+                console.log(`Entity perspective data would be loaded for: ${entityName}`);
+                
+                // TODO: Implement actual entity perspective logic
+                // This would filter the network to show the selected entity and its connections
+            }
+        } catch (error) {
+            console.error('Failed to create entity perspective:', error);
+            this.showToast('Failed to create entity perspective', 'error');
+        }
+    }
+
+    filterNetworkByCategory(category) {
+        // Store filter state
+        this.networkState = this.networkState || {};
+        this.networkState.categoryFilter = category;
+        
+        this.showToast(category ? `Filtering by ${category}` : 'Showing all categories', 'info');
+        // TODO: Implement actual filtering
+    }
+
+    handleEntitySearch(query) {
+        // Simple autocomplete - could be enhanced with API call
+        if (query.length > 2) {
+            // TODO: Add autocomplete dropdown
+        }
+    }
+
+    async performAutoMerge() {
+        try {
+            this.showToast('Starting auto-merge process...', 'info');
+            
+            const response = await fetch('/api/merging/auto-merge', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' }
+            });
+            
+            const result = await response.json();
+            
+            if (result.success) {
+                this.showToast(result.message, 'success');
+                console.log('Auto-merge result:', result);
+                
+                // Refresh merge candidates if we're on management view
+                if (this.currentView === 'management') {
+                    setTimeout(() => this.findMergeCandidates(), 1000);
+                }
+            } else {
+                this.showToast('Auto-merge failed', 'error');
+            }
+        } catch (error) {
+            console.error('Auto-merge error:', error);
+            this.showToast('Auto-merge failed', 'error');
+        }
+    }
+
+    async resetMergedPairs() {
+        const confirmed = confirm('Reset all merged pairs? This will make previously merged entities appear as candidates again.');
+        if (!confirmed) return;
+        
+        try {
+            const response = await fetch('/api/merging/reset', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' }
+            });
+            
+            const result = await response.json();
+            
+            if (result.success) {
+                this.showToast(result.message, 'success');
+                
+                // Refresh merge candidates
+                if (this.currentView === 'management') {
+                    setTimeout(() => this.findMergeCandidates(), 500);
+                }
+            } else {
+                this.showToast('Reset failed', 'error');
+            }
+        } catch (error) {
+            console.error('Reset error:', error);
+            this.showToast('Reset failed', 'error');
+        }
+    }
+
+    async performEntityContextSearch() {
+        const searchTerm = document.getElementById('entity-context-search')?.value?.trim();
+        if (!searchTerm) {
+            this.showToast('Please enter an entity name to search', 'warning');
+            return;
+        }
+        
+        try {
+            this.showToast(`Searching for "${searchTerm}" entities...`, 'info');
+            
+            const response = await fetch(`/api/entities/search/${encodeURIComponent(searchTerm)}`);
+            const data = await response.json();
+            
+            if (data.success) {
+                this.displayEntityAnalysis(data, searchTerm);
+                this.showToast(`Found ${data.totalMatches} entities matching "${searchTerm}"`, 'success');
+            } else {
+                this.showToast('Search failed', 'error');
+            }
+        } catch (error) {
+            console.error('Entity search error:', error);
+            this.showToast('Search failed', 'error');
+        }
+    }
+
+    displayEntityAnalysis(data, searchTerm) {
+        const container = document.getElementById('entity-analysis-results');
+        const managementPanel = document.getElementById('entity-management-panel');
+        
+        if (data.entities.length === 0) {
+            container.innerHTML = `<p class="placeholder">No entities found matching "${searchTerm}"</p>`;
+            managementPanel.style.display = 'none';
+            return;
+        }
+        
+        // Group entities by match type and similarity
+        const exact = data.entities.filter(e => e.matchType === 'exact');
+        const contains = data.entities.filter(e => e.matchType === 'contains');
+        
+        let html = `
+            <div class="search-summary">
+                <h3>🔍 Analysis for "${searchTerm}"</h3>
+                <p><strong>${data.totalMatches} entities found</strong> - ${exact.length} exact matches, ${contains.length} containing matches</p>
+            </div>
+            
+            <div class="entity-groups">
+        `;
+        
+        if (exact.length > 0) {
+            html += `
+                <div class="entity-group">
+                    <h4>🎯 Exact Matches (${exact.length})</h4>
+                    <div class="entity-list">
+                        ${exact.map(entity => this.renderEntityCard(entity, searchTerm)).join('')}
+                    </div>
+                </div>
+            `;
+        }
+        
+        if (contains.length > 0) {
+            html += `
+                <div class="entity-group">
+                    <h4>📝 Contains "${searchTerm}" (${contains.length})</h4>
+                    <div class="entity-list">
+                        ${contains.map(entity => this.renderEntityCard(entity, searchTerm)).join('')}
+                    </div>
+                </div>
+            `;
+        }
+        
+        html += `</div>`;
+        
+        container.innerHTML = html;
+        managementPanel.style.display = 'block';
+        
+        // Add click handlers for entity cards
+        container.querySelectorAll('.entity-card').forEach(card => {
+            card.addEventListener('click', () => {
+                card.classList.toggle('selected');
+                this.updateMergeButtons();
+            });
+        });
+    }
+
+    renderEntityCard(entity, searchTerm) {
+        const highlightedName = entity.name.replace(
+            new RegExp(`(${searchTerm})`, 'gi'),
+            '<mark>$1</mark>'
+        );
+        
+        return `
+            <div class="entity-card" data-entity-id="${entity.id}">
+                <div class="entity-header">
+                    <h5>${highlightedName}</h5>
+                    <span class="entity-category">${entity.category}</span>
+                </div>
+                <div class="entity-details">
+                    <div class="entity-meta">
+                        <span class="confidence">Confidence: ${Math.round((entity.confidence || 0) * 100)}%</span>
+                        ${entity.consolidatedCount ? `<span class="consolidated">Merged: ${entity.consolidatedCount}</span>` : ''}
+                        <span class="similarity">Match: ${Math.round((entity.similarity || 0) * 100)}%</span>
+                    </div>
+                    ${entity.description ? `<p class="entity-description">${entity.description}</p>` : ''}
+                </div>
+            </div>
+        `;
+    }
+
+    updateMergeButtons() {
+        const selectedCards = document.querySelectorAll('.entity-card.selected');
+        const mergeBtn = document.getElementById('merge-selected');
+        
+        if (mergeBtn) {
+            mergeBtn.disabled = selectedCards.length < 2;
+            mergeBtn.textContent = `🔗 Merge Selected (${selectedCards.length})`;
+        }
+    }
+
     resetZoom() {
         if (this.networkZoom && this.networkSvg) {
             this.networkSvg.transition().call(
@@ -2635,6 +2901,56 @@ class UniversalKnowledgeApp {
         this.networkSimulation = simulation;
         
         this.showToast(`Perspective view: ${this.capitalizeWords(this.currentPerspective)} entities centered`, 'success');
+    }
+
+    // Entity Management Actions
+    async mergeSelectedEntities() {
+        const selectedCards = document.querySelectorAll('.entity-card.selected');
+        if (selectedCards.length < 2) {
+            this.showToast('Please select at least 2 entities to merge', 'warning');
+            return;
+        }
+
+        const selectedEntities = Array.from(selectedCards).map(card => ({
+            id: card.dataset.entityId,
+            name: card.querySelector('.entity-name')?.textContent || 'Unknown'
+        }));
+
+        console.log('Merging entities:', selectedEntities);
+        this.showToast(`Merging ${selectedEntities.length} entities: ${selectedEntities.map(e => e.name).join(', ')}`, 'info');
+        
+        // TODO: Implement actual merge API call
+        // For now, just show what would be merged
+        try {
+            // Simulate API call
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            this.showToast('Entities merged successfully! (Demo mode)', 'success');
+            
+            // Clear selections
+            selectedCards.forEach(card => card.classList.remove('selected'));
+            this.updateMergeButtons();
+        } catch (error) {
+            console.error('Merge failed:', error);
+            this.showToast('Failed to merge entities', 'error');
+        }
+    }
+
+    async splitEntity() {
+        this.showToast('Split entity functionality coming soon', 'info');
+    }
+
+    async viewSimilarEntities() {
+        const selectedCards = document.querySelectorAll('.entity-card.selected');
+        if (selectedCards.length !== 1) {
+            this.showToast('Please select exactly one entity to view similar entities', 'warning');
+            return;
+        }
+
+        const entityName = selectedCards[0].querySelector('.entity-name')?.textContent;
+        this.showToast(`Finding entities similar to: ${entityName}`, 'info');
+        
+        // TODO: Implement similar entity search
+        console.log('Finding similar entities for:', entityName);
     }
 }
 

@@ -2,8 +2,8 @@
   "id": "621e723b-1d2c-4cc1-a0e3-7ade3375e9aa",
   "conversationId": "doc_1758508154316_x1493vjwm",
   "userId": "rob_foree",
-  "domain": "cybersec",
   "timestamp": "2025-09-22T02:29:14.317Z",
+  "domain": "cybersec",
   "entities": {
     "people": [],
     "projects": [],
@@ -23,6 +23,7 @@
     "tasks": [],
     "documents": []
   },
+  "relationships": [],
   "metadata": {
     "source": "/home/robforee/analyst-server/snappy/client-projects/cybersec-dogfood/corpus/README.md",
     "messageId": "README.md",
@@ -34,6 +35,12 @@
     "provider": "openai",
     "confidence": 0.9,
     "extractionModel": "gpt-3.5-turbo",
-    "extractionProvider": "openai"
-  }
+    "extractionProvider": "openai",
+    "relationshipCount": 0,
+    "lastRelationshipUpdate": null,
+    "relationshipSources": [],
+    "migratedAt": "2025-09-23T19:33:18.670Z",
+    "legacySchema": "1.0.0"
+  },
+  "schemaVersion": "2.0.0"
 }

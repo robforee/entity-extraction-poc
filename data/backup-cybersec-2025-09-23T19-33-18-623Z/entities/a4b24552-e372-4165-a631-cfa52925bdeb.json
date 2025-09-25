@@ -1,0 +1,124 @@
+{
+  "id": "a4b24552-e372-4165-a631-cfa52925bdeb",
+  "conversationId": "doc_1758509348050_kexiwp0ds",
+  "userId": "rob_foree",
+  "domain": "cybersec",
+  "timestamp": "2025-09-22T02:49:08.050Z",
+  "entities": {
+    "people": [
+      {
+        "name": "SOC Analyst",
+        "role": "Security Operations Center Analyst",
+        "confidence": 0.9
+      },
+      {
+        "name": "SOC Manager",
+        "role": "Security Operations Center Manager",
+        "confidence": 0.85
+      },
+      {
+        "name": "SOC Director",
+        "role": "Security Operations Center Director",
+        "confidence": 0.8
+      },
+      {
+        "name": "Compliance Officer",
+        "role": "Compliance Officer",
+        "confidence": 0.75
+      }
+    ],
+    "projects": [
+      {
+        "name": "SOC 2 Compliance Mapping",
+        "type": "Compliance Initiative",
+        "phase": "Implementation",
+        "confidence": 0.9
+      },
+      {
+        "name": "Privacy Program Development",
+        "type": "Privacy Compliance Initiative",
+        "phase": "Planning",
+        "confidence": 0.85
+      }
+    ],
+    "decisions": [],
+    "timeline": [],
+    "locations": [],
+    "materials": [
+      {
+        "name": "SIEM",
+        "type": "Security Tool",
+        "status": "Active",
+        "confidence": 0.9
+      },
+      {
+        "name": "Firewall",
+        "type": "Security Tool",
+        "status": "Active",
+        "confidence": 0.85
+      },
+      {
+        "name": "Data Loss Prevention (DLP)",
+        "type": "Security Tool",
+        "status": "Planned",
+        "confidence": 0.8
+      }
+    ],
+    "costs": [],
+    "issues": [
+      {
+        "description": "Data Breach",
+        "severity": "High",
+        "status": "Open",
+        "confidence": 0.9
+      },
+      {
+        "description": "Privacy Compliance Gap",
+        "severity": "Medium",
+        "status": "In Progress",
+        "confidence": 0.85
+      }
+    ],
+    "tasks": [
+      {
+        "description": "Implement Access Control Monitoring",
+        "assigned_to": "SOC Manager",
+        "due_date": "2022-10-15",
+        "confidence": 0.9
+      },
+      {
+        "description": "Conduct Data Protection Impact Assessment (DPIA)",
+        "assigned_to": "Compliance Officer",
+        "due_date": "2022-09-30",
+        "confidence": 0.85
+      }
+    ],
+    "documents": [
+      {
+        "name": "Privacy Policy",
+        "type": "Policy",
+        "status": "Active",
+        "confidence": 0.9
+      },
+      {
+        "name": "Data Retention Procedure",
+        "type": "Procedure",
+        "status": "Draft",
+        "confidence": 0.85
+      }
+    ]
+  },
+  "metadata": {
+    "source": "/home/robforee/analyst-server/snappy/client-projects/cybersec-dogfood/corpus/regulatory/soc2-privacy-compliance-mapping.md",
+    "messageId": "soc2-privacy-compliance-mapping.md",
+    "documentType": ".md",
+    "contentLength": 30616,
+    "cost": 0.006364000000000001,
+    "processingTime": 0,
+    "model": "gpt-3.5-turbo",
+    "provider": "openai",
+    "confidence": 0.8566666666666667,
+    "extractionModel": "gpt-3.5-turbo",
+    "extractionProvider": "openai"
+  }
+}

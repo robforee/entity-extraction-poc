@@ -1,0 +1,88 @@
+{
+  "id": "649cc58d-dab0-4316-b41f-d57cbca76560",
+  "conversationId": "doc_1758505797550_glt1vect0",
+  "userId": "rob_foree",
+  "domain": "cybersec",
+  "timestamp": "2025-09-22T01:49:57.555Z",
+  "entities": {
+    "people": [
+      {
+        "name": "Security Engineer",
+        "role": "Technical Architect and Implementation Specialist",
+        "confidence": 0.95
+      },
+      {
+        "name": "Chief Information Security Officer (CISO)",
+        "role": "Executive Leadership",
+        "confidence": 0.85
+      }
+    ],
+    "projects": [
+      {
+        "name": "SIEM Architecture Design and Implementation",
+        "type": "Security Tool Implementation",
+        "phase": "Deployment",
+        "confidence": 0.85
+      },
+      {
+        "name": "Network Security Monitoring Infrastructure",
+        "type": "Network Security Implementation",
+        "phase": "Implementation",
+        "confidence": 0.8
+      },
+      {
+        "name": "Vulnerability Management Program Operations",
+        "type": "Vulnerability Management",
+        "phase": "Ongoing",
+        "confidence": 0.75
+      }
+    ],
+    "decisions": [],
+    "timeline": [],
+    "locations": [],
+    "materials": [
+      {
+        "name": "SIEM",
+        "type": "Security Tool",
+        "status": "Active",
+        "confidence": 0.9
+      },
+      {
+        "name": "IDS/IPS",
+        "type": "Security Tool",
+        "status": "Active",
+        "confidence": 0.85
+      },
+      {
+        "name": "Container Security Solutions",
+        "type": "Security Tool",
+        "status": "Planned",
+        "confidence": 0.7
+      }
+    ],
+    "costs": [],
+    "issues": [
+      {
+        "description": "Vulnerability Risk Assessment",
+        "severity": "High",
+        "status": "Open",
+        "confidence": 0.8
+      }
+    ],
+    "tasks": [],
+    "documents": []
+  },
+  "metadata": {
+    "source": "/home/robforee/analyst-server/snappy/client-projects/cybersec-dogfood/corpus/roles/security-engineer-comprehensive.md",
+    "messageId": "security-engineer-comprehensive.md",
+    "documentType": ".md",
+    "contentLength": 32816,
+    "cost": 0.006069,
+    "processingTime": 0,
+    "model": "gpt-3.5-turbo",
+    "provider": "openai",
+    "confidence": 0.8277777777777778,
+    "extractionModel": "gpt-3.5-turbo",
+    "extractionProvider": "openai"
+  }
+}

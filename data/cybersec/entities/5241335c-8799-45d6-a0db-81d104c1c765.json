@@ -2,8 +2,8 @@
   "id": "5241335c-8799-45d6-a0db-81d104c1c765",
   "conversationId": "doc_1758501682885_hik499rdt",
   "userId": "rob_foree",
-  "domain": "cybersec",
   "timestamp": "2025-09-22T00:41:22.888Z",
+  "domain": "cybersec",
   "entities": {
     "people": [],
     "projects": [],
@@ -16,6 +16,7 @@
     "tasks": [],
     "documents": []
   },
+  "relationships": [],
   "metadata": {
     "source": "/home/robforee/analyst-server/snappy/client-projects/cybersec-dogfood/corpus/roles/soc-analyst-level-2-comprehensive.md",
     "messageId": "soc-analyst-level-2-comprehensive.md",
@@ -27,6 +28,12 @@
     "provider": "openai",
     "confidence": 0,
     "extractionModel": "gpt-3.5-turbo",
-    "extractionProvider": "openai"
-  }
+    "extractionProvider": "openai",
+    "relationshipCount": 0,
+    "lastRelationshipUpdate": null,
+    "relationshipSources": [],
+    "migratedAt": "2025-09-23T19:33:18.669Z",
+    "legacySchema": "1.0.0"
+  },
+  "schemaVersion": "2.0.0"
 }

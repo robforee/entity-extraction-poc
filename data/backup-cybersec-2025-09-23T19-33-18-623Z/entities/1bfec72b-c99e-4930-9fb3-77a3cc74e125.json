@@ -1,0 +1,137 @@
+{
+  "id": "1bfec72b-c99e-4930-9fb3-77a3cc74e125",
+  "conversationId": "doc_1758508689390_qrjtvx6am",
+  "userId": "rob_foree",
+  "domain": "cybersec",
+  "timestamp": "2025-09-22T02:38:09.392Z",
+  "entities": {
+    "people": [
+      {
+        "name": "Security Operations Center Analyst",
+        "role": "SOC Analyst",
+        "confidence": 0.9
+      },
+      {
+        "name": "Security Officer",
+        "role": "Security Officer",
+        "confidence": 0.85
+      },
+      {
+        "name": "Security Analyst",
+        "role": "Security Analyst",
+        "confidence": 0.8
+      },
+      {
+        "name": "Security Manager",
+        "role": "Security Manager",
+        "confidence": 0.75
+      }
+    ],
+    "projects": [
+      {
+        "name": "HIPAA Compliance Mapping",
+        "type": "Compliance Initiative",
+        "phase": "Implementation",
+        "confidence": 0.9
+      },
+      {
+        "name": "EHR Security Implementation",
+        "type": "Security Tool Implementation",
+        "phase": "Deployment",
+        "confidence": 0.85
+      }
+    ],
+    "decisions": [
+      {
+        "type": "Policy",
+        "description": "Minimum Necessary Standard Implementation",
+        "date": "2022-05-15",
+        "confidence": 0.8
+      }
+    ],
+    "timeline": [
+      {
+        "event": "HIPAA Risk Assessment",
+        "status": "In Progress",
+        "date": "2022-06-30",
+        "confidence": 0.85
+      }
+    ],
+    "locations": [
+      {
+        "name": "Data Center A",
+        "type": "Data Center",
+        "confidence": 0.9
+      },
+      {
+        "name": "Main Office",
+        "type": "Office",
+        "confidence": 0.8
+      }
+    ],
+    "materials": [
+      {
+        "name": "SIEM",
+        "type": "Security Tool",
+        "status": "Active",
+        "confidence": 0.9
+      },
+      {
+        "name": "Firewall",
+        "type": "Security Tool",
+        "status": "Active",
+        "confidence": 0.85
+      }
+    ],
+    "costs": [
+      {
+        "amount": "$50,000",
+        "category": "Security Tool License",
+        "confidence": 0.8
+      }
+    ],
+    "issues": [
+      {
+        "description": "Unauthorized Access Detection",
+        "severity": "High",
+        "status": "Open",
+        "confidence": 0.85
+      }
+    ],
+    "tasks": [
+      {
+        "description": "Implement Access Controls",
+        "assigned_to": "Security Officer",
+        "due_date": "2022-07-31",
+        "confidence": 0.9
+      }
+    ],
+    "documents": [
+      {
+        "name": "HIPAA Compliance Policy",
+        "type": "Policy",
+        "status": "Active",
+        "confidence": 0.9
+      },
+      {
+        "name": "Security Incident Response Plan",
+        "type": "Procedure",
+        "status": "Draft",
+        "confidence": 0.8
+      }
+    ]
+  },
+  "metadata": {
+    "source": "/home/robforee/analyst-server/snappy/client-projects/cybersec-dogfood/corpus/regulatory/hipaa-healthcare-compliance-mapping.md",
+    "messageId": "hipaa-healthcare-compliance-mapping.md",
+    "documentType": ".md",
+    "contentLength": 28140,
+    "cost": 0.006086,
+    "processingTime": 0,
+    "model": "gpt-3.5-turbo",
+    "provider": "openai",
+    "confidence": 0.8470588235294119,
+    "extractionModel": "gpt-3.5-turbo",
+    "extractionProvider": "openai"
+  }
+}

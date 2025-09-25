@@ -2,8 +2,8 @@
   "id": "1bfec72b-c99e-4930-9fb3-77a3cc74e125",
   "conversationId": "doc_1758508689390_qrjtvx6am",
   "userId": "rob_foree",
-  "domain": "cybersec",
   "timestamp": "2025-09-22T02:38:09.392Z",
+  "domain": "cybersec",
   "entities": {
     "people": [
       {
@@ -121,6 +121,470 @@
       }
     ]
   },
+  "relationships": [
+    {
+      "type": "manages",
+      "target": "084d2d8a-218d-452c-bd15-5eddb53439f0",
+      "confidence": 0.75,
+      "source": "content_inference",
+      "establishedOn": null,
+      "createdAt": "2025-09-23T19:33:18.663Z",
+      "metadata": {
+        "inferenceRule": "person_project_management",
+        "sourceEntity": {
+          "id": "1bfec72b-c99e-4930-9fb3-77a3cc74e125",
+          "domain": "cybersec",
+          "people": 4,
+          "projects": 2,
+          "decisions": 1,
+          "timeline": 1,
+          "locations": 2,
+          "materials": 2,
+          "costs": 1,
+          "issues": 1,
+          "tasks": 1,
+          "documents": 2
+        },
+        "targetEntity": {
+          "id": "084d2d8a-218d-452c-bd15-5eddb53439f0",
+          "domain": "cybersec",
+          "people": 1
+        }
+      }
+    },
+    {
+      "type": "manages",
+      "target": "143a9fd1-2615-414c-bbe1-f2c174dfd36a",
+      "confidence": 0.75,
+      "source": "content_inference",
+      "establishedOn": null,
+      "createdAt": "2025-09-23T19:33:18.663Z",
+      "metadata": {
+        "inferenceRule": "person_project_management",
+        "sourceEntity": {
+          "id": "1bfec72b-c99e-4930-9fb3-77a3cc74e125",
+          "domain": "cybersec",
+          "people": 4,
+          "projects": 2,
+          "decisions": 1,
+          "timeline": 1,
+          "locations": 2,
+          "materials": 2,
+          "costs": 1,
+          "issues": 1,
+          "tasks": 1,
+          "documents": 2
+        },
+        "targetEntity": {
+          "id": "143a9fd1-2615-414c-bbe1-f2c174dfd36a",
+          "domain": "cybersec",
+          "people": 1,
+          "materials": 12
+        }
+      }
+    },
+    {
+      "type": "manages",
+      "target": "2830962f-89f3-4d06-aa19-8e5356805b26",
+      "confidence": 0.75,
+      "source": "content_inference",
+      "establishedOn": null,
+      "createdAt": "2025-09-23T19:33:18.663Z",
+      "metadata": {
+        "inferenceRule": "person_project_management",
+        "sourceEntity": {
+          "id": "1bfec72b-c99e-4930-9fb3-77a3cc74e125",
+          "domain": "cybersec",
+          "people": 4,
+          "projects": 2,
+          "decisions": 1,
+          "timeline": 1,
+          "locations": 2,
+          "materials": 2,
+          "costs": 1,
+          "issues": 1,
+          "tasks": 1,
+          "documents": 2
+        },
+        "targetEntity": {
+          "id": "2830962f-89f3-4d06-aa19-8e5356805b26",
+          "domain": "cybersec",
+          "people": 1,
+          "materials": 1
+        }
+      }
+    },
+    {
+      "type": "manages",
+      "target": "649cc58d-dab0-4316-b41f-d57cbca76560",
+      "confidence": 0.75,
+      "source": "content_inference",
+      "establishedOn": null,
+      "createdAt": "2025-09-23T19:33:18.663Z",
+      "metadata": {
+        "inferenceRule": "person_project_management",
+        "sourceEntity": {
+          "id": "1bfec72b-c99e-4930-9fb3-77a3cc74e125",
+          "domain": "cybersec",
+          "people": 4,
+          "projects": 2,
+          "decisions": 1,
+          "timeline": 1,
+          "locations": 2,
+          "materials": 2,
+          "costs": 1,
+          "issues": 1,
+          "tasks": 1,
+          "documents": 2
+        },
+        "targetEntity": {
+          "id": "649cc58d-dab0-4316-b41f-d57cbca76560",
+          "domain": "cybersec",
+          "people": 2,
+          "projects": 3,
+          "materials": 3,
+          "issues": 1
+        }
+      }
+    },
+    {
+      "type": "manages",
+      "target": "6d84d532-a60d-46cf-af37-eda079f3d70f",
+      "confidence": 0.75,
+      "source": "content_inference",
+      "establishedOn": null,
+      "createdAt": "2025-09-23T19:33:18.663Z",
+      "metadata": {
+        "inferenceRule": "person_project_management",
+        "sourceEntity": {
+          "id": "1bfec72b-c99e-4930-9fb3-77a3cc74e125",
+          "domain": "cybersec",
+          "people": 4,
+          "projects": 2,
+          "decisions": 1,
+          "timeline": 1,
+          "locations": 2,
+          "materials": 2,
+          "costs": 1,
+          "issues": 1,
+          "tasks": 1,
+          "documents": 2
+        },
+        "targetEntity": {
+          "id": "6d84d532-a60d-46cf-af37-eda079f3d70f",
+          "domain": "cybersec",
+          "people": 16,
+          "projects": 1,
+          "documents": 1
+        }
+      }
+    },
+    {
+      "type": "manages",
+      "target": "8159d67a-835e-4857-bc2b-06b80b00b77a",
+      "confidence": 0.75,
+      "source": "content_inference",
+      "establishedOn": null,
+      "createdAt": "2025-09-23T19:33:18.664Z",
+      "metadata": {
+        "inferenceRule": "person_project_management",
+        "sourceEntity": {
+          "id": "1bfec72b-c99e-4930-9fb3-77a3cc74e125",
+          "domain": "cybersec",
+          "people": 4,
+          "projects": 2,
+          "decisions": 1,
+          "timeline": 1,
+          "locations": 2,
+          "materials": 2,
+          "costs": 1,
+          "issues": 1,
+          "tasks": 1,
+          "documents": 2
+        },
+        "targetEntity": {
+          "id": "8159d67a-835e-4857-bc2b-06b80b00b77a",
+          "domain": "cybersec",
+          "people": 2,
+          "projects": 2,
+          "issues": 1,
+          "tasks": 2,
+          "documents": 2
+        }
+      }
+    },
+    {
+      "type": "manages",
+      "target": "a191b85d-9065-4cd7-a56a-cbd304734e4f",
+      "confidence": 0.75,
+      "source": "content_inference",
+      "establishedOn": null,
+      "createdAt": "2025-09-23T19:33:18.664Z",
+      "metadata": {
+        "inferenceRule": "person_project_management",
+        "sourceEntity": {
+          "id": "1bfec72b-c99e-4930-9fb3-77a3cc74e125",
+          "domain": "cybersec",
+          "people": 4,
+          "projects": 2,
+          "decisions": 1,
+          "timeline": 1,
+          "locations": 2,
+          "materials": 2,
+          "costs": 1,
+          "issues": 1,
+          "tasks": 1,
+          "documents": 2
+        },
+        "targetEntity": {
+          "id": "a191b85d-9065-4cd7-a56a-cbd304734e4f",
+          "domain": "cybersec",
+          "people": 3,
+          "projects": 3,
+          "materials": 3,
+          "issues": 2,
+          "tasks": 3,
+          "documents": 3
+        }
+      }
+    },
+    {
+      "type": "manages",
+      "target": "a4a5deed-3a67-4bbc-82b1-929a146cf911",
+      "confidence": 0.75,
+      "source": "content_inference",
+      "establishedOn": null,
+      "createdAt": "2025-09-23T19:33:18.664Z",
+      "metadata": {
+        "inferenceRule": "person_project_management",
+        "sourceEntity": {
+          "id": "1bfec72b-c99e-4930-9fb3-77a3cc74e125",
+          "domain": "cybersec",
+          "people": 4,
+          "projects": 2,
+          "decisions": 1,
+          "timeline": 1,
+          "locations": 2,
+          "materials": 2,
+          "costs": 1,
+          "issues": 1,
+          "tasks": 1,
+          "documents": 2
+        },
+        "targetEntity": {
+          "id": "a4a5deed-3a67-4bbc-82b1-929a146cf911",
+          "domain": "cybersec",
+          "people": 3,
+          "materials": 5
+        }
+      }
+    },
+    {
+      "type": "manages",
+      "target": "a4b24552-e372-4165-a631-cfa52925bdeb",
+      "confidence": 0.75,
+      "source": "content_inference",
+      "establishedOn": null,
+      "createdAt": "2025-09-23T19:33:18.664Z",
+      "metadata": {
+        "inferenceRule": "person_project_management",
+        "sourceEntity": {
+          "id": "1bfec72b-c99e-4930-9fb3-77a3cc74e125",
+          "domain": "cybersec",
+          "people": 4,
+          "projects": 2,
+          "decisions": 1,
+          "timeline": 1,
+          "locations": 2,
+          "materials": 2,
+          "costs": 1,
+          "issues": 1,
+          "tasks": 1,
+          "documents": 2
+        },
+        "targetEntity": {
+          "id": "a4b24552-e372-4165-a631-cfa52925bdeb",
+          "domain": "cybersec",
+          "people": 4,
+          "projects": 2,
+          "materials": 3,
+          "issues": 2,
+          "tasks": 2,
+          "documents": 2
+        }
+      }
+    },
+    {
+      "type": "manages",
+      "target": "ac691bde-6182-40bf-83ea-1b5965e32462",
+      "confidence": 0.75,
+      "source": "content_inference",
+      "establishedOn": null,
+      "createdAt": "2025-09-23T19:33:18.664Z",
+      "metadata": {
+        "inferenceRule": "person_project_management",
+        "sourceEntity": {
+          "id": "1bfec72b-c99e-4930-9fb3-77a3cc74e125",
+          "domain": "cybersec",
+          "people": 4,
+          "projects": 2,
+          "decisions": 1,
+          "timeline": 1,
+          "locations": 2,
+          "materials": 2,
+          "costs": 1,
+          "issues": 1,
+          "tasks": 1,
+          "documents": 2
+        },
+        "targetEntity": {
+          "id": "ac691bde-6182-40bf-83ea-1b5965e32462",
+          "domain": "cybersec",
+          "people": 1,
+          "materials": 2
+        }
+      }
+    },
+    {
+      "type": "manages",
+      "target": "ad7b7774-7c39-4b40-8a2a-6006aea0fbd4",
+      "confidence": 0.75,
+      "source": "content_inference",
+      "establishedOn": null,
+      "createdAt": "2025-09-23T19:33:18.664Z",
+      "metadata": {
+        "inferenceRule": "person_project_management",
+        "sourceEntity": {
+          "id": "1bfec72b-c99e-4930-9fb3-77a3cc74e125",
+          "domain": "cybersec",
+          "people": 4,
+          "projects": 2,
+          "decisions": 1,
+          "timeline": 1,
+          "locations": 2,
+          "materials": 2,
+          "costs": 1,
+          "issues": 1,
+          "tasks": 1,
+          "documents": 2
+        },
+        "targetEntity": {
+          "id": "ad7b7774-7c39-4b40-8a2a-6006aea0fbd4",
+          "domain": "cybersec",
+          "people": 1,
+          "projects": 30
+        }
+      }
+    },
+    {
+      "type": "manages",
+      "target": "b09ebc7f-3d76-434a-8bac-ea8dd392a1c7",
+      "confidence": 0.75,
+      "source": "content_inference",
+      "establishedOn": null,
+      "createdAt": "2025-09-23T19:33:18.664Z",
+      "metadata": {
+        "inferenceRule": "person_project_management",
+        "sourceEntity": {
+          "id": "1bfec72b-c99e-4930-9fb3-77a3cc74e125",
+          "domain": "cybersec",
+          "people": 4,
+          "projects": 2,
+          "decisions": 1,
+          "timeline": 1,
+          "locations": 2,
+          "materials": 2,
+          "costs": 1,
+          "issues": 1,
+          "tasks": 1,
+          "documents": 2
+        },
+        "targetEntity": {
+          "id": "b09ebc7f-3d76-434a-8bac-ea8dd392a1c7",
+          "domain": "cybersec",
+          "people": 3,
+          "projects": 2,
+          "decisions": 1,
+          "timeline": 1,
+          "locations": 2,
+          "materials": 2,
+          "costs": 1,
+          "issues": 1,
+          "tasks": 1,
+          "documents": 1
+        }
+      }
+    },
+    {
+      "type": "located_at",
+      "target": "b09ebc7f-3d76-434a-8bac-ea8dd392a1c7",
+      "confidence": 0.7,
+      "source": "content_inference",
+      "establishedOn": null,
+      "createdAt": "2025-09-23T19:33:18.664Z",
+      "metadata": {
+        "inferenceRule": "project_location",
+        "sourceEntity": {
+          "id": "1bfec72b-c99e-4930-9fb3-77a3cc74e125",
+          "domain": "cybersec",
+          "people": 4,
+          "projects": 2,
+          "decisions": 1,
+          "timeline": 1,
+          "locations": 2,
+          "materials": 2,
+          "costs": 1,
+          "issues": 1,
+          "tasks": 1,
+          "documents": 2
+        },
+        "targetEntity": {
+          "id": "b09ebc7f-3d76-434a-8bac-ea8dd392a1c7",
+          "domain": "cybersec",
+          "people": 3,
+          "projects": 2,
+          "decisions": 1,
+          "timeline": 1,
+          "locations": 2,
+          "materials": 2,
+          "costs": 1,
+          "issues": 1,
+          "tasks": 1,
+          "documents": 1
+        }
+      }
+    },
+    {
+      "type": "manages",
+      "target": "ef9ded76-f522-4241-9200-f16104902fb4",
+      "confidence": 0.75,
+      "source": "content_inference",
+      "establishedOn": null,
+      "createdAt": "2025-09-23T19:33:18.664Z",
+      "metadata": {
+        "inferenceRule": "person_project_management",
+        "sourceEntity": {
+          "id": "1bfec72b-c99e-4930-9fb3-77a3cc74e125",
+          "domain": "cybersec",
+          "people": 4,
+          "projects": 2,
+          "decisions": 1,
+          "timeline": 1,
+          "locations": 2,
+          "materials": 2,
+          "costs": 1,
+          "issues": 1,
+          "tasks": 1,
+          "documents": 2
+        },
+        "targetEntity": {
+          "id": "ef9ded76-f522-4241-9200-f16104902fb4",
+          "domain": "cybersec",
+          "people": 2
+        }
+      }
+    }
+  ],
   "metadata": {
     "source": "/home/robforee/analyst-server/snappy/client-projects/cybersec-dogfood/corpus/regulatory/hipaa-healthcare-compliance-mapping.md",
     "messageId": "hipaa-healthcare-compliance-mapping.md",
@@ -132,6 +596,12 @@
     "provider": "openai",
     "confidence": 0.8470588235294119,
     "extractionModel": "gpt-3.5-turbo",
-    "extractionProvider": "openai"
-  }
+    "extractionProvider": "openai",
+    "relationshipCount": 14,
+    "lastRelationshipUpdate": "2025-09-23T19:33:18.667Z",
+    "relationshipSources": [],
+    "migratedAt": "2025-09-23T19:33:18.667Z",
+    "legacySchema": "1.0.0"
+  },
+  "schemaVersion": "2.0.0"
 }

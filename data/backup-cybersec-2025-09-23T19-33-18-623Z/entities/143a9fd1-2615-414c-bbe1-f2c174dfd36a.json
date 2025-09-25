@@ -1,0 +1,111 @@
+{
+  "id": "143a9fd1-2615-414c-bbe1-f2c174dfd36a",
+  "conversationId": "doc_1758509767699_puxd03sah",
+  "userId": "rob_foree",
+  "domain": "cybersec",
+  "timestamp": "2025-09-22T02:56:07.700Z",
+  "entities": {
+    "people": [
+      {
+        "name": "Digital Forensics Investigator",
+        "role": "Specialized Professional",
+        "confidence": 0.95
+      }
+    ],
+    "projects": [],
+    "decisions": [],
+    "timeline": [],
+    "locations": [],
+    "materials": [
+      {
+        "name": "EnCase",
+        "type": "Forensic Tool",
+        "status": "Active",
+        "confidence": 0.85
+      },
+      {
+        "name": "FTK Imager",
+        "type": "Forensic Tool",
+        "status": "Active",
+        "confidence": 0.8
+      },
+      {
+        "name": "Volatility",
+        "type": "Forensic Tool",
+        "status": "Active",
+        "confidence": 0.9
+      },
+      {
+        "name": "Wireshark",
+        "type": "Forensic Tool",
+        "status": "Active",
+        "confidence": 0.85
+      },
+      {
+        "name": "Cellebrite UFED",
+        "type": "Forensic Tool",
+        "status": "Active",
+        "confidence": 0.9
+      },
+      {
+        "name": "Oxygen Detective",
+        "type": "Forensic Tool",
+        "status": "Active",
+        "confidence": 0.85
+      },
+      {
+        "name": "XRY",
+        "type": "Forensic Tool",
+        "status": "Active",
+        "confidence": 0.8
+      },
+      {
+        "name": "Autopsy",
+        "type": "Forensic Tool",
+        "status": "Active",
+        "confidence": 0.9
+      },
+      {
+        "name": "Sleuth Kit",
+        "type": "Forensic Tool",
+        "status": "Active",
+        "confidence": 0.85
+      },
+      {
+        "name": "PhotoRec",
+        "type": "Forensic Tool",
+        "status": "Active",
+        "confidence": 0.8
+      },
+      {
+        "name": "Registry Explorer",
+        "type": "Forensic Tool",
+        "status": "Active",
+        "confidence": 0.85
+      },
+      {
+        "name": "RegRipper",
+        "type": "Forensic Tool",
+        "status": "Active",
+        "confidence": 0.85
+      }
+    ],
+    "costs": [],
+    "issues": [],
+    "tasks": [],
+    "documents": []
+  },
+  "metadata": {
+    "source": "/home/robforee/analyst-server/snappy/client-projects/cybersec-dogfood/corpus/roles/digital-forensics-investigator-comprehensive.md",
+    "messageId": "digital-forensics-investigator-comprehensive.md",
+    "documentType": ".md",
+    "contentLength": 29608,
+    "cost": 0.006016,
+    "processingTime": 0,
+    "model": "gpt-3.5-turbo",
+    "provider": "openai",
+    "confidence": 0.8576923076923078,
+    "extractionModel": "gpt-3.5-turbo",
+    "extractionProvider": "openai"
+  }
+}
