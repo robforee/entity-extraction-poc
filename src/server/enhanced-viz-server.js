@@ -19,7 +19,7 @@ const __dirname = path.dirname(__filename);
  * with real-time updates, visual analytics, and document navigation.
  */
 class EnhancedVizServer {
-    constructor(port = 3000) {
+    constructor(port = 8080) {
         this.port = port;
         this.app = express();
         this.server = createServer(this.app);

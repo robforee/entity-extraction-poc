@@ -46,6 +46,7 @@
     "query:unnamed": "node scripts/domain-query.js unnamed",
     "repair:entities": "node scripts/repair-unnamed-entities.js",
     "api:server": "node src/api/server.js",
+    "api:server:alt": "node src/api/server.js 3001",
     "api:demo": "node src/api/client-example.js",
     "phase3:demo": "node scripts/phase3-demo.js",
     "phase3:test": "node scripts/test-phase3-components.js",

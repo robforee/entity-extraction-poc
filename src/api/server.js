@@ -22,14 +22,23 @@ const __dirname = path.dirname(__filename);
 
 class ProductionServer {
   constructor(options = {}) {
-    this.options = {
-      port: options.port || process.env.PORT || 3000,
-      host: options.host || process.env.HOST || 'localhost',
-      domain: options.domain || process.env.DOMAIN || 'construction',
-      dataPath: options.dataPath || path.join(__dirname, '..', '..', 'data'),
-      provider: options.provider || process.env.LLM_PROVIDER || 'openai',
-      model: options.model || process.env.LLM_MODEL || 'gpt-4o-mini',
-      ...options
+    const defaultOptions = {
+      port: process.env.PORT || 3000,
+      host: process.env.HOST || 'localhost',
+      domain: process.env.DOMAIN || 'construction',
+      dataPath: path.join(__dirname, '..', '..', 'data'),
+      provider: process.env.LLM_PROVIDER || 'openai',
+      model: process.env.LLM_MODEL || 'gpt-4o-mini',
+    };
+
+    // Filter out undefined values from the incoming options
+    const filteredOptions = Object.fromEntries(
+      Object.entries(options).filter(([_, v]) => v !== undefined)
+    );
+
+    this.options = { 
+      ...defaultOptions, 
+      ...filteredOptions 
     };
 
     this.apiServer = null;

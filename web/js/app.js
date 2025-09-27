@@ -5,6 +5,7 @@
 class UniversalKnowledgeApp {
     constructor() {
         this.socket = null;
+        this.apiBaseUrl = 'http://localhost:3000'; // API Server
         this.currentView = 'management'; // Set management as default
         this.entities = [];
         this.relationships = [];
@@ -171,11 +172,11 @@ class UniversalKnowledgeApp {
     async loadInitialData() {
         try {
             const [statsRes, categoriesRes, entitiesRes, documentsRes, domainsRes] = await Promise.all([
-                fetch('/api/entities/stats'),
-                fetch('/api/entities/categories'),
-                fetch('/api/entities?limit=50'),
-                fetch('/api/documents'),
-                fetch('/api/domains')
+                fetch(`${this.apiBaseUrl}/api/entities/stats`),
+                fetch(`${this.apiBaseUrl}/api/entities/categories`),
+                fetch(`${this.apiBaseUrl}/api/entities?limit=50`),
+                fetch(`${this.apiBaseUrl}/api/documents`),
+                fetch(`${this.apiBaseUrl}/api/domains`)
             ]);
 
             this.data.stats = await statsRes.json();
@@ -227,7 +228,7 @@ class UniversalKnowledgeApp {
         try {
             this.showToast(`Switching to ${domainName} domain...`, 'info');
             
-            const response = await fetch('/api/domains/switch', {
+            const response = await fetch(`${this.apiBaseUrl}/api/domains/switch`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -508,7 +509,7 @@ class UniversalKnowledgeApp {
                 params.append('minConfidence', this.filters.minConfidence);
             }
 
-            const response = await fetch(`/api/entities?${params}`);
+            const response = await fetch(`${this.apiBaseUrl}/api/entities?${params}`);
             
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
@@ -775,7 +776,7 @@ class UniversalKnowledgeApp {
         try {
             this.showLoading();
             
-            const response = await fetch(`/api/documents/${docId}`);
+            const response = await fetch(`${this.apiBaseUrl}/api/documents/${docId}`);
             const data = await response.json();
             
             if (!data.success) {
@@ -978,8 +979,8 @@ class UniversalKnowledgeApp {
             
             // Load both relationships and categories data
             const [relationshipsResponse, categoriesResponse] = await Promise.all([
-                fetch('/api/relationships'),
-                fetch('/api/entities/categories')
+                fetch(`${this.apiBaseUrl}/api/relationships`),
+                fetch(`${this.apiBaseUrl}/api/entities/categories`)
             ]);
             
             const data = await relationshipsResponse.json();
@@ -1508,7 +1509,7 @@ class UniversalKnowledgeApp {
         try {
             this.showToast('Loading SIEM perspective...', 'info');
             
-            const response = await fetch('/api/siem/perspective');
+            const response = await fetch(`${this.apiBaseUrl}/api/siem/perspective`);
             const data = await response.json();
             
             if (!data.success) {
@@ -1732,7 +1733,7 @@ class UniversalKnowledgeApp {
         try {
             this.showToast('Starting auto-merge process...', 'info');
             
-            const response = await fetch('/api/merging/auto-merge', {
+            const response = await fetch(`${this.apiBaseUrl}/api/merging/auto-merge', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' }
             });
@@ -1761,7 +1762,7 @@ class UniversalKnowledgeApp {
         if (!confirmed) return;
         
         try {
-            const response = await fetch('/api/merging/reset', {
+            const response = await fetch(`${this.apiBaseUrl}/api/merging/reset`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' }
             });
@@ -2023,7 +2024,7 @@ class UniversalKnowledgeApp {
     async findMergeCandidates() {
         try {
             this.showLoading();
-            const response = await fetch('/api/merging/candidates');
+            const response = await fetch(`${this.apiBaseUrl}/api/merging/candidates`);
             const data = await response.json();
             
             this.displayMergeCandidates(data.candidates);
@@ -2118,7 +2119,7 @@ class UniversalKnowledgeApp {
         try {
             this.showLoading();
             
-            const response = await fetch('/api/merging/manual-merge', {
+            const response = await fetch(`${this.apiBaseUrl}/api/merging/manual-merge', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -2225,7 +2226,7 @@ class UniversalKnowledgeApp {
     async performAutoMerge() {
         try {
             this.showLoading();
-            const response = await fetch('/api/merging/auto-merge', {
+            const response = await fetch(`${this.apiBaseUrl}/api/merging/auto-merge', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' }
             });
@@ -2252,7 +2253,7 @@ class UniversalKnowledgeApp {
         try {
             this.showLoading();
             
-            const response = await fetch('/api/merging/manual-merge', {
+            const response = await fetch(`${this.apiBaseUrl}/api/merging/manual-merge', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ primaryId, secondaryId, action: 'merge' })
@@ -2296,7 +2297,7 @@ class UniversalKnowledgeApp {
 
     async showMergeStatistics() {
         try {
-            const response = await fetch('/api/merging/statistics');
+            const response = await fetch(`${this.apiBaseUrl}/api/merging/statistics`);
             const stats = await response.json();
             
             document.getElementById('total-merges').textContent = stats.totalMerges || 0;
@@ -2467,7 +2468,7 @@ class UniversalKnowledgeApp {
             
             this.showLoading();
             
-            const response = await fetch('/api/merging/undo', {
+            const response = await fetch(`${this.apiBaseUrl}/api/merging/undo`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' }
             });
@@ -2496,7 +2497,7 @@ class UniversalKnowledgeApp {
             
             this.showLoading();
             
-            const response = await fetch('/api/merging/redo', {
+            const response = await fetch(`${this.apiBaseUrl}/api/merging/redo`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' }
             });
