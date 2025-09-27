@@ -386,6 +386,14 @@
                                     <div class="stat-number" id="avg-similarity">-</div>
                                     <div class="stat-label">Avg Similarity</div>
                                 </div>
+                                <div class="stat-card">
+                                    <div class="stat-number" id="pending-merges">-</div>
+                                    <div class="stat-label">Pending Merges</div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-number" id="merge-accuracy">-</div>
+                                    <div class="stat-label">Merge Accuracy</div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -519,8 +527,15 @@
         </div>
     </div>
 
-    <script src="js/app.js"></script>
-    <script src="js/merge-interface.js"></script>
+    <!-- Load modules in dependency order -->
+    <script src="js/modules/ui-utils.js?v=2025092711"></script>
+    <script src="js/modules/base-app.js?v=2025092711"></script>
+    <script src="js/modules/event-handlers.js?v=2025092711"></script>
+    <script src="js/modules/dashboard.js?v=2025092711"></script>
+    <script src="js/modules/network-visualization.js?v=2025092711"></script>
+    <script src="js/modules/management.js?v=2025092711"></script>
+    <script src="js/app-main.js?v=2025092711"></script>
+    <script src="js/merge-interface.js?v=2025092711"></script>
     <script>
         // Initialize merge interface after app is ready
         document.addEventListener('DOMContentLoaded', () => {
