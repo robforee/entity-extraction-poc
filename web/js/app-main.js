@@ -4,6 +4,8 @@
 class UniversalKnowledgeAppMain extends UniversalKnowledgeApp {
     constructor() {
         super();
+        // Initialize URL routing
+        this.initializeRouting();
     }
 
     // Override setupEventListeners to use the EventHandlers module
@@ -80,12 +82,12 @@ class UniversalKnowledgeAppMain extends UniversalKnowledgeApp {
         NetworkVisualization.renderNetwork(this);
     }
 
-    async renderEntities() {
-        await this.loadEntities();
+    renderEntities() {
+        Entities.renderEntities(this);
     }
 
-    async renderDocuments() {
-        await this.loadDocuments();
+    renderDocuments() {
+        Documents.renderDocuments(this);
     }
 
     renderAnalytics() {
@@ -93,7 +95,7 @@ class UniversalKnowledgeAppMain extends UniversalKnowledgeApp {
     }
 
     renderSearch() {
-        this.showToast('Search view coming soon', 'info');
+        Search.renderSearch(this);
     }
 
     // Entity loading and management
@@ -255,7 +257,6 @@ class UniversalKnowledgeAppMain extends UniversalKnowledgeApp {
     showSIEMPerspective() {
         this.showToast('SIEM perspective coming soon', 'info');
     }
-
     showEntityPerspective() {
         const entityName = document.getElementById('entity-search')?.value?.trim();
         if (!entityName) {
@@ -268,7 +269,6 @@ class UniversalKnowledgeAppMain extends UniversalKnowledgeApp {
     filterNetworkByCategory(category) {
         this.showToast(category ? `Filtering by ${category}` : 'Showing all categories', 'info');
     }
-
     handleEntitySearch(query) {
         if (query.length > 2) {
             // TODO: Add autocomplete dropdown
@@ -280,20 +280,144 @@ class UniversalKnowledgeAppMain extends UniversalKnowledgeApp {
         this.showToast('Entity details feature coming soon', 'info');
     }
 
-    async showDocumentDetail(docId) {
-        this.showToast('Document details feature coming soon', 'info');
+    async findSimilarEntities(entityId) {
+        this.showToast('Find similar entities feature coming soon', 'info');
+    }
+
+    async downloadDocument(documentId) {
+        this.showToast('Document download feature coming soon', 'info');
     }
 
     async exportEntities() {
-        this.showToast('Export feature coming soon', 'info');
+        this.showToast('Entity export feature coming soon', 'info');
     }
 
-    async performSearch() {
-        this.showToast('Search feature coming soon', 'info');
+    async exportDocuments() {
+        this.showToast('Document export feature coming soon', 'info');
     }
 
-    async performEntityContextSearch() {
-        this.showToast('Entity context search coming soon', 'info');
+    async exportNetwork() {
+        this.showToast('Network export feature coming soon', 'info');
+    }
+
+    // URL Routing System
+    initializeRouting() {
+        // Handle initial page load
+        this.handleRoute();
+        
+        // Handle browser back/forward buttons
+        window.addEventListener('popstate', () => {
+            this.handleRoute();
+        });
+        
+        // Override navigation clicks to update URL
+        this.setupNavigationInterception();
+    }
+
+    handleRoute() {
+        const path = window.location.pathname;
+        const params = new URLSearchParams(window.location.search);
+        
+        console.log(`Routing to: ${path} with params:`, params);
+        
+        // Route to specific pages
+        switch(path) {
+            case '/network':
+                this.navigateToPage('network');
+                this.handleNetworkParams(params);
+                break;
+            case '/entities':
+                this.navigateToPage('entities');
+                break;
+            case '/documents':
+                this.navigateToPage('documents');
+                break;
+            case '/search':
+                this.navigateToPage('search');
+                break;
+            case '/management':
+                this.navigateToPage('management');
+                break;
+            case '/analysis':
+                this.navigateToPage('analysis');
+                break;
+            default:
+                // Default to dashboard
+                this.navigateToPage('dashboard');
+                break;
+        }
+    }
+
+    handleNetworkParams(params) {
+        // Wait for network to load, then apply filters
+        setTimeout(() => {
+            const showCategories = params.get('show');
+            const hideCategories = params.get('no-show');
+            
+            if (showCategories) {
+                const categories = showCategories.split(',');
+                this.showOnlyCategories(categories);
+            } else if (hideCategories) {
+                const categories = hideCategories.split(',');
+                this.hideCategories(categories);
+            }
+        }, 1000);
+    }
+
+    showOnlyCategories(categoriesToShow) {
+        console.log('Showing only categories:', categoriesToShow);
+        
+        // Hide all categories first, then show only specified ones
+        const legendItems = document.querySelectorAll('.legend-item');
+        legendItems.forEach(item => {
+            const category = item.dataset.category;
+            const shouldShow = categoriesToShow.includes(category);
+            
+            if (!shouldShow) {
+                NetworkVisualization.toggleCategoryVisibility(this, category, item);
+            }
+        });
+        
+        UIUtils.showToast(`Showing only: ${categoriesToShow.join(', ')}`, 'info');
+    }
+
+    hideCategories(categoriesToHide) {
+        console.log('Hiding categories:', categoriesToHide);
+        
+        const legendItems = document.querySelectorAll('.legend-item');
+        legendItems.forEach(item => {
+            const category = item.dataset.category;
+            if (categoriesToHide.includes(category)) {
+                NetworkVisualization.toggleCategoryVisibility(this, category, item);
+            }
+        });
+        
+        UIUtils.showToast(`Hidden: ${categoriesToHide.join(', ')}`, 'info');
+    }
+
+    setupNavigationInterception() {
+        // Intercept navigation clicks to update URL
+        document.addEventListener('click', (e) => {
+            const navButton = e.target.closest('[data-view]');
+            if (navButton) {
+                e.preventDefault();
+                const view = navButton.dataset.view;
+                this.navigateToUrl(view);
+            }
+        });
+    }
+
+    navigateToUrl(page) {
+        const url = page === 'dashboard' ? '/' : `/${page}`;
+        window.history.pushState({}, '', url);
+        this.navigateToPage(page);
+    }
+
+    navigateToPage(page) {
+        // Use existing navigation logic
+        if (this.switchView) {
+            this.switchView(page);
+        }
     }
 }
 

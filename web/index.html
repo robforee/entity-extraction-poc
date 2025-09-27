@@ -100,6 +100,7 @@
             <div id="entities-view" class="view">
                 <div class="view-header">
                     <h2>🎯 Entity Explorer</h2>
+                    <div class="entities-count">Loading entities...</div>
                     <div class="view-controls">
                         <select id="category-filter">
                             <option value="">All Categories</option>
@@ -306,6 +307,7 @@
             <div id="documents-view" class="view">
                 <div class="view-header">
                     <h2>📚 Document Navigator</h2>
+                    <div class="documents-count">Loading documents...</div>
                 </div>
                 <div id="documents-list" class="documents-list">
                     <!-- Documents will be loaded here -->
@@ -528,14 +530,17 @@
     </div>
 
     <!-- Load modules in dependency order -->
-    <script src="js/modules/ui-utils.js?v=2025092711"></script>
-    <script src="js/modules/base-app.js?v=2025092711"></script>
-    <script src="js/modules/event-handlers.js?v=2025092711"></script>
-    <script src="js/modules/dashboard.js?v=2025092711"></script>
-    <script src="js/modules/network-visualization.js?v=2025092711"></script>
-    <script src="js/modules/management.js?v=2025092711"></script>
-    <script src="js/app-main.js?v=2025092711"></script>
-    <script src="js/merge-interface.js?v=2025092711"></script>
+    <script src="js/modules/ui-utils.js?v=2025092720"></script>
+    <script src="js/modules/base-app.js?v=2025092720"></script>
+    <script src="js/modules/event-handlers.js?v=2025092720"></script>
+    <script src="js/modules/dashboard.js?v=2025092720"></script>
+    <script src="js/modules/network-visualization.js?v=2025092720"></script>
+    <script src="js/modules/management.js?v=2025092720"></script>
+    <script src="js/modules/entities.js?v=2025092720"></script>
+    <script src="js/modules/documents.js?v=2025092720"></script>
+    <script src="js/modules/search.js?v=2025092720"></script>
+    <script src="js/app-main.js?v=2025092720"></script>
+    <script src="js/merge-interface.js?v=2025092720"></script>
     <script>
         // Initialize merge interface after app is ready
         document.addEventListener('DOMContentLoaded', () => {

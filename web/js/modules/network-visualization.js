@@ -222,14 +222,268 @@ class NetworkVisualization {
         app.networkSimulation = simulation;
         app.networkSvg = svg;
 
+        // Update legend
+        NetworkVisualization.updateLegend(app);
+
+        // Initialize network controls
+        NetworkVisualization.initializeControls(app);
+
         UIUtils.showToast(`Network loaded: ${nodeArray.length} entities, ${validLinks.length} relationships`, 'success');
+    }
+
+    static initializeControls(app) {
+        // Initialize category filter
+        const categoryFilter = document.getElementById('network-category-filter');
+        if (categoryFilter) {
+            // Populate category options
+            const categories = new Set();
+            if (app.data.networkNodes) {
+                app.data.networkNodes.forEach(node => {
+                    if (node.category) categories.add(node.category);
+                });
+            }
+
+            // Clear existing options except "All Categories"
+            categoryFilter.innerHTML = '<option value="">All Categories</option>';
+            
+            // Add category options
+            Array.from(categories).sort().forEach(category => {
+                const option = document.createElement('option');
+                option.value = category;
+                option.textContent = UIUtils.capitalizeWords(category);
+                categoryFilter.appendChild(option);
+            });
+
+            // Add change event listener
+            categoryFilter.addEventListener('change', (e) => {
+                NetworkVisualization.filterByCategory(app, e.target.value);
+            });
+        }
+
+        // Initialize zoom center button
+        const zoomCenterBtn = document.getElementById('zoom-center');
+        if (zoomCenterBtn) {
+            zoomCenterBtn.addEventListener('click', () => {
+                NetworkVisualization.centerNetwork(app);
+            });
+        }
+
+        // Initialize perspective buttons
+        const siemPerspectiveBtn = document.getElementById('siem-perspective');
+        if (siemPerspectiveBtn) {
+            siemPerspectiveBtn.addEventListener('click', () => {
+                NetworkVisualization.showSIEMPerspective(app);
+            });
+        }
+
+        const entityPerspectiveBtn = document.getElementById('entity-perspective');
+        if (entityPerspectiveBtn) {
+            entityPerspectiveBtn.addEventListener('click', () => {
+                NetworkVisualization.showEntityPerspective(app);
+            });
+        }
+
+        // Initialize network sliders
+        NetworkVisualization.initializeSliders(app);
+    }
+
+    static filterByCategory(app, selectedCategory) {
+        if (!app.networkSvg) return;
+
+        const nodes = app.networkSvg.selectAll('.node');
+        const labels = app.networkSvg.selectAll('.node-label');
+        const links = app.networkSvg.selectAll('.link');
+
+        if (!selectedCategory) {
+            // Show all nodes and links
+            nodes.style('opacity', 1).style('pointer-events', 'all');
+            labels.style('opacity', 1);
+            links.style('opacity', 0.6);
+        } else {
+            // Filter nodes by category
+            nodes.style('opacity', d => d.category === selectedCategory ? 1 : 0.1)
+                 .style('pointer-events', d => d.category === selectedCategory ? 'all' : 'none');
+            
+            labels.style('opacity', d => d.category === selectedCategory ? 1 : 0.1);
+
+            // Filter links - show only links between visible nodes
+            links.style('opacity', d => {
+                const sourceNode = app.data.networkNodes.find(n => n.id === d.source.id || n.id === d.source);
+                const targetNode = app.data.networkNodes.find(n => n.id === d.target.id || n.id === d.target);
+                return (sourceNode?.category === selectedCategory && targetNode?.category === selectedCategory) ? 0.6 : 0.1;
+            });
+        }
+
+        UIUtils.showToast(`Filtered network by: ${selectedCategory || 'All Categories'}`, 'info');
+    }
+
+    static centerNetwork(app) {
+        if (!app.networkSvg) return;
+
+        const svg = d3.select('#network-svg');
+        const g = svg.select('g');
+        
+        // Reset zoom and center
+        const zoom = d3.zoom()
+            .scaleExtent([0.1, 10])
+            .on('zoom', (event) => {
+                g.attr('transform', event.transform);
+            });
+
+        svg.call(zoom);
+        svg.call(zoom.transform, d3.zoomIdentity);
+
+        UIUtils.showToast('Network centered', 'info');
+    }
+
+    static showSIEMPerspective(app) {
+        if (!app.networkSvg) return;
+
+        // Focus on security-related categories
+        const securityCategories = ['materials', 'issues', 'tasks'];
+        const nodes = app.networkSvg.selectAll('.node');
+        const labels = app.networkSvg.selectAll('.node-label');
+        const links = app.networkSvg.selectAll('.link');
+
+        // Highlight security-related nodes
+        nodes.style('opacity', d => securityCategories.includes(d.category) ? 1 : 0.2)
+             .style('stroke-width', d => securityCategories.includes(d.category) ? 3 : 2)
+             .style('stroke', d => securityCategories.includes(d.category) ? '#e74c3c' : '#fff');
+
+        labels.style('opacity', d => securityCategories.includes(d.category) ? 1 : 0.3)
+              .style('font-weight', d => securityCategories.includes(d.category) ? 'bold' : 'normal');
+
+        // Show links between security nodes
+        links.style('opacity', d => {
+            const sourceNode = app.data.networkNodes.find(n => n.id === d.source.id || n.id === d.source);
+            const targetNode = app.data.networkNodes.find(n => n.id === d.target.id || n.id === d.target);
+            const isSecurityLink = securityCategories.includes(sourceNode?.category) || securityCategories.includes(targetNode?.category);
+            return isSecurityLink ? 0.8 : 0.1;
+        });
+
+        UIUtils.showToast('SIEM Perspective: Highlighting security-related entities', 'info');
+    }
+
+    static showEntityPerspective(app) {
+        const searchInput = document.getElementById('entity-search');
+        const searchTerm = searchInput?.value.trim().toLowerCase();
+        
+        if (!searchTerm) {
+            UIUtils.showToast('Please enter an entity name to focus on', 'warning');
+            return;
+        }
+
+        if (!app.networkSvg) return;
+
+        const nodes = app.networkSvg.selectAll('.node');
+        const labels = app.networkSvg.selectAll('.node-label');
+        const links = app.networkSvg.selectAll('.link');
+
+        // Find matching entities
+        const matchingNodes = app.data.networkNodes.filter(node => 
+            node.name.toLowerCase().includes(searchTerm)
+        );
+
+        if (matchingNodes.length === 0) {
+            UIUtils.showToast(`No entities found matching "${searchTerm}"`, 'warning');
+            return;
+        }
+
+        const matchingIds = new Set(matchingNodes.map(n => n.id));
+
+        // Highlight matching nodes and their connections
+        nodes.style('opacity', d => matchingIds.has(d.id) ? 1 : 0.2)
+             .style('stroke-width', d => matchingIds.has(d.id) ? 4 : 2)
+             .style('stroke', d => matchingIds.has(d.id) ? '#f39c12' : '#fff');
+
+        labels.style('opacity', d => matchingIds.has(d.id) ? 1 : 0.3)
+              .style('font-weight', d => matchingIds.has(d.id) ? 'bold' : 'normal');
+
+        // Show links connected to matching entities
+        links.style('opacity', d => {
+            const sourceId = d.source.id || d.source;
+            const targetId = d.target.id || d.target;
+            return (matchingIds.has(sourceId) || matchingIds.has(targetId)) ? 0.8 : 0.1;
+        });
+
+        UIUtils.showToast(`Entity Perspective: Found ${matchingNodes.length} matching entities`, 'success');
+    }
+
+    static initializeSliders(app) {
+        // Link Distance Slider
+        const linkDistanceSlider = document.getElementById('cluster-distance');
+        const linkDistanceValue = document.getElementById('cluster-distance-value');
+        if (linkDistanceSlider && linkDistanceValue) {
+            linkDistanceSlider.addEventListener('input', (e) => {
+                const value = e.target.value;
+                linkDistanceValue.textContent = `${value}px`;
+                if (app.networkSimulation) {
+                    app.networkSimulation.force('link').distance(parseInt(value));
+                    app.networkSimulation.alpha(0.3).restart();
+                }
+            });
+        }
+
+        // Cloud Separation Slider
+        const cloudSeparationSlider = document.getElementById('inter-cluster-distance');
+        const cloudSeparationValue = document.getElementById('inter-cluster-distance-value');
+        if (cloudSeparationSlider && cloudSeparationValue) {
+            cloudSeparationSlider.addEventListener('input', (e) => {
+                const value = e.target.value;
+                cloudSeparationValue.textContent = value;
+                if (app.networkSimulation) {
+                    app.networkSimulation.force('charge').strength(-parseInt(value));
+                    app.networkSimulation.alpha(0.3).restart();
+                }
+            });
+        }
+
+        // Entity Font Size Slider
+        const entityFontSlider = document.getElementById('entity-font-size');
+        const entityFontValue = document.getElementById('entity-font-size-value');
+        if (entityFontSlider && entityFontValue) {
+            entityFontSlider.addEventListener('input', (e) => {
+                const value = e.target.value;
+                entityFontValue.textContent = `${value}px`;
+                if (app.networkSvg) {
+                    app.networkSvg.selectAll('.node-label')
+                        .style('font-size', `${value}px`);
+                }
+            });
+        }
+
+        // Cluster Font Size Slider
+        const clusterFontSlider = document.getElementById('cluster-font-size');
+        const clusterFontValue = document.getElementById('cluster-font-size-value');
+        if (clusterFontSlider && clusterFontValue) {
+            clusterFontSlider.addEventListener('input', (e) => {
+                const value = e.target.value;
+                clusterFontValue.textContent = `${value}px`;
+                if (app.networkSvg) {
+                    app.networkSvg.selectAll('.cluster-label')
+                        .style('font-size', `${value}px`);
+                }
+            });
+        }
     }
 
     static getCategoryColor(category) {
         const colorMap = {
+            // Actual categories from the data
+            'people': '#f39c12',        // Orange for people
+            'projects': '#3498db',      // Blue for projects
+            'locations': '#1abc9c',     // Teal for locations
+            'materials': '#e74c3c',     // Red for materials/equipment
+            'documents': '#9b59b6',     // Purple for documents
+            'issues': '#e67e22',        // Orange-red for issues
+            'tasks': '#27ae60',         // Green for tasks
+            'decisions': '#f1c40f',     // Yellow for decisions
+            'timeline': '#95a5a6',      // Gray for timeline
+            
+            // Legacy categories (in case they exist)
             'vulnerability': '#e74c3c',
             'threat': '#c0392b',
-            'tool': '#3498db',
+            'tool': '#34495e',
             'technique': '#9b59b6',
             'organization': '#2ecc71',
             'person': '#f39c12',
@@ -244,6 +498,130 @@ class NetworkVisualization {
             'default': '#7f8c8d'
         };
         
-        return colorMap[category?.toLowerCase()] || colorMap.default;
+        const color = colorMap[category?.toLowerCase()] || colorMap.default;
+        console.log(`Color mapping: ${category} -> ${color}`);
+        return color;
+    }
+
+    static updateLegend(app) {
+        const legendContainer = document.getElementById('legend-items');
+        if (!legendContainer) {
+            console.warn('Legend container not found');
+            return;
+        }
+
+        // Get unique categories from the current network nodes
+        const categories = new Set();
+        if (app.data.networkNodes) {
+            app.data.networkNodes.forEach(node => {
+                if (node.category) {
+                    categories.add(node.category);
+                }
+            });
+        }
+
+        // If no categories from nodes, use the categories data
+        if (categories.size === 0 && app.data.categories) {
+            Object.keys(app.data.categories).forEach(cat => categories.add(cat));
+        }
+
+        console.log('Legend categories:', Array.from(categories));
+        console.log('Network nodes sample:', app.data.networkNodes?.slice(0, 3));
+
+        // Create legend items
+        const legendItems = Array.from(categories).sort().map(category => {
+            const color = NetworkVisualization.getCategoryColor(category);
+            const count = app.data.categories ? app.data.categories[category] || 0 : 0;
+            
+            return `
+                <div class="legend-item" data-category="${category}" style="cursor: pointer;">
+                    <div class="legend-color" style="background-color: ${color}"></div>
+                    <span class="legend-label">${UIUtils.capitalizeWords(category)}</span>
+                    <span class="legend-count">(${count})</span>
+                </div>
+            `;
+        }).join('');
+
+        legendContainer.innerHTML = legendItems;
+
+        // Add click handlers to legend items
+        legendContainer.querySelectorAll('.legend-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const category = item.dataset.category;
+                console.log(`Legend item clicked: ${category}`);
+                NetworkVisualization.toggleCategoryVisibility(app, category, item);
+            });
+        });
+    }
+
+    static toggleCategoryVisibility(app, category, legendItem) {
+        if (!app.networkSvg) {
+            console.error('No network SVG found');
+            return;
+        }
+
+        console.log(`Toggling category: ${category}`);
+        console.log('Legend item:', legendItem);
+        console.log('Network SVG:', app.networkSvg);
+
+        // Check if category is currently hidden
+        const isHidden = legendItem.classList.contains('category-hidden');
+        console.log(`Category ${category} is currently hidden: ${isHidden}`);
+        
+        const nodes = app.networkSvg.selectAll('.node');
+        const labels = app.networkSvg.selectAll('.node-label');
+        const links = app.networkSvg.selectAll('.link');
+
+        if (isHidden) {
+            // Show the category
+            legendItem.classList.remove('category-hidden');
+            legendItem.style.opacity = '1';
+            
+            nodes.filter(d => d.category === category)
+                 .style('opacity', 1)
+                 .style('pointer-events', 'all');
+                 
+            labels.filter(d => d.category === category)
+                  .style('opacity', 1);
+
+            // Show relevant links
+            links.style('opacity', d => {
+                const sourceNode = app.data.networkNodes.find(n => n.id === d.source.id || n.id === d.source);
+                const targetNode = app.data.networkNodes.find(n => n.id === d.target.id || n.id === d.target);
+                
+                // If both nodes are visible, show the link
+                const sourceVisible = !document.querySelector(`[data-category="${sourceNode?.category}"]`)?.classList.contains('category-hidden');
+                const targetVisible = !document.querySelector(`[data-category="${targetNode?.category}"]`)?.classList.contains('category-hidden');
+                
+                return (sourceVisible && targetVisible) ? 0.6 : 0.1;
+            });
+
+            UIUtils.showToast(`Showing ${UIUtils.capitalizeWords(category)} entities`, 'info');
+        } else {
+            // Hide the category
+            legendItem.classList.add('category-hidden');
+            legendItem.style.opacity = '0.5';
+            
+            nodes.filter(d => d.category === category)
+                 .style('opacity', 0.1)
+                 .style('pointer-events', 'none');
+                 
+            labels.filter(d => d.category === category)
+                  .style('opacity', 0.1);
+
+            // Update links visibility
+            links.style('opacity', d => {
+                const sourceNode = app.data.networkNodes.find(n => n.id === d.source.id || n.id === d.source);
+                const targetNode = app.data.networkNodes.find(n => n.id === d.target.id || n.id === d.target);
+                
+                // If either node is hidden, dim the link
+                const sourceVisible = !document.querySelector(`[data-category="${sourceNode?.category}"]`)?.classList.contains('category-hidden');
+                const targetVisible = !document.querySelector(`[data-category="${targetNode?.category}"]`)?.classList.contains('category-hidden');
+                
+                return (sourceVisible && targetVisible) ? 0.6 : 0.1;
+            });
+
+            UIUtils.showToast(`Hiding ${UIUtils.capitalizeWords(category)} entities`, 'info');
+        }
     }
 }

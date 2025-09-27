@@ -29,13 +29,19 @@ class Management {
         const container = document.getElementById('merge-candidates');
         if (!container) return;
 
+        // Update the header with candidate count
+        const headerElement = document.querySelector('.merge-section h3');
+        if (headerElement) {
+            headerElement.textContent = `🎯 Merge Candidates (${candidates.length} found)`;
+        }
+        
         if (candidates.length === 0) {
-            container.innerHTML = '<p class="placeholder">No merge candidates found</p>';
+            container.innerHTML = '<p class="placeholder">No merge candidates found. All entities appear to be unique.</p>';
             return;
         }
 
         container.innerHTML = candidates.map((candidate, index) => `
-            <div class="merge-candidate" data-similarity="${candidate.confidence}">
+            <div class="merge-candidate" data-similarity="${candidate.confidence}" data-primary-id="${candidate.primary.id}" data-secondary-id="${candidate.secondary.id}">
                 <div class="candidate-header">
                     <h4>Merge Candidate #${index + 1}</h4>
                     <span class="confidence-badge ${Management.getConfidenceClass(candidate.confidence)}">
@@ -90,24 +96,63 @@ class Management {
     static async performAutoMerge(app) {
         try {
             app.showLoading();
+            
+            // First get current candidates to show before/after counts
+            const candidatesResponse = await fetch(`${app.apiBaseUrl}/api/merging/candidates`);
+            const candidatesData = await candidatesResponse.json();
+            const beforeCount = candidatesData.candidates ? candidatesData.candidates.length : 0;
+            
+            // Perform auto merge with configurable threshold
             const response = await fetch(`${app.apiBaseUrl}/api/merging/auto-merge`, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' }
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 
+                    threshold: 0.8 // Lower threshold for more aggressive merging
+                })
             });
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
             const data = await response.json();
+            console.log('Auto-merge response:', data);
             
             if (data.success) {
-                UIUtils.showToast(`Auto-merged ${data.mergesPerformed} entities. ${data.suggestions} suggestions remaining.`, 'success');
-                // Refresh the candidates list
-                Management.findMergeCandidates(app);
-                // Update statistics
-                Management.showMergeStatistics(app);
+                const mergedCount = data.mergedCount || 0;
+                const mergedPairs = data.mergedPairs || [];
+                
+                if (mergedCount > 0) {
+                    // Show detailed success message
+                    let message = `✅ Auto-merged ${mergedCount} high-confidence entity pairs!\n\n`;
+                    if (mergedPairs.length > 0) {
+                        message += 'Merged pairs:\n';
+                        mergedPairs.slice(0, 5).forEach(pair => {
+                            message += `• "${pair.primary}" ← "${pair.secondary}" (${(pair.confidence * 100).toFixed(1)}%)\n`;
+                        });
+                        if (mergedPairs.length > 5) {
+                            message += `... and ${mergedPairs.length - 5} more pairs`;
+                        }
+                    }
+                    
+                    UIUtils.showToast(message, 'success');
+                    
+                    // Refresh the candidates list to show remaining candidates
+                    setTimeout(() => {
+                        Management.findMergeCandidates(app);
+                    }, 1000);
+                    
+                    // Update statistics
+                    Management.showMergeStatistics(app);
+                } else {
+                    UIUtils.showToast('No high-confidence merge candidates found. Try lowering the confidence threshold.', 'info');
+                }
             } else {
-                UIUtils.showToast('Auto-merge failed', 'error');
+                UIUtils.showToast(`Auto-merge failed: ${data.message || 'Unknown error'}`, 'error');
             }
         } catch (error) {
             console.error('Error performing auto-merge:', error);
-            UIUtils.showToast('Failed to perform auto-merge', 'error');
+            UIUtils.showToast('Failed to perform auto-merge. Check console for details.', 'error');
         } finally {
             app.hideLoading();
         }
@@ -206,12 +251,116 @@ class Management {
         }
     }
 
-    static rejectMerge(primaryId, secondaryId) {
-        UIUtils.showToast('Merge rejected (functionality to be implemented)', 'info');
+    static async rejectMerge(primaryId, secondaryId) {
+        try {
+            console.log(`Rejecting merge: ${primaryId} + ${secondaryId}`);
+            
+            // Find the candidate element and remove it from display
+            const candidateElements = document.querySelectorAll('.merge-candidate');
+            let removedElement = null;
+            
+            candidateElements.forEach(element => {
+                const elementPrimaryId = element.dataset.primaryId;
+                const elementSecondaryId = element.dataset.secondaryId;
+                
+                console.log(`Checking element: ${elementPrimaryId} + ${elementSecondaryId}`);
+                
+                // Check if this matches our target entities
+                if ((elementPrimaryId === primaryId && elementSecondaryId === secondaryId) ||
+                    (elementPrimaryId === secondaryId && elementSecondaryId === primaryId)) {
+                    removedElement = element;
+                    console.log('Found matching element to reject');
+                }
+            });
+            
+            if (removedElement) {
+                // Add rejection styling
+                removedElement.style.opacity = '0.5';
+                removedElement.style.pointerEvents = 'none';
+                
+                // Show rejection message
+                const rejectionBadge = document.createElement('div');
+                rejectionBadge.className = 'rejection-badge';
+                rejectionBadge.innerHTML = '❌ Rejected';
+                rejectionBadge.style.cssText = 'position: absolute; top: 10px; right: 10px; background: #dc3545; color: white; padding: 4px 8px; border-radius: 4px; font-size: 12px; z-index: 10;';
+                removedElement.style.position = 'relative';
+                removedElement.appendChild(rejectionBadge);
+                
+                // Remove after delay
+                setTimeout(() => {
+                    if (removedElement.parentNode) {
+                        removedElement.remove();
+                        
+                        // Update candidate count
+                        const countElement = document.getElementById('candidate-count');
+                        if (countElement) {
+                            const currentCount = parseInt(countElement.textContent) || 0;
+                            countElement.textContent = Math.max(0, currentCount - 1);
+                        }
+                        
+                        // Show empty state if no more candidates
+                        const remainingCandidates = document.querySelectorAll('.merge-candidate');
+                        if (remainingCandidates.length === 0) {
+                            const container = document.getElementById('merge-candidates');
+                            if (container) {
+                                container.innerHTML = '<p class="placeholder">No merge candidates found. All potential merges have been processed.</p>';
+                            }
+                        }
+                    }
+                }, 1500);
+            }
+            
+            UIUtils.showToast('Merge candidate rejected', 'info');
+            
+        } catch (error) {
+            console.error('Error rejecting merge:', error);
+            UIUtils.showToast('Failed to reject merge', 'error');
+        }
     }
 
     static postponeMerge(index) {
-        UIUtils.showToast('Merge postponed (functionality to be implemented)', 'info');
+        try {
+            // Find the candidate element
+            const candidateElements = document.querySelectorAll('.merge-candidate');
+            const candidateElement = candidateElements[index];
+            
+            if (candidateElement) {
+                // Add postponed styling
+                candidateElement.style.opacity = '0.7';
+                candidateElement.style.border = '2px dashed #ffc107';
+                
+                // Show postponed badge
+                const postponedBadge = document.createElement('div');
+                postponedBadge.className = 'postponed-badge';
+                postponedBadge.innerHTML = '⏸️ Postponed';
+                postponedBadge.style.cssText = 'position: absolute; top: 10px; right: 10px; background: #ffc107; color: #212529; padding: 4px 8px; border-radius: 4px; font-size: 12px; z-index: 10; font-weight: bold;';
+                candidateElement.style.position = 'relative';
+                candidateElement.appendChild(postponedBadge);
+                
+                // Disable action buttons
+                const actionButtons = candidateElement.querySelectorAll('.btn');
+                actionButtons.forEach(btn => {
+                    btn.disabled = true;
+                    btn.style.opacity = '0.5';
+                });
+                
+                // Move to end of list after delay
+                setTimeout(() => {
+                    const container = candidateElement.parentNode;
+                    if (container) {
+                        container.appendChild(candidateElement);
+                    }
+                }, 1000);
+                
+                UIUtils.showToast('Merge candidate postponed for later review', 'info');
+            } else {
+                UIUtils.showToast('Candidate not found', 'error');
+            }
+            
+        } catch (error) {
+            console.error('Error postponing merge:', error);
+            UIUtils.showToast('Failed to postpone merge', 'error');
+        }
     }
 
     static async mergeSelectedEntities(app) {
