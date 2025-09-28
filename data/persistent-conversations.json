@@ -1,0 +1,417 @@
+{
+  "cli-user": {
+    "id": "cli-user",
+    "userId": "cli-user",
+    "createdAt": "2025-09-27T22:56:31.567Z",
+    "lastAccessed": "2025-09-27T23:11:53.631Z",
+    "queryHistory": [
+      {
+        "query": "I bought screws for John's deck",
+        "timestamp": "2025-09-27T22:56:35.401Z",
+        "intent": {
+          "type": "add_charge",
+          "confidence": 0.3333333333333333,
+          "patterns_matched": []
+        },
+        "confidence": 0.85,
+        "entities": {
+          "people": [
+            {
+              "name": "John",
+              "role": "owner",
+              "confidence": 0.9
+            }
+          ],
+          "locations": [],
+          "amounts": [],
+          "items": [
+            {
+              "name": "screws",
+              "category": "hardware",
+              "confidence": 0.9
+            }
+          ],
+          "projects": [
+            {
+              "name": "John's deck",
+              "type": "construction",
+              "confidence": 0.9
+            }
+          ],
+          "tasks": [],
+          "dates": []
+        },
+        "completed": false
+      },
+      {
+        "query": "0",
+        "timestamp": "2025-09-27T22:56:53.169Z",
+        "intent": {
+          "type": "add_charge",
+          "confidence": 0.3333333333333333,
+          "patterns_matched": []
+        },
+        "confidence": 0.85,
+        "entities": {
+          "people": [],
+          "locations": [],
+          "amounts": [],
+          "items": [],
+          "projects": [],
+          "tasks": [],
+          "dates": []
+        },
+        "completed": false
+      },
+      {
+        "query": "I bought screws for John's deck for 0",
+        "timestamp": "2025-09-27T22:57:07.011Z",
+        "intent": {
+          "type": "add_charge",
+          "confidence": 0.3333333333333333,
+          "patterns_matched": []
+        },
+        "confidence": 0.85,
+        "entities": {
+          "people": [
+            {
+              "name": "John",
+              "role": "owner",
+              "confidence": 0.9
+            }
+          ],
+          "locations": [],
+          "amounts": [
+            {
+              "value": 0,
+              "currency": "USD",
+              "confidence": 0.9
+            }
+          ],
+          "items": [
+            {
+              "name": "screws",
+              "category": "materials",
+              "confidence": 0.9
+            }
+          ],
+          "projects": [
+            {
+              "name": "John's deck",
+              "type": "construction",
+              "confidence": 0.9
+            }
+          ],
+          "tasks": [],
+          "dates": []
+        },
+        "completed": true
+      },
+      {
+        "query": "I bought screws for John's deck",
+        "timestamp": "2025-09-27T22:57:41.177Z",
+        "intent": {
+          "type": "add_charge",
+          "confidence": 0.3333333333333333,
+          "patterns_matched": []
+        },
+        "confidence": 0.85,
+        "entities": {
+          "people": [
+            {
+              "name": "John",
+              "role": "owner",
+              "confidence": 0.9
+            }
+          ],
+          "locations": [],
+          "amounts": [],
+          "items": [
+            {
+              "name": "screws",
+              "category": "materials",
+              "confidence": 0.9
+            }
+          ],
+          "projects": [
+            {
+              "name": "John's deck",
+              "type": "construction",
+              "confidence": 0.9
+            }
+          ],
+          "tasks": [],
+          "dates": []
+        },
+        "completed": false
+      },
+      {
+        "query": "I bought screws for John's deck",
+        "timestamp": "2025-09-27T22:58:14.413Z",
+        "intent": {
+          "type": "add_charge",
+          "confidence": 0.3333333333333333,
+          "patterns_matched": []
+        },
+        "confidence": 0.85,
+        "entities": {
+          "people": [
+            {
+              "name": "John",
+              "role": "owner",
+              "confidence": 0.9
+            }
+          ],
+          "locations": [
+            {
+              "name": "John's deck",
+              "type": "project location",
+              "confidence": 0.9
+            }
+          ],
+          "amounts": [],
+          "items": [
+            {
+              "name": "screws",
+              "category": "materials",
+              "confidence": 0.9
+            }
+          ],
+          "projects": [],
+          "tasks": [],
+          "dates": []
+        },
+        "completed": false
+      },
+      {
+        "query": "I bought screws for John's deck",
+        "timestamp": "2025-09-27T22:58:34.643Z",
+        "intent": {
+          "type": "add_charge",
+          "confidence": 0.3333333333333333,
+          "patterns_matched": []
+        },
+        "confidence": 0.85,
+        "entities": {
+          "people": [
+            {
+              "name": "John",
+              "role": "owner",
+              "confidence": 0.9
+            }
+          ],
+          "locations": [
+            {
+              "name": "John's deck",
+              "type": "project location",
+              "confidence": 0.9
+            }
+          ],
+          "amounts": [],
+          "items": [
+            {
+              "name": "screws",
+              "category": "materials",
+              "confidence": 0.9
+            }
+          ],
+          "projects": [],
+          "tasks": [],
+          "dates": []
+        },
+        "completed": false
+      },
+      {
+        "query": "0",
+        "timestamp": "2025-09-27T22:58:53.240Z",
+        "intent": {
+          "type": "unknown",
+          "confidence": 0.1,
+          "patterns_matched": []
+        },
+        "confidence": 0.5,
+        "entities": {
+          "people": [],
+          "locations": [],
+          "amounts": [],
+          "items": [],
+          "projects": [],
+          "tasks": [],
+          "dates": []
+        },
+        "completed": true
+      },
+      {
+        "query": "The cost was 0",
+        "timestamp": "2025-09-27T22:59:00.815Z",
+        "intent": {
+          "type": "add_charge",
+          "confidence": 0.3333333333333333,
+          "patterns_matched": []
+        },
+        "confidence": 0.85,
+        "entities": {
+          "people": [],
+          "locations": [],
+          "amounts": [
+            {
+              "value": 0,
+              "currency": "USD",
+              "confidence": 0.9
+            }
+          ],
+          "items": [],
+          "projects": [],
+          "tasks": [],
+          "dates": []
+        },
+        "completed": true
+      },
+      {
+        "query": "The cost was 0",
+        "timestamp": "2025-09-27T22:59:16.998Z",
+        "intent": {
+          "type": "add_charge",
+          "confidence": 0.3333333333333333,
+          "patterns_matched": []
+        },
+        "confidence": 0.85,
+        "entities": {
+          "people": [],
+          "locations": [],
+          "amounts": [
+            {
+              "value": 0,
+              "currency": "USD",
+              "confidence": 0.9
+            }
+          ],
+          "items": [],
+          "projects": [],
+          "tasks": [],
+          "dates": []
+        },
+        "completed": true
+      },
+      {
+        "query": "I need lumber for the garage project",
+        "timestamp": "2025-09-27T23:11:42.148Z",
+        "intent": {
+          "type": "add_charge",
+          "confidence": 0.3333333333333333,
+          "patterns_matched": []
+        },
+        "confidence": 0.85,
+        "entities": {
+          "people": [],
+          "locations": [],
+          "amounts": [],
+          "items": [
+            {
+              "name": "lumber",
+              "category": "material",
+              "confidence": 0.9
+            }
+          ],
+          "projects": [
+            {
+              "name": "garage project",
+              "type": "construction",
+              "confidence": 0.9
+            }
+          ],
+          "tasks": [],
+          "dates": []
+        },
+        "completed": false
+      },
+      {
+        "query": "It costs 150 dollars",
+        "timestamp": "2025-09-27T23:11:53.631Z",
+        "intent": {
+          "type": "add_charge",
+          "confidence": 0.3333333333333333,
+          "patterns_matched": []
+        },
+        "confidence": 0.85,
+        "entities": {
+          "people": [],
+          "locations": [],
+          "amounts": [
+            {
+              "value": 150,
+              "currency": "USD",
+              "confidence": 0.9
+            }
+          ],
+          "items": [],
+          "projects": [],
+          "tasks": [],
+          "dates": []
+        },
+        "completed": true
+      }
+    ],
+    "entities": {
+      "people": [
+        {
+          "name": "John",
+          "role": "owner",
+          "confidence": 0.9,
+          "firstMentioned": "2025-09-27T22:56:35.401Z",
+          "lastMentioned": "2025-09-27T22:58:34.643Z"
+        }
+      ],
+      "locations": [
+        {
+          "name": "John's deck",
+          "type": "project location",
+          "confidence": 0.9,
+          "firstMentioned": "2025-09-27T22:58:14.413Z",
+          "lastMentioned": "2025-09-27T22:58:34.643Z"
+        }
+      ],
+      "amounts": [
+        {
+          "value": 0,
+          "currency": "USD",
+          "confidence": 0.9,
+          "firstMentioned": "2025-09-27T22:57:07.011Z",
+          "lastMentioned": "2025-09-27T23:11:53.631Z"
+        }
+      ],
+      "items": [
+        {
+          "name": "screws",
+          "category": "hardware",
+          "confidence": 0.9,
+          "firstMentioned": "2025-09-27T22:56:35.401Z",
+          "lastMentioned": "2025-09-27T23:11:42.148Z"
+        }
+      ],
+      "projects": [
+        {
+          "name": "John's deck",
+          "type": "construction",
+          "confidence": 0.9,
+          "firstMentioned": "2025-09-27T22:56:35.401Z",
+          "lastMentioned": "2025-09-27T23:11:42.148Z"
+        }
+      ],
+      "tasks": [],
+      "dates": []
+    },
+    "contextualMemory": {
+      "recentProjects": [
+        "garage project",
+        "John's deck"
+      ],
+      "recentLocations": [
+        "John's deck"
+      ],
+      "recentPeople": [],
+      "recentActions": []
+    },
+    "pendingRequestIds": []
+  }
+}

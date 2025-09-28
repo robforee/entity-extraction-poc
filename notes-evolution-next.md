@@ -1,4 +1,49 @@
-# Context Management System - Implementation Plan
+# Context Management System - Next Phase Evolution
+
+## CRITICAL ARCHITECTURAL BREAKTHROUGH (Sep 27 evening)
+
+### Problem Discovered: Project Resolution Flaw
+- Context System creates NEW projects instead of finding EXISTING ones
+- "I bought screws for John's deck" → Created `john-deck-project` instead of finding existing John Green deck projects
+- Root cause: System is not "Snappy-aware" during query processing
+
+### Solution: Context DB as Smart Router Architecture
+
+**Context DB** = Conceptual source of truth (relationships, understanding)  
+**Source Systems** = Structured data with full fidelity (parts lists, costs, exact data)
+
+#### Universal Smart Interface Pattern:
+1. Check Context DB for existing knowledge
+2. Discover what it doesn't know from external sources (Snappy API, LLM queries)  
+3. Progressively drill from general to specific
+4. Make intelligent connections between information
+5. Learn from interactions for future queries
+
+#### CLI Implementation Pattern:
+```bash
+# Conceptual queries (Context DB)
+node context.js query "What are the cost components for John's deck?"
+
+# Structured data routing (Source Systems)  
+node context.js data costs --project john-deck --format json | calculator
+
+# Smart project discovery
+node context.js query "I bought screws for John's deck"
+# → Should query Snappy for existing projects
+# → Match "John's deck" to existing project names
+# → Ask: "Add to existing John Green deck project from Sep 23?"
+```
+
+### Dyslexic-Friendly Design Principle
+User thinks in **relationships**, not documents. System should provide:
+- Relationship-based queries instead of reading documents
+- Progressive drilling (learn as much/little as needed)
+- Command signatures without verbose descriptions  
+- Context maps showing how concepts relate
+- Context DB as single source of truth for conceptual knowledge
+
+### Next Implementation: DataSourceRouter Component
+Make Context DB a smart router to appropriate source systems while maintaining relationship intelligence. Plan
 
 ## Current State → Target State
 

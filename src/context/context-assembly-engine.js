@@ -7,6 +7,9 @@
 
 import { QueryProcessor } from './query-processor.js';
 import { RelationshipGraph } from '../relationships/entity-schema.js';
+import { PersistentConversationManager } from './persistent-conversation-manager.js';
+import { SnappyExpensePusher } from '../integrations/snappy-expense-pusher.js';
+import path from 'path';
 import chalk from 'chalk';
 
 class ContextAssemblyEngine {
@@ -15,7 +18,17 @@ class ContextAssemblyEngine {
     this.domain = options.domain || 'construction';
     this.dataPath = options.dataPath;
     
-    // Conversation state management
+    // Persistent conversation management
+    this.persistentConversationManager = new PersistentConversationManager({
+      dataPath: this.dataPath
+    });
+    
+    // Snappy integration
+    this.snappyExpensePusher = new SnappyExpensePusher({
+      snappyPath: options.snappyPath || path.resolve(this.dataPath, '..', '..', 'snappy')
+    });
+    
+    // Legacy conversation state management (kept for compatibility)
     this.conversationState = new Map();
     this.sessionTimeout = options.sessionTimeout || 30 * 60 * 1000; // 30 minutes
     
@@ -59,8 +72,26 @@ class ContextAssemblyEngine {
     };
 
     try {
-      // Step 1: Load/Update conversation context
+      // Step 1: Load/Update persistent conversation context
       console.log(chalk.cyan('Step 1: Context State Management'));
+      const persistentConversation = await this.persistentConversationManager.getConversation(userId, sessionId);
+      
+      // Check for pending requests that might be completed by this query
+      console.log(chalk.cyan('Step 1.5: Pending Request Check'));
+      const pendingCompletion = await this.persistentConversationManager.checkPendingRequests(
+        persistentConversation.id, 
+        query, 
+        { originalQuery: query, finalResult: null } // Will be updated after processing
+      );
+      
+      // Check for project-related queries
+      console.log(chalk.cyan('Step 1.6: Project Query Check'));
+      const projectQuery = await this.checkProjectQueries(query, persistentConversation);
+      if (projectQuery && projectQuery.hasOutstandingQuestions) {
+        console.log(chalk.yellow(`📋 Found ${projectQuery.pendingRequests.length} outstanding questions for ${projectQuery.projectName}`));
+      }
+      
+      // Legacy conversation context (for compatibility)
       const conversationContext = await this.loadConversationContext(sessionId, userId);
       
       // Update with current information
@@ -112,7 +143,8 @@ class ContextAssemblyEngine {
       const enhancedResponse = await this.generateEnhancedResponse(
         queryResult,
         contextualIntelligence,
-        conversationContext
+        conversationContext,
+        { projectQuery, pendingCompletion }
       );
 
       assemblyResult.finalResponse = enhancedResponse;
@@ -122,9 +154,88 @@ class ContextAssemblyEngine {
         success: true
       });
 
-      // Step 5: Update conversation state
+      // Step 5: Handle pending request completion and Snappy integration
+      console.log(chalk.cyan('Step 5: Pending Request Completion Check'));
+      
+      // Check for pending completion with the actual query result
+      const updatedCompletion = await this.persistentConversationManager.checkPendingRequests(
+        persistentConversation.id, 
+        query, 
+        queryResult
+      );
+      
+      if (updatedCompletion) {
+        console.log(chalk.green('✅ Found pending request completion!'));
+        
+        if (updatedCompletion && updatedCompletion.completion.readyForSnappy) {
+          console.log(chalk.cyan('Step 5.1: Snappy Integration'));
+          const snappyResult = await this.snappyExpensePusher.pushExpenseToSnappy(
+            updatedCompletion.completedRequest,
+            updatedCompletion.completion
+          );
+          
+          assemblyResult.snappyIntegration = snappyResult;
+          
+          // Update response to include Snappy confirmation
+          if (snappyResult.success) {
+            enhancedResponse.snappyConfirmation = `✅ Expense added to Snappy project: ${snappyResult.expenseData.projectName}`;
+            enhancedResponse.recommendations.push(
+              `Expense of $${snappyResult.expenseData.amount} has been automatically added to your Snappy project.`
+            );
+          }
+        }
+        
+        assemblyResult.steps.push({
+          step: 'pending_completion',
+          result: updatedCompletion,
+          success: true
+        });
+      }
+
+      // Step 6: Check for incomplete requests and create pending requests
+      // Check if the response indicates missing information
+      const responseIndicatesMissingInfo = queryResult.finalResult?.response?.includes('I need to know') || 
+                                         queryResult.finalResult?.response?.includes('Could you specify');
+      
+      if (!pendingCompletion && (queryResult.finalResult?.actions?.length === 0 || responseIndicatesMissingInfo)) {
+        console.log(chalk.cyan('Step 6: Incomplete Request Handling'));
+        
+        const missingInfo = this.identifyMissingInformation(queryResult);
+        if (missingInfo) {
+          const pendingRequest = await this.persistentConversationManager.createPendingRequest(
+            persistentConversation.id,
+            queryResult,
+            missingInfo
+          );
+          
+          assemblyResult.pendingRequest = pendingRequest;
+          
+          // Update response to mention the pending request
+          enhancedResponse.pendingRequestInfo = {
+            requestId: pendingRequest.id,
+            question: missingInfo.question,
+            projectContext: pendingRequest.projectContext
+          };
+        }
+        
+        assemblyResult.steps.push({
+          step: 'incomplete_request_handling',
+          result: { pendingRequestCreated: !!missingInfo },
+          success: true
+        });
+      }
+
+      // Step 7: Update persistent conversation state
       if (maintainContext) {
-        console.log(chalk.cyan('Step 5: Context State Update'));
+        console.log(chalk.cyan('Step 7: Persistent Context Update'));
+        
+        await this.persistentConversationManager.updateConversation(
+          persistentConversation.id,
+          queryResult,
+          contextualIntelligence
+        );
+        
+        // Legacy context update (for compatibility)
         await this.updateConversationContext(
           sessionId,
           queryResult,
@@ -134,7 +245,7 @@ class ContextAssemblyEngine {
         
         assemblyResult.steps.push({
           step: 'context_update',
-          result: { contextUpdated: true },
+          result: { contextUpdated: true, persistentContextUpdated: true },
           success: true
         });
       }
@@ -559,7 +670,7 @@ class ContextAssemblyEngine {
   /**
    * Generate enhanced response with contextual intelligence
    */
-  async generateEnhancedResponse(queryResult, contextualIntelligence, conversationContext) {
+  async generateEnhancedResponse(queryResult, contextualIntelligence, conversationContext, additionalContext = {}) {
     const baseResponse = queryResult.finalResult?.response || 'I processed your request.';
     
     const enhancedResponse = {
@@ -575,6 +686,25 @@ class ContextAssemblyEngine {
       enhancedResponse.contextualInsights.push(insight.description);
     }
 
+    // Add project query insights
+    const { projectQuery, pendingCompletion } = additionalContext;
+    if (projectQuery && projectQuery.hasOutstandingQuestions) {
+      enhancedResponse.contextualInsights.push(
+        `📋 Outstanding questions found for ${projectQuery.projectName}: ${projectQuery.pendingRequests.length} pending requests`
+      );
+      
+      // Add the first pending question to the response
+      if (projectQuery.pendingRequests.length > 0) {
+        const firstPending = projectQuery.pendingRequests[0];
+        enhancedResponse.outstandingQuestion = {
+          requestId: firstPending.id,
+          question: firstPending.questionAsked,
+          originalQuery: firstPending.originalQuery,
+          createdAt: firstPending.createdAt
+        };
+      }
+    }
+
     // Generate recommendations based on context
     if (contextualIntelligence.spatialContext?.currentLocation && 
         contextualIntelligence.projectContext?.mentionedProjects?.length > 0) {
@@ -586,6 +716,13 @@ class ContextAssemblyEngine {
     if (contextualIntelligence.financialContext?.totalValue > 0) {
       enhancedResponse.recommendations.push(
         `I can help track this $${contextualIntelligence.financialContext.totalValue} expense in your project budget.`
+      );
+    }
+
+    // Add project-specific recommendations
+    if (projectQuery && projectQuery.hasOutstandingQuestions) {
+      enhancedResponse.recommendations.push(
+        `You have ${projectQuery.pendingRequests.length} outstanding question(s) for ${projectQuery.projectName}. Please provide the missing information to complete these requests.`
       );
     }
 
@@ -724,6 +861,86 @@ class ContextAssemblyEngine {
       recentProjects: context.contextualMemory.recentProjects.length,
       recentPeople: context.contextualMemory.recentPeople.length
     };
+  }
+
+  /**
+   * Identify missing information from query result
+   */
+  identifyMissingInformation(queryResult) {
+    const intent = queryResult.finalResult?.intent;
+    const intentType = typeof intent === 'object' ? intent.type : intent;
+    const entities = queryResult.finalResult?.resolvedContext?.entities || {};
+    
+    // Check for add_charge intent with missing amount
+    if (intentType === 'add_charge') {
+      const amounts = entities.amounts || [];
+      if (amounts.length === 0) {
+        return {
+          type: 'amount',
+          question: 'I need to know the amount to charge. Could you specify the cost?',
+          requiredEntity: 'amount',
+          context: 'financial_transaction'
+        };
+      }
+    }
+    
+    // Check for missing project context when items/locations are mentioned
+    const items = entities.items || [];
+    const locations = entities.locations || [];
+    const projects = entities.projects || [];
+    
+    if ((items.length > 0 || locations.length > 0) && projects.length === 0) {
+      // This might need project context, but it's not critical for basic functionality
+      return null;
+    }
+    
+    return null;
+  }
+
+  /**
+   * Check for project-related queries and pending requests
+   */
+  async checkProjectQueries(query, persistentConversation) {
+    const queryLower = query.toLowerCase();
+    
+    // Check if asking about a specific project
+    const projectKeywords = ['deck', 'project', 'john', 'construction'];
+    const mentionsProject = projectKeywords.some(keyword => queryLower.includes(keyword));
+    
+    if (mentionsProject) {
+      // Check for pending requests related to this project
+      const projectName = this.extractProjectNameFromQuery(query);
+      if (projectName) {
+        const pendingRequests = await this.persistentConversationManager.getPendingRequestsForProject(projectName);
+        return {
+          projectName,
+          pendingRequests,
+          hasOutstandingQuestions: pendingRequests.length > 0
+        };
+      }
+    }
+    
+    return null;
+  }
+
+  /**
+   * Extract project name from query
+   */
+  extractProjectNameFromQuery(query) {
+    const queryLower = query.toLowerCase();
+    
+    // Look for possessive patterns like "John's deck"
+    const possessiveMatch = query.match(/(\w+)'s\s+(\w+)/i);
+    if (possessiveMatch) {
+      return `${possessiveMatch[1]} ${possessiveMatch[2]}`;
+    }
+    
+    // Look for "deck project" or similar
+    if (queryLower.includes('deck')) {
+      return 'deck project';
+    }
+    
+    return null;
   }
 
   /**

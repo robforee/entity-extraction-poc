@@ -1,0 +1,71 @@
+[
+  {
+    "entity": "SOC Analyst",
+    "timestamp": "2025-09-27T18:46:47.165Z",
+    "consolidatedVariations": [],
+    "preservedHierarchies": [],
+    "errors": [
+      "Error consolidating Security Operations Center Analyst: Cannot read properties of undefined (reading 'slice')",
+      "Error consolidating SOC Analyst Level {number}: Cannot read properties of undefined (reading 'slice')",
+      "Error consolidating SOC {level} Analyst: Cannot read properties of undefined (reading 'slice')",
+      "Error consolidating Security Analyst: Cannot read properties of undefined (reading 'slice')",
+      "Error consolidating Cyber Security Analyst: Cannot read properties of undefined (reading 'slice')"
+    ],
+    "success": true
+  },
+  {
+    "entity": "SOC Analyst",
+    "timestamp": "2025-09-27T22:21:11.960Z",
+    "consolidatedVariations": [
+      "Security Operations Center Analyst",
+      "SOC Analyst Level {number}",
+      "SOC {level} Analyst",
+      "Security Analyst",
+      "Cyber Security Analyst"
+    ],
+    "preservedHierarchies": [
+      {
+        "originalPath": [
+          "Security Operations Center Analyst"
+        ],
+        "newPath": [
+          "SOC Analyst"
+        ]
+      },
+      {
+        "originalPath": [
+          "SOC Analyst Level {number}"
+        ],
+        "newPath": [
+          "SOC Analyst"
+        ]
+      },
+      {
+        "originalPath": [
+          "SOC {level} Analyst"
+        ],
+        "newPath": [
+          "SOC Analyst"
+        ]
+      },
+      {
+        "originalPath": [
+          "Security Analyst"
+        ],
+        "newPath": [
+          "SOC Analyst"
+        ]
+      },
+      {
+        "originalPath": [
+          "Cyber Security Analyst"
+        ],
+        "newPath": [
+          "SOC Analyst"
+        ]
+      }
+    ],
+    "errors": [],
+    "success": true
+  }
+]

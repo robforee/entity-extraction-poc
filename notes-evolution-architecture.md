@@ -206,7 +206,156 @@ const consolidationRules = {
 };
 ```
 
-### 6. Query Evolution System
+### 6. Persistent Conversation Management Architecture
+
+**Problem**: Context and incomplete queries are lost between CLI sessions, making it impossible to track outstanding questions or maintain conversation continuity.
+
+**Solution**: Persistent conversation storage with intelligent request completion detection.
+
+```javascript
+// src/context/
+├── persistent-conversation-manager.js    // Cross-session conversation memory
+├── pending-request-tracker.js           // Outstanding question management
+└── snappy-expense-pusher.js            // Automatic project integration
+```
+
+**Architecture Components**:
+
+```javascript
+// Persistent Conversation Structure
+const conversationStructure = {
+  conversations: {
+    "user-session-id": {
+      id: "user-session-id",
+      userId: "cli-user", 
+      queryHistory: [/* all queries with context */],
+      entities: {/* accumulated entities across queries */},
+      contextualMemory: {
+        recentProjects: ["John's deck", "kitchen remodel"],
+        recentLocations: ["John's house", "Home Depot"],
+        recentPeople: ["John", "contractor Mike"]
+      },
+      pendingRequestIds: ["req-123", "req-456"]
+    }
+  },
+  
+  pendingRequests: {
+    "req-123": {
+      id: "req-123",
+      conversationId: "user-session-id",
+      originalQuery: "I bought screws for John's deck",
+      intent: { type: "add_charge", confidence: 0.33 },
+      extractedEntities: {/* people, items, locations */},
+      missingInfo: {
+        type: "amount",
+        question: "I need to know the amount to charge. Could you specify the cost?",
+        requiredEntity: "amount"
+      },
+      projectContext: {
+        projectName: "John's deck",
+        inferredFromLocation: true,
+        inferredFromPerson: true
+      },
+      status: "pending", // pending | completed | failed
+      createdAt: "2025-09-27T22:58:34.639Z"
+    }
+  }
+};
+```
+
+**Completion Detection Logic**:
+```javascript
+// When new query comes in, check if it completes any pending requests
+const completionCheck = {
+  // Match amount entities to pending add_charge requests
+  amountCompletion: (newQuery, pendingRequests) => {
+    const amounts = extractAmounts(newQuery);
+    const pendingCharges = pendingRequests.filter(r => 
+      r.status === 'pending' && 
+      r.missingInfo.type === 'amount'
+    );
+    
+    return matchAmountToPendingCharge(amounts, pendingCharges);
+  },
+  
+  // Combine original context with new information
+  combineContexts: (originalRequest, completionInfo) => ({
+    ...originalRequest.extractedEntities,
+    amounts: [completionInfo.amount],
+    readyForSnappy: true
+  })
+};
+```
+
+**CLI Commands for Outstanding Questions**:
+```bash
+node context.js pending list                    # List all pending requests
+node context.js pending summary                 # Project breakdown & age analysis  
+node context.js pending show <request-id>       # Detailed request information
+node context.js pending cleanup                 # Remove old completed requests
+```
+
+**Snappy Integration Workflow**:
+1. **Incomplete Query** → Create pending request with project context
+2. **Completion Detection** → Automatically match new info to pending request
+3. **Snappy Push** → Create/update project with expense details
+4. **Audit Trail** → Full transaction history in both systems
+
+### 7. Smart Router Architecture (Sep 27 Evening Breakthrough)
+
+**Problem**: Context System creates new projects instead of finding existing ones. Missing "Snappy-aware query processing."
+
+**Solution**: Context DB as Smart Router + Source Systems for Structured Data
+
+```javascript
+// Data Source Registry - Context DB knows WHERE data lives
+const dataSourceRegistry = {
+  "project-costs": {
+    source: "snappy",
+    command: "node snappy.js costs list --project {project-id} --format json",
+    entityTypes: ["amounts", "materials", "labor"]
+  },
+  "snappy-projects": {
+    source: "snappy", 
+    command: "node snappy.js list projects --format json",
+    entityTypes: ["projects", "people", "locations"]
+  },
+  "command-signatures": {
+    source: "context-cli",
+    command: "node context.js --help --format json",
+    entityTypes: ["commands", "parameters"]
+  }
+};
+```
+
+**Smart Query Processing**:
+```javascript
+// Enhanced query flow with external discovery
+const smartQueryFlow = {
+  1: "Parse query: 'I bought screws for John's deck'",
+  2: "Check Context DB for John + deck relationships", 
+  3: "Query Snappy for existing projects (external discovery)",
+  4: "LLM match 'John's deck' to project names",
+  5: "Present options: 'Add to John Green deck project (Sep 23)?'",
+  6: "Update existing project instead of creating new one"
+};
+```
+
+**CLI Architecture**:
+```bash
+# Conceptual queries (Context DB relationships)
+node context.js query "What are cost components for John's deck?"
+
+# Structured data routing (Source Systems with full fidelity)
+node context.js data costs --project john-deck --format json | calculator
+
+# Smart discovery (Context DB + External Sources)
+node context.js discover projects --person john --location deck
+```
+
+**Implementation Priority**: DataSourceRouter component that makes Context DB intelligent about where to find structured data while maintaining relationship intelligence.
+
+### 7. Query Evolution System
 
 **Architecture**: Self-improving query system that tracks performance and evolves templates.
 

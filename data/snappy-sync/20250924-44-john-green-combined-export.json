@@ -1,0 +1,1394 @@
+{
+  "project": {
+    "id": "20250924-44-john-green-combined",
+    "name": "John Green - Combined: Toilet Repair + Deck Repair",
+    "status": "bid_prepared",
+    "lastModified": "2025-09-24",
+    "entities": {
+      "people": [
+        {
+          "name": "John Green",
+          "type": "client",
+          "role": "project_owner",
+          "confidence": 1,
+          "source": "project_metadata"
+        }
+      ],
+      "locations": [
+        {
+          "name": "30 days from the date list",
+          "type": "address",
+          "source": "bid.md",
+          "confidence": 0.9
+        },
+        {
+          "name": "6 treated pine board",
+          "type": "address",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.9
+        },
+        {
+          "name": "4 treated pine board",
+          "type": "address",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.9
+        },
+        {
+          "name": "82 material cost",
+          "type": "address",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.9
+        },
+        {
+          "name": "6 treated pine board",
+          "type": "address",
+          "source": "cost-breakdown.md",
+          "confidence": 0.9
+        },
+        {
+          "name": "4 treated pine board",
+          "type": "address",
+          "source": "cost-breakdown.md",
+          "confidence": 0.9
+        },
+        {
+          "name": "30 days and includes our customer satisfact",
+          "type": "address",
+          "source": "email-template.md",
+          "confidence": 0.9
+        },
+        {
+          "name": "30 days with our satisfact",
+          "type": "address",
+          "source": "email-template.md",
+          "confidence": 0.9
+        },
+        {
+          "name": "10 screws per deck board",
+          "type": "address",
+          "source": "measurements.md",
+          "confidence": 0.9
+        },
+        {
+          "name": "6 board",
+          "type": "address",
+          "source": "measurements.md",
+          "confidence": 0.9
+        },
+        {
+          "name": "1 Inspect",
+          "type": "address",
+          "source": "notes.md",
+          "confidence": 0.9
+        },
+        {
+          "name": "2 Inspect",
+          "type": "address",
+          "source": "notes.md",
+          "confidence": 0.9
+        }
+      ],
+      "materials": [
+        {
+          "name": "TOTAL BID",
+          "cost": 1,
+          "source": "bid-o.md",
+          "confidence": 0.8
+        },
+        {
+          "name": "Wax rings",
+          "cost": 15.16,
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.8
+        },
+        {
+          "name": "repair kits",
+          "cost": 54.12,
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.8
+        },
+        {
+          "name": "Toilet levers",
+          "cost": 21.66,
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.8
+        },
+        {
+          "name": "pine boards",
+          "cost": 130,
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.8
+        },
+        {
+          "name": "pine boards",
+          "cost": 25,
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.8
+        },
+        {
+          "name": "deck sealer",
+          "cost": 25,
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.8
+        },
+        {
+          "name": "concrete anchors",
+          "cost": 30,
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.8
+        },
+        {
+          "name": "Deck screws",
+          "cost": 30,
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.8
+        },
+        {
+          "name": "Dump fee",
+          "cost": 40,
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.8
+        },
+        {
+          "name": "Client Bill",
+          "cost": 1,
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.8
+        },
+        {
+          "name": "Material Cost",
+          "cost": 401.52,
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.8
+        },
+        {
+          "name": "Labor Profit",
+          "cost": 800.06,
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.8
+        },
+        {
+          "name": "Effective Rate",
+          "cost": 51.62,
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.8
+        },
+        {
+          "name": "Original Bid",
+          "cost": 1,
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.8
+        },
+        {
+          "name": "Discount Amount",
+          "cost": 184.12,
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.8
+        },
+        {
+          "name": "After Discount",
+          "cost": 615.94,
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.8
+        },
+        {
+          "name": "Materials charged",
+          "cost": 580,
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.8
+        },
+        {
+          "name": "cost claimed",
+          "cost": 663.82,
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.8
+        },
+        {
+          "name": "Final bid",
+          "cost": 1,
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.8
+        },
+        {
+          "name": "Materials subtotal",
+          "cost": 370.94,
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.8
+        },
+        {
+          "name": "with tax",
+          "cost": 401.52,
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.8
+        },
+        {
+          "name": "Wax rings",
+          "cost": 15.16,
+          "source": "cost-breakdown.md",
+          "confidence": 0.8
+        },
+        {
+          "name": "repair kits",
+          "cost": 54.12,
+          "source": "cost-breakdown.md",
+          "confidence": 0.8
+        },
+        {
+          "name": "Toilet levers",
+          "cost": 21.66,
+          "source": "cost-breakdown.md",
+          "confidence": 0.8
+        },
+        {
+          "name": "pine boards",
+          "cost": 130,
+          "source": "cost-breakdown.md",
+          "confidence": 0.8
+        },
+        {
+          "name": "pine boards",
+          "cost": 25,
+          "source": "cost-breakdown.md",
+          "confidence": 0.8
+        },
+        {
+          "name": "deck sealer",
+          "cost": 25,
+          "source": "cost-breakdown.md",
+          "confidence": 0.8
+        },
+        {
+          "name": "concrete anchors",
+          "cost": 30,
+          "source": "cost-breakdown.md",
+          "confidence": 0.8
+        },
+        {
+          "name": "Deck screws",
+          "cost": 30,
+          "source": "cost-breakdown.md",
+          "confidence": 0.8
+        },
+        {
+          "name": "Dump fee",
+          "cost": 40,
+          "source": "cost-breakdown.md",
+          "confidence": 0.8
+        },
+        {
+          "name": "Total Discount",
+          "cost": 184.12,
+          "source": "cost-breakdown.md",
+          "confidence": 0.8
+        },
+        {
+          "name": "of discount",
+          "cost": 184.12,
+          "source": "cost-breakdown.md",
+          "confidence": 0.8
+        },
+        {
+          "name": "of discount",
+          "cost": 0,
+          "source": "cost-breakdown.md",
+          "confidence": 0.8
+        },
+        {
+          "name": "project cost",
+          "cost": 1,
+          "source": "email-template.md",
+          "confidence": 0.8
+        }
+      ],
+      "timeline": [
+        {
+          "date": "2025-09-24",
+          "description": "DATE:      2025-09-24",
+          "source": "bid-o.md",
+          "confidence": 0.7
+        },
+        {
+          "date": "2025-10-24",
+          "description": "VALID UNTIL: 2025-10-24 (30 days from bid date)",
+          "source": "bid-o.md",
+          "confidence": 0.7
+        },
+        {
+          "date": "2025-09-24",
+          "description": "| 20250924-44 | 2025-09-24 | 2025-10-24 |",
+          "source": "bid.md",
+          "confidence": 0.7
+        },
+        {
+          "date": "2025-09-25",
+          "description": "**Date:** 2025-09-25",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.7
+        },
+        {
+          "date": "9/25/2025",
+          "description": "**Generated:** 9/25/2025, 10:19:57 AM",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.7
+        },
+        {
+          "date": "2025-09-24",
+          "description": "**Date**: 2025-09-24",
+          "source": "notes.md",
+          "confidence": 0.7
+        }
+      ],
+      "costs": [
+        {
+          "type": "material",
+          "description": "*Labor**",
+          "amount": 375,
+          "source": "cost-breakdown.md",
+          "confidence": 0.9
+        },
+        {
+          "type": "material",
+          "description": "Wax rings",
+          "amount": 15.16,
+          "source": "cost-breakdown.md",
+          "confidence": 0.9
+        },
+        {
+          "type": "material",
+          "description": "Float repair kits",
+          "amount": 54.12,
+          "source": "cost-breakdown.md",
+          "confidence": 0.9
+        },
+        {
+          "type": "material",
+          "description": "Toilet levers",
+          "amount": 21.66,
+          "source": "cost-breakdown.md",
+          "confidence": 0.9
+        },
+        {
+          "type": "material",
+          "description": "**Materials Subtotal**",
+          "amount": 90.94,
+          "source": "cost-breakdown.md",
+          "confidence": 0.9
+        },
+        {
+          "type": "material",
+          "description": "*Project 1 Total**",
+          "amount": 465.94,
+          "source": "cost-breakdown.md",
+          "confidence": 0.9
+        },
+        {
+          "type": "material",
+          "description": "*Labor**",
+          "amount": 400,
+          "source": "cost-breakdown.md",
+          "confidence": 0.9
+        },
+        {
+          "type": "material",
+          "description": "14 8' 1x6 treated pine boards",
+          "amount": 130,
+          "source": "cost-breakdown.md",
+          "confidence": 0.9
+        },
+        {
+          "type": "material",
+          "description": "5 8' 2x4 treated pine boards",
+          "amount": 25,
+          "source": "cost-breakdown.md",
+          "confidence": 0.9
+        },
+        {
+          "type": "material",
+          "description": "1 gallon deck sealer",
+          "amount": 25,
+          "source": "cost-breakdown.md",
+          "confidence": 0.9
+        },
+        {
+          "type": "material",
+          "description": "Tapcon concrete anchors",
+          "amount": 30,
+          "source": "cost-breakdown.md",
+          "confidence": 0.9
+        },
+        {
+          "type": "material",
+          "description": "Deck screws",
+          "amount": 30,
+          "source": "cost-breakdown.md",
+          "confidence": 0.9
+        },
+        {
+          "type": "material",
+          "description": "Dump fee",
+          "amount": 40,
+          "source": "cost-breakdown.md",
+          "confidence": 0.9
+        },
+        {
+          "type": "material",
+          "description": "**Materials Subtotal**",
+          "amount": 280,
+          "source": "cost-breakdown.md",
+          "confidence": 0.9
+        },
+        {
+          "type": "material",
+          "description": "*Project 2 Total**",
+          "amount": 680,
+          "source": "cost-breakdown.md",
+          "confidence": 0.9
+        },
+        {
+          "type": "material",
+          "description": "*LABOR**",
+          "amount": 775,
+          "source": "cost-breakdown.md",
+          "confidence": 0.9
+        },
+        {
+          "type": "material",
+          "description": "*MATERIALS**",
+          "amount": 580,
+          "source": "cost-breakdown.md",
+          "confidence": 0.9
+        },
+        {
+          "type": "material",
+          "description": "*Subtotal**",
+          "amount": 1,
+          "source": "cost-breakdown.md",
+          "confidence": 0.9
+        },
+        {
+          "type": "material",
+          "description": "*TOTAL BID**",
+          "amount": 1,
+          "source": "cost-breakdown.md",
+          "confidence": 0.9
+        },
+        {
+          "type": "material",
+          "description": "*Total Material Cost (with tax)**",
+          "amount": 663.82,
+          "source": "cost-breakdown.md",
+          "confidence": 0.9
+        },
+        {
+          "type": "material",
+          "description": "*Total Labor Revenue (before discount)**",
+          "amount": 775,
+          "source": "cost-breakdown.md",
+          "confidence": 0.9
+        },
+        {
+          "type": "material",
+          "description": "*Total Labor Hours**: 7.5 hours (toilet",
+          "amount": 375,
+          "source": "cost-breakdown.md",
+          "confidence": 0.9
+        },
+        {
+          "type": "material",
+          "description": "*Base Labor Rate**",
+          "amount": 50,
+          "source": "cost-breakdown.md",
+          "confidence": 0.9
+        },
+        {
+          "type": "material",
+          "description": "Total Discount",
+          "amount": 184.12,
+          "source": "cost-breakdown.md",
+          "confidence": 0.9
+        },
+        {
+          "type": "material",
+          "description": "Labor portion of discount",
+          "amount": 184.12,
+          "source": "cost-breakdown.md",
+          "confidence": 0.9
+        },
+        {
+          "type": "material",
+          "description": "Materials portion of discount",
+          "amount": 0,
+          "source": "cost-breakdown.md",
+          "confidence": 0.9
+        },
+        {
+          "type": "material",
+          "description": "*Actual Labor Revenue (after discount)**",
+          "amount": 590.88,
+          "source": "cost-breakdown.md",
+          "confidence": 0.9
+        },
+        {
+          "type": "material",
+          "description": "*Effective Labor Rate (after discount)**",
+          "amount": 38.12,
+          "source": "cost-breakdown.md",
+          "confidence": 0.9
+        },
+        {
+          "type": "material",
+          "description": "*Total Project Revenue**",
+          "amount": 1,
+          "source": "cost-breakdown.md",
+          "confidence": 0.9
+        }
+      ],
+      "tasks": [
+        {
+          "description": "BID                               *",
+          "status": "pending",
+          "source": "bid-o.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Toilet repairs: If toilet flange in floor is rusted out,",
+          "status": "pending",
+          "source": "bid-o.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Deck repair includes staining new boards and hauling away all project scraps",
+          "status": "pending",
+          "source": "bid-o.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Bid valid for 30 days from date above",
+          "status": "pending",
+          "source": "bid-o.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Final cost may vary if additional repairs are discovered",
+          "status": "pending",
+          "source": "bid-o.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Customer responsible for providing reasonable access to work area",
+          "status": "pending",
+          "source": "bid-o.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Cleanup and disposal of old parts included",
+          "status": "pending",
+          "source": "bid-o.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "In accordance with Texas tax law for residential repair and remodeling services,",
+          "status": "pending",
+          "source": "bid-o.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "**Payment Terms**: Payment due within 15 days of completion.",
+          "status": "pending",
+          "source": "bid.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "**Warranty**: Customer satisfaction guaranteed.",
+          "status": "pending",
+          "source": "bid.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "**Cleanup**: Cleanup and disposal of old parts included.",
+          "status": "pending",
+          "source": "bid.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "**Access**: Customer responsible for providing reasonable access to the work area.",
+          "status": "pending",
+          "source": "bid.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "**Validity**: This bid is valid for 30 days from the date listed above.",
+          "status": "pending",
+          "source": "bid.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "**Disclaimer**: Final cost may vary if additional repairs are discovered during the course of the work.",
+          "status": "pending",
+          "source": "bid.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "**Sales Tax**: In accordance with Texas tax law for residential repair and remodeling services, no sales tax is charged to customer (lump sum pricing).",
+          "status": "pending",
+          "source": "bid.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "**Expected Discount**: This discount is offered with the expectation that the project proceeds as planned. If unforeseen issues arise that require significant additional labor or materials, this discount may be adjusted.",
+          "status": "pending",
+          "source": "bid.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Wax rings: $15.16 (Home Depot) - toilet repair",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Float repair kits: $54.12 (Home Depot) - toilet repair",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Toilet levers: $21.66 (Home Depot) - toilet repair",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "14 8' 1x6 treated pine boards: $130.00 (Home Depot) - deck repair",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "5 8' 2x4 treated pine boards: $25.00 (Home Depot) - deck repair",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "1 gallon deck sealer: $25.00 (Home Depot) - deck repair",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Tapcon concrete anchors: $30.00 (Lowes) - deck repair",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Deck screws: $30.00 (Home Depot) - deck repair",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Dump fee: $40.00 - waste disposal",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Toilet repair: 7.5 hours @ $50.00/hour = $375.00 - completed",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Deck repair and installation: 8 hours @ $50.00/hour = $400.00 - pending",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Client Bill: $1,201.58",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Actual Material Cost: $401.52",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Labor Profit: $800.06",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Effective Rate: $51.62/hour",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "**Best Case (-10% time):** $57.35/hour",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "**Base Estimate:** $51.62/hour",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "**Worst Case (+20% time):** $43.01/hour",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Original Bid: $1,201.58",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Discount Amount: $184.12 (15.3% discount)",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "**Final Client Bill:** $1,017.46",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Labor Profit After Discount: $615.94",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "**Effective Rate with Discount:** $39.74/hour",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Subtotal = Sum of all material prices",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Tax = Subtotal × 8.25%",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Markup = Subtotal × 15.0%",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Client Charge = Subtotal + Markup",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Actual Cost = Subtotal + Tax",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Total Hours = Sum of all task hours",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Total Cost = Sum of (hours × rate) for each task",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Average Rate = Total Cost ÷ Total Hours",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Effective Rate = (Total Bill - Actual Material Cost) ÷ Labor Hours",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "All calculations use Texas sales tax rate of 8.25%",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Material markup of 15.0% applied for client billing",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Actual material cost includes tax paid by business",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Labor rates and hours can be adjusted before final bid",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Toilet repair materials already purchased and used",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Deck repair materials to be purchased upon approval",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Materials charged: $580.00 (unexplained calculation)",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Actual cost claimed: $663.82 (mathematical error)",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Final bid: $1,170.88 (with $184.12 discount)",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Materials subtotal: $370.94 ✓ (matches original)",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Proper 15% markup: $55.64 (vs original $209.06 unexplained buffer)",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Actual cost with tax: $401.52 (vs original $663.82 error)",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "**Corrected bid without discount:** $1,201.58",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "**With customer discount:** $1,017.46 (still profitable at $39.74/hour)",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Fixed mysterious $663.82 material cost error",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Applied standard 15% material markup instead of arbitrary buffer",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Maintained customer discount while ensuring profitability",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Clear formula documentation eliminates calculation errors",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Professional formatting ready for PDF generation",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "20250917-42 (Toilet Repair) - Completed",
+          "status": "pending",
+          "source": "cost-breakdown.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "20250923-43 (Deck Repair) - Pending",
+          "status": "pending",
+          "source": "cost-breakdown.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Wax rings: $15.16",
+          "status": "pending",
+          "source": "cost-breakdown.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Float repair kits: $54.12",
+          "status": "pending",
+          "source": "cost-breakdown.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Toilet levers: $21.66",
+          "status": "pending",
+          "source": "cost-breakdown.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "**Materials Subtotal**: $90.94",
+          "status": "pending",
+          "source": "cost-breakdown.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "14 8' 1x6 treated pine boards: $130.00",
+          "status": "pending",
+          "source": "cost-breakdown.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "5 8' 2x4 treated pine boards: $25.00",
+          "status": "pending",
+          "source": "cost-breakdown.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "1 gallon deck sealer: $25.00",
+          "status": "pending",
+          "source": "cost-breakdown.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Tapcon concrete anchors: $30.00",
+          "status": "pending",
+          "source": "cost-breakdown.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Deck screws: $30.00",
+          "status": "pending",
+          "source": "cost-breakdown.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Dump fee: $40.00",
+          "status": "pending",
+          "source": "cost-breakdown.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "**Materials Subtotal**: $280.00",
+          "status": "pending",
+          "source": "cost-breakdown.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Total Discount: $184.12",
+          "status": "pending",
+          "source": "cost-breakdown.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Labor portion of discount: $184.12 (100% - no profit on materials)",
+          "status": "pending",
+          "source": "cost-breakdown.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Materials portion of discount: $0.00 (materials sold at cost)",
+          "status": "pending",
+          "source": "cost-breakdown.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Calculate total labor hours across all project components",
+          "status": "pending",
+          "source": "cost-breakdown.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Divide total labor revenue by total hours to get effective hourly rate",
+          "status": "pending",
+          "source": "cost-breakdown.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "This helps evaluate project profitability and pricing consistency",
+          "status": "pending",
+          "source": "cost-breakdown.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Toilet repair materials already purchased and used",
+          "status": "pending",
+          "source": "cost-breakdown.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Deck repair materials to be purchased upon approval",
+          "status": "pending",
+          "source": "cost-breakdown.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Combined discount reflects customer loyalty and project bundling",
+          "status": "pending",
+          "source": "cost-breakdown.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "No sales tax charged to customer per Texas residential repair guidelines",
+          "status": "pending",
+          "source": "cost-breakdown.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Sales tax on materials is business expense, not pass-through charge",
+          "status": "pending",
+          "source": "cost-breakdown.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Deck repair and restoration",
+          "status": "pending",
+          "source": "email-template.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Total project cost: $1,170.88",
+          "status": "pending",
+          "source": "email-template.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Timeline: [Insert timeline]",
+          "status": "pending",
+          "source": "email-template.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Includes all materials and labor",
+          "status": "pending",
+          "source": "email-template.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "thru 2 5/8 sleeper",
+          "status": "pending",
+          "source": "measurements.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "stain color sequoia red",
+          "status": "pending",
+          "source": "measurements.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "6 boards x 2 squares x 4 screws each",
+          "status": "pending",
+          "source": "measurements.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "is it refinishable?",
+          "status": "pending",
+          "source": "measurements.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Replace wax rings and other gaskets on 2 toilets",
+          "status": "pending",
+          "source": "notes.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "**Status**: Payment received, project complete",
+          "status": "pending",
+          "source": "notes.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "**Original Cost**: $327.13",
+          "status": "pending",
+          "source": "notes.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "**Current condition**: [Completed]",
+          "status": "pending",
+          "source": "notes.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "**Wax ring condition**: [Replaced]",
+          "status": "pending",
+          "source": "notes.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "**Flange condition**: [Inspected]",
+          "status": "pending",
+          "source": "notes.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "**Float mechanism**: [Serviced as needed]",
+          "status": "pending",
+          "source": "notes.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "**Lever condition**: [Serviced as needed]",
+          "status": "pending",
+          "source": "notes.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "**Current condition**: [Completed]",
+          "status": "pending",
+          "source": "notes.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "**Wax ring condition**: [Replaced]",
+          "status": "pending",
+          "source": "notes.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "**Flange condition**: [Inspected]",
+          "status": "pending",
+          "source": "notes.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "**Float mechanism**: [Serviced as needed]",
+          "status": "pending",
+          "source": "notes.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "**Lever condition**: [Serviced as needed]",
+          "status": "pending",
+          "source": "notes.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Deck repair, including placing new supports and deck boards to fill an 8ft x 8ft gap",
+          "status": "pending",
+          "source": "notes.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Staining the new boards",
+          "status": "pending",
+          "source": "notes.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Hauling away all project scraps",
+          "status": "pending",
+          "source": "notes.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "**Status**: Awaiting client approval",
+          "status": "pending",
+          "source": "notes.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "**Original Proposed Cost**: $500.00",
+          "status": "pending",
+          "source": "notes.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "**Gap size**: 8ft x 8ft",
+          "status": "pending",
+          "source": "notes.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "**Materials needed**: Treated pine boards, sleepers, sealer, fasteners",
+          "status": "pending",
+          "source": "notes.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "**Labor estimate**: 8 hours",
+          "status": "pending",
+          "source": "notes.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "**Special requirements**: Staining and cleanup included",
+          "status": "pending",
+          "source": "notes.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Toilet repairs (completed work to be included in combined billing)",
+          "status": "pending",
+          "source": "notes.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Deck repair work (pending approval)",
+          "status": "pending",
+          "source": "notes.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "**Timing preferences**: [To be confirmed]",
+          "status": "pending",
+          "source": "notes.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "**Access arrangements**: [Previous access was satisfactory]",
+          "status": "pending",
+          "source": "notes.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "**Special concerns**: [None noted]",
+          "status": "pending",
+          "source": "notes.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "**Additional requests**: [Combining projects for simplified billing]",
+          "status": "pending",
+          "source": "notes.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "[ ] Toilet work - before/after (from completed project)",
+          "status": "pending",
+          "source": "notes.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "[ ] Deck area - current condition",
+          "status": "pending",
+          "source": "notes.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "[ ] Deck gap measurements",
+          "status": "pending",
+          "source": "notes.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "[ ] Access area/workspace for deck repair",
+          "status": "pending",
+          "source": "notes.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "[X] Combined bid prepared",
+          "status": "pending",
+          "source": "notes.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "[ ] Customer review of combined bid",
+          "status": "pending",
+          "source": "notes.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "[ ] Schedule confirmation for any remaining work",
+          "status": "pending",
+          "source": "notes.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "[ ] Materials ordering for deck repair (if approved)",
+          "status": "pending",
+          "source": "notes.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Toilet repair work was completed successfully under original bid 20250917-42",
+          "status": "pending",
+          "source": "notes.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Deck repair work is pending under this combined bid",
+          "status": "pending",
+          "source": "notes.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Customer has been satisfied with previous work quality",
+          "status": "pending",
+          "source": "notes.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Combined billing provides customer with simplified payment process",
+          "status": "pending",
+          "source": "notes.md",
+          "confidence": 0.6
+        }
+      ],
+      "documents": []
+    },
+    "metadata": {
+      "clientName": "John Green",
+      "projectType": "Combined: Toilet Repair + Deck Repair",
+      "createdAt": "2025-09-24",
+      "updatedAt": "2025-09-24"
+    }
+  },
+  "syncHash": "eb97943d2e3393eafec9a5a6c26f385840cffe32221447dbe4c8e6cc866cd353",
+  "ciLastSync": "2025-09-27T18:45:57.737Z",
+  "exportedAt": "2025-09-27T18:45:57.737Z"
+}

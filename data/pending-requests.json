@@ -1,0 +1,194 @@
+{
+  "req-1759013914639-ffkzq4ane": {
+    "id": "req-1759013914639-ffkzq4ane",
+    "conversationId": "cli-user",
+    "originalQuery": "I bought screws for John's deck",
+    "intent": {
+      "type": "add_charge",
+      "confidence": 0.3333333333333333,
+      "patterns_matched": []
+    },
+    "extractedEntities": {
+      "people": [
+        {
+          "name": "John",
+          "role": "owner",
+          "confidence": 0.9
+        }
+      ],
+      "locations": [
+        {
+          "name": "John's deck",
+          "type": "project location",
+          "confidence": 0.9
+        }
+      ],
+      "amounts": [],
+      "items": [
+        {
+          "name": "screws",
+          "category": "materials",
+          "confidence": 0.9
+        }
+      ],
+      "projects": [],
+      "tasks": [],
+      "dates": []
+    },
+    "missingInfo": {
+      "type": "amount",
+      "question": "I need to know the amount to charge. Could you specify the cost?",
+      "requiredEntity": "amount",
+      "context": "financial_transaction"
+    },
+    "status": "completed",
+    "createdAt": "2025-09-27T22:58:34.639Z",
+    "lastUpdated": "2025-09-27T22:59:16.946Z",
+    "attempts": 1,
+    "questionAsked": "I need to know the amount to charge. Could you specify the cost?",
+    "projectContext": {
+      "projectName": "John's deck",
+      "inferredFromLocation": true,
+      "inferredFromPerson": true,
+      "explicitProject": false
+    },
+    "completedAt": "2025-09-27T22:59:16.946Z",
+    "completion": {
+      "isComplete": true,
+      "providedInfo": {
+        "amount": {
+          "value": 0,
+          "currency": "USD",
+          "confidence": 0.9
+        }
+      },
+      "combinedData": {
+        "people": [
+          {
+            "name": "John",
+            "role": "owner",
+            "confidence": 0.9
+          }
+        ],
+        "locations": [
+          {
+            "name": "John's deck",
+            "type": "project location",
+            "confidence": 0.9
+          }
+        ],
+        "amounts": [
+          {
+            "value": 0,
+            "currency": "USD",
+            "confidence": 0.9
+          }
+        ],
+        "items": [
+          {
+            "name": "screws",
+            "category": "materials",
+            "confidence": 0.9
+          }
+        ],
+        "projects": [],
+        "tasks": [],
+        "dates": []
+      },
+      "readyForSnappy": [
+        {
+          "name": "John's deck",
+          "type": "project location",
+          "confidence": 0.9
+        }
+      ]
+    }
+  },
+  "req-1759014702145-oeixeupqk": {
+    "id": "req-1759014702145-oeixeupqk",
+    "conversationId": "cli-user",
+    "originalQuery": "I need lumber for the garage project",
+    "intent": {
+      "type": "add_charge",
+      "confidence": 0.3333333333333333,
+      "patterns_matched": []
+    },
+    "extractedEntities": {
+      "people": [],
+      "locations": [],
+      "amounts": [],
+      "items": [
+        {
+          "name": "lumber",
+          "category": "material",
+          "confidence": 0.9
+        }
+      ],
+      "projects": [
+        {
+          "name": "garage project",
+          "type": "construction",
+          "confidence": 0.9
+        }
+      ],
+      "tasks": [],
+      "dates": []
+    },
+    "missingInfo": {
+      "type": "amount",
+      "question": "I need to know the amount to charge. Could you specify the cost?",
+      "requiredEntity": "amount",
+      "context": "financial_transaction"
+    },
+    "status": "completed",
+    "createdAt": "2025-09-27T23:11:42.145Z",
+    "lastUpdated": "2025-09-27T23:11:53.596Z",
+    "attempts": 1,
+    "questionAsked": "I need to know the amount to charge. Could you specify the cost?",
+    "projectContext": {
+      "projectName": "garage project",
+      "inferredFromLocation": false,
+      "inferredFromPerson": false,
+      "explicitProject": true
+    },
+    "completedAt": "2025-09-27T23:11:53.596Z",
+    "completion": {
+      "isComplete": true,
+      "providedInfo": {
+        "amount": {
+          "value": 150,
+          "currency": "USD",
+          "confidence": 0.9
+        }
+      },
+      "combinedData": {
+        "people": [],
+        "locations": [],
+        "amounts": [
+          {
+            "value": 150,
+            "currency": "USD",
+            "confidence": 0.9
+          }
+        ],
+        "items": [
+          {
+            "name": "lumber",
+            "category": "material",
+            "confidence": 0.9
+          }
+        ],
+        "projects": [
+          {
+            "name": "garage project",
+            "type": "construction",
+            "confidence": 0.9
+          }
+        ],
+        "tasks": [],
+        "dates": []
+      },
+      "readyForSnappy": true
+    }
+  }
+}

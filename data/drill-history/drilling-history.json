@@ -1,0 +1,11 @@
+[
+  {
+    "entity": "Microsoft Defender",
+    "timestamp": "2025-09-27T18:46:36.435Z",
+    "depth": 2,
+    "totalNodes": 13,
+    "confidence": 0.7625,
+    "duration": 5347,
+    "domain": "cybersecurity"
+  }
+]

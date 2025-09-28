@@ -33,13 +33,16 @@ export class LLMClient {
     }
 
     initOpenAI() {
-        if (!process.env.OPENAI_API_KEY || process.env.OPENAI_API_KEY.includes('your_')) {
+        // Check for both OPENAI_API_KEY and OPENAI_KEY
+        const apiKey = process.env.OPENAI_API_KEY || process.env.OPENAI_KEY;
+        
+        if (!apiKey || apiKey.includes('your_')) {
             console.log(chalk.yellow('⚠️  OpenAI API key not configured'));
             return null;
         }
         
         return new OpenAI({
-            apiKey: process.env.OPENAI_API_KEY,
+            apiKey: apiKey,
             baseURL: process.env.OPENAI_BASE_URL || 'https://api.openai.com/v1'
         });
     }

@@ -48,6 +48,12 @@ I reviewed 18 files in sequence with the goal of understanding your search for a
 ### Sep 23: Relationship Intelligence Focus
 • **notes2.md** - Entity consolidation problems (multiple SIEM entities need smart merging)
 • **ENTITY-RELATIONSHIPS-PLAN.md** - Comprehensive plan for semantic relationships beyond co-occurrence
+
+### Sep 27: Persistent Conversation & Snappy Integration Breakthrough
+• **Persistent Conversation Management** - Cross-session memory for incomplete queries and outstanding questions
+• **Pending Request System** - Automatic tracking of incomplete interactions with intelligent completion detection
+• **Snappy Integration** - Seamless expense tracking from natural language to project management system
+• **Outstanding Question Management** - CLI commands to list, view, and manage pending requests across projects
 • **notes-gui.md** - UI interaction issues, need for backend-driven operations
 • **notes-entities.md** - Specific relationship types needed (spatial, functional, temporal, ownership)
 
@@ -78,6 +84,13 @@ You are searching for a **Context Management System** that:
 • **Temporal context** - When things happened, how they evolved
 • **Functional understanding** - Who uses what, who manages what, what integrates with what
 
+### For Persistent Conversation Management (Sep 27 Breakthrough)
+• **Cross-session memory** - Incomplete queries persist across CLI sessions and conversations
+• **Outstanding question tracking** - System remembers what information is missing and asks for it
+• **Intelligent completion detection** - Automatically matches new information to pending requests
+• **Project-aware context** - Questions are associated with specific projects and contexts
+• **Snappy integration** - Completed requests automatically update project management system
+
 ## The Missing Piece
 
 The web interface is for **data alignment validation** - ensuring the system correctly understands your information. But the real value is the **API that agents can use** to get intelligent context for decision-making and action-taking.
@@ -88,5 +101,45 @@ You need a system where an agent receiving "I bought more screws for John's deck
 • Material requirements and budget
 • Related people (contractors, suppliers)
 • Billing context and project accounting
+
+## Outstanding Question Management System
+
+The Sep 27 breakthrough includes a comprehensive system for managing incomplete queries and outstanding questions:
+
+### CLI Commands for Pending Requests
+```bash
+# List all pending requests
+node context.js pending list
+
+# Show summary with project breakdown and age analysis
+node context.js pending summary
+
+# View detailed information about a specific request
+node context.js pending show <request-id>
+
+# Clean up old completed requests
+node context.js pending cleanup
+```
+
+### Workflow Example
+1. **Incomplete Query**: `"I bought screws for John's deck"`
+   - System asks: "I need to know the amount to charge. Could you specify the cost?"
+   - Creates pending request with full context (John, screws, deck project)
+   - Stores in persistent conversation memory
+
+2. **Question Management**: `node context.js pending list`
+   - Shows all outstanding questions across projects
+   - Displays project context, creation time, and status
+   - Enables project managers to track missing information
+
+3. **Completion**: `"The cost was $30"`
+   - System detects completion of pending request
+   - Automatically combines original context with new amount
+   - Pushes complete expense to Snappy project management
+
+4. **Integration**: Snappy project updated with:
+   - Cost breakdown: $30 for screws
+   - Project notes: Full transaction details
+   - Metadata: Context system integration tracking
 
 This is **contextual intelligence** - not just finding information, but assembling it into actionable understanding for both human and AI decision-making.

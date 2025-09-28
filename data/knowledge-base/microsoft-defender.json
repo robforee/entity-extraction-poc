@@ -1,0 +1,200 @@
+{
+  "entity": "Microsoft Defender",
+  "domain": "cybersecurity",
+  "startTime": "2025-09-27T18:46:36.435Z",
+  "hierarchy": {
+    "name": "Microsoft Defender",
+    "type": "Security Suite",
+    "level": 0,
+    "confidence": 0.95,
+    "children": [
+      {
+        "name": "Defender for Endpoint",
+        "type": "component",
+        "level": 1,
+        "confidence": 0.9,
+        "children": [
+          {
+            "name": "Defender for Endpoint Component A",
+            "type": "component",
+            "level": 2,
+            "confidence": 0.6,
+            "children": []
+          },
+          {
+            "name": "Defender for Endpoint Component B",
+            "type": "component",
+            "level": 2,
+            "confidence": 0.6,
+            "children": []
+          }
+        ]
+      },
+      {
+        "name": "Defender for Office 365",
+        "type": "component",
+        "level": 1,
+        "confidence": 0.9,
+        "children": [
+          {
+            "name": "Defender for Office 365 Component A",
+            "type": "component",
+            "level": 2,
+            "confidence": 0.6,
+            "children": []
+          },
+          {
+            "name": "Defender for Office 365 Component B",
+            "type": "component",
+            "level": 2,
+            "confidence": 0.6,
+            "children": []
+          }
+        ]
+      },
+      {
+        "name": "Defender for Identity",
+        "type": "component",
+        "level": 1,
+        "confidence": 0.9,
+        "children": [
+          {
+            "name": "Defender for Identity Component A",
+            "type": "component",
+            "level": 2,
+            "confidence": 0.6,
+            "children": []
+          },
+          {
+            "name": "Defender for Identity Component B",
+            "type": "component",
+            "level": 2,
+            "confidence": 0.6,
+            "children": []
+          }
+        ]
+      },
+      {
+        "name": "Defender for Cloud",
+        "type": "component",
+        "level": 1,
+        "confidence": 0.9,
+        "children": [
+          {
+            "name": "Defender for Cloud Component A",
+            "type": "component",
+            "level": 2,
+            "confidence": 0.6,
+            "children": []
+          },
+          {
+            "name": "Defender for Cloud Component B",
+            "type": "component",
+            "level": 2,
+            "confidence": 0.6,
+            "children": []
+          }
+        ]
+      }
+    ]
+  },
+  "knowledge": {
+    "Microsoft Defender": {
+      "category": "Security Suite",
+      "type": "Endpoint Protection Platform",
+      "vendor": "Microsoft",
+      "description": "Comprehensive security platform for enterprise environments",
+      "capabilities": [
+        "Threat Detection",
+        "Incident Response",
+        "Vulnerability Management"
+      ],
+      "components": [
+        "Defender for Endpoint",
+        "Defender for Office 365",
+        "Defender for Identity"
+      ],
+      "integrations": [
+        "Azure Sentinel",
+        "Microsoft 365",
+        "Windows Security"
+      ],
+      "deployment": "Cloud-based with on-premises components"
+    },
+    "Defender for Endpoint": {
+      "category": "Security Component",
+      "parent": "Microsoft Defender",
+      "capabilities": [
+        "Endpoint Detection",
+        "Response Automation",
+        "Threat Hunting"
+      ]
+    },
+    "Defender for Office 365": {
+      "category": "Security Component",
+      "parent": "Microsoft Defender",
+      "capabilities": [
+        "Email Security",
+        "Safe Attachments",
+        "Safe Links"
+      ]
+    },
+    "Defender for Identity": {
+      "category": "Security Component",
+      "parent": "Microsoft Defender",
+      "capabilities": [
+        "Identity Monitoring",
+        "Lateral Movement Detection",
+        "Compromised Credentials"
+      ]
+    },
+    "Defender for Cloud": {
+      "category": "Security Component",
+      "parent": "Microsoft Defender",
+      "capabilities": [
+        "Cloud Security Posture",
+        "Workload Protection",
+        "Compliance Monitoring"
+      ]
+    },
+    "Defender for Endpoint Component A": {
+      "category": "Generic Component",
+      "parent": "Defender for Endpoint"
+    },
+    "Defender for Endpoint Component B": {
+      "category": "Generic Component",
+      "parent": "Defender for Endpoint"
+    },
+    "Defender for Office 365 Component A": {
+      "category": "Generic Component",
+      "parent": "Defender for Office 365"
+    },
+    "Defender for Office 365 Component B": {
+      "category": "Generic Component",
+      "parent": "Defender for Office 365"
+    },
+    "Defender for Identity Component A": {
+      "category": "Generic Component",
+      "parent": "Defender for Identity"
+    },
+    "Defender for Identity Component B": {
+      "category": "Generic Component",
+      "parent": "Defender for Identity"
+    },
+    "Defender for Cloud Component A": {
+      "category": "Generic Component",
+      "parent": "Defender for Cloud"
+    },
+    "Defender for Cloud Component B": {
+      "category": "Generic Component",
+      "parent": "Defender for Cloud"
+    }
+  },
+  "confidence": 0.7625,
+  "depth": 2,
+  "totalNodes": 13,
+  "endTime": "2025-09-27T18:46:41.782Z",
+  "duration": 5347,
+  "lastUpdated": "2025-09-27T18:46:41.782Z",
+  "version": "1.0"
+}
