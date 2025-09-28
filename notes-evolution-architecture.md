@@ -1,5 +1,8 @@
 # Context Intelligence System - Architecture Notes
 
+**PERSPECTIVE: SYSTEM ARCHITECT/ENGINEERING DESIGN**  
+*Written for system architects and senior developers who need to understand the deep technical architecture. Focuses on component design, integration patterns, performance optimization, and quality assurance systems.*
+
 ## Core Architectural Principles
 
 ### 1. Hierarchical Entity Understanding

@@ -1,8 +1,9 @@
 /**
- * API Client Example
+ * Smart Router API Client
  * 
- * Demonstrates how to interact with the Contextual Intelligence API
+ * Demonstrates how to interact with the Smart Router Contextual Intelligence API
  * using both REST endpoints and WebSocket connections.
+ * Includes Smart Router specific endpoints for project discovery and structured data routing.
  */
 
 import WebSocket from 'ws';
@@ -116,6 +117,96 @@ class ContextualIntelligenceClient {
       console.error(chalk.red(`❌ Get session info failed: ${error.message}`));
       throw error;
     }
+  }
+
+  /**
+   * Smart Router Methods
+   */
+
+  /**
+   * Request structured data routing
+   */
+  async requestData(type, options = {}) {
+    const { project, format = 'json' } = options;
+
+    try {
+      const response = await fetch(`${this.baseUrl}/api/data/${type}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          project,
+          format
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      }
+
+      return await response.json();
+
+    } catch (error) {
+      console.error(chalk.red(`❌ Data request failed: ${error.message}`));
+      throw error;
+    }
+  }
+
+  /**
+   * Smart discovery request
+   */
+  async discover(type, options = {}) {
+    const { person, location, project, entity } = options;
+
+    try {
+      const response = await fetch(`${this.baseUrl}/api/discover/${type}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          person,
+          location,
+          project,
+          entity
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      }
+
+      return await response.json();
+
+    } catch (error) {
+      console.error(chalk.red(`❌ Discovery request failed: ${error.message}`));
+      throw error;
+    }
+  }
+
+  /**
+   * Smart Router query with enhanced response parsing
+   */
+  async smartQuery(query, options = {}) {
+    const result = await this.sendQuery(query, options);
+    
+    // Parse Smart Router specific response format
+    const smartRouterInfo = {
+      query: result.query,
+      smartRouter: result.smartRouter || {},
+      discoveries: result.discoveries || {},
+      connections: result.connections || {},
+      confidence: result.smartRouter?.overallConfidence || 0,
+      processingTime: result.smartRouter?.processingTime || 0,
+      projectsFound: result.discoveries?.snappyProjects || 0,
+      response: result.response?.primary || 'No response available'
+    };
+
+    return {
+      ...result,
+      smartRouterInfo
+    };
   }
 
   /**
@@ -293,27 +384,55 @@ class ContextualIntelligenceClient {
     console.log(chalk.cyan(`Entities: ${result.intelligence.entities}`));
     console.log(chalk.cyan(`Processing Time: ${result.metadata.processingTime}ms`));
     
+    // Smart Router specific information
+    if (result.smartRouter) {
+      console.log(chalk.magenta(`\n🧠 Smart Router:`));
+      console.log(chalk.magenta(`   Version: ${result.smartRouter.version}`));
+      console.log(chalk.magenta(`   Steps Completed: ${result.smartRouter.stepsCompleted}/5`));
+      console.log(chalk.magenta(`   Overall Confidence: ${(result.smartRouter.overallConfidence * 100).toFixed(1)}%`));
+    }
+
+    // Discovery information
+    if (result.discoveries && result.discoveries.snappyProjects > 0) {
+      console.log(chalk.blue(`\n🔍 Discoveries:`));
+      console.log(chalk.blue(`   Snappy Projects Found: ${result.discoveries.snappyProjects}`));
+      console.log(chalk.blue(`   Project Details: ${result.discoveries.projectDetails}`));
+      
+      if (result.discoveries.projects && result.discoveries.projects.length > 0) {
+        console.log(chalk.blue(`   Top Projects:`));
+        result.discoveries.projects.slice(0, 3).forEach(project => {
+          console.log(chalk.blue(`     • ${project.name} (${(project.matchConfidence * 100).toFixed(0)}% match)`));
+        });
+      }
+    }
+
+    // Connection information
+    if (result.connections) {
+      const totalConnections = (result.connections.entityConnections || 0) + 
+                              (result.connections.temporalConnections || 0) + 
+                              (result.connections.spatialConnections || 0);
+      if (totalConnections > 0) {
+        console.log(chalk.green(`\n🔗 Intelligent Connections: ${totalConnections}`));
+        console.log(chalk.green(`   Entity: ${result.connections.entityConnections || 0}`));
+        console.log(chalk.green(`   Temporal: ${result.connections.temporalConnections || 0}`));
+        console.log(chalk.green(`   Spatial: ${result.connections.spatialConnections || 0}`));
+      }
+    }
+    
     console.log(chalk.yellow(`\n💬 Response:`));
     console.log(`   ${result.response.primary}`);
     
-    if (result.response.contextualInsights.length > 0) {
-      console.log(chalk.yellow(`\n🔍 Contextual Insights:`));
-      result.response.contextualInsights.forEach(insight => {
+    if (result.response.insights && result.response.insights.length > 0) {
+      console.log(chalk.yellow(`\n🔍 Insights:`));
+      result.response.insights.forEach(insight => {
         console.log(`   • ${insight}`);
       });
     }
     
-    if (result.response.recommendations.length > 0) {
+    if (result.response.recommendations && result.response.recommendations.length > 0) {
       console.log(chalk.yellow(`\n💡 Recommendations:`));
       result.response.recommendations.forEach(rec => {
         console.log(`   • ${rec}`);
-      });
-    }
-    
-    if (result.actions.length > 0) {
-      console.log(chalk.yellow(`\n⚡ Actions:`));
-      result.actions.forEach((action, index) => {
-        console.log(`   ${index + 1}. ${action.type}: ${JSON.stringify(action, null, 2).slice(0, 100)}...`);
       });
     }
     
@@ -332,33 +451,55 @@ class ContextualIntelligenceClient {
 }
 
 /**
- * Demo function showing API usage
+ * Demo function showing Smart Router API usage
  */
 async function runDemo() {
-  console.log(chalk.blue.bold('🚀 Contextual Intelligence API Demo'));
-  console.log(chalk.blue.bold('==================================='));
+  console.log(chalk.blue.bold('🚀 Smart Router Contextual Intelligence API Demo'));
+  console.log(chalk.blue.bold('==============================================='));
   console.log('');
 
   const client = new ContextualIntelligenceClient({
-    baseUrl: 'http://localhost:3000',
+    baseUrl: 'http://localhost:3001', // Smart Router API server
     userId: 'demo_user',
     sessionId: 'demo_session'
   });
 
   try {
-    // Demo 1: REST API Query
-    console.log(chalk.yellow.bold('📋 Demo 1: REST API Contextual Query'));
-    console.log(chalk.gray('─'.repeat(50)));
+    // Demo 1: Smart Router Query - The Breakthrough Test
+    console.log(chalk.yellow.bold('📋 Demo 1: Smart Router Breakthrough - Project Discovery'));
+    console.log(chalk.gray('─'.repeat(60)));
     
-    const restResult = await client.sendQuery("I'm at John's, add a $30 charge for more screws", {
-      currentLocation: "John's House - 123 Main St",
-      currentProject: "Kitchen Renovation",
-      executeActions: false
-    });
+    const smartResult = await client.smartQuery("I bought screws for Johns deck");
+    client.displayQueryResult(smartResult);
+
+    // Demo 2: Structured Data Routing
+    console.log(chalk.yellow.bold('📋 Demo 2: Structured Data Routing'));
+    console.log(chalk.gray('─'.repeat(60)));
     
-    console.log(chalk.green(`✅ REST Query completed in ${restResult.metadata.processingTime}ms`));
-    console.log(chalk.cyan(`Intelligence: ${restResult.intelligence.level} (${(restResult.intelligence.confidence * 100).toFixed(1)}%)`));
-    console.log(chalk.cyan(`Response: ${restResult.response.primary}`));
+    const projectsData = await client.requestData('projects');
+    console.log(chalk.green('✅ Projects Data Retrieved:'));
+    console.log(`   Data Type: ${projectsData.dataType}`);
+    console.log(`   Processing Time: ${projectsData.metadata.processingTime}ms`);
+    console.log(`   Confidence: ${(projectsData.metadata.confidence * 100).toFixed(1)}%`);
+    console.log('');
+
+    // Demo 3: Smart Discovery
+    console.log(chalk.yellow.bold('📋 Demo 3: Smart Discovery - Find John\'s Projects'));
+    console.log(chalk.gray('─'.repeat(60)));
+    
+    const discovery = await client.discover('projects', { person: 'John' });
+    console.log(chalk.green('✅ Discovery Results:'));
+    console.log(`   Discovery Type: ${discovery.discoveryType}`);
+    console.log(`   Projects Found: ${discovery.discoveries.snappyProjects?.length || 0}`);
+    console.log(`   Confidence: ${(discovery.confidence * 100).toFixed(1)}%`);
+    console.log(`   Processing Time: ${discovery.metadata.processingTime}ms`);
+    
+    if (discovery.discoveries.snappyProjects?.length > 0) {
+      console.log(chalk.blue('   Top Projects:'));
+      discovery.discoveries.snappyProjects.slice(0, 3).forEach(project => {
+        console.log(chalk.blue(`     • ${project.name} (${project.status})`));
+      });
+    }
     console.log('');
 
     // Demo 2: WebSocket Connection

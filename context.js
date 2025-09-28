@@ -13,6 +13,7 @@ import { HierarchicalEntityManager } from './src/entities/hierarchical-entity-ma
 import { QueryTemplateManager } from './src/queries/query-template-manager.js';
 import { KnowledgeDriller } from './src/knowledge/knowledge-driller.js';
 import { EntityConsolidator } from './src/consolidation/entity-consolidator.js';
+import { DataSourceRouter } from './src/routing/data-source-router.js';
 import chalk from 'chalk';
 import { fileURLToPath } from 'url';
 import path from 'path';
@@ -32,6 +33,7 @@ class ContextCLI {
     this.queryManager = null;
     this.knowledgeDriller = null;
     this.consolidator = null;
+    this.dataSourceRouter = null;
   }
 
   async initialize() {
@@ -63,6 +65,11 @@ class ContextCLI {
         dataPath: this.dataPath
       });
 
+      this.dataSourceRouter = new DataSourceRouter({
+        dataPath: this.dataPath,
+        snappyPath: path.resolve(__dirname, '..', 'snappy')
+      });
+
       console.log(chalk.green('✅ Context CLI initialized successfully'));
     } catch (error) {
       console.error(chalk.red('❌ Failed to initialize Context CLI:'), error.message);
@@ -75,11 +82,20 @@ class ContextCLI {
     console.log(chalk.blue('=' .repeat(60)));
 
     try {
-      const result = await this.contextEngine.processContextualQuery(queryText, {
-        userId: options.userId || 'cli-user',
-        executeActions: options.execute || false,
-        maintainContext: true
-      });
+      // Use smart router if enabled, otherwise fall back to context engine
+      let result;
+      if (options.useSmartRouter !== false) {
+        result = await this.dataSourceRouter.processSmartQuery(queryText, {
+          userId: options.userId || 'cli-user',
+          executeActions: options.execute || false
+        });
+      } else {
+        result = await this.contextEngine.processContextualQuery(queryText, {
+          userId: options.userId || 'cli-user',
+          executeActions: options.execute || false,
+          maintainContext: true
+        });
+      }
 
       // Display results
       this.displayQueryResult(result);
@@ -423,6 +439,184 @@ class ContextCLI {
     }
   }
 
+  /**
+   * Handle smart router data commands for structured data routing
+   */
+  async handleDataCommand(dataType, options = {}) {
+    console.log(chalk.blue.bold(`\n📊 Data Command: ${dataType}`));
+    console.log(chalk.blue('=' .repeat(40)));
+
+    try {
+      switch (dataType) {
+        case 'costs':
+          return await this.handleCostsData(options);
+        case 'projects':
+          return await this.handleProjectsData(options);
+        case 'materials':
+          return await this.handleMaterialsData(options);
+        default:
+          console.error(chalk.red(`❌ Unknown data type: ${dataType}`));
+          return null;
+      }
+    } catch (error) {
+      console.error(chalk.red('❌ Data command failed:'), error.message);
+      return null;
+    }
+  }
+
+  async handleCostsData(options = {}) {
+    if (!options.project) {
+      console.error(chalk.red('❌ Project ID required for costs data'));
+      return null;
+    }
+
+    console.log(chalk.cyan(`📊 Retrieving costs for project: ${options.project}`));
+    
+    // Use data source router to get structured cost data
+    const result = await this.dataSourceRouter.processSmartQuery(
+      `Get cost breakdown for project ${options.project}`, 
+      { dataType: 'costs', format: options.format || 'json' }
+    );
+
+    if (options.format === 'json') {
+      console.log(JSON.stringify(result, null, 2));
+    }
+
+    return result;
+  }
+
+  async handleProjectsData(options = {}) {
+    console.log(chalk.cyan('📊 Retrieving projects data'));
+    
+    const result = await this.dataSourceRouter.processSmartQuery(
+      'List all projects with details',
+      { dataType: 'projects', format: options.format || 'json' }
+    );
+
+    if (options.format === 'json') {
+      console.log(JSON.stringify(result, null, 2));
+    }
+
+    return result;
+  }
+
+  async handleMaterialsData(options = {}) {
+    console.log(chalk.cyan('📊 Retrieving materials data'));
+    
+    const result = await this.dataSourceRouter.processSmartQuery(
+      `Get materials list ${options.project ? 'for project ' + options.project : ''}`,
+      { dataType: 'materials', format: options.format || 'json' }
+    );
+
+    if (options.format === 'json') {
+      console.log(JSON.stringify(result, null, 2));
+    }
+
+    return result;
+  }
+
+  /**
+   * Handle smart discovery commands
+   */
+  async handleDiscoverCommand(discoverType, options = {}) {
+    console.log(chalk.blue.bold(`\n🔍 Discovery Command: ${discoverType}`));
+    console.log(chalk.blue('=' .repeat(40)));
+
+    try {
+      switch (discoverType) {
+        case 'projects':
+          return await this.discoverProjects(options);
+        case 'people':
+          return await this.discoverPeople(options);
+        case 'relationships':
+          return await this.discoverRelationships(options);
+        default:
+          console.error(chalk.red(`❌ Unknown discovery type: ${discoverType}`));
+          return null;
+      }
+    } catch (error) {
+      console.error(chalk.red('❌ Discovery command failed:'), error.message);
+      return null;
+    }
+  }
+
+  async discoverProjects(options = {}) {
+    let query = 'Discover existing projects';
+    if (options.person) query += ` for person ${options.person}`;
+    if (options.location) query += ` at location ${options.location}`;
+
+    console.log(chalk.cyan(`🔍 ${query}`));
+    
+    const result = await this.dataSourceRouter.processSmartQuery(query, {
+      discoveryType: 'projects',
+      person: options.person,
+      location: options.location
+    });
+
+    this.displayDiscoveryResult(result, 'projects');
+    return result;
+  }
+
+  async discoverPeople(options = {}) {
+    let query = 'Discover people';
+    if (options.project) query += ` associated with project ${options.project}`;
+
+    console.log(chalk.cyan(`🔍 ${query}`));
+    
+    const result = await this.dataSourceRouter.processSmartQuery(query, {
+      discoveryType: 'people',
+      project: options.project
+    });
+
+    this.displayDiscoveryResult(result, 'people');
+    return result;
+  }
+
+  async discoverRelationships(options = {}) {
+    let query = 'Discover relationships';
+    if (options.entity) query += ` for entity ${options.entity}`;
+
+    console.log(chalk.cyan(`🔍 ${query}`));
+    
+    const result = await this.dataSourceRouter.processSmartQuery(query, {
+      discoveryType: 'relationships',
+      entity: options.entity
+    });
+
+    this.displayDiscoveryResult(result, 'relationships');
+    return result;
+  }
+
+  displayDiscoveryResult(result, type) {
+    console.log(chalk.yellow(`\n📋 Discovery Results (${type}):`));
+    
+    if (result?.contextualIntelligence?.externalDiscoveries) {
+      const discoveries = result.contextualIntelligence.externalDiscoveries;
+      
+      if (type === 'projects' && discoveries.snappyProjects?.length > 0) {
+        console.log(chalk.cyan('\n🏗️  Discovered Projects:'));
+        discoveries.snappyProjects.forEach(project => {
+          console.log(`  • ${project.name || project.clientName} (ID: ${project.id})`);
+          console.log(`    Match Confidence: ${(project.matchConfidence * 100).toFixed(1)}%`);
+          if (project.matchedMention) {
+            console.log(`    Matched: "${project.matchedMention}"`);
+          }
+        });
+      }
+      
+      if (discoveries.projectDetails?.length > 0) {
+        console.log(chalk.cyan('\n📊 Project Details Available:'));
+        discoveries.projectDetails.forEach(detail => {
+          console.log(`  • ${detail.name || detail.id}`);
+        });
+      }
+    }
+
+    if (result?.contextualIntelligence?.overallConfidence) {
+      console.log(chalk.cyan(`\n✅ Discovery Confidence: ${(result.contextualIntelligence.overallConfidence * 100).toFixed(1)}%`));
+    }
+  }
+
   async handleValidation(type, options = {}) {
     console.log(chalk.blue.bold(`\n✅ Validation: ${type}`));
     console.log(chalk.blue('=' .repeat(40)));
@@ -469,6 +663,97 @@ class ContextCLI {
     return results;
   }
 
+  async handleClear(options = {}) {
+    const { domain, confirm, backup } = options;
+
+    if (!confirm) {
+      console.log(chalk.red('❌ Clear operation requires --confirm flag'));
+      console.log(chalk.yellow('💡 Use: node context.js clear --domain <domain> --confirm'));
+      return;
+    }
+
+    console.log(chalk.blue.bold(`\n🗑️  Clear Context Database: ${domain}`));
+    console.log(chalk.blue('=' .repeat(40)));
+
+    try {
+      // Create backup if requested
+      if (backup) {
+        console.log(chalk.yellow('📦 Creating backup...'));
+        const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+        const backupPath = path.join(this.dataPath, `backup-${domain}-${timestamp}`);
+        
+        await fs.mkdir(backupPath, { recursive: true });
+        
+        // Copy existing data to backup
+        const sourcePaths = domain === 'all' 
+          ? [path.join(this.dataPath, 'construction'), path.join(this.dataPath, 'cybersec')]
+          : [path.join(this.dataPath, domain)];
+
+        for (const sourcePath of sourcePaths) {
+          try {
+            const stats = await fs.stat(sourcePath);
+            if (stats.isDirectory()) {
+              const domainName = path.basename(sourcePath);
+              const targetPath = path.join(backupPath, domainName);
+              await this.copyDirectory(sourcePath, targetPath);
+              console.log(chalk.green(`✅ Backed up ${domainName} to ${backupPath}`));
+            }
+          } catch (error) {
+            // Directory doesn't exist, skip
+            console.log(chalk.gray(`ℹ️  No existing data for ${path.basename(sourcePath)}`));
+          }
+        }
+      }
+
+      // Clear the specified domains
+      const domainsToClear = domain === 'all' ? ['construction', 'cybersec'] : [domain];
+      
+      for (const domainName of domainsTolear) {
+        const domainPath = path.join(this.dataPath, domainName);
+        
+        try {
+          await fs.rm(domainPath, { recursive: true, force: true });
+          console.log(chalk.green(`✅ Cleared ${domainName} domain`));
+        } catch (error) {
+          console.log(chalk.gray(`ℹ️  No existing data for ${domainName} domain`));
+        }
+
+        // Recreate empty directory structure
+        await fs.mkdir(path.join(domainPath, 'context'), { recursive: true });
+        await fs.mkdir(path.join(domainPath, 'conversations'), { recursive: true });
+        await fs.mkdir(path.join(domainPath, 'entities'), { recursive: true });
+        
+        console.log(chalk.blue(`📁 Recreated directory structure for ${domainName}`));
+      }
+
+      console.log(chalk.green.bold('\n🎉 Context database cleared successfully!'));
+      
+      if (backup) {
+        console.log(chalk.yellow(`📦 Backup saved to: ${path.join(this.dataPath, `backup-${domain}-*`)}`));
+      }
+
+    } catch (error) {
+      console.error(chalk.red('❌ Clear operation failed:'), error.message);
+      throw error;
+    }
+  }
+
+  async copyDirectory(source, target) {
+    await fs.mkdir(target, { recursive: true });
+    const entries = await fs.readdir(source, { withFileTypes: true });
+
+    for (const entry of entries) {
+      const sourcePath = path.join(source, entry.name);
+      const targetPath = path.join(target, entry.name);
+
+      if (entry.isDirectory()) {
+        await this.copyDirectory(sourcePath, targetPath);
+      } else {
+        await fs.copyFile(sourcePath, targetPath);
+      }
+    }
+  }
+
   displayValidationResult(result, type) {
     console.log(chalk.yellow(`\n📊 ${type} Validation Results:`));
     
@@ -488,9 +773,19 @@ class ContextCLI {
     console.log(chalk.yellow('Usage: node context.js <command> [options]'));
     console.log(chalk.yellow('\nCommands:'));
     
-    console.log(chalk.cyan('\n📝 Context Queries:'));
-    console.log('  query "text"                    - Process natural language context query');
+    console.log(chalk.cyan('\n📝 Context Queries (Smart Router):'));
+    console.log('  query "text"                    - Process natural language context query (uses smart router)');
     console.log('  test query "text"               - Test query without executing actions');
+    
+    console.log(chalk.cyan('\n📊 Structured Data Routing:'));
+    console.log('  data costs --project <id> --format json    - Get project cost data');
+    console.log('  data projects --format json                - List all projects');
+    console.log('  data materials --project <id>              - Get materials data');
+    
+    console.log(chalk.cyan('\n🔍 Smart Discovery:'));
+    console.log('  discover projects --person <name> --location <loc>  - Discover existing projects');
+    console.log('  discover people --project <id>                      - Discover people in project');
+    console.log('  discover relationships --entity <name>              - Discover entity relationships');
     
     console.log(chalk.cyan('\n🔄 Snappy Integration:'));
     console.log('  sync snappy --export-ci --project <id>     - Export CI-compatible data');
@@ -529,6 +824,21 @@ class ContextCLI {
     console.log('  validate consolidation-accuracy - Validate consolidation accuracy');
     console.log('  validate query-relevance        - Validate query relevance');
     console.log('  validate sync-consistency       - Validate sync consistency');
+    
+    console.log(chalk.cyan('\n🗑️  Database Management:'));
+    console.log('  clear --domain <domain> --confirm  - Clear context database');
+    console.log('    --domain: construction, cybersec, or all');
+    console.log('    --backup: Create backup before clearing (default: true)');
+    
+    console.log(chalk.yellow('\n💡 Smart Router Examples:'));
+    console.log(chalk.grey('  # Conceptual queries (Context DB relationships)'));
+    console.log(chalk.grey('  node context.js query "What are cost components for John\'s deck?"'));
+    console.log(chalk.grey(''));
+    console.log(chalk.grey('  # Structured data routing (Source Systems with full fidelity)'));
+    console.log(chalk.grey('  node context.js data costs --project john-deck --format json'));
+    console.log(chalk.grey(''));
+    console.log(chalk.grey('  # Smart discovery (Context DB + External Sources)'));
+    console.log(chalk.grey('  node context.js discover projects --person john --location deck'));
   }
 }
 
@@ -554,6 +864,55 @@ async function main() {
           type: 'string',
           description: 'User ID for context',
           default: 'cli-user'
+        })
+        .option('smart-router', {
+          type: 'boolean',
+          description: 'Use smart router (default: true)',
+          default: true
+        });
+    })
+    .command('data <type>', 'Structured data routing commands', (yargs) => {
+      return yargs
+        .positional('type', {
+          describe: 'Data type to retrieve',
+          choices: ['costs', 'projects', 'materials']
+        })
+        .option('project', {
+          alias: 'p',
+          type: 'string',
+          description: 'Project ID'
+        })
+        .option('format', {
+          alias: 'f',
+          type: 'string',
+          description: 'Output format',
+          choices: ['json', 'table'],
+          default: 'table'
+        });
+    })
+    .command('discover <type>', 'Smart discovery commands', (yargs) => {
+      return yargs
+        .positional('type', {
+          describe: 'Discovery type',
+          choices: ['projects', 'people', 'relationships']
+        })
+        .option('person', {
+          type: 'string',
+          description: 'Person name for project discovery'
+        })
+        .option('location', {
+          type: 'string',
+          description: 'Location for project discovery'
+        })
+        .option('project', {
+          alias: 'p',
+          type: 'string',
+          description: 'Project ID for people discovery'
+        })
+        .option('entity', {
+          alias: 'e',
+          type: 'string',
+          description: 'Entity name for relationship discovery'
         });
     })
     .command('sync <action>', 'Snappy synchronization operations', (yargs) => {
@@ -686,6 +1045,25 @@ async function main() {
           description: 'Domain filter'
         });
     })
+    .command('clear', 'Clear context database', (yargs) => {
+      return yargs
+        .option('domain', {
+          type: 'string',
+          description: 'Domain to clear (construction, cybersec, or all)',
+          choices: ['construction', 'cybersec', 'all'],
+          default: 'all'
+        })
+        .option('confirm', {
+          type: 'boolean',
+          description: 'Confirm the clear operation',
+          default: false
+        })
+        .option('backup', {
+          type: 'boolean',
+          description: 'Create backup before clearing',
+          default: true
+        });
+    })
     .help()
     .alias('help', 'h')
     .argv;
@@ -701,7 +1079,24 @@ async function main() {
       case 'query':
         await cli.handleQuery(argv.text, {
           execute: argv.execute,
-          userId: argv.userId
+          userId: argv.userId,
+          useSmartRouter: argv.smartRouter
+        });
+        break;
+        
+      case 'data':
+        await cli.handleDataCommand(argv.type, {
+          project: argv.project,
+          format: argv.format
+        });
+        break;
+        
+      case 'discover':
+        await cli.handleDiscoverCommand(argv.type, {
+          person: argv.person,
+          location: argv.location,
+          project: argv.project,
+          entity: argv.entity
         });
         break;
         
@@ -752,6 +1147,14 @@ async function main() {
         await cli.handleValidation(argv.type, {
           targetThreshold: argv.targetThreshold,
           domain: argv.domain
+        });
+        break;
+        
+      case 'clear':
+        await cli.handleClear({
+          domain: argv.domain,
+          confirm: argv.confirm,
+          backup: argv.backup
         });
         break;
         

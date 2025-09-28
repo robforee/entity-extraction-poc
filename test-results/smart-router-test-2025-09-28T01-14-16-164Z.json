@@ -1,0 +1,534 @@
+{
+  "timestamp": "2025-09-28T01:14:14.571Z",
+  "testResults": [
+    {
+      "testNumber": 1,
+      "name": "Target Query - John's Deck Screws",
+      "query": "I bought screws for John's deck",
+      "expectedBehavior": "Should discover existing John projects instead of creating new ones",
+      "timestamp": "2025-09-28T01:14:14.577Z",
+      "success": true,
+      "duration": 305,
+      "result": {
+        "query": "I bought screws for John's deck",
+        "timestamp": "2025-09-28T01:14:14.578Z",
+        "steps": [
+          "Checking Context DB for existing knowledge",
+          "Discovering missing information from external sources",
+          "Progressive drilling for specific details",
+          "Making intelligent connections",
+          "Learning from interaction"
+        ],
+        "discoveries": [],
+        "contextualIntelligence": {
+          "contextKnowledge": {
+            "entities": [
+              {
+                "name": "John",
+                "type": "person",
+                "confidence": 0.7
+              },
+              {
+                "name": "screws",
+                "type": "material",
+                "confidence": 0.8
+              },
+              {
+                "name": "deck",
+                "type": "material",
+                "confidence": 0.8
+              }
+            ],
+            "relationships": [
+              {
+                "type": "manages",
+                "target": "deck-project",
+                "confidence": 0.8
+              },
+              {
+                "type": "located_at",
+                "target": "123 Oak Street",
+                "confidence": 0.9
+              }
+            ],
+            "confidence": 0.8,
+            "source": "context-db",
+            "knowledgeGaps": [
+              {
+                "type": "missing_entity",
+                "entity": "screws",
+                "entityType": "material"
+              },
+              {
+                "type": "missing_entity",
+                "entity": "deck",
+                "entityType": "material"
+              }
+            ]
+          },
+          "externalDiscoveries": {
+            "snappyProjects": [],
+            "projectDetails": [],
+            "confidence": 0,
+            "source": "external-discovery"
+          },
+          "specificDetails": {
+            "drillResults": [
+              {
+                "type": "entity_drill",
+                "entity": {
+                  "name": "John",
+                  "type": "person",
+                  "confidence": 0.7
+                },
+                "relationships": [
+                  {
+                    "type": "manages",
+                    "target": "deck-project",
+                    "confidence": 0.8
+                  },
+                  {
+                    "type": "located_at",
+                    "target": "123 Oak Street",
+                    "confidence": 0.9
+                  }
+                ],
+                "confidence": 0.75
+              }
+            ],
+            "confidence": 0.8,
+            "source": "progressive-drilling"
+          },
+          "connections": {
+            "entityConnections": [],
+            "projectConnections": [],
+            "temporalConnections": [],
+            "spatialConnections": [],
+            "confidence": 0,
+            "source": "intelligent-connections"
+          },
+          "overallConfidence": 1
+        },
+        "recommendations": [],
+        "processingTime": 302
+      },
+      "error": null,
+      "snappyIssues": []
+    },
+    {
+      "testNumber": 2,
+      "name": "Project Discovery",
+      "query": "What projects does John have?",
+      "expectedBehavior": "Should query Snappy for existing projects and match to John",
+      "timestamp": "2025-09-28T01:14:14.882Z",
+      "success": true,
+      "duration": 353,
+      "result": {
+        "query": "What projects does John have?",
+        "timestamp": "2025-09-28T01:14:14.883Z",
+        "steps": [
+          "Checking Context DB for existing knowledge",
+          "Discovering missing information from external sources",
+          "Progressive drilling for specific details",
+          "Making intelligent connections",
+          "Learning from interaction"
+        ],
+        "discoveries": [],
+        "contextualIntelligence": {
+          "contextKnowledge": {
+            "entities": [
+              {
+                "name": "What",
+                "type": "person",
+                "confidence": 0.7
+              },
+              {
+                "name": "John",
+                "type": "person",
+                "confidence": 0.7
+              }
+            ],
+            "relationships": [
+              {
+                "type": "manages",
+                "target": "deck-project",
+                "confidence": 0.8
+              },
+              {
+                "type": "located_at",
+                "target": "123 Oak Street",
+                "confidence": 0.9
+              }
+            ],
+            "confidence": 0.8,
+            "source": "context-db",
+            "knowledgeGaps": [
+              {
+                "type": "missing_entity",
+                "entity": "What",
+                "entityType": "person"
+              }
+            ]
+          },
+          "externalDiscoveries": {
+            "snappyProjects": [],
+            "projectDetails": [],
+            "confidence": 0,
+            "source": "external-discovery"
+          },
+          "specificDetails": {
+            "drillResults": [
+              {
+                "type": "entity_drill",
+                "entity": {
+                  "name": "John",
+                  "type": "person",
+                  "confidence": 0.7
+                },
+                "relationships": [
+                  {
+                    "type": "manages",
+                    "target": "deck-project",
+                    "confidence": 0.8
+                  },
+                  {
+                    "type": "located_at",
+                    "target": "123 Oak Street",
+                    "confidence": 0.9
+                  }
+                ],
+                "confidence": 0.75
+              }
+            ],
+            "confidence": 0.8,
+            "source": "progressive-drilling"
+          },
+          "connections": {
+            "entityConnections": [],
+            "projectConnections": [],
+            "temporalConnections": [],
+            "spatialConnections": [],
+            "confidence": 0,
+            "source": "intelligent-connections"
+          },
+          "overallConfidence": 1
+        },
+        "recommendations": [],
+        "processingTime": 351
+      },
+      "error": null,
+      "snappyIssues": []
+    },
+    {
+      "testNumber": 3,
+      "name": "Cost Components Query",
+      "query": "What are the cost components for John's deck?",
+      "expectedBehavior": "Should find existing project and return cost breakdown",
+      "timestamp": "2025-09-28T01:14:15.235Z",
+      "success": true,
+      "duration": 384,
+      "result": {
+        "query": "What are the cost components for John's deck?",
+        "timestamp": "2025-09-28T01:14:15.236Z",
+        "steps": [
+          "Checking Context DB for existing knowledge",
+          "Discovering missing information from external sources",
+          "Progressive drilling for specific details",
+          "Making intelligent connections",
+          "Learning from interaction"
+        ],
+        "discoveries": [],
+        "contextualIntelligence": {
+          "contextKnowledge": {
+            "entities": [
+              {
+                "name": "What",
+                "type": "person",
+                "confidence": 0.7
+              },
+              {
+                "name": "John",
+                "type": "person",
+                "confidence": 0.7
+              },
+              {
+                "name": "deck",
+                "type": "material",
+                "confidence": 0.8
+              }
+            ],
+            "relationships": [
+              {
+                "type": "manages",
+                "target": "deck-project",
+                "confidence": 0.8
+              },
+              {
+                "type": "located_at",
+                "target": "123 Oak Street",
+                "confidence": 0.9
+              }
+            ],
+            "confidence": 0.8,
+            "source": "context-db",
+            "knowledgeGaps": [
+              {
+                "type": "missing_entity",
+                "entity": "What",
+                "entityType": "person"
+              },
+              {
+                "type": "missing_entity",
+                "entity": "deck",
+                "entityType": "material"
+              }
+            ]
+          },
+          "externalDiscoveries": {
+            "snappyProjects": [],
+            "projectDetails": [],
+            "confidence": 0,
+            "source": "external-discovery"
+          },
+          "specificDetails": {
+            "drillResults": [
+              {
+                "type": "entity_drill",
+                "entity": {
+                  "name": "John",
+                  "type": "person",
+                  "confidence": 0.7
+                },
+                "relationships": [
+                  {
+                    "type": "manages",
+                    "target": "deck-project",
+                    "confidence": 0.8
+                  },
+                  {
+                    "type": "located_at",
+                    "target": "123 Oak Street",
+                    "confidence": 0.9
+                  }
+                ],
+                "confidence": 0.75
+              }
+            ],
+            "confidence": 0.8,
+            "source": "progressive-drilling"
+          },
+          "connections": {
+            "entityConnections": [],
+            "projectConnections": [],
+            "temporalConnections": [],
+            "spatialConnections": [],
+            "confidence": 0,
+            "source": "intelligent-connections"
+          },
+          "overallConfidence": 1
+        },
+        "recommendations": [],
+        "processingTime": 382
+      },
+      "error": null,
+      "snappyIssues": []
+    },
+    {
+      "testNumber": 4,
+      "name": "Material Query",
+      "query": "What materials are needed for the deck project?",
+      "expectedBehavior": "Should discover project context and return materials list",
+      "timestamp": "2025-09-28T01:14:15.620Z",
+      "success": true,
+      "duration": 282,
+      "result": {
+        "query": "What materials are needed for the deck project?",
+        "timestamp": "2025-09-28T01:14:15.620Z",
+        "steps": [
+          "Checking Context DB for existing knowledge",
+          "Discovering missing information from external sources",
+          "Progressive drilling for specific details",
+          "Making intelligent connections",
+          "Learning from interaction"
+        ],
+        "discoveries": [],
+        "contextualIntelligence": {
+          "contextKnowledge": {
+            "entities": [
+              {
+                "name": "What",
+                "type": "person",
+                "confidence": 0.7
+              },
+              {
+                "name": "deck",
+                "type": "material",
+                "confidence": 0.8
+              }
+            ],
+            "relationships": [],
+            "confidence": 0,
+            "source": "context-db",
+            "knowledgeGaps": [
+              {
+                "type": "missing_entity",
+                "entity": "What",
+                "entityType": "person"
+              },
+              {
+                "type": "missing_entity",
+                "entity": "deck",
+                "entityType": "material"
+              }
+            ]
+          },
+          "externalDiscoveries": {
+            "snappyProjects": [],
+            "projectDetails": [],
+            "confidence": 0,
+            "source": "external-discovery"
+          },
+          "specificDetails": {
+            "drillResults": [],
+            "confidence": 0,
+            "source": "progressive-drilling"
+          },
+          "connections": {
+            "entityConnections": [],
+            "projectConnections": [],
+            "temporalConnections": [],
+            "spatialConnections": [],
+            "confidence": 0,
+            "source": "intelligent-connections"
+          },
+          "overallConfidence": 0
+        },
+        "recommendations": [],
+        "processingTime": 282
+      },
+      "error": null,
+      "snappyIssues": []
+    },
+    {
+      "testNumber": 5,
+      "name": "Person-Location Query",
+      "query": "I'm at John's, add $30 charge for more screws",
+      "expectedBehavior": "Should resolve John's location to specific project context",
+      "timestamp": "2025-09-28T01:14:15.903Z",
+      "success": true,
+      "duration": 261,
+      "result": {
+        "query": "I'm at John's, add $30 charge for more screws",
+        "timestamp": "2025-09-28T01:14:15.903Z",
+        "steps": [
+          "Checking Context DB for existing knowledge",
+          "Discovering missing information from external sources",
+          "Progressive drilling for specific details",
+          "Making intelligent connections",
+          "Learning from interaction"
+        ],
+        "discoveries": [],
+        "contextualIntelligence": {
+          "contextKnowledge": {
+            "entities": [
+              {
+                "name": "John",
+                "type": "person",
+                "confidence": 0.7
+              },
+              {
+                "name": "$30",
+                "type": "amount",
+                "confidence": 0.9
+              },
+              {
+                "name": "screws",
+                "type": "material",
+                "confidence": 0.8
+              }
+            ],
+            "relationships": [
+              {
+                "type": "manages",
+                "target": "deck-project",
+                "confidence": 0.8
+              },
+              {
+                "type": "located_at",
+                "target": "123 Oak Street",
+                "confidence": 0.9
+              }
+            ],
+            "confidence": 0.8,
+            "source": "context-db",
+            "knowledgeGaps": [
+              {
+                "type": "missing_entity",
+                "entity": "$30",
+                "entityType": "amount"
+              },
+              {
+                "type": "missing_entity",
+                "entity": "screws",
+                "entityType": "material"
+              }
+            ]
+          },
+          "externalDiscoveries": {
+            "snappyProjects": [],
+            "projectDetails": [],
+            "confidence": 0,
+            "source": "external-discovery"
+          },
+          "specificDetails": {
+            "drillResults": [
+              {
+                "type": "entity_drill",
+                "entity": {
+                  "name": "John",
+                  "type": "person",
+                  "confidence": 0.7
+                },
+                "relationships": [
+                  {
+                    "type": "manages",
+                    "target": "deck-project",
+                    "confidence": 0.8
+                  },
+                  {
+                    "type": "located_at",
+                    "target": "123 Oak Street",
+                    "confidence": 0.9
+                  }
+                ],
+                "confidence": 0.75
+              }
+            ],
+            "confidence": 0.8,
+            "source": "progressive-drilling"
+          },
+          "connections": {
+            "entityConnections": [],
+            "projectConnections": [],
+            "temporalConnections": [],
+            "spatialConnections": [],
+            "confidence": 0,
+            "source": "intelligent-connections"
+          },
+          "overallConfidence": 1
+        },
+        "recommendations": [],
+        "processingTime": 260
+      },
+      "error": null,
+      "snappyIssues": []
+    }
+  ],
+  "summary": {
+    "totalTests": 5,
+    "passedTests": 5,
+    "failedTests": 0,
+    "successRate": "100.0",
+    "overallSuccess": true
+  }
+}

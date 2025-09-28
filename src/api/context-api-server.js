@@ -12,6 +12,7 @@ import rateLimit from 'express-rate-limit';
 import { ContextAssemblyEngine } from '../context/context-assembly-engine.js';
 import { QueryProcessor } from '../context/query-processor.js';
 import { RelationshipGraph } from '../relationships/entity-schema.js';
+import { DataSourceRouter } from '../routing/data-source-router.js';
 import chalk from 'chalk';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -26,7 +27,13 @@ class ContextAPIServer {
     this.domain = options.domain || 'construction';
     this.dataPath = options.dataPath || path.join(__dirname, '..', '..', 'data');
     
-    // Initialize core components
+    // Initialize core components with Smart Router as primary
+    this.smartRouter = new DataSourceRouter({
+      dataPath: this.dataPath,
+      snappyPath: options.snappyPath || path.resolve(this.dataPath, '..', '..', 'snappy')
+    });
+    
+    // Keep legacy components for fallback
     this.contextEngine = new ContextAssemblyEngine({
       dataPath: this.dataPath,
       domain: this.domain,
@@ -134,9 +141,10 @@ class ContextAPIServer {
           });
         }
 
-        console.log(chalk.blue(`🔍 Processing query: "${query}" (session: ${sessionId})`));
+        console.log(chalk.blue(`🔍 Processing query with Smart Router: "${query}" (session: ${sessionId})`));
 
-        const result = await this.contextEngine.processContextualQuery(query, {
+        // Use Smart Router as primary processing engine
+        const result = await this.smartRouter.processSmartQuery(query, {
           userId,
           sessionId,
           currentLocation,
@@ -145,29 +153,48 @@ class ContextAPIServer {
           maintainContext
         });
 
-        // Format response
+        // Format Smart Router response
+        const ci = result.contextualIntelligence;
         const response = {
           success: true,
           query: result.query,
-          sessionId: result.sessionId,
-          userId: result.userId,
+          sessionId: sessionId,
+          userId: userId,
           timestamp: result.timestamp,
+          smartRouter: {
+            version: '1.0',
+            stepsCompleted: result.steps?.length || 0,
+            overallConfidence: ci?.overallConfidence || 0,
+            processingTime: result.processingTime || 0
+          },
           intelligence: {
-            level: result.contextualIntelligence?.intelligenceLevel || 'basic',
-            confidence: result.contextualIntelligence?.confidence || 0.5,
-            entities: result.contextualIntelligence?.contextEntities?.length || 0,
-            insights: result.contextualIntelligence?.insights || []
+            level: 'smart_router',
+            confidence: ci?.overallConfidence || 0,
+            entities: ci?.contextKnowledge?.entities?.length || 0,
+            relationships: ci?.contextKnowledge?.relationships?.length || 0,
+            knowledgeGaps: ci?.contextKnowledge?.knowledgeGaps?.length || 0
+          },
+          discoveries: {
+            snappyProjects: ci?.externalDiscoveries?.snappyProjects?.length || 0,
+            projectDetails: ci?.externalDiscoveries?.projectDetails?.length || 0,
+            projects: ci?.externalDiscoveries?.snappyProjects || []
+          },
+          connections: {
+            entityConnections: ci?.connections?.entityConnections?.length || 0,
+            temporalConnections: ci?.connections?.temporalConnections?.length || 0,
+            spatialConnections: ci?.connections?.spatialConnections?.length || 0,
+            details: ci?.connections || {}
           },
           response: {
-            primary: result.finalResponse?.primaryResponse || 'Query processed successfully',
-            contextualInsights: result.finalResponse?.contextualInsights || [],
-            recommendations: result.finalResponse?.recommendations || []
+            primary: this.generateSmartRouterResponse(result),
+            contextualInsights: this.extractInsights(result),
+            recommendations: this.extractRecommendations(result)
           },
-          actions: this.extractActions(result),
           metadata: {
-            processingTime: result.metadata?.totalDuration || 0,
-            executed: result.metadata?.executeActions || false,
-            steps: result.steps?.length || 0
+            processingTime: result.processingTime || 0,
+            executed: executeActions,
+            steps: result.steps || [],
+            architecture: 'smart_router'
           }
         };
 
@@ -404,21 +431,205 @@ class ContextAPIServer {
       });
     });
 
-    // Global error handler
-    this.app.use((error, req, res, next) => {
-      console.error(chalk.red('Server Error:'), error);
-      
-      res.status(500).json({
-        error: 'Internal server error',
-        message: process.env.NODE_ENV === 'development' ? error.message : 'Something went wrong',
-        code: 'INTERNAL_ERROR'
-      });
+    // Smart Router specific endpoints
+    
+    // Structured data routing endpoint
+    this.app.post('/api/data/:type', async (req, res) => {
+      try {
+        const { type } = req.params;
+        const { project, format = 'json' } = req.body;
+
+        console.log(chalk.blue(`📊 Data request: ${type} (project: ${project})`));
+
+        let query;
+        switch (type) {
+          case 'costs':
+            if (!project) {
+              return res.status(400).json({ error: 'Project ID required for costs data' });
+            }
+            query = `Get cost breakdown for project ${project}`;
+            break;
+          case 'projects':
+            query = 'List all projects with details';
+            break;
+          case 'materials':
+            query = project ? `Get materials list for project ${project}` : 'Get materials list';
+            break;
+          default:
+            return res.status(400).json({ error: `Unknown data type: ${type}` });
+        }
+
+        const result = await this.smartRouter.processSmartQuery(query, {
+          dataType: type,
+          format,
+          project
+        });
+
+        res.json({
+          success: true,
+          dataType: type,
+          project,
+          data: result.contextualIntelligence?.externalDiscoveries || {},
+          metadata: {
+            processingTime: result.processingTime,
+            confidence: result.contextualIntelligence?.overallConfidence || 0
+          }
+        });
+
+      } catch (error) {
+        console.error(chalk.red(`❌ Data request failed: ${error.message}`));
+        res.status(500).json({
+          error: 'Data request failed',
+          message: error.message
+        });
+      }
+    });
+
+    // Smart discovery endpoint
+    this.app.post('/api/discover/:type', async (req, res) => {
+      try {
+        const { type } = req.params;
+        const { person, location, project, entity } = req.body;
+
+        console.log(chalk.blue(`🔍 Discovery request: ${type}`));
+
+        let query;
+        switch (type) {
+          case 'projects':
+            query = 'Discover existing projects';
+            if (person) query += ` for person ${person}`;
+            if (location) query += ` at location ${location}`;
+            break;
+          case 'people':
+            query = 'Discover people';
+            if (project) query += ` associated with project ${project}`;
+            break;
+          case 'relationships':
+            query = 'Discover relationships';
+            if (entity) query += ` for entity ${entity}`;
+            break;
+          default:
+            return res.status(400).json({ error: `Unknown discovery type: ${type}` });
+        }
+
+        const result = await this.smartRouter.processSmartQuery(query, {
+          discoveryType: type,
+          person,
+          location,
+          project,
+          entity
+        });
+
+        res.json({
+          success: true,
+          discoveryType: type,
+          discovers: result.contextualIntelligence?.externalDiscoveries || {},
+          connections: result.contextualIntelligence?.connections || {},
+          confidence: result.contextualIntelligence?.overallConfidence || 0,
+          metadata: {
+            processingTime: result.processingTime,
+            steps: result.steps?.length || 0
+          }
+        });
+
+      } catch (error) {
+        console.error(chalk.red(`❌ Discovery request failed: ${error.message}`));
+        res.status(500).json({
+          error: 'Discovery request failed',
+          message: error.message
+        });
+      }
     });
   }
 
-  /**
-   * Extract actions from processing result
-   */
+  // Smart Router helper methods
+  generateSmartRouterResponse(result) {
+    const ci = result.contextualIntelligence;
+    
+    if (!ci) {
+      return 'Query processed by Smart Router';
+    }
+
+    let response = '';
+    
+    // Report discovers
+    if (ci.externalDiscoveries?.snappyProjects?.length > 0) {
+      response += `🏗️ Discovered ${ci.externalDiscoveries.snappyProjects.length} existing projects:\n`;
+      ci.externalDiscoveries.snappyProjects.slice(0, 3).forEach(project => {
+        response += `• ${project.name || project.clientName} (${(project.matchConfidence * 100).toFixed(0)}% match)\n`;
+      });
+      
+      if (ci.externalDiscoveries.snappyProjects.length > 3) {
+        response += `... and ${ci.externalDiscoveries.snappyProjects.length - 3} more projects\n`;
+      }
+      response += '\n';
+    }
+
+    // Report connections
+    const totalConnections = (ci.connections?.entityConnections?.length || 0) + 
+                           (ci.connections?.temporalConnections?.length || 0) + 
+                           (ci.connections?.spatialConnections?.length || 0);
+    
+    if (totalConnections > 0) {
+      response += `🔗 Made ${totalConnections} intelligent connections between Context DB and external data\n\n`;
+    }
+
+    // Report confidence
+    response += `✅ Smart Router confidence: ${(ci.overallConfidence * 100).toFixed(1)}%`;
+    
+    return response || 'Smart Router processed your query successfully';
+  }
+
+  extractInsights(result) {
+    const insights = [];
+    const ci = result.contextualIntelligence;
+    
+    if (!ci) return insights;
+
+    // Knowledge gap insights
+    if (ci.contextKnowledge?.knowledgeGaps?.length > 0) {
+      insights.push(`Found ${ci.contextKnowledge.knowledgeGaps.length} knowledge gaps that could be filled from external sources`);
+    }
+
+    // Discovery insights
+    if (ci.externalDiscoveries?.snappyProjects?.length > 0) {
+      insights.push(`Smart Router discovered existing projects instead of creating new ones - architectural breakthrough working!`);
+    }
+
+    // Connection insights
+    const totalConnections = (ci.connections?.entityConnections?.length || 0) + 
+                           (ci.connections?.temporalConnections?.length || 0) + 
+                           (ci.connections?.spatialConnections?.length || 0);
+    
+    if (totalConnections > 0) {
+      insights.push(`Made ${totalConnections} intelligent connections between conceptual understanding and structured data`);
+    }
+
+    return insights;
+  }
+
+  extractRecommendations(result) {
+    const recommendations = [];
+    const ci = result.contextualIntelligence;
+    
+    if (!ci) return recommendations;
+
+    // Project-specific recommendations
+    if (ci.externalDiscoveries?.snappyProjects?.length > 0) {
+      const highConfidenceProjects = ci.externalDiscoveries.snappyProjects.filter(p => p.matchConfidence > 0.8);
+      if (highConfidenceProjects.length > 0) {
+        recommendations.push(`Consider using existing project: ${highConfidenceProjects[0].name || highConfidenceProjects[0].clientName}`);
+      }
+    }
+
+    // Data completeness recommendations
+    if (ci.contextKnowledge?.knowledgeGaps?.length > 0) {
+      recommendations.push('Additional project details could be retrieved from Snappy for more complete context');
+    }
+
+    return recommendations;
+  }
+
   extractActions(result) {
     const actions = [];
     

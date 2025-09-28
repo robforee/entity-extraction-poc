@@ -1,0 +1,2095 @@
+{
+  "timestamp": "2025-09-28T01:15:59.115Z",
+  "testResults": [
+    {
+      "testNumber": 1,
+      "name": "Target Query - John's Deck Screws",
+      "query": "I bought screws for John's deck",
+      "expectedBehavior": "Should discover existing John projects instead of creating new ones",
+      "timestamp": "2025-09-28T01:15:59.122Z",
+      "success": true,
+      "duration": 3844,
+      "result": {
+        "query": "I bought screws for John's deck",
+        "timestamp": "2025-09-28T01:15:59.123Z",
+        "steps": [
+          "Checking Context DB for existing knowledge",
+          "Discovering missing information from external sources",
+          "Progressive drilling for specific details",
+          "Making intelligent connections",
+          "Learning from interaction"
+        ],
+        "discoveries": [],
+        "contextualIntelligence": {
+          "contextKnowledge": {
+            "entities": [
+              {
+                "name": "John",
+                "type": "person",
+                "confidence": 0.7
+              },
+              {
+                "name": "screws",
+                "type": "material",
+                "confidence": 0.8
+              },
+              {
+                "name": "deck",
+                "type": "material",
+                "confidence": 0.8
+              }
+            ],
+            "relationships": [
+              {
+                "type": "manages",
+                "target": "deck-project",
+                "confidence": 0.8
+              },
+              {
+                "type": "located_at",
+                "target": "123 Oak Street",
+                "confidence": 0.9
+              }
+            ],
+            "confidence": 0.8,
+            "source": "context-db",
+            "knowledgeGaps": [
+              {
+                "type": "missing_entity",
+                "entity": "screws",
+                "entityType": "material"
+              },
+              {
+                "type": "missing_entity",
+                "entity": "deck",
+                "entityType": "material"
+              }
+            ]
+          },
+          "externalDiscoveries": {
+            "snappyProjects": [
+              {
+                "id": "20250908-01-john-green-deck-demo",
+                "name": "John Green - Deck Demolition",
+                "clientName": "John Green",
+                "projectType": "Deck Demolition",
+                "status": "payment_received",
+                "createdAt": "2025-09-08",
+                "updatedAt": "2025-09-23",
+                "type": "project",
+                "matchConfidence": 0.8,
+                "matchedMention": "deck"
+              },
+              {
+                "id": "20250923-43-john-green-deck",
+                "name": "John Green - Deck Repair",
+                "clientName": "John Green",
+                "projectType": "Deck Repair",
+                "status": "awaiting_client_approval",
+                "createdAt": "2025-09-23",
+                "updatedAt": "2025-09-23",
+                "type": "project",
+                "matchConfidence": 0.8,
+                "matchedMention": "deck"
+              },
+              {
+                "id": "20250924-44-john-green-combined",
+                "name": "John Green - Combined: Toilet Repair + Deck Repair",
+                "clientName": "John Green",
+                "projectType": "Combined: Toilet Repair + Deck Repair",
+                "status": "bid_prepared",
+                "createdAt": "2025-09-24",
+                "updatedAt": "2025-09-24",
+                "type": "project",
+                "matchConfidence": 0.8,
+                "matchedMention": "deck"
+              },
+              {
+                "id": "20250908-01-john-green-deck-demo",
+                "name": "John Green - Deck Demolition",
+                "clientName": "John Green",
+                "projectType": "Deck Demolition",
+                "status": "payment_received",
+                "createdAt": "2025-09-08",
+                "updatedAt": "2025-09-23",
+                "type": "project",
+                "matchConfidence": 0.8,
+                "matchedMention": "John"
+              },
+              {
+                "id": "20250917-42-john-green",
+                "name": "John Green - Toilet Repair",
+                "clientName": "John Green",
+                "projectType": "Toilet Repair",
+                "status": "payment_received",
+                "createdAt": "2025-09-17",
+                "updatedAt": "2025-09-23",
+                "type": "project",
+                "matchConfidence": 0.8,
+                "matchedMention": "John"
+              },
+              {
+                "id": "20250923-43-john-green-deck",
+                "name": "John Green - Deck Repair",
+                "clientName": "John Green",
+                "projectType": "Deck Repair",
+                "status": "awaiting_client_approval",
+                "createdAt": "2025-09-23",
+                "updatedAt": "2025-09-23",
+                "type": "project",
+                "matchConfidence": 0.8,
+                "matchedMention": "John"
+              },
+              {
+                "id": "20250924-44-john-green-combined",
+                "name": "John Green - Combined: Toilet Repair + Deck Repair",
+                "clientName": "John Green",
+                "projectType": "Combined: Toilet Repair + Deck Repair",
+                "status": "bid_prepared",
+                "createdAt": "2025-09-24",
+                "updatedAt": "2025-09-24",
+                "type": "project",
+                "matchConfidence": 0.8,
+                "matchedMention": "John"
+              }
+            ],
+            "projectDetails": [
+              {
+                "id": "20250908-01-john-green-deck-demo",
+                "name": "John Green - Deck Demolition",
+                "clientName": "John Green",
+                "projectType": "Deck Demolition",
+                "status": "payment_received",
+                "createdAt": "2025-09-08",
+                "updatedAt": "2025-09-23",
+                "type": "project",
+                "materials": [],
+                "costs": {
+                  "labor": 0,
+                  "materials": 0,
+                  "total": 0
+                },
+                "timeline": [
+                  {
+                    "date": "2025-09-08",
+                    "task": "Project created",
+                    "status": "completed"
+                  },
+                  {
+                    "date": "2025-09-23",
+                    "task": "Status updated to payment_received",
+                    "status": "completed"
+                  }
+                ],
+                "location": null
+              },
+              {
+                "id": "20250923-43-john-green-deck",
+                "name": "John Green - Deck Repair",
+                "clientName": "John Green",
+                "projectType": "Deck Repair",
+                "status": "awaiting_client_approval",
+                "createdAt": "2025-09-23",
+                "updatedAt": "2025-09-23",
+                "type": "project",
+                "materials": [
+                  {
+                    "name": "stain",
+                    "cost": 0
+                  }
+                ],
+                "costs": {
+                  "labor": 0,
+                  "materials": 0,
+                  "total": 0
+                },
+                "timeline": [
+                  {
+                    "date": "2025-09-23",
+                    "task": "Project created",
+                    "status": "completed"
+                  }
+                ],
+                "location": "8 hours of estimated labor. | $320.00 |"
+              },
+              {
+                "id": "20250924-44-john-green-combined",
+                "name": "John Green - Combined: Toilet Repair + Deck Repair",
+                "clientName": "John Green",
+                "projectType": "Combined: Toilet Repair + Deck Repair",
+                "status": "bid_prepared",
+                "createdAt": "2025-09-24",
+                "updatedAt": "2025-09-24",
+                "type": "project",
+                "materials": [
+                  {
+                    "name": "stain",
+                    "cost": 0
+                  }
+                ],
+                "costs": {
+                  "labor": 0,
+                  "materials": 0,
+                  "total": 0
+                },
+                "timeline": [
+                  {
+                    "date": "2025-09-24",
+                    "task": "Project created",
+                    "status": "completed"
+                  }
+                ],
+                "location": "30 days from the date listed above."
+              },
+              {
+                "id": "20250908-01-john-green-deck-demo",
+                "name": "John Green - Deck Demolition",
+                "clientName": "John Green",
+                "projectType": "Deck Demolition",
+                "status": "payment_received",
+                "createdAt": "2025-09-08",
+                "updatedAt": "2025-09-23",
+                "type": "project",
+                "materials": [],
+                "costs": {
+                  "labor": 0,
+                  "materials": 0,
+                  "total": 0
+                },
+                "timeline": [
+                  {
+                    "date": "2025-09-08",
+                    "task": "Project created",
+                    "status": "completed"
+                  },
+                  {
+                    "date": "2025-09-23",
+                    "task": "Status updated to payment_received",
+                    "status": "completed"
+                  }
+                ],
+                "location": null
+              },
+              {
+                "id": "20250917-42-john-green",
+                "name": "John Green - Toilet Repair",
+                "clientName": "John Green",
+                "projectType": "Toilet Repair",
+                "status": "payment_received",
+                "createdAt": "2025-09-17",
+                "updatedAt": "2025-09-23",
+                "type": "project",
+                "materials": [],
+                "costs": {
+                  "labor": 0,
+                  "materials": 0,
+                  "total": 0
+                },
+                "timeline": [
+                  {
+                    "date": "2025-09-17",
+                    "task": "Project created",
+                    "status": "completed"
+                  },
+                  {
+                    "date": "2025-09-23",
+                    "task": "Status updated to payment_received",
+                    "status": "completed"
+                  }
+                ],
+                "location": null
+              },
+              {
+                "id": "20250923-43-john-green-deck",
+                "name": "John Green - Deck Repair",
+                "clientName": "John Green",
+                "projectType": "Deck Repair",
+                "status": "awaiting_client_approval",
+                "createdAt": "2025-09-23",
+                "updatedAt": "2025-09-23",
+                "type": "project",
+                "materials": [
+                  {
+                    "name": "stain",
+                    "cost": 0
+                  }
+                ],
+                "costs": {
+                  "labor": 0,
+                  "materials": 0,
+                  "total": 0
+                },
+                "timeline": [
+                  {
+                    "date": "2025-09-23",
+                    "task": "Project created",
+                    "status": "completed"
+                  }
+                ],
+                "location": "8 hours of estimated labor. | $320.00 |"
+              },
+              {
+                "id": "20250924-44-john-green-combined",
+                "name": "John Green - Combined: Toilet Repair + Deck Repair",
+                "clientName": "John Green",
+                "projectType": "Combined: Toilet Repair + Deck Repair",
+                "status": "bid_prepared",
+                "createdAt": "2025-09-24",
+                "updatedAt": "2025-09-24",
+                "type": "project",
+                "materials": [
+                  {
+                    "name": "stain",
+                    "cost": 0
+                  }
+                ],
+                "costs": {
+                  "labor": 0,
+                  "materials": 0,
+                  "total": 0
+                },
+                "timeline": [
+                  {
+                    "date": "2025-09-24",
+                    "task": "Project created",
+                    "status": "completed"
+                  }
+                ],
+                "location": "30 days from the date listed above."
+              }
+            ],
+            "confidence": 0.85,
+            "source": "external-discovery"
+          },
+          "specificDetails": {
+            "drillResults": [
+              {
+                "type": "project_drill",
+                "project": {
+                  "id": "20250908-01-john-green-deck-demo",
+                  "name": "John Green - Deck Demolition",
+                  "clientName": "John Green",
+                  "projectType": "Deck Demolition",
+                  "status": "payment_received",
+                  "createdAt": "2025-09-08",
+                  "updatedAt": "2025-09-23",
+                  "type": "project",
+                  "matchConfidence": 0.8,
+                  "matchedMention": "deck"
+                },
+                "details": {
+                  "id": "20250908-01-john-green-deck-demo",
+                  "name": "John Green - Deck Demolition",
+                  "clientName": "John Green",
+                  "projectType": "Deck Demolition",
+                  "status": "payment_received",
+                  "createdAt": "2025-09-08",
+                  "updatedAt": "2025-09-23",
+                  "type": "project",
+                  "materials": [],
+                  "costs": {
+                    "labor": 0,
+                    "materials": 0,
+                    "total": 0
+                  },
+                  "timeline": [
+                    {
+                      "date": "2025-09-08",
+                      "task": "Project created",
+                      "status": "completed"
+                    },
+                    {
+                      "date": "2025-09-23",
+                      "task": "Status updated to payment_received",
+                      "status": "completed"
+                    }
+                  ],
+                  "location": null
+                },
+                "relevantToQuery": true,
+                "confidence": 0.85
+              }
+            ],
+            "confidence": 0,
+            "source": "progressive-drilling",
+            "error": "m.toLowerCase is not a function"
+          },
+          "connections": {
+            "entityConnections": [
+              {
+                "type": "person_project",
+                "entity": "John",
+                "project": "John Green - Deck Demolition",
+                "connection": "client_of",
+                "confidence": 0.9
+              },
+              {
+                "type": "person_project",
+                "entity": "John",
+                "project": "John Green - Deck Repair",
+                "connection": "client_of",
+                "confidence": 0.9
+              },
+              {
+                "type": "person_project",
+                "entity": "John",
+                "project": "John Green - Combined: Toilet Repair + Deck Repair",
+                "connection": "client_of",
+                "confidence": 0.9
+              },
+              {
+                "type": "person_project",
+                "entity": "John",
+                "project": "John Green - Deck Demolition",
+                "connection": "client_of",
+                "confidence": 0.9
+              },
+              {
+                "type": "person_project",
+                "entity": "John",
+                "project": "John Green - Toilet Repair",
+                "connection": "client_of",
+                "confidence": 0.9
+              },
+              {
+                "type": "person_project",
+                "entity": "John",
+                "project": "John Green - Deck Repair",
+                "connection": "client_of",
+                "confidence": 0.9
+              },
+              {
+                "type": "person_project",
+                "entity": "John",
+                "project": "John Green - Combined: Toilet Repair + Deck Repair",
+                "connection": "client_of",
+                "confidence": 0.9
+              }
+            ],
+            "projectConnections": [],
+            "temporalConnections": [
+              {
+                "type": "temporal",
+                "timeline": [
+                  {
+                    "date": "2025-09-08",
+                    "task": "Project created",
+                    "status": "completed"
+                  },
+                  {
+                    "date": "2025-09-23",
+                    "task": "Status updated to payment_received",
+                    "status": "completed"
+                  }
+                ],
+                "project": "John Green - Deck Demolition",
+                "confidence": 0.8
+              }
+            ],
+            "spatialConnections": [],
+            "confidence": 0.75,
+            "source": "intelligent-connections"
+          },
+          "overallConfidence": 1
+        },
+        "recommendations": [],
+        "processingTime": 3839
+      },
+      "error": null,
+      "snappyIssues": []
+    },
+    {
+      "testNumber": 2,
+      "name": "Project Discovery",
+      "query": "What projects does John have?",
+      "expectedBehavior": "Should query Snappy for existing projects and match to John",
+      "timestamp": "2025-09-28T01:16:02.966Z",
+      "success": true,
+      "duration": 3028,
+      "result": {
+        "query": "What projects does John have?",
+        "timestamp": "2025-09-28T01:16:02.966Z",
+        "steps": [
+          "Checking Context DB for existing knowledge",
+          "Discovering missing information from external sources",
+          "Progressive drilling for specific details",
+          "Making intelligent connections",
+          "Learning from interaction"
+        ],
+        "discoveries": [],
+        "contextualIntelligence": {
+          "contextKnowledge": {
+            "entities": [
+              {
+                "name": "What",
+                "type": "person",
+                "confidence": 0.7
+              },
+              {
+                "name": "John",
+                "type": "person",
+                "confidence": 0.7
+              }
+            ],
+            "relationships": [
+              {
+                "type": "manages",
+                "target": "deck-project",
+                "confidence": 0.8
+              },
+              {
+                "type": "located_at",
+                "target": "123 Oak Street",
+                "confidence": 0.9
+              }
+            ],
+            "confidence": 0.8,
+            "source": "context-db",
+            "knowledgeGaps": [
+              {
+                "type": "missing_entity",
+                "entity": "What",
+                "entityType": "person"
+              }
+            ]
+          },
+          "externalDiscoveries": {
+            "snappyProjects": [
+              {
+                "id": "20250908-01-john-green-deck-demo",
+                "name": "John Green - Deck Demolition",
+                "clientName": "John Green",
+                "projectType": "Deck Demolition",
+                "status": "payment_received",
+                "createdAt": "2025-09-08",
+                "updatedAt": "2025-09-23",
+                "type": "project",
+                "matchConfidence": 0.8,
+                "matchedMention": "John"
+              },
+              {
+                "id": "20250917-42-john-green",
+                "name": "John Green - Toilet Repair",
+                "clientName": "John Green",
+                "projectType": "Toilet Repair",
+                "status": "payment_received",
+                "createdAt": "2025-09-17",
+                "updatedAt": "2025-09-23",
+                "type": "project",
+                "matchConfidence": 0.8,
+                "matchedMention": "John"
+              },
+              {
+                "id": "20250923-43-john-green-deck",
+                "name": "John Green - Deck Repair",
+                "clientName": "John Green",
+                "projectType": "Deck Repair",
+                "status": "awaiting_client_approval",
+                "createdAt": "2025-09-23",
+                "updatedAt": "2025-09-23",
+                "type": "project",
+                "matchConfidence": 0.8,
+                "matchedMention": "John"
+              },
+              {
+                "id": "20250924-44-john-green-combined",
+                "name": "John Green - Combined: Toilet Repair + Deck Repair",
+                "clientName": "John Green",
+                "projectType": "Combined: Toilet Repair + Deck Repair",
+                "status": "bid_prepared",
+                "createdAt": "2025-09-24",
+                "updatedAt": "2025-09-24",
+                "type": "project",
+                "matchConfidence": 0.8,
+                "matchedMention": "John"
+              }
+            ],
+            "projectDetails": [
+              {
+                "id": "20250908-01-john-green-deck-demo",
+                "name": "John Green - Deck Demolition",
+                "clientName": "John Green",
+                "projectType": "Deck Demolition",
+                "status": "payment_received",
+                "createdAt": "2025-09-08",
+                "updatedAt": "2025-09-23",
+                "type": "project",
+                "materials": [],
+                "costs": {
+                  "labor": 0,
+                  "materials": 0,
+                  "total": 0
+                },
+                "timeline": [
+                  {
+                    "date": "2025-09-08",
+                    "task": "Project created",
+                    "status": "completed"
+                  },
+                  {
+                    "date": "2025-09-23",
+                    "task": "Status updated to payment_received",
+                    "status": "completed"
+                  }
+                ],
+                "location": null
+              },
+              {
+                "id": "20250917-42-john-green",
+                "name": "John Green - Toilet Repair",
+                "clientName": "John Green",
+                "projectType": "Toilet Repair",
+                "status": "payment_received",
+                "createdAt": "2025-09-17",
+                "updatedAt": "2025-09-23",
+                "type": "project",
+                "materials": [],
+                "costs": {
+                  "labor": 0,
+                  "materials": 0,
+                  "total": 0
+                },
+                "timeline": [
+                  {
+                    "date": "2025-09-17",
+                    "task": "Project created",
+                    "status": "completed"
+                  },
+                  {
+                    "date": "2025-09-23",
+                    "task": "Status updated to payment_received",
+                    "status": "completed"
+                  }
+                ],
+                "location": null
+              },
+              {
+                "id": "20250923-43-john-green-deck",
+                "name": "John Green - Deck Repair",
+                "clientName": "John Green",
+                "projectType": "Deck Repair",
+                "status": "awaiting_client_approval",
+                "createdAt": "2025-09-23",
+                "updatedAt": "2025-09-23",
+                "type": "project",
+                "materials": [
+                  {
+                    "name": "stain",
+                    "cost": 0
+                  }
+                ],
+                "costs": {
+                  "labor": 0,
+                  "materials": 0,
+                  "total": 0
+                },
+                "timeline": [
+                  {
+                    "date": "2025-09-23",
+                    "task": "Project created",
+                    "status": "completed"
+                  }
+                ],
+                "location": "8 hours of estimated labor. | $320.00 |"
+              },
+              {
+                "id": "20250924-44-john-green-combined",
+                "name": "John Green - Combined: Toilet Repair + Deck Repair",
+                "clientName": "John Green",
+                "projectType": "Combined: Toilet Repair + Deck Repair",
+                "status": "bid_prepared",
+                "createdAt": "2025-09-24",
+                "updatedAt": "2025-09-24",
+                "type": "project",
+                "materials": [
+                  {
+                    "name": "stain",
+                    "cost": 0
+                  }
+                ],
+                "costs": {
+                  "labor": 0,
+                  "materials": 0,
+                  "total": 0
+                },
+                "timeline": [
+                  {
+                    "date": "2025-09-24",
+                    "task": "Project created",
+                    "status": "completed"
+                  }
+                ],
+                "location": "30 days from the date listed above."
+              }
+            ],
+            "confidence": 0.85,
+            "source": "external-discovery"
+          },
+          "specificDetails": {
+            "drillResults": [
+              {
+                "type": "project_drill",
+                "project": {
+                  "id": "20250908-01-john-green-deck-demo",
+                  "name": "John Green - Deck Demolition",
+                  "clientName": "John Green",
+                  "projectType": "Deck Demolition",
+                  "status": "payment_received",
+                  "createdAt": "2025-09-08",
+                  "updatedAt": "2025-09-23",
+                  "type": "project",
+                  "matchConfidence": 0.8,
+                  "matchedMention": "John"
+                },
+                "details": {
+                  "id": "20250908-01-john-green-deck-demo",
+                  "name": "John Green - Deck Demolition",
+                  "clientName": "John Green",
+                  "projectType": "Deck Demolition",
+                  "status": "payment_received",
+                  "createdAt": "2025-09-08",
+                  "updatedAt": "2025-09-23",
+                  "type": "project",
+                  "materials": [],
+                  "costs": {
+                    "labor": 0,
+                    "materials": 0,
+                    "total": 0
+                  },
+                  "timeline": [
+                    {
+                      "date": "2025-09-08",
+                      "task": "Project created",
+                      "status": "completed"
+                    },
+                    {
+                      "date": "2025-09-23",
+                      "task": "Status updated to payment_received",
+                      "status": "completed"
+                    }
+                  ],
+                  "location": null
+                },
+                "relevantToQuery": false,
+                "confidence": 0.85
+              },
+              {
+                "type": "project_drill",
+                "project": {
+                  "id": "20250917-42-john-green",
+                  "name": "John Green - Toilet Repair",
+                  "clientName": "John Green",
+                  "projectType": "Toilet Repair",
+                  "status": "payment_received",
+                  "createdAt": "2025-09-17",
+                  "updatedAt": "2025-09-23",
+                  "type": "project",
+                  "matchConfidence": 0.8,
+                  "matchedMention": "John"
+                },
+                "details": {
+                  "id": "20250917-42-john-green",
+                  "name": "John Green - Toilet Repair",
+                  "clientName": "John Green",
+                  "projectType": "Toilet Repair",
+                  "status": "payment_received",
+                  "createdAt": "2025-09-17",
+                  "updatedAt": "2025-09-23",
+                  "type": "project",
+                  "materials": [],
+                  "costs": {
+                    "labor": 0,
+                    "materials": 0,
+                    "total": 0
+                  },
+                  "timeline": [
+                    {
+                      "date": "2025-09-17",
+                      "task": "Project created",
+                      "status": "completed"
+                    },
+                    {
+                      "date": "2025-09-23",
+                      "task": "Status updated to payment_received",
+                      "status": "completed"
+                    }
+                  ],
+                  "location": null
+                },
+                "relevantToQuery": false,
+                "confidence": 0.85
+              }
+            ],
+            "confidence": 0,
+            "source": "progressive-drilling",
+            "error": "m.toLowerCase is not a function"
+          },
+          "connections": {
+            "entityConnections": [
+              {
+                "type": "person_project",
+                "entity": "John",
+                "project": "John Green - Deck Demolition",
+                "connection": "client_of",
+                "confidence": 0.9
+              },
+              {
+                "type": "person_project",
+                "entity": "John",
+                "project": "John Green - Toilet Repair",
+                "connection": "client_of",
+                "confidence": 0.9
+              },
+              {
+                "type": "person_project",
+                "entity": "John",
+                "project": "John Green - Deck Repair",
+                "connection": "client_of",
+                "confidence": 0.9
+              },
+              {
+                "type": "person_project",
+                "entity": "John",
+                "project": "John Green - Combined: Toilet Repair + Deck Repair",
+                "connection": "client_of",
+                "confidence": 0.9
+              }
+            ],
+            "projectConnections": [],
+            "temporalConnections": [
+              {
+                "type": "temporal",
+                "timeline": [
+                  {
+                    "date": "2025-09-08",
+                    "task": "Project created",
+                    "status": "completed"
+                  },
+                  {
+                    "date": "2025-09-23",
+                    "task": "Status updated to payment_received",
+                    "status": "completed"
+                  }
+                ],
+                "project": "John Green - Deck Demolition",
+                "confidence": 0.8
+              },
+              {
+                "type": "temporal",
+                "timeline": [
+                  {
+                    "date": "2025-09-17",
+                    "task": "Project created",
+                    "status": "completed"
+                  },
+                  {
+                    "date": "2025-09-23",
+                    "task": "Status updated to payment_received",
+                    "status": "completed"
+                  }
+                ],
+                "project": "John Green - Toilet Repair",
+                "confidence": 0.8
+              }
+            ],
+            "spatialConnections": [],
+            "confidence": 0.75,
+            "source": "intelligent-connections"
+          },
+          "overallConfidence": 1
+        },
+        "recommendations": [],
+        "processingTime": 3027
+      },
+      "error": null,
+      "snappyIssues": []
+    },
+    {
+      "testNumber": 3,
+      "name": "Cost Components Query",
+      "query": "What are the cost components for John's deck?",
+      "expectedBehavior": "Should find existing project and return cost breakdown",
+      "timestamp": "2025-09-28T01:16:05.994Z",
+      "success": true,
+      "duration": 3811,
+      "result": {
+        "query": "What are the cost components for John's deck?",
+        "timestamp": "2025-09-28T01:16:05.994Z",
+        "steps": [
+          "Checking Context DB for existing knowledge",
+          "Discovering missing information from external sources",
+          "Progressive drilling for specific details",
+          "Making intelligent connections",
+          "Learning from interaction"
+        ],
+        "discoveries": [],
+        "contextualIntelligence": {
+          "contextKnowledge": {
+            "entities": [
+              {
+                "name": "What",
+                "type": "person",
+                "confidence": 0.7
+              },
+              {
+                "name": "John",
+                "type": "person",
+                "confidence": 0.7
+              },
+              {
+                "name": "deck",
+                "type": "material",
+                "confidence": 0.8
+              }
+            ],
+            "relationships": [
+              {
+                "type": "manages",
+                "target": "deck-project",
+                "confidence": 0.8
+              },
+              {
+                "type": "located_at",
+                "target": "123 Oak Street",
+                "confidence": 0.9
+              }
+            ],
+            "confidence": 0.8,
+            "source": "context-db",
+            "knowledgeGaps": [
+              {
+                "type": "missing_entity",
+                "entity": "What",
+                "entityType": "person"
+              },
+              {
+                "type": "missing_entity",
+                "entity": "deck",
+                "entityType": "material"
+              }
+            ]
+          },
+          "externalDiscoveries": {
+            "snappyProjects": [
+              {
+                "id": "20250908-01-john-green-deck-demo",
+                "name": "John Green - Deck Demolition",
+                "clientName": "John Green",
+                "projectType": "Deck Demolition",
+                "status": "payment_received",
+                "createdAt": "2025-09-08",
+                "updatedAt": "2025-09-23",
+                "type": "project",
+                "matchConfidence": 0.8,
+                "matchedMention": "deck"
+              },
+              {
+                "id": "20250923-43-john-green-deck",
+                "name": "John Green - Deck Repair",
+                "clientName": "John Green",
+                "projectType": "Deck Repair",
+                "status": "awaiting_client_approval",
+                "createdAt": "2025-09-23",
+                "updatedAt": "2025-09-23",
+                "type": "project",
+                "matchConfidence": 0.8,
+                "matchedMention": "deck"
+              },
+              {
+                "id": "20250924-44-john-green-combined",
+                "name": "John Green - Combined: Toilet Repair + Deck Repair",
+                "clientName": "John Green",
+                "projectType": "Combined: Toilet Repair + Deck Repair",
+                "status": "bid_prepared",
+                "createdAt": "2025-09-24",
+                "updatedAt": "2025-09-24",
+                "type": "project",
+                "matchConfidence": 0.8,
+                "matchedMention": "deck"
+              },
+              {
+                "id": "20250908-01-john-green-deck-demo",
+                "name": "John Green - Deck Demolition",
+                "clientName": "John Green",
+                "projectType": "Deck Demolition",
+                "status": "payment_received",
+                "createdAt": "2025-09-08",
+                "updatedAt": "2025-09-23",
+                "type": "project",
+                "matchConfidence": 0.8,
+                "matchedMention": "John"
+              },
+              {
+                "id": "20250917-42-john-green",
+                "name": "John Green - Toilet Repair",
+                "clientName": "John Green",
+                "projectType": "Toilet Repair",
+                "status": "payment_received",
+                "createdAt": "2025-09-17",
+                "updatedAt": "2025-09-23",
+                "type": "project",
+                "matchConfidence": 0.8,
+                "matchedMention": "John"
+              },
+              {
+                "id": "20250923-43-john-green-deck",
+                "name": "John Green - Deck Repair",
+                "clientName": "John Green",
+                "projectType": "Deck Repair",
+                "status": "awaiting_client_approval",
+                "createdAt": "2025-09-23",
+                "updatedAt": "2025-09-23",
+                "type": "project",
+                "matchConfidence": 0.8,
+                "matchedMention": "John"
+              },
+              {
+                "id": "20250924-44-john-green-combined",
+                "name": "John Green - Combined: Toilet Repair + Deck Repair",
+                "clientName": "John Green",
+                "projectType": "Combined: Toilet Repair + Deck Repair",
+                "status": "bid_prepared",
+                "createdAt": "2025-09-24",
+                "updatedAt": "2025-09-24",
+                "type": "project",
+                "matchConfidence": 0.8,
+                "matchedMention": "John"
+              }
+            ],
+            "projectDetails": [
+              {
+                "id": "20250908-01-john-green-deck-demo",
+                "name": "John Green - Deck Demolition",
+                "clientName": "John Green",
+                "projectType": "Deck Demolition",
+                "status": "payment_received",
+                "createdAt": "2025-09-08",
+                "updatedAt": "2025-09-23",
+                "type": "project",
+                "materials": [],
+                "costs": {
+                  "labor": 0,
+                  "materials": 0,
+                  "total": 0
+                },
+                "timeline": [
+                  {
+                    "date": "2025-09-08",
+                    "task": "Project created",
+                    "status": "completed"
+                  },
+                  {
+                    "date": "2025-09-23",
+                    "task": "Status updated to payment_received",
+                    "status": "completed"
+                  }
+                ],
+                "location": null
+              },
+              {
+                "id": "20250923-43-john-green-deck",
+                "name": "John Green - Deck Repair",
+                "clientName": "John Green",
+                "projectType": "Deck Repair",
+                "status": "awaiting_client_approval",
+                "createdAt": "2025-09-23",
+                "updatedAt": "2025-09-23",
+                "type": "project",
+                "materials": [
+                  {
+                    "name": "stain",
+                    "cost": 0
+                  }
+                ],
+                "costs": {
+                  "labor": 0,
+                  "materials": 0,
+                  "total": 0
+                },
+                "timeline": [
+                  {
+                    "date": "2025-09-23",
+                    "task": "Project created",
+                    "status": "completed"
+                  }
+                ],
+                "location": "8 hours of estimated labor. | $320.00 |"
+              },
+              {
+                "id": "20250924-44-john-green-combined",
+                "name": "John Green - Combined: Toilet Repair + Deck Repair",
+                "clientName": "John Green",
+                "projectType": "Combined: Toilet Repair + Deck Repair",
+                "status": "bid_prepared",
+                "createdAt": "2025-09-24",
+                "updatedAt": "2025-09-24",
+                "type": "project",
+                "materials": [
+                  {
+                    "name": "stain",
+                    "cost": 0
+                  }
+                ],
+                "costs": {
+                  "labor": 0,
+                  "materials": 0,
+                  "total": 0
+                },
+                "timeline": [
+                  {
+                    "date": "2025-09-24",
+                    "task": "Project created",
+                    "status": "completed"
+                  }
+                ],
+                "location": "30 days from the date listed above."
+              },
+              {
+                "id": "20250908-01-john-green-deck-demo",
+                "name": "John Green - Deck Demolition",
+                "clientName": "John Green",
+                "projectType": "Deck Demolition",
+                "status": "payment_received",
+                "createdAt": "2025-09-08",
+                "updatedAt": "2025-09-23",
+                "type": "project",
+                "materials": [],
+                "costs": {
+                  "labor": 0,
+                  "materials": 0,
+                  "total": 0
+                },
+                "timeline": [
+                  {
+                    "date": "2025-09-08",
+                    "task": "Project created",
+                    "status": "completed"
+                  },
+                  {
+                    "date": "2025-09-23",
+                    "task": "Status updated to payment_received",
+                    "status": "completed"
+                  }
+                ],
+                "location": null
+              },
+              {
+                "id": "20250917-42-john-green",
+                "name": "John Green - Toilet Repair",
+                "clientName": "John Green",
+                "projectType": "Toilet Repair",
+                "status": "payment_received",
+                "createdAt": "2025-09-17",
+                "updatedAt": "2025-09-23",
+                "type": "project",
+                "materials": [],
+                "costs": {
+                  "labor": 0,
+                  "materials": 0,
+                  "total": 0
+                },
+                "timeline": [
+                  {
+                    "date": "2025-09-17",
+                    "task": "Project created",
+                    "status": "completed"
+                  },
+                  {
+                    "date": "2025-09-23",
+                    "task": "Status updated to payment_received",
+                    "status": "completed"
+                  }
+                ],
+                "location": null
+              },
+              {
+                "id": "20250923-43-john-green-deck",
+                "name": "John Green - Deck Repair",
+                "clientName": "John Green",
+                "projectType": "Deck Repair",
+                "status": "awaiting_client_approval",
+                "createdAt": "2025-09-23",
+                "updatedAt": "2025-09-23",
+                "type": "project",
+                "materials": [
+                  {
+                    "name": "stain",
+                    "cost": 0
+                  }
+                ],
+                "costs": {
+                  "labor": 0,
+                  "materials": 0,
+                  "total": 0
+                },
+                "timeline": [
+                  {
+                    "date": "2025-09-23",
+                    "task": "Project created",
+                    "status": "completed"
+                  }
+                ],
+                "location": "8 hours of estimated labor. | $320.00 |"
+              },
+              {
+                "id": "20250924-44-john-green-combined",
+                "name": "John Green - Combined: Toilet Repair + Deck Repair",
+                "clientName": "John Green",
+                "projectType": "Combined: Toilet Repair + Deck Repair",
+                "status": "bid_prepared",
+                "createdAt": "2025-09-24",
+                "updatedAt": "2025-09-24",
+                "type": "project",
+                "materials": [
+                  {
+                    "name": "stain",
+                    "cost": 0
+                  }
+                ],
+                "costs": {
+                  "labor": 0,
+                  "materials": 0,
+                  "total": 0
+                },
+                "timeline": [
+                  {
+                    "date": "2025-09-24",
+                    "task": "Project created",
+                    "status": "completed"
+                  }
+                ],
+                "location": "30 days from the date listed above."
+              }
+            ],
+            "confidence": 0.85,
+            "source": "external-discovery"
+          },
+          "specificDetails": {
+            "drillResults": [
+              {
+                "type": "project_drill",
+                "project": {
+                  "id": "20250908-01-john-green-deck-demo",
+                  "name": "John Green - Deck Demolition",
+                  "clientName": "John Green",
+                  "projectType": "Deck Demolition",
+                  "status": "payment_received",
+                  "createdAt": "2025-09-08",
+                  "updatedAt": "2025-09-23",
+                  "type": "project",
+                  "matchConfidence": 0.8,
+                  "matchedMention": "deck"
+                },
+                "details": {
+                  "id": "20250908-01-john-green-deck-demo",
+                  "name": "John Green - Deck Demolition",
+                  "clientName": "John Green",
+                  "projectType": "Deck Demolition",
+                  "status": "payment_received",
+                  "createdAt": "2025-09-08",
+                  "updatedAt": "2025-09-23",
+                  "type": "project",
+                  "materials": [],
+                  "costs": {
+                    "labor": 0,
+                    "materials": 0,
+                    "total": 0
+                  },
+                  "timeline": [
+                    {
+                      "date": "2025-09-08",
+                      "task": "Project created",
+                      "status": "completed"
+                    },
+                    {
+                      "date": "2025-09-23",
+                      "task": "Status updated to payment_received",
+                      "status": "completed"
+                    }
+                  ],
+                  "location": null
+                },
+                "relevantToQuery": false,
+                "confidence": 0.85
+              }
+            ],
+            "confidence": 0,
+            "source": "progressive-drilling",
+            "error": "m.toLowerCase is not a function"
+          },
+          "connections": {
+            "entityConnections": [
+              {
+                "type": "person_project",
+                "entity": "John",
+                "project": "John Green - Deck Demolition",
+                "connection": "client_of",
+                "confidence": 0.9
+              },
+              {
+                "type": "person_project",
+                "entity": "John",
+                "project": "John Green - Deck Repair",
+                "connection": "client_of",
+                "confidence": 0.9
+              },
+              {
+                "type": "person_project",
+                "entity": "John",
+                "project": "John Green - Combined: Toilet Repair + Deck Repair",
+                "connection": "client_of",
+                "confidence": 0.9
+              },
+              {
+                "type": "person_project",
+                "entity": "John",
+                "project": "John Green - Deck Demolition",
+                "connection": "client_of",
+                "confidence": 0.9
+              },
+              {
+                "type": "person_project",
+                "entity": "John",
+                "project": "John Green - Toilet Repair",
+                "connection": "client_of",
+                "confidence": 0.9
+              },
+              {
+                "type": "person_project",
+                "entity": "John",
+                "project": "John Green - Deck Repair",
+                "connection": "client_of",
+                "confidence": 0.9
+              },
+              {
+                "type": "person_project",
+                "entity": "John",
+                "project": "John Green - Combined: Toilet Repair + Deck Repair",
+                "connection": "client_of",
+                "confidence": 0.9
+              }
+            ],
+            "projectConnections": [],
+            "temporalConnections": [
+              {
+                "type": "temporal",
+                "timeline": [
+                  {
+                    "date": "2025-09-08",
+                    "task": "Project created",
+                    "status": "completed"
+                  },
+                  {
+                    "date": "2025-09-23",
+                    "task": "Status updated to payment_received",
+                    "status": "completed"
+                  }
+                ],
+                "project": "John Green - Deck Demolition",
+                "confidence": 0.8
+              }
+            ],
+            "spatialConnections": [],
+            "confidence": 0.75,
+            "source": "intelligent-connections"
+          },
+          "overallConfidence": 1
+        },
+        "recommendations": [],
+        "processingTime": 3811
+      },
+      "error": null,
+      "snappyIssues": []
+    },
+    {
+      "testNumber": 4,
+      "name": "Material Query",
+      "query": "What materials are needed for the deck project?",
+      "expectedBehavior": "Should discover project context and return materials list",
+      "timestamp": "2025-09-28T01:16:09.806Z",
+      "success": true,
+      "duration": 2030,
+      "result": {
+        "query": "What materials are needed for the deck project?",
+        "timestamp": "2025-09-28T01:16:09.806Z",
+        "steps": [
+          "Checking Context DB for existing knowledge",
+          "Discovering missing information from external sources",
+          "Progressive drilling for specific details",
+          "Making intelligent connections",
+          "Learning from interaction"
+        ],
+        "discoveries": [],
+        "contextualIntelligence": {
+          "contextKnowledge": {
+            "entities": [
+              {
+                "name": "What",
+                "type": "person",
+                "confidence": 0.7
+              },
+              {
+                "name": "deck",
+                "type": "material",
+                "confidence": 0.8
+              }
+            ],
+            "relationships": [],
+            "confidence": 0,
+            "source": "context-db",
+            "knowledgeGaps": [
+              {
+                "type": "missing_entity",
+                "entity": "What",
+                "entityType": "person"
+              },
+              {
+                "type": "missing_entity",
+                "entity": "deck",
+                "entityType": "material"
+              }
+            ]
+          },
+          "externalDiscoveries": {
+            "snappyProjects": [
+              {
+                "id": "20250908-01-john-green-deck-demo",
+                "name": "John Green - Deck Demolition",
+                "clientName": "John Green",
+                "projectType": "Deck Demolition",
+                "status": "payment_received",
+                "createdAt": "2025-09-08",
+                "updatedAt": "2025-09-23",
+                "type": "project",
+                "matchConfidence": 0.8,
+                "matchedMention": "deck"
+              },
+              {
+                "id": "20250923-43-john-green-deck",
+                "name": "John Green - Deck Repair",
+                "clientName": "John Green",
+                "projectType": "Deck Repair",
+                "status": "awaiting_client_approval",
+                "createdAt": "2025-09-23",
+                "updatedAt": "2025-09-23",
+                "type": "project",
+                "matchConfidence": 0.8,
+                "matchedMention": "deck"
+              },
+              {
+                "id": "20250924-44-john-green-combined",
+                "name": "John Green - Combined: Toilet Repair + Deck Repair",
+                "clientName": "John Green",
+                "projectType": "Combined: Toilet Repair + Deck Repair",
+                "status": "bid_prepared",
+                "createdAt": "2025-09-24",
+                "updatedAt": "2025-09-24",
+                "type": "project",
+                "matchConfidence": 0.8,
+                "matchedMention": "deck"
+              }
+            ],
+            "projectDetails": [
+              {
+                "id": "20250908-01-john-green-deck-demo",
+                "name": "John Green - Deck Demolition",
+                "clientName": "John Green",
+                "projectType": "Deck Demolition",
+                "status": "payment_received",
+                "createdAt": "2025-09-08",
+                "updatedAt": "2025-09-23",
+                "type": "project",
+                "materials": [],
+                "costs": {
+                  "labor": 0,
+                  "materials": 0,
+                  "total": 0
+                },
+                "timeline": [
+                  {
+                    "date": "2025-09-08",
+                    "task": "Project created",
+                    "status": "completed"
+                  },
+                  {
+                    "date": "2025-09-23",
+                    "task": "Status updated to payment_received",
+                    "status": "completed"
+                  }
+                ],
+                "location": null
+              },
+              {
+                "id": "20250923-43-john-green-deck",
+                "name": "John Green - Deck Repair",
+                "clientName": "John Green",
+                "projectType": "Deck Repair",
+                "status": "awaiting_client_approval",
+                "createdAt": "2025-09-23",
+                "updatedAt": "2025-09-23",
+                "type": "project",
+                "materials": [
+                  {
+                    "name": "stain",
+                    "cost": 0
+                  }
+                ],
+                "costs": {
+                  "labor": 0,
+                  "materials": 0,
+                  "total": 0
+                },
+                "timeline": [
+                  {
+                    "date": "2025-09-23",
+                    "task": "Project created",
+                    "status": "completed"
+                  }
+                ],
+                "location": "8 hours of estimated labor. | $320.00 |"
+              },
+              {
+                "id": "20250924-44-john-green-combined",
+                "name": "John Green - Combined: Toilet Repair + Deck Repair",
+                "clientName": "John Green",
+                "projectType": "Combined: Toilet Repair + Deck Repair",
+                "status": "bid_prepared",
+                "createdAt": "2025-09-24",
+                "updatedAt": "2025-09-24",
+                "type": "project",
+                "materials": [
+                  {
+                    "name": "stain",
+                    "cost": 0
+                  }
+                ],
+                "costs": {
+                  "labor": 0,
+                  "materials": 0,
+                  "total": 0
+                },
+                "timeline": [
+                  {
+                    "date": "2025-09-24",
+                    "task": "Project created",
+                    "status": "completed"
+                  }
+                ],
+                "location": "30 days from the date listed above."
+              }
+            ],
+            "confidence": 0.85,
+            "source": "external-discovery"
+          },
+          "specificDetails": {
+            "drillResults": [
+              {
+                "type": "project_drill",
+                "project": {
+                  "id": "20250908-01-john-green-deck-demo",
+                  "name": "John Green - Deck Demolition",
+                  "clientName": "John Green",
+                  "projectType": "Deck Demolition",
+                  "status": "payment_received",
+                  "createdAt": "2025-09-08",
+                  "updatedAt": "2025-09-23",
+                  "type": "project",
+                  "matchConfidence": 0.8,
+                  "matchedMention": "deck"
+                },
+                "details": {
+                  "id": "20250908-01-john-green-deck-demo",
+                  "name": "John Green - Deck Demolition",
+                  "clientName": "John Green",
+                  "projectType": "Deck Demolition",
+                  "status": "payment_received",
+                  "createdAt": "2025-09-08",
+                  "updatedAt": "2025-09-23",
+                  "type": "project",
+                  "materials": [],
+                  "costs": {
+                    "labor": 0,
+                    "materials": 0,
+                    "total": 0
+                  },
+                  "timeline": [
+                    {
+                      "date": "2025-09-08",
+                      "task": "Project created",
+                      "status": "completed"
+                    },
+                    {
+                      "date": "2025-09-23",
+                      "task": "Status updated to payment_received",
+                      "status": "completed"
+                    }
+                  ],
+                  "location": null
+                },
+                "relevantToQuery": false,
+                "confidence": 0.85
+              }
+            ],
+            "confidence": 0,
+            "source": "progressive-drilling",
+            "error": "m.toLowerCase is not a function"
+          },
+          "connections": {
+            "entityConnections": [],
+            "projectConnections": [],
+            "temporalConnections": [
+              {
+                "type": "temporal",
+                "timeline": [
+                  {
+                    "date": "2025-09-08",
+                    "task": "Project created",
+                    "status": "completed"
+                  },
+                  {
+                    "date": "2025-09-23",
+                    "task": "Status updated to payment_received",
+                    "status": "completed"
+                  }
+                ],
+                "project": "John Green - Deck Demolition",
+                "confidence": 0.8
+              }
+            ],
+            "spatialConnections": [],
+            "confidence": 0.75,
+            "source": "intelligent-connections"
+          },
+          "overallConfidence": 0.95
+        },
+        "recommendations": [],
+        "processingTime": 2029
+      },
+      "error": null,
+      "snappyIssues": []
+    },
+    {
+      "testNumber": 5,
+      "name": "Person-Location Query",
+      "query": "I'm at John's, add $30 charge for more screws",
+      "expectedBehavior": "Should resolve John's location to specific project context",
+      "timestamp": "2025-09-28T01:16:11.836Z",
+      "success": true,
+      "duration": 2612,
+      "result": {
+        "query": "I'm at John's, add $30 charge for more screws",
+        "timestamp": "2025-09-28T01:16:11.836Z",
+        "steps": [
+          "Checking Context DB for existing knowledge",
+          "Discovering missing information from external sources",
+          "Progressive drilling for specific details",
+          "Making intelligent connections",
+          "Learning from interaction"
+        ],
+        "discoveries": [],
+        "contextualIntelligence": {
+          "contextKnowledge": {
+            "entities": [
+              {
+                "name": "John",
+                "type": "person",
+                "confidence": 0.7
+              },
+              {
+                "name": "$30",
+                "type": "amount",
+                "confidence": 0.9
+              },
+              {
+                "name": "screws",
+                "type": "material",
+                "confidence": 0.8
+              }
+            ],
+            "relationships": [
+              {
+                "type": "manages",
+                "target": "deck-project",
+                "confidence": 0.8
+              },
+              {
+                "type": "located_at",
+                "target": "123 Oak Street",
+                "confidence": 0.9
+              }
+            ],
+            "confidence": 0.8,
+            "source": "context-db",
+            "knowledgeGaps": [
+              {
+                "type": "missing_entity",
+                "entity": "$30",
+                "entityType": "amount"
+              },
+              {
+                "type": "missing_entity",
+                "entity": "screws",
+                "entityType": "material"
+              }
+            ]
+          },
+          "externalDiscoveries": {
+            "snappyProjects": [
+              {
+                "id": "20250908-01-john-green-deck-demo",
+                "name": "John Green - Deck Demolition",
+                "clientName": "John Green",
+                "projectType": "Deck Demolition",
+                "status": "payment_received",
+                "createdAt": "2025-09-08",
+                "updatedAt": "2025-09-23",
+                "type": "project",
+                "matchConfidence": 0.8,
+                "matchedMention": "John"
+              },
+              {
+                "id": "20250917-42-john-green",
+                "name": "John Green - Toilet Repair",
+                "clientName": "John Green",
+                "projectType": "Toilet Repair",
+                "status": "payment_received",
+                "createdAt": "2025-09-17",
+                "updatedAt": "2025-09-23",
+                "type": "project",
+                "matchConfidence": 0.8,
+                "matchedMention": "John"
+              },
+              {
+                "id": "20250923-43-john-green-deck",
+                "name": "John Green - Deck Repair",
+                "clientName": "John Green",
+                "projectType": "Deck Repair",
+                "status": "awaiting_client_approval",
+                "createdAt": "2025-09-23",
+                "updatedAt": "2025-09-23",
+                "type": "project",
+                "matchConfidence": 0.8,
+                "matchedMention": "John"
+              },
+              {
+                "id": "20250924-44-john-green-combined",
+                "name": "John Green - Combined: Toilet Repair + Deck Repair",
+                "clientName": "John Green",
+                "projectType": "Combined: Toilet Repair + Deck Repair",
+                "status": "bid_prepared",
+                "createdAt": "2025-09-24",
+                "updatedAt": "2025-09-24",
+                "type": "project",
+                "matchConfidence": 0.8,
+                "matchedMention": "John"
+              }
+            ],
+            "projectDetails": [
+              {
+                "id": "20250908-01-john-green-deck-demo",
+                "name": "John Green - Deck Demolition",
+                "clientName": "John Green",
+                "projectType": "Deck Demolition",
+                "status": "payment_received",
+                "createdAt": "2025-09-08",
+                "updatedAt": "2025-09-23",
+                "type": "project",
+                "materials": [],
+                "costs": {
+                  "labor": 0,
+                  "materials": 0,
+                  "total": 0
+                },
+                "timeline": [
+                  {
+                    "date": "2025-09-08",
+                    "task": "Project created",
+                    "status": "completed"
+                  },
+                  {
+                    "date": "2025-09-23",
+                    "task": "Status updated to payment_received",
+                    "status": "completed"
+                  }
+                ],
+                "location": null
+              },
+              {
+                "id": "20250917-42-john-green",
+                "name": "John Green - Toilet Repair",
+                "clientName": "John Green",
+                "projectType": "Toilet Repair",
+                "status": "payment_received",
+                "createdAt": "2025-09-17",
+                "updatedAt": "2025-09-23",
+                "type": "project",
+                "materials": [],
+                "costs": {
+                  "labor": 0,
+                  "materials": 0,
+                  "total": 0
+                },
+                "timeline": [
+                  {
+                    "date": "2025-09-17",
+                    "task": "Project created",
+                    "status": "completed"
+                  },
+                  {
+                    "date": "2025-09-23",
+                    "task": "Status updated to payment_received",
+                    "status": "completed"
+                  }
+                ],
+                "location": null
+              },
+              {
+                "id": "20250923-43-john-green-deck",
+                "name": "John Green - Deck Repair",
+                "clientName": "John Green",
+                "projectType": "Deck Repair",
+                "status": "awaiting_client_approval",
+                "createdAt": "2025-09-23",
+                "updatedAt": "2025-09-23",
+                "type": "project",
+                "materials": [
+                  {
+                    "name": "stain",
+                    "cost": 0
+                  }
+                ],
+                "costs": {
+                  "labor": 0,
+                  "materials": 0,
+                  "total": 0
+                },
+                "timeline": [
+                  {
+                    "date": "2025-09-23",
+                    "task": "Project created",
+                    "status": "completed"
+                  }
+                ],
+                "location": "8 hours of estimated labor. | $320.00 |"
+              },
+              {
+                "id": "20250924-44-john-green-combined",
+                "name": "John Green - Combined: Toilet Repair + Deck Repair",
+                "clientName": "John Green",
+                "projectType": "Combined: Toilet Repair + Deck Repair",
+                "status": "bid_prepared",
+                "createdAt": "2025-09-24",
+                "updatedAt": "2025-09-24",
+                "type": "project",
+                "materials": [
+                  {
+                    "name": "stain",
+                    "cost": 0
+                  }
+                ],
+                "costs": {
+                  "labor": 0,
+                  "materials": 0,
+                  "total": 0
+                },
+                "timeline": [
+                  {
+                    "date": "2025-09-24",
+                    "task": "Project created",
+                    "status": "completed"
+                  }
+                ],
+                "location": "30 days from the date listed above."
+              }
+            ],
+            "confidence": 0.85,
+            "source": "external-discovery"
+          },
+          "specificDetails": {
+            "drillResults": [
+              {
+                "type": "project_drill",
+                "project": {
+                  "id": "20250908-01-john-green-deck-demo",
+                  "name": "John Green - Deck Demolition",
+                  "clientName": "John Green",
+                  "projectType": "Deck Demolition",
+                  "status": "payment_received",
+                  "createdAt": "2025-09-08",
+                  "updatedAt": "2025-09-23",
+                  "type": "project",
+                  "matchConfidence": 0.8,
+                  "matchedMention": "John"
+                },
+                "details": {
+                  "id": "20250908-01-john-green-deck-demo",
+                  "name": "John Green - Deck Demolition",
+                  "clientName": "John Green",
+                  "projectType": "Deck Demolition",
+                  "status": "payment_received",
+                  "createdAt": "2025-09-08",
+                  "updatedAt": "2025-09-23",
+                  "type": "project",
+                  "materials": [],
+                  "costs": {
+                    "labor": 0,
+                    "materials": 0,
+                    "total": 0
+                  },
+                  "timeline": [
+                    {
+                      "date": "2025-09-08",
+                      "task": "Project created",
+                      "status": "completed"
+                    },
+                    {
+                      "date": "2025-09-23",
+                      "task": "Status updated to payment_received",
+                      "status": "completed"
+                    }
+                  ],
+                  "location": null
+                },
+                "relevantToQuery": false,
+                "confidence": 0.85
+              },
+              {
+                "type": "project_drill",
+                "project": {
+                  "id": "20250917-42-john-green",
+                  "name": "John Green - Toilet Repair",
+                  "clientName": "John Green",
+                  "projectType": "Toilet Repair",
+                  "status": "payment_received",
+                  "createdAt": "2025-09-17",
+                  "updatedAt": "2025-09-23",
+                  "type": "project",
+                  "matchConfidence": 0.8,
+                  "matchedMention": "John"
+                },
+                "details": {
+                  "id": "20250917-42-john-green",
+                  "name": "John Green - Toilet Repair",
+                  "clientName": "John Green",
+                  "projectType": "Toilet Repair",
+                  "status": "payment_received",
+                  "createdAt": "2025-09-17",
+                  "updatedAt": "2025-09-23",
+                  "type": "project",
+                  "materials": [],
+                  "costs": {
+                    "labor": 0,
+                    "materials": 0,
+                    "total": 0
+                  },
+                  "timeline": [
+                    {
+                      "date": "2025-09-17",
+                      "task": "Project created",
+                      "status": "completed"
+                    },
+                    {
+                      "date": "2025-09-23",
+                      "task": "Status updated to payment_received",
+                      "status": "completed"
+                    }
+                  ],
+                  "location": null
+                },
+                "relevantToQuery": false,
+                "confidence": 0.85
+              }
+            ],
+            "confidence": 0,
+            "source": "progressive-drilling",
+            "error": "m.toLowerCase is not a function"
+          },
+          "connections": {
+            "entityConnections": [
+              {
+                "type": "person_project",
+                "entity": "John",
+                "project": "John Green - Deck Demolition",
+                "connection": "client_of",
+                "confidence": 0.9
+              },
+              {
+                "type": "person_project",
+                "entity": "John",
+                "project": "John Green - Toilet Repair",
+                "connection": "client_of",
+                "confidence": 0.9
+              },
+              {
+                "type": "person_project",
+                "entity": "John",
+                "project": "John Green - Deck Repair",
+                "connection": "client_of",
+                "confidence": 0.9
+              },
+              {
+                "type": "person_project",
+                "entity": "John",
+                "project": "John Green - Combined: Toilet Repair + Deck Repair",
+                "connection": "client_of",
+                "confidence": 0.9
+              }
+            ],
+            "projectConnections": [],
+            "temporalConnections": [
+              {
+                "type": "temporal",
+                "timeline": [
+                  {
+                    "date": "2025-09-08",
+                    "task": "Project created",
+                    "status": "completed"
+                  },
+                  {
+                    "date": "2025-09-23",
+                    "task": "Status updated to payment_received",
+                    "status": "completed"
+                  }
+                ],
+                "project": "John Green - Deck Demolition",
+                "confidence": 0.8
+              },
+              {
+                "type": "temporal",
+                "timeline": [
+                  {
+                    "date": "2025-09-17",
+                    "task": "Project created",
+                    "status": "completed"
+                  },
+                  {
+                    "date": "2025-09-23",
+                    "task": "Status updated to payment_received",
+                    "status": "completed"
+                  }
+                ],
+                "project": "John Green - Toilet Repair",
+                "confidence": 0.8
+              }
+            ],
+            "spatialConnections": [],
+            "confidence": 0.75,
+            "source": "intelligent-connections"
+          },
+          "overallConfidence": 1
+        },
+        "recommendations": [],
+        "processingTime": 2612
+      },
+      "error": null,
+      "snappyIssues": []
+    }
+  ],
+  "summary": {
+    "totalTests": 5,
+    "passedTests": 5,
+    "failedTests": 0,
+    "successRate": "100.0",
+    "overallSuccess": true
+  }
+}
