@@ -1,0 +1,620 @@
+{
+  "project": {
+    "id": "20250923-43-john-green-deck",
+    "name": "John Green - Deck Repair",
+    "status": "awaiting_client_approval",
+    "lastModified": "2025-09-23",
+    "entities": {
+      "people": [
+        {
+          "name": "John Green",
+          "type": "client",
+          "role": "project_owner",
+          "confidence": 1,
+          "source": "project_metadata"
+        }
+      ],
+      "locations": [
+        {
+          "name": "8 hours of est",
+          "type": "address",
+          "source": "bid.md",
+          "confidence": 0.9
+        },
+        {
+          "name": "30 days from the date list",
+          "type": "address",
+          "source": "bid.md",
+          "confidence": 0.9
+        },
+        {
+          "name": "6 treated pine board",
+          "type": "address",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.9
+        },
+        {
+          "name": "4 treated pine board",
+          "type": "address",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.9
+        },
+        {
+          "name": "6 treated pine board",
+          "type": "address",
+          "source": "cost-sheet.md",
+          "confidence": 0.9
+        },
+        {
+          "name": "4 treated pine board",
+          "type": "address",
+          "source": "cost-sheet.md",
+          "confidence": 0.9
+        }
+      ],
+      "materials": [
+        {
+          "name": "for decking",
+          "cost": 130,
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.8
+        },
+        {
+          "name": "for sleepers",
+          "cost": 25,
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.8
+        },
+        {
+          "name": "deck sealer",
+          "cost": 25,
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.8
+        },
+        {
+          "name": "concrete anchors",
+          "cost": 30,
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.8
+        },
+        {
+          "name": "deck screws",
+          "cost": 30,
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.8
+        },
+        {
+          "name": "dump fee",
+          "cost": 40,
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.8
+        },
+        {
+          "name": "Client Bill",
+          "cost": 722,
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.8
+        },
+        {
+          "name": "Material Cost",
+          "cost": 303.1,
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.8
+        },
+        {
+          "name": "Labor Profit",
+          "cost": 418.9,
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.8
+        },
+        {
+          "name": "Effective Rate",
+          "cost": 52.36,
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.8
+        },
+        {
+          "name": "Materials Subtotal",
+          "cost": 280,
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.8
+        },
+        {
+          "name": "on Materials",
+          "cost": 23.1,
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.8
+        },
+        {
+          "name": "Material Cost",
+          "cost": 303.1,
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.8
+        },
+        {
+          "name": "for decking",
+          "cost": 130,
+          "source": "cost-sheet.md",
+          "confidence": 0.8
+        },
+        {
+          "name": "for sleepers",
+          "cost": 25,
+          "source": "cost-sheet.md",
+          "confidence": 0.8
+        },
+        {
+          "name": "deck sealer",
+          "cost": 25,
+          "source": "cost-sheet.md",
+          "confidence": 0.8
+        },
+        {
+          "name": "concrete anchors",
+          "cost": 30,
+          "source": "cost-sheet.md",
+          "confidence": 0.8
+        },
+        {
+          "name": "deck screws",
+          "cost": 30,
+          "source": "cost-sheet.md",
+          "confidence": 0.8
+        },
+        {
+          "name": "dump fee",
+          "cost": 40,
+          "source": "cost-sheet.md",
+          "confidence": 0.8
+        },
+        {
+          "name": "Client Bill",
+          "cost": 649.5,
+          "source": "cost-sheet.md",
+          "confidence": 0.8
+        },
+        {
+          "name": "for Labor",
+          "cost": 346.4,
+          "source": "cost-sheet.md",
+          "confidence": 0.8
+        },
+        {
+          "name": "Hourly Rate",
+          "cost": 43.3,
+          "source": "cost-sheet.md",
+          "confidence": 0.8
+        },
+        {
+          "name": "Client Bill",
+          "cost": 500,
+          "source": "cost-sheet.md",
+          "confidence": 0.8
+        },
+        {
+          "name": "for Labor",
+          "cost": 196.9,
+          "source": "cost-sheet.md",
+          "confidence": 0.8
+        },
+        {
+          "name": "Hourly Rate",
+          "cost": 24.61,
+          "source": "cost-sheet.md",
+          "confidence": 0.8
+        },
+        {
+          "name": "Client Bill",
+          "cost": 519.6,
+          "source": "cost-sheet.md",
+          "confidence": 0.8
+        },
+        {
+          "name": "for Labor",
+          "cost": 216.5,
+          "source": "cost-sheet.md",
+          "confidence": 0.8
+        },
+        {
+          "name": "Hourly Rate",
+          "cost": 27.06,
+          "source": "cost-sheet.md",
+          "confidence": 0.8
+        }
+      ],
+      "timeline": [
+        {
+          "date": "2025-09-23",
+          "description": "| 20250923-43 | 2025-09-23 | 2025-10-23 |",
+          "source": "bid.md",
+          "confidence": 0.7
+        },
+        {
+          "date": "2025-09-25",
+          "description": "**Date:** 2025-09-25",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.7
+        },
+        {
+          "date": "9/25/2025",
+          "description": "**Generated:** 9/25/2025, 10:15:20 AM",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.7
+        }
+      ],
+      "costs": [],
+      "tasks": [
+        {
+          "description": "**Payment Terms**: Payment due within 15 days of completion.",
+          "status": "pending",
+          "source": "bid.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "**Warranty**: Customer satisfaction guaranteed.",
+          "status": "pending",
+          "source": "bid.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "**Cleanup**: Cleanup and disposal of old parts included.",
+          "status": "pending",
+          "source": "bid.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "**Access**: Customer responsible for providing reasonable access to the work area.",
+          "status": "pending",
+          "source": "bid.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "**Validity**: This bid is valid for 30 days from the date listed above.",
+          "status": "pending",
+          "source": "bid.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "**Disclaimer**: Final cost may vary if additional, unforeseen repairs are discovered during the course of the work.",
+          "status": "pending",
+          "source": "bid.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "**Sales Tax**: In accordance with Texas tax law for residential repair and remodeling services, sales tax is not collected on this invoice.",
+          "status": "pending",
+          "source": "bid.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "**Expected Discount**: This discount is offered with the expectation that the project proceeds as planned. If unforeseen issues arise that require significant additional labor or materials, this discount may be adjusted.",
+          "status": "pending",
+          "source": "bid.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "14 8' 1x6 treated pine boards for decking: $130.00 (Home Depot)",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "5 8' 2x4 treated pine boards for sleepers: $25.00 (Home Depot)",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "1 gallon of deck sealer: $25.00 (Home Depot)",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "1 box tapcon concrete anchors: $30.00 (Lowes)",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "1 box deck screws: $30.00 (Home Depot)",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "1 dump fee: $40.00 - waste disposal",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Deck repair and installation: 8 hours @ $50.00/hour = $400.00",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Client Bill: $722.00",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Actual Material Cost: $303.10",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Labor Profit: $418.90",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Effective Rate: $52.36/hour",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "**Best Case (-10% time):** $58.18/hour",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "**Base Estimate:** $52.36/hour",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "**Worst Case (+20% time):** $43.64/hour",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Subtotal = Sum of all material prices",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Tax = Subtotal × 8.25%",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Markup = Subtotal × 15.0%",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Client Charge = Subtotal + Markup",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Actual Cost = Subtotal + Tax",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Total Hours = Sum of all task hours",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Total Cost = Sum of (hours × rate) for each task",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Average Rate = Total Cost ÷ Total Hours",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Effective Rate = (Total Bill - Actual Material Cost) ÷ Labor Hours",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "All calculations use Texas sales tax rate of 8.25%",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Material markup of 15.0% applied for client billing",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Actual material cost includes tax paid by business",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Labor rates and hours can be adjusted before final bid",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Materials Subtotal: $280.00 ✓ (matches)",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Tax on Materials: $23.10 ✓ (matches our calculation)",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Total Material Cost: $303.10 ✓ (matches)",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Labor: 8 hours @ $40/hour = $320.00 (vs our $50/hour = $400.00)",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Standardized $50/hour labor rate (vs original $40/hour)",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "15% material markup for better cost recovery",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Clear formula documentation",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Scenario analysis for risk assessment",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Professional formatting ready for PDF generation",
+          "status": "pending",
+          "source": "cost-breakdown-calculated.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "14 8' 1x6 treated pine boards for decking: $130.00",
+          "status": "pending",
+          "source": "cost-sheet.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "5 8' 2x4 treated pine boards for sleepers: $25.00",
+          "status": "pending",
+          "source": "cost-sheet.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "1 gallon of deck sealer: $25.00",
+          "status": "pending",
+          "source": "cost-sheet.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "1 box tapcon concrete anchors: $30.00",
+          "status": "pending",
+          "source": "cost-sheet.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "1 box deck screws: $30.00",
+          "status": "pending",
+          "source": "cost-sheet.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "1 dump fee: $40.00",
+          "status": "pending",
+          "source": "cost-sheet.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "8 hours @ $40/hour: $320.00",
+          "status": "pending",
+          "source": "cost-sheet.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Client Bill: $649.50",
+          "status": "pending",
+          "source": "cost-sheet.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Net for Labor: $346.40 ($649.50 - $303.10)",
+          "status": "pending",
+          "source": "cost-sheet.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "**Effective Hourly Rate: $43.30/hour**",
+          "status": "pending",
+          "source": "cost-sheet.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Client Bill: $500.00",
+          "status": "pending",
+          "source": "cost-sheet.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Net for Labor: $196.90 ($500.00 - $303.10)",
+          "status": "pending",
+          "source": "cost-sheet.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "**Effective Hourly Rate: $24.61/hour**",
+          "status": "pending",
+          "source": "cost-sheet.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Client Bill: $519.60",
+          "status": "pending",
+          "source": "cost-sheet.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "Net for Labor: $216.50 ($519.60 - $303.10)",
+          "status": "pending",
+          "source": "cost-sheet.md",
+          "confidence": 0.6
+        },
+        {
+          "description": "**Effective Hourly Rate: $27.06/hour**",
+          "status": "pending",
+          "source": "cost-sheet.md",
+          "confidence": 0.6
+        }
+      ],
+      "documents": []
+    },
+    "metadata": {
+      "clientName": "John Green",
+      "projectType": "Deck Repair",
+      "createdAt": "2025-09-23",
+      "updatedAt": "2025-09-23"
+    }
+  },
+  "syncHash": "6feb710f7979c4f327689076427f9c17ea3f967b0c784a8b61c6c4a8f227f0bc",
+  "ciLastSync": "2025-09-28T12:29:11.978Z",
+  "exportedAt": "2025-09-28T12:29:11.978Z"
+}

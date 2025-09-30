@@ -1,0 +1,20 @@
+{
+  "name": "Richard Gonzales",
+  "type": "person",
+  "domain": "construction",
+  "source": "snappy-on-demand-cache",
+  "relationships": [
+    {
+      "type": "owns",
+      "target": "20250910-43-richard-gonzales",
+      "target_type": "project",
+      "confidence": 0.95
+    },
+    {
+      "type": "located_at",
+      "target": "20250910-43-richard-gonzales",
+      "target_type": "location",
+      "confidence": 0.95
+    }
+  ]
+}

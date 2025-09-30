@@ -1,0 +1,14 @@
+{
+  "name": "qubes-restore",
+  "type": "project",
+  "domain": "construction",
+  "data": {
+    "id": "qubes-restore",
+    "clientName": "Qubes Restore",
+    "projectType": "client-project",
+    "status": "in_progress",
+    "createdAt": "2025-09-14",
+    "updatedAt": "2025-09-14",
+    "type": "Client Project"
+  }
+}

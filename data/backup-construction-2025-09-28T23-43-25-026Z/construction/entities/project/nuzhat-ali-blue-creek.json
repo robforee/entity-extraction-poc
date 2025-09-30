@@ -1,0 +1,16 @@
+{
+  "name": "nuzhat-ali-blue-creek",
+  "type": "project",
+  "domain": "construction",
+  "data": {
+    "id": "nuzhat-ali-blue-creek",
+    "clientName": "Nuzhat Ali",
+    "description": "Monthly rent collection & property inspection at Blue Creek Condos",
+    "type": "Subscription",
+    "status": "active",
+    "frequency": "monthly",
+    "dayOfMonth": 1,
+    "lastServiceDate": null,
+    "nextDueDate": "2025-10-01"
+  }
+}

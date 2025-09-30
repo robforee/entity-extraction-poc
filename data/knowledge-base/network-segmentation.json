@@ -1,0 +1,27 @@
+{
+  "entity": "Network Segmentation",
+  "domain": "general",
+  "startTime": "2025-09-28T12:37:26.825Z",
+  "hierarchy": {
+    "name": "Network Segmentation",
+    "type": "General Entity",
+    "level": 0,
+    "confidence": 0.6,
+    "children": []
+  },
+  "knowledge": {
+    "Network Segmentation": {
+      "category": "General Entity",
+      "type": "Unknown",
+      "description": "Analysis of Network Segmentation",
+      "confidence_note": "Limited information available"
+    }
+  },
+  "confidence": 0.6,
+  "depth": 0,
+  "totalNodes": 1,
+  "endTime": "2025-09-28T12:37:28.202Z",
+  "duration": 1377,
+  "lastUpdated": "2025-09-28T12:37:28.203Z",
+  "version": "1.0"
+}

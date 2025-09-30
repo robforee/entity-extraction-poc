@@ -7,6 +7,7 @@
  */
 
 export const ENTITY_TYPES = {
+    // Domain Entities
     PERSON: 'person',
     PROJECT: 'project', 
     DECISION: 'decision',
@@ -16,7 +17,28 @@ export const ENTITY_TYPES = {
     COST: 'cost',
     ISSUE: 'issue',
     TASK: 'task',
-    DOCUMENT: 'document'
+    DOCUMENT: 'document',
+
+    // System/Meta Entities
+    SOFTWARE_SYSTEM: 'software_system',
+    COMMAND_SIGNATURE: 'command_signature',
+    COMMAND_EXECUTION: 'command_execution'
+};
+
+export const RELATIONSHIP_TYPES = {
+    // System Relationships
+    INSTANTIATES: 'instantiates', // command_execution -> command_signature
+    GENERATES: 'generates',       // command_execution -> any data entity
+    USES: 'uses',                 // software_system -> software_system
+    OWNED_BY: 'owned_by',         // software_system -> person
+
+    // Domain Relationships (can be expanded)
+    MANAGES: 'manages',
+    LOCATED_AT: 'located_at',
+    ASSIGNED_TO: 'assigned_to',
+    OWNS: 'owns',
+    HAS_RESIDENT: 'has_resident',
+    HAS_PROJECT: 'has_project'
 };
 
 export const PERSON_ROLES = {
@@ -477,6 +499,76 @@ export const ENTITY_SCHEMAS = {
                 type: 'number',
                 minimum: 0,
                 maximum: 1
+            }
+        }
+    },
+
+    // --- System/Meta Schemas ---
+
+    [ENTITY_TYPES.SOFTWARE_SYSTEM]: {
+        type: 'object',
+        required: ['name', 'type'],
+        properties: {
+            name: {
+                type: 'string',
+                description: 'Unique name of the software system (e.g., snappy, context-db)'
+            },
+            type: {
+                type: 'string',
+                enum: ['repository', 'service', 'database', 'application'],
+                description: 'The type of software system'
+            },
+            description: {
+                type: 'string',
+                description: 'A brief description of the system\'s purpose'
+            }
+        }
+    },
+
+    [ENTITY_TYPES.COMMAND_SIGNATURE]: {
+        type: 'object',
+        required: ['name', 'system', 'template'],
+        properties: {
+            name: {
+                type: 'string',
+                description: 'A unique, human-readable name for the command (e.g., snappy-project-details)'
+            },
+            system: {
+                type: 'string',
+                description: 'The software system this command belongs to (e.g., snappy)'
+            },
+            template: {
+                type: 'string',
+                description: 'The command string with placeholders (e.g., node snappy.js project {projectId} --format json)'
+            },
+            description: {
+                type: 'string',
+                description: 'A brief description of what the command does'
+            }
+        }
+    },
+
+    [ENTITY_TYPES.COMMAND_EXECUTION]: {
+        type: 'object',
+        required: ['command_string', 'timestamp', 'status'],
+        properties: {
+            command_string: {
+                type: 'string',
+                description: 'The exact command string that was executed'
+            },
+            timestamp: {
+                type: 'string',
+                format: 'date-time',
+                description: 'ISO 8601 timestamp of when the command was executed'
+            },
+            status: {
+                type: 'string',
+                enum: ['success', 'failure'],
+                description: 'The execution status of the command'
+            },
+            output_summary: {
+                type: 'string',
+                description: 'A summary of the output or error message'
             }
         }
     }

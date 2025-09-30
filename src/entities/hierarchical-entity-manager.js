@@ -597,6 +597,50 @@ export class HierarchicalEntityManager {
   }
 
   /**
+   * Create a new entity
+   */
+  async createEntity(entity, options = { overwrite: true }) {
+    if (!entity.name || !entity.type || !entity.domain) {
+      throw new Error('Entity must have name, type, and domain');
+    }
+
+    const entityTypePath = path.join(this.dataPath, entity.domain, 'entities', entity.type);
+    await fs.mkdir(entityTypePath, { recursive: true });
+
+    const slug = entity.name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+    const entityPath = path.join(entityTypePath, `${slug}.json`);
+
+    if (!options.overwrite) {
+      try {
+        await fs.access(entityPath);
+        // File exists, so we skip creation
+        return;
+      } catch (error) {
+        // File doesn't exist, proceed
+      }
+    }
+
+    await fs.writeFile(entityPath, JSON.stringify(entity, null, 2));
+  }
+
+  /**
+   * Create a new relationship
+   */
+  async createRelationship(relationship) {
+    if (!relationship.source || !relationship.target || !relationship.type || !relationship.domain) {
+      throw new Error('Relationship must have source, target, type, and domain');
+    }
+
+    const domainPath = path.join(this.dataPath, relationship.domain);
+    await fs.mkdir(domainPath, { recursive: true });
+
+    const relationshipPath = path.join(domainPath, 'relationships.jsonl');
+    const relationshipLine = JSON.stringify(relationship) + '\n';
+
+    await fs.appendFile(relationshipPath, relationshipLine);
+  }
+
+  /**
    * Default hierarchy templates
    */
   getDefaultHierarchyTemplates() {

@@ -1,0 +1,24 @@
+{
+  "name": "garage-project",
+  "type": "project",
+  "domain": "construction",
+  "data": {
+    "name": "garage-project",
+    "createdAt": "2025-09-27T23:11:53.601Z",
+    "updatedAt": "2025-09-27T23:11:53.630Z",
+    "status": "active",
+    "projectType": "context-created",
+    "source": "context-management-system",
+    "lastExpenseAdded": "2025-09-27T23:11:53.599Z",
+    "totalExpenses": 150,
+    "expenseCount": 1,
+    "contextSystemIntegration": {
+      "enabled": true,
+      "firstExpense": "2025-09-27T23:11:53.599Z",
+      "totalFromContext": 150,
+      "expenseCountFromContext": 1
+    },
+    "type": "Project",
+    "id": "garage-project"
+  }
+}

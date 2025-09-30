@@ -1,0 +1,8 @@
+{
+  "name": "Cybersec Dogfood",
+  "type": "person",
+  "domain": "construction",
+  "data": {
+    "clientOf": "cybersec-dogfood"
+  }
+}

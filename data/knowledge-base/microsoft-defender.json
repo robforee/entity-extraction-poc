@@ -1,7 +1,7 @@
 {
   "entity": "Microsoft Defender",
-  "domain": "cybersecurity",
-  "startTime": "2025-09-27T18:46:36.435Z",
+  "domain": "universal",
+  "startTime": "2025-09-28T12:30:28.793Z",
   "hierarchy": {
     "name": "Microsoft Defender",
     "type": "Security Suite",
@@ -193,8 +193,8 @@
   "confidence": 0.7625,
   "depth": 2,
   "totalNodes": 13,
-  "endTime": "2025-09-27T18:46:41.782Z",
-  "duration": 5347,
-  "lastUpdated": "2025-09-27T18:46:41.782Z",
+  "endTime": "2025-09-28T12:30:33.217Z",
+  "duration": 4424,
+  "lastUpdated": "2025-09-28T12:30:33.218Z",
   "version": "1.0"
 }

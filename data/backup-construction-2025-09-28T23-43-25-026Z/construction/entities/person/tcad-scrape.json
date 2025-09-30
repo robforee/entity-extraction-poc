@@ -1,0 +1,8 @@
+{
+  "name": "Tcad Scrape",
+  "type": "person",
+  "domain": "construction",
+  "data": {
+    "clientOf": "tcad-scrape"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "name": "exec-1759154734063",
+  "type": "command_execution",
+  "domain": "system",
+  "command_string": "node ../snappy/snappy.js project garage-project --format json",
+  "timestamp": "2025-09-29T14:05:34.063Z",
+  "status": "success",
+  "output_summary": "stdout: {\n  \"name\": \"garage-project\",\n  \"createdAt\": \"2025-09-27T23:11:53.601Z\",\n  \"updatedAt\": \"2025-09-27T23:11:53.630Z\",\n  \"status\": \"active\",\n  \"projectType\": \"context-created\",\n  \"source\": \"context-manag...",
+  "relationships": []
+}

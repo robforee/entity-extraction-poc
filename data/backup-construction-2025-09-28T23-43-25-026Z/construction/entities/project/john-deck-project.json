@@ -1,0 +1,24 @@
+{
+  "name": "john-deck-project",
+  "type": "project",
+  "domain": "construction",
+  "data": {
+    "name": "john-deck-project",
+    "createdAt": "2025-09-27T22:59:16.951Z",
+    "updatedAt": "2025-09-27T22:59:16.997Z",
+    "status": "active",
+    "projectType": "context-created",
+    "source": "context-management-system",
+    "lastExpenseAdded": "2025-09-27T22:59:16.949Z",
+    "totalExpenses": 0,
+    "expenseCount": 1,
+    "contextSystemIntegration": {
+      "enabled": true,
+      "firstExpense": "2025-09-27T22:59:16.949Z",
+      "totalFromContext": 0,
+      "expenseCountFromContext": 1
+    },
+    "type": "Project",
+    "id": "john-deck-project"
+  }
+}

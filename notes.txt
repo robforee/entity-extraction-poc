@@ -1,0 +1,27 @@
+still trying to get to snappy data through smart router
+
+I want to see proper relationships attached to snappy data
+
+
+context database domains construction entities
+context database domains system entities
+exec-1759154733585 (command_execution) - none
+exec-1759154734063 (command_execution) - none
+exec-1759154734445 (command_execution) - none
+exec-1759154734919 (command_execution) - none
+exec-1759154735358 (command_execution) - none
+exec-1759154735723 (command_execution) - none
+exec-1759154736102 (command_execution) - none
+
+context database domains system entities exec-1759154733585 --format json
+bash ```
+{
+  "name": "exec-1759154733585",
+  "type": "command_execution",
+  "domain": "system",
+  "command_string": "node snappy.js database --format json",
+  "timestamp": "2025-09-29T14:05:33.585Z",
+  "status": "success",
+  "output_summary": "stdout: [\n  {\n    \"id\": \"20250924-44-john-green-combined\",\n    \"name\": \"20250924-44-john-green-combined\",\n    \"status\": \"bid_prepared\",\n    \"type\": \"Project\",\n    \"hash\": \"f6e6d43cbe0c24b42ed210021384ca240d30...",
+  "relationships": []
+}```

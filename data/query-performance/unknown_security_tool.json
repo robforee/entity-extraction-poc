@@ -1,0 +1,16 @@
+{
+  "templateName": "unknown_security_tool",
+  "totalExecutions": 1,
+  "successfulExecutions": 1,
+  "averageConfidence": 0.75,
+  "averageExecutionTime": 2161.783550874413,
+  "executions": [
+    {
+      "entityName": "Cisco ASA",
+      "success": true,
+      "confidence": 0.75,
+      "executionTime": 2161.783550874413,
+      "timestamp": "2025-09-28T12:37:53.307Z"
+    }
+  ]
+}

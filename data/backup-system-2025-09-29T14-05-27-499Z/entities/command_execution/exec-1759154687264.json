@@ -1,0 +1,10 @@
+{
+  "name": "exec-1759154687264",
+  "type": "command_execution",
+  "domain": "system",
+  "command_string": "node ../snappy/snappy.js project 20250910-43-richard-gonzales --format json",
+  "timestamp": "2025-09-29T14:04:47.264Z",
+  "status": "success",
+  "output_summary": "stdout: {\n  \"id\": \"20250910-43-richard-gonzales\",\n  \"clientName\": \"Richard Gonzales\",\n  \"projectType\": \"Dryer Vent Repair\",\n  \"status\": \"date_set\",\n  \"statusNotes\": \"Awaiting contractor visit on 2025-09-23 be...",
+  "relationships": []
+}

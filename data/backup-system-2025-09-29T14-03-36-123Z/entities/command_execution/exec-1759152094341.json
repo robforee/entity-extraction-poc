@@ -1,0 +1,10 @@
+{
+  "name": "exec-1759152094341",
+  "type": "command_execution",
+  "domain": "system",
+  "command_string": "node snappy.js database --format json",
+  "timestamp": "2025-09-29T13:21:34.341Z",
+  "status": "success",
+  "output_summary": "stdout: [\n  {\n    \"id\": \"20250924-44-john-green-combined\",\n    \"name\": \"20250924-44-john-green-combined\",\n    \"status\": \"bid_prepared\",\n    \"type\": \"Project\",\n    \"hash\": \"f6e6d43cbe0c24b42ed210021384ca240d30...",
+  "relationships": []
+}

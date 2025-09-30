@@ -1,0 +1,14 @@
+{
+  "name": "mef",
+  "type": "project",
+  "domain": "construction",
+  "data": {
+    "id": "mef",
+    "clientName": "Mef",
+    "projectType": "client-project",
+    "status": "in_progress",
+    "createdAt": "1970-01-01",
+    "updatedAt": "1970-01-01",
+    "type": "Client Project"
+  }
+}

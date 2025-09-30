@@ -1,0 +1,14 @@
+{
+  "name": "tcad-scrape",
+  "type": "project",
+  "domain": "construction",
+  "data": {
+    "id": "tcad-scrape",
+    "clientName": "Tcad Scrape",
+    "projectType": "client-project",
+    "status": "in_progress",
+    "createdAt": "2025-09-18",
+    "updatedAt": "2025-09-18",
+    "type": "Client Project"
+  }
+}

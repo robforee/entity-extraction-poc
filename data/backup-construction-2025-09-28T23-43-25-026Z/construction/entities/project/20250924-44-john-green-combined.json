@@ -1,0 +1,19 @@
+{
+  "name": "20250924-44-john-green-combined",
+  "type": "project",
+  "domain": "construction",
+  "data": {
+    "id": "20250924-44-john-green-combined",
+    "clientName": "John Green",
+    "projectType": "Combined: Toilet Repair + Deck Repair",
+    "status": "bid_prepared",
+    "statusNotes": "Combined bid created from projects 20250917-42 (toilet repair - completed) and 20250923-43 (deck repair - awaiting approval)",
+    "originalProjects": [
+      "20250917-42-john-green",
+      "20250923-43-john-green-deck"
+    ],
+    "createdAt": "2025-09-24",
+    "updatedAt": "2025-09-24",
+    "type": "Project"
+  }
+}

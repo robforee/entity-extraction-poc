@@ -1,0 +1,27 @@
+{
+  "entity": "Construction Project Security",
+  "domain": "universal",
+  "startTime": "2025-09-28T12:36:57.515Z",
+  "hierarchy": {
+    "name": "Construction Project Security",
+    "type": "General Entity",
+    "level": 0,
+    "confidence": 0.6,
+    "children": []
+  },
+  "knowledge": {
+    "Construction Project Security": {
+      "category": "General Entity",
+      "type": "Unknown",
+      "description": "Analysis of Construction Project Security",
+      "confidence_note": "Limited information available"
+    }
+  },
+  "confidence": 0.6,
+  "depth": 0,
+  "totalNodes": 1,
+  "endTime": "2025-09-28T12:36:58.056Z",
+  "duration": 541,
+  "lastUpdated": "2025-09-28T12:36:58.057Z",
+  "version": "1.0"
+}

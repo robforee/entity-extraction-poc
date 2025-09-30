@@ -7,5 +7,50 @@
     "confidence": 0.7625,
     "duration": 5347,
     "domain": "cybersecurity"
+  },
+  {
+    "entity": "Microsoft Defender",
+    "timestamp": "2025-09-28T12:20:15.769Z",
+    "depth": 2,
+    "totalNodes": 13,
+    "confidence": 0.7625,
+    "duration": 4703,
+    "domain": "universal"
+  },
+  {
+    "entity": "Microsoft Defender",
+    "timestamp": "2025-09-28T12:30:28.793Z",
+    "depth": 2,
+    "totalNodes": 13,
+    "confidence": 0.7625,
+    "duration": 4424,
+    "domain": "universal"
+  },
+  {
+    "entity": "Security Operations Center",
+    "timestamp": "2025-09-28T12:31:18.352Z",
+    "depth": 0,
+    "totalNodes": 1,
+    "confidence": 0.6,
+    "duration": 700,
+    "domain": "universal"
+  },
+  {
+    "entity": "Construction Project Security",
+    "timestamp": "2025-09-28T12:36:57.515Z",
+    "depth": 0,
+    "totalNodes": 1,
+    "confidence": 0.6,
+    "duration": 541,
+    "domain": "universal"
+  },
+  {
+    "entity": "Network Segmentation",
+    "timestamp": "2025-09-28T12:37:26.825Z",
+    "depth": 0,
+    "totalNodes": 1,
+    "confidence": 0.6,
+    "duration": 1377,
+    "domain": "general"
   }
 ]

@@ -1,0 +1,8 @@
+{
+  "name": "Mef",
+  "type": "person",
+  "domain": "construction",
+  "data": {
+    "clientOf": "mef"
+  }
+}

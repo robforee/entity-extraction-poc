@@ -1,0 +1,27 @@
+{
+  "entity": "Security Operations Center",
+  "domain": "universal",
+  "startTime": "2025-09-28T12:31:18.352Z",
+  "hierarchy": {
+    "name": "Security Operations Center",
+    "type": "General Entity",
+    "level": 0,
+    "confidence": 0.6,
+    "children": []
+  },
+  "knowledge": {
+    "Security Operations Center": {
+      "category": "General Entity",
+      "type": "Unknown",
+      "description": "Analysis of Security Operations Center",
+      "confidence_note": "Limited information available"
+    }
+  },
+  "confidence": 0.6,
+  "depth": 0,
+  "totalNodes": 1,
+  "endTime": "2025-09-28T12:31:19.052Z",
+  "duration": 700,
+  "lastUpdated": "2025-09-28T12:31:19.053Z",
+  "version": "1.0"
+}

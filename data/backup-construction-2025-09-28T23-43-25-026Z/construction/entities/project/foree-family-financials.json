@@ -1,0 +1,16 @@
+{
+  "name": "foree-family-financials",
+  "type": "project",
+  "domain": "construction",
+  "data": {
+    "id": "foree-family-financials",
+    "clientName": "Foree Family",
+    "description": "Weekly review of financial records",
+    "type": "Subscription",
+    "status": "active",
+    "frequency": "weekly",
+    "dayOfWeek": 3,
+    "lastServiceDate": null,
+    "nextDueDate": "2025-09-24"
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "name": "20250910-43-richard-gonzales",
+  "type": "project",
+  "domain": "construction",
+  "data": {
+    "id": "20250910-43-richard-gonzales",
+    "clientName": "Richard Gonzales",
+    "projectType": "Dryer Vent Repair",
+    "status": "date_set",
+    "statusNotes": "Awaiting contractor visit on 2025-09-23 between 2-4pm.",
+    "createdAt": "2025-09-10",
+    "updatedAt": "2025-09-23",
+    "path": "/home/robforee/analyst-server/snappy/projects/20250910-43-richard-gonzales/project.json",
+    "name": "20250910-43-richard-gonzales",
+    "lastUpdate": null,
+    "nextActionDate": null,
+    "type": null,
+    "originalProjects": null,
+    "source": null,
+    "lastExpenseAdded": null,
+    "totalExpenses": null,
+    "expenseCount": null,
+    "contextSystemIntegration": null,
+    "hash": "494dc94c241fbf2fc46c1b058ea8728a08e86b83dbdb7a4397a0ba24af4149d8",
+    "fileSystem": [
+      {
+        "name": "bid.md",
+        "type": "file",
+        "hash": "a06ff1147fc3e17a3ffd5dc259c4d1085e03e3141ba84560996e46afd46e02e3"
+      },
+      {
+        "name": "project.json",
+        "type": "file",
+        "hash": "ef2215b6a07d5c0e376928ac17ccc8cf36956cfc51686b18a137e17da0df68e9"
+      },
+      {
+        "name": "questions.md",
+        "type": "file",
+        "hash": "38338f2665720cad9e05e447642a8b603051f0d61794d212729530e72881722b"
+      },
+      {
+        "name": "work-log.md",
+        "type": "file",
+        "hash": "9b51f512684d441606fe5e7023dc5d49b1e4c73c1f0cc76bb331302c1ed0b704"
+      }
+    ],
+    "sourceExecution": {
+      "name": "exec-1759154734919",
+      "type": "command_execution",
+      "domain": "system",
+      "command_string": "node ../snappy/snappy.js project 20250910-43-richard-gonzales --format json",
+      "timestamp": "2025-09-29T14:05:34.919Z",
+      "status": "success",
+      "output_summary": "stdout: {\n  \"id\": \"20250910-43-richard-gonzales\",\n  \"clientName\": \"Richard Gonzales\",\n  \"projectType\": \"Dryer Vent Repair\",\n  \"status\": \"date_set\",\n  \"statusNotes\": \"Awaiting contractor visit on 2025-09-23 be...",
+      "relationships": []
+    }
+  },
+  "source": "snappy-on-demand-cache",
+  "relationships": [
+    {
+      "type": "generates",
+      "target": "exec-1759154734919",
+      "target_type": "command_execution"
+    },
+    {
+      "type": "owned_by",
+      "target": "Richard Gonzales",
+      "target_type": "person",
+      "confidence": 0.95
+    },
+    {
+      "type": "located_at",
+      "target": "20250910-43-richard-gonzales",
+      "target_type": "location",
+      "confidence": 0.95
+    }
+  ]
+}

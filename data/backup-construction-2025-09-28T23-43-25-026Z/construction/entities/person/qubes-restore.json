@@ -1,0 +1,8 @@
+{
+  "name": "Qubes Restore",
+  "type": "person",
+  "domain": "construction",
+  "data": {
+    "clientOf": "qubes-restore"
+  }
+}

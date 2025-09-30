@@ -1,0 +1,32 @@
+{
+  "name": "SOC Operations",
+  "type": "hierarchy",
+  "domain": "cybersecurity",
+  "root": {
+    "name": "SOC Analyst Level 2",
+    "type": "organization",
+    "level": 0,
+    "children": [
+      {
+        "name": "SOC Roles",
+        "type": "divisions",
+        "level": 1,
+        "children": []
+      },
+      {
+        "name": "SOC Projects",
+        "type": "divisions",
+        "level": 1,
+        "children": []
+      },
+      {
+        "name": "SOC Infrastructure",
+        "type": "divisions",
+        "level": 1,
+        "children": []
+      }
+    ]
+  },
+  "createdAt": "2025-09-28T12:31:10.522Z",
+  "template": "SOC Operations"
+}

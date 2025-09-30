@@ -1,0 +1,8 @@
+{
+  "name": "Foree Family",
+  "type": "person",
+  "domain": "construction",
+  "data": {
+    "clientOf": "foree-family-financials"
+  }
+}

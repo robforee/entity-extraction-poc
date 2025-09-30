@@ -3,52 +3,67 @@
 **PERSPECTIVE: OPERATIONAL WORKFLOWS**  
 *Command sequences that demonstrate 100% system functionality without preamble or descriptions. Each vignette shows a complete workflow from data initialization to complex query resolution across construction and cybersecurity domains.*
 
+alias context='node ~/analyst-server/entity-extraction-poc/context.js'
+alias snappy='node ~/analyst-server/snappy/snappy.js'
 ## Vignette 1: "Fresh Start Discovery" - Initialize and Discover Existing Projects
 
 ```bash
+# Clear context databases
 # Initialize Smart Router with existing Snappy projects
-node context.js sync snappy --pull --all-projects
-node context.js data projects --format json
+
+context clear --domain construction --confirm  # clear construction database
+context query "What projects does John have?"  # test contex retrieval from snappy
+context sync snappy --pull --all-projects      # drill down into snappy and get everything
+context query "Is Richards dryer duct project complete?"  # test contex retrieval from snappy
+
+# Verify the raw data coming from the snappy.js source before syncing
+
+
+context data projects --format json
+
+context clear --domain cybersec --confirm
+
+
 
 # Discover John's projects
-node context.js discover projects --person john
-node context.js query "What projects does John have?"
+context discover projects --person john
+context query "What projects does John have?"
 
 # Test Smart Router breakthrough
-node context.js query "I bought screws for John's deck"
+context query "I bought screws for John's deck"
 ```
 
 ## Vignette 2: "Project Context Assembly" - Build Complete Project Understanding
 
 ```bash
 # Get detailed project context
-node context.js show project 20250923-43-john-green-deck --format json
-node context.js data costs --project 20250923-43-john-green-deck
+context show project 20250923-43-john-green-deck --format json
+context data costs --project 20250923-43-john-green-deck
 
 # Query project relationships
-node context.js query "What materials are needed for John's deck project?"
-node context.js query "Who is working on the deck repair?"
+context query "What materials are needed for John's deck project?"
+context query "Who is working on the deck repair?"
 
 # Add contextual information
-node context.js query "I'm at John's house, the deck needs more stain"
-node context.js query "Add $45 charge for deck stain"
+context query "I'm at John's house, the deck needs more stain"
+context query "Add $45 charge for deck stain"
 ```
 
 ## Vignette 3: "Expense Tracking Flow" - Complete Expense Management
 
 ```bash
 # Start incomplete expense
-node context.js query "I bought materials at Home Depot"
+context query "I bought materials at Home Depot"
 
 # Check pending requests
-node context.js pending list
-node context.js pending summary
+context pending list
+context pending summary
 
 # Complete the expense
-node context.js query "The cost was $127.50 for lumber and screws"
+context query "The cost was $127.50 for lumber and screws"
 
 # Verify Snappy integration
-node context.js sync snappy --check-status
+context sync snappy --check-status
 node snappy.js show project 20250923-43-john-green-deck --format json
 ```
 
@@ -56,103 +71,103 @@ node snappy.js show project 20250923-43-john-green-deck --format json
 
 ```bash
 # Initialize cybersecurity knowledge
-node context.js generate knowledge "Microsoft Defender"
-node context.js drill "Microsoft Defender" --depth 3
+context generate knowledge "Microsoft Defender"
+context drill "Microsoft Defender" --depth 3
 
 # Query Defender capabilities
-node context.js query "What are Microsoft Defender modules?"
-node context.js query "How does Defender for Endpoint work?"
+context query "What are Microsoft Defender modules?"
+context query "How does Defender for Endpoint work?"
 
 # Explore relationships
-node context.js entities relationships "Microsoft Defender"
-node context.js query "What security tools integrate with Defender?"
+context entities relationships "Microsoft Defender"
+context query "What security tools integrate with Defender?"
 ```
 
 ## Vignette 5: "SOC Operations Hierarchy" - Build Cybersecurity Org Structure
 
 ```bash
 # Build SOC hierarchy
-node context.js entities hierarchy "SOC Analyst Level 2"
-node context.js generate knowledge "Security Operations Center"
+context entities hierarchy "SOC Analyst Level 2"
+context generate knowledge "Security Operations Center"
 
 # Query SOC structure
-node context.js query "What roles exist in a SOC?"
-node context.js query "Who manages SOC analysts?"
+context query "What roles exist in a SOC?"
+context query "Who manages SOC analysts?"
 
 # Consolidate variations
-node context.js entities consolidate "SOC Analyst" --show-variations
-node context.js consolidate apply --domain cybersec --confidence-threshold 0.85
+context entities consolidate "SOC Analyst" --show-variations
+context consolidate apply --domain cybersec --confidence-threshold 0.85
 ```
 
 ## Vignette 6: "Cross-Domain Intelligence" - Connect Construction and Security
 
 ```bash
 # Query across domains
-node context.js query "What security tools does John use for his business?"
-node context.js query "How do I secure project management systems?"
+context query "What security tools does John use for his business?"
+context query "How do I secure project management systems?"
 
 # Generate cross-domain knowledge
-node context.js generate knowledge "Construction Project Security"
-node context.js drill "Project Management Security" --depth 2
+context generate knowledge "Construction Project Security"
+context drill "Project Management Security" --depth 2
 
 # Explore connections
-node context.js discover relationships --entity "John" --domain both
+context discover relationships --entity "John" --domain both
 ```
 
 ## Vignette 7: "Progressive Knowledge Drilling" - Deep Technical Exploration
 
 ```bash
 # Start with high-level concept
-node context.js query "What is network segmentation?"
+context query "What is network segmentation?"
 
 # Drill progressively deeper
-node context.js drill "Network Segmentation" --depth 1
-node context.js drill "Network Segmentation" --depth 2
-node context.js drill "Network Segmentation" --depth 3
+context drill "Network Segmentation" --depth 1
+context drill "Network Segmentation" --depth 2
+context drill "Network Segmentation" --depth 3
 
 # Query specific implementations
-node context.js query "How does Palo Alto implement network segmentation?"
-node context.js query "What are VLAN segmentation best practices?"
+context query "How does Palo Alto implement network segmentation?"
+context query "What are VLAN segmentation best practices?"
 ```
 
 ## Vignette 8: "Template Evolution Testing" - Query Performance Optimization
 
 ```bash
 # Test query templates
-node context.js queries list-templates --domain cybersec
-node context.js queries test-template "unknown_security_tool" --entity "Cisco ASA"
+context queries list-templates --domain cybersec
+context queries test-template "unknown_security_tool" --entity "Cisco ASA"
 
 # Evaluate performance
-node context.js queries evaluate-performance --template "unknown_security_tool"
-node context.js queries performance-report --timeframe "last-week"
+context queries evaluate-performance --template "unknown_security_tool"
+context queries performance-report --timeframe "last-week"
 
 # Generate improved variants
-node context.js evolution generate-variants --template "unknown_security_tool" --count 3
-node context.js evolution a-b-test --template1 "v1.2" --template2 "v1.3"
+context evolution generate-variants --template "unknown_security_tool" --count 3
+context evolution a-b-test --template1 "v1.2" --template2 "v1.3"
 ```
 
 ## Vignette 9: "Relationship Validation Pipeline" - Quality Assurance
 
 ```bash
 # Extract relationships from documents
-node context.js relationships extract --document ./docs/siem-config.md
-node context.js relationships extract --document ./snappy/projects/20250923-43-john-green-deck/bid.md
+context relationships extract --document ./docs/siem-config.md
+context relationships extract --document ./snappy/projects/20250923-43-john-green-deck/bid.md
 
 # Validate relationship quality
-node context.js relationships validate --domain cybersec
-node context.js relationships validate --domain construction
+context relationships validate --domain cybersec
+context relationships validate --domain construction
 
 # Run comprehensive validation
-node context.js validate all --domain cybersec
-node context.js validate hierarchy-accuracy --target-threshold 0.85
-node context.js validate consolidation-accuracy --target-threshold 0.90
+context validate all --domain cybersec
+context validate hierarchy-accuracy --target-threshold 0.85
+context validate consolidation-accuracy --target-threshold 0.90
 ```
 
 ## Vignette 10: "API Integration Testing" - Production Readiness
 
 ```bash
 # Start API server
-node context.js api start --port 3000 &
+context api start --port 3000 &
 
 # Test API endpoints
 curl -X POST http://localhost:3000/api/query -H "Content-Type: application/json" -d '{"query": "I bought screws for Johns deck"}'
@@ -160,80 +175,80 @@ curl -X POST http://localhost:3000/api/data/projects -H "Content-Type: applicati
 curl -X POST http://localhost:3000/api/discover/projects -H "Content-Type: application/json" -d '{"person": "John"}'
 
 # Validate API performance
-node context.js api performance-test --endpoint "/api/query" --concurrent 5
-node context.js api test-parity --endpoint "/api/query"
+context api performance-test --endpoint "/api/query" --concurrent 5
+context api test-parity --endpoint "/api/query"
 ```
 
 ## Vignette 11: "Synchronization Workflow" - Multi-Source Data Management
 
 ```bash
 # Check sync status across sources
-node context.js sync status --all-sources
-node context.js sync detect-changes --source snappy --since "2025-09-26"
+context sync status --all-sources
+context sync detect-changes --source snappy --since "2025-09-26"
 
 # Perform bidirectional sync
-node context.js sync snappy --export-ci --project 20250923-43-john-green-deck
-node context.js sync snappy --pull-insights --project 20250923-43-john-green-deck
+context sync snappy --export-ci --project 20250923-43-john-green-deck
+context sync snappy --pull-insights --project 20250923-43-john-green-deck
 
 # Resolve conflicts
-node context.js sync resolve-conflicts --source snappy --strategy "ci-wins"
-node context.js validate sync-consistency --target-threshold 1.0
+context sync resolve-conflicts --source snappy --strategy "ci-wins"
+context validate sync-consistency --target-threshold 1.0
 ```
 
 ## Vignette 12: "Complete Intelligence Demonstration" - End-to-End Showcase
 
 ```bash
 # Natural language project management
-node context.js query "I'm at John's house working on the deck"
-node context.js query "We need more screws and stain for the project"
-node context.js query "Add $85 charge for materials from Home Depot"
+context query "I'm at John's house working on the deck"
+context query "We need more screws and stain for the project"
+context query "Add $85 charge for materials from Home Depot"
 
 # Security analysis
-node context.js query "What endpoint protection does Microsoft Defender provide?"
-node context.js query "How do I configure Defender for construction business?"
+context query "What endpoint protection does Microsoft Defender provide?"
+context query "How do I configure Defender for construction business?"
 
 # Cross-domain insights
-node context.js query "What are security risks for construction project management?"
-node context.js query "How do I protect customer project data?"
+context query "What are security risks for construction project management?"
+context query "How do I protect customer project data?"
 
 # Generate comprehensive reports
-node context.js report quality --domain construction --format json
-node context.js report quality --domain cybersec --format json
-node context.js report architecture-compliance --show-failures
+context report quality --domain construction --format json
+context report quality --domain cybersec --format json
+context report architecture-compliance --show-failures
 ```
 
 ## Vignette 13: "Smart Router Validation" - Architectural Breakthrough Testing
 
 ```bash
 # Test Smart Router discovery vs creation
-node context.js query "I need to update John's bathroom project"
-node context.js query "Add materials to the kitchen remodel"
-node context.js query "Check status of the garage project"
+context query "I need to update John's bathroom project"
+context query "Add materials to the kitchen remodel"
+context query "Check status of the garage project"
 
 # Validate external source integration
-node context.js discover projects --person "Richard Gonzales"
-node context.js data costs --project 20250910-43-richard-gonzales
+context discover projects --person "Richard Gonzales"
+context data costs --project 20250910-43-richard-gonzales
 
 # Test progressive drilling with external data
-node context.js drill "John Green Projects" --depth 2 --include-external
-node context.js connections show --entity "John Green" --include-snappy
+context drill "John Green Projects" --depth 2 --include-external
+context connections show --entity "John Green" --include-snappy
 ```
 
 ## Vignette 14: "Performance and Scalability Testing" - System Limits
 
 ```bash
 # Batch processing validation
-node context.js batch process --directory ./docs --domain cybersec --max-cost 5.00
-node context.js batch validate --check-relationships --confidence-threshold 0.8
+context batch process --directory ./docs --domain cybersec --max-cost 5.00
+context batch validate --check-relationships --confidence-threshold 0.8
 
 # Concurrent query testing
-node context.js test concurrent --queries 10 --domain construction
-node context.js test concurrent --queries 10 --domain cybersec
+context test concurrent --queries 10 --domain construction
+context test concurrent --queries 10 --domain cybersec
 
 # Memory and performance monitoring
-node context.js monitor start --duration 300
-node context.js query "Complex multi-domain analysis of John's security needs"
-node context.js monitor report --show-memory-usage
+context monitor start --duration 300
+context query "Complex multi-domain analysis of John's security needs"
+context monitor report --show-memory-usage
 ```
 
 ## Vignette 15: "Web Interface Navigation" - Smart Router GUI Workflow
