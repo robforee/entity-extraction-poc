@@ -1,0 +1,10 @@
+{
+  "name": "exec-1759341702800",
+  "type": "command_execution",
+  "domain": "system",
+  "command_string": "node snappy.js database --format json",
+  "timestamp": "2025-10-01T18:01:42.800Z",
+  "status": "success",
+  "output_summary": "stdout: Usage: snappy [command] [options]\n\nProgressive Hash Navigation:\n  snappy                   Show root hash-status (start here)\n  snappy cmds              Show available commands\n  snappy config        ...",
+  "relationships": []
+}

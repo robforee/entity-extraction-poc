@@ -1,0 +1,10 @@
+{
+  "name": "exec-1759319013991",
+  "type": "command_execution",
+  "domain": "system",
+  "command_string": "node snappy.js project 20250924-44-john-green-combined --format json",
+  "timestamp": "2025-10-01T11:43:33.991Z",
+  "status": "success",
+  "output_summary": "stdout: {\n  \"id\": \"20250924-44-john-green-combined\",\n  \"clientName\": \"John Green\",\n  \"projectType\": \"Combined: Toilet Repair + Deck Repair\",\n  \"status\": \"completed_paid\",\n  \"statusNotes\": \"Invoice generated a...",
+  "relationships": []
+}

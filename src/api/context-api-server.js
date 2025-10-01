@@ -25,7 +25,7 @@ class ContextAPIServer {
     this.port = options.port || process.env.PORT || 3000;
     this.host = options.host || process.env.HOST || 'localhost';
     this.domain = options.domain || 'construction';
-    this.dataPath = options.dataPath || path.join(__dirname, '..', '..', 'data');
+    this.dataPath = options.dataPath || path.join(process.cwd(), 'data');
     
     // Initialize core components with Smart Router as primary
     this.smartRouter = new DataSourceRouter({

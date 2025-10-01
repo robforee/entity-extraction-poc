@@ -235,6 +235,11 @@ export class SnappyHashStatusClient {
         console.log(chalk.yellow(`   → Fetching changed project: ${projectId}`));
         try {
           const projectData = await this.executeSnappyCommand(`project ${projectId} --properties json`);
+          
+          // Store in cache.data for future use
+          if (!this.cache.data) this.cache.data = {};
+          this.cache.data[projectId] = projectData;
+          
           syncResults.projects.push({
             id: projectId,
             hash: currentHash,
@@ -322,22 +327,16 @@ export class SnappyHashStatusClient {
 
   /**
    * Get specific project data (with caching)
+   * @param {string} projectId - The project ID
+   * @param {boolean} forceRefresh - Force fetch even if cached (default: false)
    */
-  async getProject(projectId) {
+  async getProject(projectId, forceRefresh = false) {
     await this.initialize();
     
-    // Check if we have cached data
-    const cachedProjectHash = this.cache.sections.data?.[projectId];
-    
-    if (cachedProjectHash) {
-      // Check if project hash has changed
-      const currentData = await this.executeSnappyCommand('hash-status --drill-down data');
-      const currentHash = currentData[projectId]?.hash;
-      
-      if (currentHash === cachedProjectHash) {
-        console.log(chalk.grey(`   Using cached data for ${projectId}`));
-        return this.cache.data[projectId];
-      }
+    // If we have cached data and not forcing refresh, use it
+    if (!forceRefresh && this.cache.data?.[projectId]) {
+      console.log(chalk.grey(`   Using cached data for ${projectId}`));
+      return this.cache.data[projectId];
     }
 
     // Fetch fresh data
@@ -349,6 +348,14 @@ export class SnappyHashStatusClient {
     this.cache.data[projectId] = projectData;
     
     return projectData;
+  }
+
+  /**
+   * Get all projects from cache (no fetching)
+   */
+  async getAllCachedProjects() {
+    await this.initialize();
+    return this.cache.data || {};
   }
 
   /**

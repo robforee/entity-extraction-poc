@@ -1,0 +1,264 @@
+{
+  "name": "Snappy",
+  "type": "system",
+  "domain": "universal",
+  "category": "Project Management System",
+  "description": "Self-documenting project management database with hash-status pattern",
+  "source": "snappy-self-documentation",
+  "metadata": {
+    "version": "1.0",
+    "pattern": "hash-status",
+    "sections": [
+      "cmds",
+      "config",
+      "structure",
+      "data",
+      "docs"
+    ]
+  },
+  "capabilities": {
+    "commands": [
+      {
+        "name": "add-expense",
+        "usage": "snappy project <id> add-expense <amount> [--description \"...\"]",
+        "description": "Add expense to project",
+        "category": "management-commands"
+      },
+      {
+        "name": "add-note",
+        "usage": "snappy project <id> add-note <text>",
+        "description": "Add note to project",
+        "category": "management-commands"
+      },
+      {
+        "name": "set-client",
+        "usage": "snappy project <id> set-client <name>",
+        "description": "Set client name",
+        "category": "management-commands"
+      },
+      {
+        "name": "set-next-action",
+        "usage": "snappy project <id> set-next-action <date>",
+        "description": "Set next action date",
+        "category": "management-commands"
+      },
+      {
+        "name": "set-status",
+        "usage": "snappy project <id> set-status <status> [--notes \"...\"]",
+        "description": "Update project status",
+        "category": "management-commands"
+      },
+      {
+        "name": "cmds",
+        "usage": "snappy cmds [--format usage|list|json]",
+        "description": "Show available commands",
+        "category": "navigation-commands"
+      },
+      {
+        "name": "config",
+        "usage": "snappy config [<file>]",
+        "description": "Show configuration files",
+        "category": "navigation-commands"
+      },
+      {
+        "name": "data",
+        "usage": "snappy data [<project-id>]",
+        "description": "Show all project data",
+        "category": "navigation-commands"
+      },
+      {
+        "name": "docs",
+        "usage": "snappy docs [<doc-name>]",
+        "description": "Show documentation",
+        "category": "navigation-commands"
+      },
+      {
+        "name": "structure",
+        "usage": "snappy structure [<type>]",
+        "description": "Show data structure definitions",
+        "category": "navigation-commands"
+      },
+      {
+        "name": "file",
+        "usage": "snappy file <path> [--format json|text]",
+        "description": "View file content",
+        "category": "query-commands"
+      },
+      {
+        "name": "interface",
+        "usage": "snappy interface [--format json|text] [--properties <props>]",
+        "description": "View interface documentation",
+        "category": "query-commands"
+      },
+      {
+        "name": "project",
+        "usage": "snappy project <id> [--properties <props>]",
+        "description": "View project details with management actions",
+        "category": "query-commands"
+      },
+      {
+        "name": "search",
+        "usage": "snappy search \"<query>\" [--properties <props>] [--format json|table]",
+        "description": "Search projects and files",
+        "category": "query-commands"
+      }
+    ],
+    "structures": [
+      "projects",
+      "client-projects",
+      "subscriptions"
+    ],
+    "configurations": [
+      "commands.json",
+      "docs.json",
+      "sections.json",
+      "valid-properties.json"
+    ]
+  },
+  "data": {
+    "commands": {
+      "management-commands": {
+        "description": "Commands for management",
+        "commands": [
+          {
+            "name": "add-expense",
+            "usage": "snappy project <id> add-expense <amount> [--description \"...\"]",
+            "description": "Add expense to project"
+          },
+          {
+            "name": "add-note",
+            "usage": "snappy project <id> add-note <text>",
+            "description": "Add note to project"
+          },
+          {
+            "name": "set-client",
+            "usage": "snappy project <id> set-client <name>",
+            "description": "Set client name"
+          },
+          {
+            "name": "set-next-action",
+            "usage": "snappy project <id> set-next-action <date>",
+            "description": "Set next action date"
+          },
+          {
+            "name": "set-status",
+            "usage": "snappy project <id> set-status <status> [--notes \"...\"]",
+            "description": "Update project status"
+          }
+        ]
+      },
+      "navigation-commands": {
+        "description": "Commands for navigation",
+        "commands": [
+          {
+            "name": "cmds",
+            "usage": "snappy cmds [--format usage|list|json]",
+            "description": "Show available commands"
+          },
+          {
+            "name": "config",
+            "usage": "snappy config [<file>]",
+            "description": "Show configuration files"
+          },
+          {
+            "name": "data",
+            "usage": "snappy data [<project-id>]",
+            "description": "Show all project data"
+          },
+          {
+            "name": "docs",
+            "usage": "snappy docs [<doc-name>]",
+            "description": "Show documentation"
+          },
+          {
+            "name": "structure",
+            "usage": "snappy structure [<type>]",
+            "description": "Show data structure definitions"
+          }
+        ]
+      },
+      "query-commands": {
+        "description": "Commands for query",
+        "commands": [
+          {
+            "name": "file",
+            "usage": "snappy file <path> [--format json|text]",
+            "description": "View file content"
+          },
+          {
+            "name": "interface",
+            "usage": "snappy interface [--format json|text] [--properties <props>]",
+            "description": "View interface documentation"
+          },
+          {
+            "name": "project",
+            "usage": "snappy project <id> [--properties <props>]",
+            "description": "View project details with management actions"
+          },
+          {
+            "name": "search",
+            "usage": "snappy search \"<query>\" [--properties <props>] [--format json|table]",
+            "description": "Search projects and files"
+          }
+        ]
+      }
+    },
+    "structure": {
+      "projects": {
+        "hash": "067d0126064c5ac01eaab2e160807a258864405a8c86602d17f7df6881bad125",
+        "more": "snappy database project-types projects --format json"
+      },
+      "client-projects": {
+        "hash": "be71627e8710a7f9158957aa342d80706305aa41534fd4d07a6fb11dcc564ec3",
+        "more": "snappy database project-types client-projects --format json"
+      },
+      "subscriptions": {
+        "hash": "9a1cdae74408223f3366c3213547152461a2ac2fb01216edb4dd49a3be3d7ec8",
+        "more": "snappy database project-types subscriptions --format json"
+      }
+    },
+    "config": {
+      "commands.json": {
+        "hash": "2bec47e07a22236247ffdfaecd3981043774829eacba284adb76e00c8c77ad8c",
+        "more": "snappy file config/commands.json",
+        "description": "System configuration file"
+      },
+      "docs.json": {
+        "hash": "fb60ed4126713561c3ec8248c3c947898126f7a68a8b079bea4971e830e56c73",
+        "more": "snappy file config/docs.json",
+        "description": "Documentation structure configuration"
+      },
+      "sections.json": {
+        "hash": "2c3c3a6cee8151ca0c185242572e2e740b875a0199a5b21f9543ca130c01e6de",
+        "more": "snappy file config/sections.json",
+        "description": "Snappy Project Management Database - Explore using progressive hash navigation commands."
+      },
+      "valid-properties.json": {
+        "hash": "519f7b8e2ecb8d8ad8727d51a2d4e024002259cd6242c6190c7347341c447a71",
+        "more": "snappy file config/valid-properties.json",
+        "description": "Data schemas (types, properties, enums)"
+      }
+    }
+  },
+  "relationships": [
+    {
+      "type": "provides",
+      "target": "project-data",
+      "target_type": "data-source",
+      "confidence": 1,
+      "metadata": {
+        "description": "Provides structured project data via hash-status API"
+      }
+    },
+    {
+      "type": "integrates_with",
+      "target": "Context DB",
+      "target_type": "system",
+      "confidence": 1,
+      "metadata": {
+        "description": "Integrated with Context DB via DataSourceRouter"
+      }
+    }
+  ],
+  "lastUpdated": "2025-10-01T17:54:17.142Z"
+}

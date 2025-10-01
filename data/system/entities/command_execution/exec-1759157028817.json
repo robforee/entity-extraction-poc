@@ -1,0 +1,10 @@
+{
+  "name": "exec-1759157028817",
+  "type": "command_execution",
+  "domain": "system",
+  "command_string": "node snappy.js database --format json",
+  "timestamp": "2025-09-29T14:43:48.817Z",
+  "status": "failure",
+  "output_summary": "spawn /bin/sh ENOENT",
+  "relationships": []
+}

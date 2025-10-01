@@ -1,0 +1,113 @@
+{
+  "name": "20250923-43-john-green-deck",
+  "type": "project",
+  "domain": "construction",
+  "data": {
+    "id": "20250923-43-john-green-deck",
+    "clientName": "John Green",
+    "projectType": "Deck Repair",
+    "status": "awaiting_client_approval",
+    "createdAt": "2025-09-23",
+    "updatedAt": "2025-09-23",
+    "path": "/home/robforee/analyst-server/snappy/projects/20250923-43-john-green-deck/project.json",
+    "name": "20250923-43-john-green-deck",
+    "lastUpdate": null,
+    "nextActionDate": null,
+    "type": null,
+    "statusNotes": null,
+    "originalProjects": null,
+    "source": null,
+    "lastExpenseAdded": null,
+    "totalExpenses": null,
+    "expenseCount": null,
+    "contextSystemIntegration": null,
+    "hash": "2185fa9f433acad372434a706a36cae2959cd9a8467891f230dd4a3d47cc63a2",
+    "fileSystem": [
+      {
+        "name": "awaiting.md",
+        "type": "file",
+        "hash": "1a5ff27967b4d310224bb1ea4d769d5bdacebbc3e4b50397a6362aded805eebc"
+      },
+      {
+        "name": "awaiting.pdf",
+        "type": "file",
+        "hash": "975321209302b4cd766d3f624f9404f91703e484c7c2fc1064119ff0903b0a71"
+      },
+      {
+        "name": "bid.md",
+        "type": "file",
+        "hash": "ecb5206ebe54fbcca6c923cb0e914ff01227b48f7968d9ba9bc1a54aa468a9b0"
+      },
+      {
+        "name": "bid.pdf",
+        "type": "file",
+        "hash": "9025739319d04fedc509a62158524a3cadd1144109a219e25222c77a754d94d8"
+      },
+      {
+        "name": "cost-breakdown-calculated.md",
+        "type": "file",
+        "hash": "db32050e782371a65dcba6ed753cd396de771853d559bd8bc3c30bb890345475"
+      },
+      {
+        "name": "cost-breakdown-calculated.pdf",
+        "type": "file",
+        "hash": "b7e83c6e1cd107f1068e0808209867e7571c9d8425e4f7d97c8dbc8bec9cefab"
+      },
+      {
+        "name": "cost-sheet.md",
+        "type": "file",
+        "hash": "e9e780f52b569e2e65c8bdc995bdbcca64bf2fe09fbfe670bfb6774aa7f0ac8f"
+      },
+      {
+        "name": "cost-sheet.pdf",
+        "type": "file",
+        "hash": "7a1a755755ed86c549388993edad055782b0bdf7ce17b3da7e311680f94cd7a2"
+      },
+      {
+        "name": "project.json",
+        "type": "file",
+        "hash": "82121885885d4cd111b7476f7a1ab421a815e56d301dedd312845ad5727e7c30"
+      },
+      {
+        "name": "statements.md",
+        "type": "file",
+        "hash": "ba5488bae9f0302b499aaf8582f4f230a5435aa63442d86b688bab856d00433d"
+      },
+      {
+        "name": "statements.pdf",
+        "type": "file",
+        "hash": "d6b69cc0dbe0d84ef1f02c776d90ca19081afb582e532f923732552cfafa502c"
+      }
+    ],
+    "sourceExecution": {
+      "name": "exec-1759158533883",
+      "type": "command_execution",
+      "domain": "system",
+      "command_string": "node snappy.js project 20250923-43-john-green-deck --format json",
+      "timestamp": "2025-09-29T15:08:53.883Z",
+      "status": "success",
+      "output_summary": "stdout: {\n  \"id\": \"20250923-43-john-green-deck\",\n  \"clientName\": \"John Green\",\n  \"projectType\": \"Deck Repair\",\n  \"status\": \"awaiting_client_approval\",\n  \"createdAt\": \"2025-09-23\",\n  \"updatedAt\": \"2025-09-23\",...",
+      "relationships": []
+    }
+  },
+  "source": "snappy-on-demand-cache",
+  "relationships": [
+    {
+      "type": "generates",
+      "target": "exec-1759158533883",
+      "target_type": "command_execution"
+    },
+    {
+      "type": "owned_by",
+      "target": "John Green",
+      "target_type": "person",
+      "confidence": 0.95
+    },
+    {
+      "type": "located_at",
+      "target": "20250923-43-john-green-deck",
+      "target_type": "location",
+      "confidence": 0.95
+    }
+  ]
+}

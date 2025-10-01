@@ -1,0 +1,25 @@
+{
+  "name": "John Green",
+  "type": "person",
+  "domain": "construction",
+  "source": "snappy-on-demand-cache",
+  "relationships": [
+    {
+      "type": "generates",
+      "target": "exec-1759158532254",
+      "target_type": "command_execution"
+    },
+    {
+      "type": "owns",
+      "target": "20250924-44-john-green-combined",
+      "target_type": "project",
+      "confidence": 0.95
+    },
+    {
+      "type": "located_at",
+      "target": "20250924-44-john-green-combined",
+      "target_type": "location",
+      "confidence": 0.95
+    }
+  ]
+}

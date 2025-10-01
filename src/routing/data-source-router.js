@@ -159,22 +159,29 @@ export class DataSourceRouter {
 
     try {
       const domain = options.domain || 'construction';
-      const entitiesPath = path.join(this.dataPath, domain, 'entities');
       const allEntities = [];
 
-      // 1. Load all entities from the context DB
-      try {
-        const entityTypes = await fs.readdir(entitiesPath);
-        for (const type of entityTypes) {
-          const typePath = path.join(entitiesPath, type);
-          const entityFiles = await fs.readdir(typePath);
-          for (const file of entityFiles) {
-            const entityData = JSON.parse(await fs.readFile(path.join(typePath, file), 'utf-8'));
-            allEntities.push(entityData);
+      // 1. Load all entities from multiple domains (construction + universal for system entities)
+      const domainsToSearch = [domain];
+      if (domain !== 'universal') {
+        domainsToSearch.push('universal'); // Always search universal for system entities
+      }
+
+      for (const searchDomain of domainsToSearch) {
+        const entitiesPath = path.join(this.dataPath, searchDomain, 'entities');
+        try {
+          const entityTypes = await fs.readdir(entitiesPath);
+          for (const type of entityTypes) {
+            const typePath = path.join(entitiesPath, type);
+            const entityFiles = await fs.readdir(typePath);
+            for (const file of entityFiles) {
+              const entityData = JSON.parse(await fs.readFile(path.join(typePath, file), 'utf-8'));
+              allEntities.push(entityData);
+            }
           }
+        } catch (e) {
+          // It's okay if the directory doesn't exist.
         }
-      } catch (e) {
-        // It's okay if the directory doesn't exist.
       }
 
       // 2. Find entities that are mentioned in the query
@@ -188,7 +195,7 @@ export class DataSourceRouter {
         for (const entity of matchedEntities) {
           if (entity.relationships && entity.relationships.length > 0) {
             for (const rel of entity.relationships) {
-              const relatedEntity = await this.findEntityByName(rel.target, rel.target_type);
+              const relatedEntity = await this.findEntityByName(rel.target, rel.target_type, entity.domain);
               if (relatedEntity && !contextKnowledge.entities.some(e => e.name === relatedEntity.name)) {
                 contextKnowledge.entities.push(relatedEntity);
               }
@@ -288,13 +295,12 @@ export class DataSourceRouter {
         }
       }
 
-      // Get detailed information for all discovered projects
+      // Projects from querySnappyProjects already have full details via hash-status client
+      // No need to fetch again - just use what we have
       for (const project of discoveries.snappyProjects) {
         if (project && project.id) {
-          const { details, execution: detailsExecution } = await this.getProjectDetails(project.id);
-          if (details) {
-            discoveries.projectDetails.push({ ...details, sourceExecution: detailsExecution });
-          }
+          // Project already has all details from hash-status client
+          discoveries.projectDetails.push({ ...project, sourceExecution: { source: 'hash-status-cached' } });
         } else {
           console.warn(chalk.yellow('⚠️  Skipping project with missing ID in discovery step.'));
         }
@@ -324,11 +330,26 @@ export class DataSourceRouter {
     };
 
     try {
-      // If we found projects, drill into their specific details
-      for (const project of externalDiscoveries.snappyProjects) {
-        const drillResult = await this.drillIntoProject(project, query);
-        if (drillResult) {
-          specificDetails.drillResults.push(drillResult);
+      // REUSE project details already fetched in Step 2 instead of re-fetching
+      if (externalDiscoveries.projectDetails && externalDiscoveries.projectDetails.length > 0) {
+        console.log(chalk.grey(`   Reusing ${externalDiscoveries.projectDetails.length} project details from Step 2`));
+        for (const projectDetail of externalDiscoveries.projectDetails) {
+          specificDetails.drillResults.push({
+            type: 'project_drill',
+            project: projectDetail,
+            details: projectDetail,
+            relevantToQuery: this.isRelevantToQuery(query, projectDetail),
+            confidence: 0.85
+          });
+        }
+      } else if (externalDiscoveries.snappyProjects && externalDiscoveries.snappyProjects.length > 0) {
+        // Fallback: only fetch if we don't have details yet
+        console.log(chalk.grey(`   Fetching details for ${externalDiscoveries.snappyProjects.length} projects`));
+        for (const project of externalDiscoveries.snappyProjects) {
+          const drillResult = await this.drillIntoProject(project, query);
+          if (drillResult) {
+            specificDetails.drillResults.push(drillResult);
+          }
         }
       }
 
@@ -448,8 +469,12 @@ export class DataSourceRouter {
       // Check if Snappy data has changed
       const changes = await this.snappyHashClient.detectChanges();
       
+      // Only sync if data section actually changed
       if (changes.sections.data?.changed) {
         console.log(chalk.yellow('   Snappy data changed - syncing updates'));
+        await this.snappyHashClient.syncChanges(changes);
+      } else if (changes.hasChanges) {
+        // Other sections changed but not data - still sync those
         await this.snappyHashClient.syncChanges(changes);
       }
       
@@ -457,11 +482,14 @@ export class DataSourceRouter {
       const dataDetails = await this.snappyHashClient.executeSnappyCommand('hash-status --drill-down data');
       const projects = [];
       
+      // Determine if we should force refresh based on change detection
+      const forceRefresh = changes.sections.data?.changed || false;
+      
       for (const [projectId, projectInfo] of Object.entries(dataDetails)) {
         if (projectId === '.gitkeep' || projectInfo.hash === 'error_hashing') continue;
         
-        // Use cached data if available
-        const projectData = await this.snappyHashClient.getProject(projectId);
+        // Use cached data if no changes detected, otherwise fetch fresh
+        const projectData = await this.snappyHashClient.getProject(projectId, forceRefresh);
         projects.push({
           id: projectId,
           ...projectData
@@ -715,24 +743,41 @@ export class DataSourceRouter {
   }
 
   /**
-   * Display smart query results
+   * Display smart query results in flow-logic-tree format
    */
   displaySmartQueryResult(result) {
     const ci = result.contextualIntelligence;
     const query = result.query.toLowerCase();
 
-    // Direct Answer Logic
-    if (query.includes('where') && query.includes('live') && ci && ci.contextKnowledge?.entities.length > 0) {
+    // Detect query intent
+    const isPersonQuery = query.match(/who is (\w+)/i);
+    const isLocationQuery = query.includes('where') && query.includes('live');
+    const isSystemQuery = query.includes('snappy') && (query.includes('command') || query.includes('available') || query.includes('what'));
+    
+    if (isPersonQuery) {
+      const personName = isPersonQuery[1];
+      this.displayPersonContext(personName, ci);
+      return;
+    }
+    
+    if (isLocationQuery && ci && ci.contextKnowledge?.entities.length > 0) {
       const person = ci.contextKnowledge.entities.find(e => e.type === 'person' && query.includes(e.name.toLowerCase()));
       if (person) {
         const locationRel = person.relationships.find(r => r.type === 'located_at');
         if (locationRel) {
-          // The location entity itself might not have been pushed to the main entities array in checkContextDB
-          // So we just print the target from the relationship.
           console.log(chalk.green.bold(`
 ✅ ${person.name} lives at project location: ${locationRel.target}.`));
-          return; // End after displaying the direct answer
+          return;
         }
+      }
+    }
+
+    // Handle system entity queries (e.g., "what are the available snappy commands?")
+    if (isSystemQuery && ci?.contextKnowledge?.entities.length > 0) {
+      const snappyEntity = ci.contextKnowledge.entities.find(e => e.type === 'system' && e.name.toLowerCase() === 'snappy');
+      if (snappyEntity) {
+        this.displaySnappySystemInfo(snappyEntity);
+        return;
       }
     }
 
@@ -754,6 +799,118 @@ export class DataSourceRouter {
       console.log(chalk.cyan(`\n✅ Overall Confidence: ${(ci.overallConfidence * 100).toFixed(1)}%`));
     }
     console.log(chalk.grey(`\n⏱️  Processing Time: ${result.processingTime}ms`));
+  }
+
+  /**
+   * Display Snappy system information
+   */
+  displaySnappySystemInfo(snappyEntity) {
+    console.log(chalk.green.bold(`\n📦 ${snappyEntity.name} - ${snappyEntity.category}`));
+    console.log(chalk.grey(`   ${snappyEntity.description}`));
+    console.log(chalk.cyan('\n├─ Available Commands:'));
+    
+    // Group commands by category
+    const commandsByCategory = {};
+    for (const cmd of snappyEntity.capabilities.commands) {
+      if (!commandsByCategory[cmd.category]) {
+        commandsByCategory[cmd.category] = [];
+      }
+      commandsByCategory[cmd.category].push(cmd);
+    }
+    
+    const categories = Object.keys(commandsByCategory);
+    categories.forEach((category, catIdx) => {
+      const isLastCategory = catIdx === categories.length - 1;
+      const categoryPrefix = isLastCategory ? '└─' : '├─';
+      console.log(chalk.cyan(`${categoryPrefix} ${category.replace(/-/g, ' ').toUpperCase()}`));
+      
+      const commands = commandsByCategory[category];
+      commands.forEach((cmd, cmdIdx) => {
+        const isLastCmd = cmdIdx === commands.length - 1;
+        const cmdPrefix = isLastCategory ? (isLastCmd ? '   └─' : '   ├─') : (isLastCmd ? '│  └─' : '│  ├─');
+        console.log(chalk.grey(`${cmdPrefix} ${cmd.name}`));
+        console.log(chalk.grey(`${isLastCategory ? '   ' : '│  '}${isLastCmd ? '   ' : '│  '}├─ Usage: ${cmd.usage}`));
+        console.log(chalk.grey(`${isLastCategory ? '   ' : '│  '}${isLastCmd ? '   ' : '│  '}└─ ${cmd.description}`));
+      });
+    });
+    
+    console.log(chalk.cyan('\n├─ Data Structures:'));
+    snappyEntity.capabilities.structures.forEach((struct, idx) => {
+      const isLast = idx === snappyEntity.capabilities.structures.length - 1;
+      const prefix = isLast ? '└─' : '├─';
+      console.log(chalk.grey(`${prefix} ${struct}`));
+    });
+    
+    console.log(chalk.grey(`\n📊 System Summary:`));
+    console.log(chalk.grey(`   • Total Commands: ${snappyEntity.capabilities.commands.length}`));
+    console.log(chalk.grey(`   • Data Structures: ${snappyEntity.capabilities.structures.length}`));
+    console.log(chalk.grey(`   • Configuration Files: ${snappyEntity.capabilities.configurations.length}`));
+    console.log(chalk.grey(`   • Pattern: ${snappyEntity.metadata.pattern}`));
+    console.log(chalk.grey(`   • Last Updated: ${new Date(snappyEntity.lastUpdated).toLocaleString()}`));
+  }
+
+  /**
+   * Display person context in flow-logic-tree format
+   */
+  displayPersonContext(personName, ci) {
+    console.log(chalk.green.bold(`\n👤 ${personName.charAt(0).toUpperCase() + personName.slice(1)}`));
+    console.log(chalk.cyan('├─ Entity Type: Person'));
+    
+    // Extract person info from discovered projects
+    const projects = ci?.externalDiscoveries?.snappyProjects || [];
+    const projectDetails = ci?.externalDiscoveries?.projectDetails || [];
+    
+    if (projects.length === 0) {
+      console.log(chalk.yellow('└─ No context found'));
+      return;
+    }
+
+    // Get full name from first project
+    const fullName = projects[0]?.clientName || personName;
+    if (fullName !== personName) {
+      console.log(chalk.cyan(`├─ Full Name: ${fullName}`));
+    }
+    
+    // 1st Level Relationships
+    console.log(chalk.cyan('└─ Relationships (1st level)'));
+    
+    // Projects relationship
+    console.log(chalk.cyan(`   ├─ client_of → Projects (${projects.length})`));
+    projects.forEach((p, idx) => {
+      const isLast = idx === projects.length - 1;
+      const prefix = isLast ? '   │  └─' : '   │  ├─';
+      console.log(chalk.grey(`${prefix} ${p.id}`));
+      console.log(chalk.grey(`   │     ├─ Type: ${p.projectType || 'N/A'}`));
+      console.log(chalk.grey(`   │     ├─ Status: ${p.status || 'N/A'}`));
+      if (p.createdAt) {
+        console.log(chalk.grey(`   │     └─ Created: ${new Date(p.createdAt).toLocaleDateString()}`));
+      }
+    });
+    
+    // Location relationships (from projects)
+    const locations = new Set();
+    projectDetails.forEach(p => {
+      if (p.location) locations.add(p.location);
+      if (p.address) locations.add(p.address);
+    });
+    
+    if (locations.size > 0) {
+      console.log(chalk.cyan(`   └─ associated_with → Locations (${locations.size})`));
+      Array.from(locations).forEach((loc, idx) => {
+        const isLast = idx === locations.size - 1;
+        const prefix = isLast ? '      └─' : '      ├─';
+        console.log(chalk.grey(`${prefix} ${loc}`));
+      });
+    }
+    
+    // Summary stats
+    console.log(chalk.grey(`\n📊 Context Summary:`));
+    console.log(chalk.grey(`   • Total Projects: ${projects.length}`));
+    console.log(chalk.grey(`   • Active Projects: ${projects.filter(p => p.status === 'active').length}`));
+    console.log(chalk.grey(`   • Completed Projects: ${projects.filter(p => p.status?.includes('completed') || p.status?.includes('paid')).length}`));
+    if (ci?.overallConfidence) {
+      console.log(chalk.grey(`   • Confidence: ${(ci.overallConfidence * 100).toFixed(1)}%`));
+    }
   }
 
   /**
@@ -982,5 +1139,109 @@ export class DataSourceRouter {
     return relevantFields.some(field => 
       field && (queryLower.includes(field) || field.includes(queryLower.split(' ')[0]))
     );
+  }
+
+  /**
+   * Cache Snappy system metadata as an entity in Context DB
+   * This makes Snappy itself queryable: "what are the available snappy commands?"
+   */
+  async cacheSnappySystemEntity() {
+    console.log(chalk.blue.bold('\n📦 Caching Snappy System Metadata...'));
+    
+    try {
+      // Fetch Snappy's self-documenting metadata
+      const commands = await this.executeSnappyCommand('cmds');
+      const structure = await this.executeSnappyCommand('structure');
+      const config = await this.executeSnappyCommand('config');
+      
+      // Create Snappy system entity
+      const snappyEntity = {
+        name: 'Snappy',
+        type: 'system',
+        domain: 'universal',
+        category: 'Project Management System',
+        description: 'Self-documenting project management database with hash-status pattern',
+        source: 'snappy-self-documentation',
+        metadata: {
+          version: '1.0',
+          pattern: 'hash-status',
+          sections: ['cmds', 'config', 'structure', 'data', 'docs']
+        },
+        capabilities: {
+          commands: this.extractCommandList(commands),
+          structures: Object.keys(structure),
+          configurations: Object.keys(config)
+        },
+        data: {
+          commands,
+          structure,
+          config
+        },
+        relationships: [
+          {
+            type: 'provides',
+            target: 'project-data',
+            target_type: 'data-source',
+            confidence: 1.0,
+            metadata: {
+              description: 'Provides structured project data via hash-status API'
+            }
+          },
+          {
+            type: 'integrates_with',
+            target: 'Context DB',
+            target_type: 'system',
+            confidence: 1.0,
+            metadata: {
+              description: 'Integrated with Context DB via DataSourceRouter'
+            }
+          }
+        ],
+        lastUpdated: new Date().toISOString()
+      };
+      
+      // Persist to Context DB
+      await this.persistEntity(snappyEntity);
+      
+      console.log(chalk.green('✅ Snappy system entity cached successfully'));
+      console.log(chalk.grey(`   • ${snappyEntity.capabilities.commands.length} commands available`));
+      console.log(chalk.grey(`   • ${snappyEntity.capabilities.structures.length} data structures`));
+      console.log(chalk.grey(`   • ${snappyEntity.capabilities.configurations.length} configuration files`));
+      
+      return snappyEntity;
+    } catch (error) {
+      console.error(chalk.red('❌ Failed to cache Snappy system entity:'), error.message);
+      throw error;
+    }
+  }
+
+  /**
+   * Extract flat command list from Snappy's command structure
+   */
+  extractCommandList(commandsData) {
+    const commands = [];
+    
+    for (const [category, categoryData] of Object.entries(commandsData)) {
+      if (categoryData.commands && Array.isArray(categoryData.commands)) {
+        for (const cmd of categoryData.commands) {
+          commands.push({
+            name: cmd.name,
+            usage: cmd.usage,
+            description: cmd.description,
+            category: category
+          });
+        }
+      }
+    }
+    
+    return commands;
+  }
+
+  /**
+   * Execute Snappy command (wrapper for hash-status client)
+   */
+  async executeSnappyCommand(command) {
+    const { stdout } = await execAsync(`node snappy.js ${command}`, { cwd: this.snappyPath });
+    return JSON.parse(stdout);
   }
 }

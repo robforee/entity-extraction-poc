@@ -32,7 +32,7 @@ class EnhancedVizServer {
         this.currentDomain = 'cybersec';
         this.diffMem = null;
         this.mergedPairs = new Set();
-        this.mergedPairsFile = path.join(__dirname, '../../data/merged-pairs.json');
+        this.mergedPairsFile = path.join(process.cwd(), 'data/merged-pairs.json');
         
         this.diffMem = new MultiDomainDiffMem({ domain: 'cybersec' });
         this.webDir = path.join(__dirname, '../../web');
@@ -179,7 +179,7 @@ class EnhancedVizServer {
                 domains = await this.diffMem.getAllDomains();
             } else {
                 // Fallback: scan data directory for domain folders
-                const dataDir = path.join(__dirname, '../../data');
+                const dataDir = path.join(process.cwd(), 'data');
                 if (await fs.pathExists(dataDir)) {
                     const items = await fs.readdir(dataDir);
                     for (const item of items) {

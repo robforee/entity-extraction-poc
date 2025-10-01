@@ -1,0 +1,828 @@
+{
+  "root": {
+    "timestamp": "2025-10-01T12:31:03.565Z",
+    "version": "1.0",
+    "description": "Snappy Project Management Database - Explore using hash-status and follow \"more\" commands to drill down into specific areas.",
+    "hash": "8de72f2bbeb29f3d89c2b0b2870d45c0d0fb1bb62f6aac112eb2e85d6cfa6db5",
+    "cmds": {
+      "hash": "a09bb99730b6c6ab0f4c33d94e75685c42dd315f7dde08f2845413d7edf67cf5",
+      "more": "snappy hash-status --drill-down cmds",
+      "description": "Available commands including project management operations"
+    },
+    "config": {
+      "hash": "a621ef1188a3be37864d01d0ae6db5b74f5512c32aed8b3b0ddc631bb5ed3ace",
+      "more": "snappy hash-status --drill-down config",
+      "description": "System configuration (project types, properties definitions)"
+    },
+    "structure": {
+      "hash": "5106598fc48add81b2894c156336600708b2eb78dc0ec5466c254bd735afcc19",
+      "more": "snappy hash-status --drill-down structure",
+      "description": "Data structure definitions for projects, subscriptions, and client-projects"
+    },
+    "data": {
+      "hash": "84351286ae2cd20bbc79b7958c2454e98fec97dddc625ada58a2ed09d0736b8d",
+      "more": "snappy hash-status --drill-down data",
+      "description": "All project data (projects, subscriptions, client-projects)"
+    },
+    "docs": {
+      "hash": "78d499638ae41a9c31d24c6199f6e1162cf6f749fdb80a5cf991a0ff83e0d774",
+      "more": "snappy hash-status --drill-down docs",
+      "description": "Documentation (business, developer, system, templates)"
+    }
+  },
+  "sections": {
+    "data": {
+      "20250908-01-john-green-deck-demo": {
+        "hash": "318c5ed8c035e65f416e80d09a988dca75c13681f19dd2d06be75cc1b43a8dcc",
+        "more": "snappy project 20250908-01-john-green-deck-demo --properties json"
+      },
+      "20250910-43-richard-gonzales": {
+        "hash": "494dc94c241fbf2fc46c1b058ea8728a08e86b83dbdb7a4397a0ba24af4149d8",
+        "more": "snappy project 20250910-43-richard-gonzales --properties json"
+      },
+      "20250917-42-john-green": {
+        "hash": "bdc57252d3b00741a037d38d0d7cfa4a2be28f27a024144a1b28412f5a2cd35e",
+        "more": "snappy project 20250917-42-john-green --properties json"
+      },
+      "20250923-43-john-green-deck": {
+        "hash": "2185fa9f433acad372434a706a36cae2959cd9a8467891f230dd4a3d47cc63a2",
+        "more": "snappy project 20250923-43-john-green-deck --properties json"
+      },
+      "20250924-44-john-green-combined": {
+        "hash": "e63660985227e4bbca027a2495cb85fcb784c13c3ad86ed555060857ba649de6",
+        "more": "snappy project 20250924-44-john-green-combined --properties json"
+      },
+      "garage-project": {
+        "hash": "9062afa2c4b44dad1f22c9cf8133ce26a88fd8cfeeaf9f85acedde69c2e10841",
+        "more": "snappy project garage-project --properties json"
+      },
+      "john-deck-project": {
+        "hash": "af8492000d518c91d4eafcd41e7ca73e6b7010064f9f03e67c8445ffe51d762f",
+        "more": "snappy project john-deck-project --properties json"
+      },
+      ".gitkeep": {
+        "hash": "error_hashing",
+        "more": "snappy project .gitkeep --properties json"
+      },
+      "cybersec-dogfood": {
+        "hash": "6c1b8ac6993f52b2bbeb5897e7cf490d319f3b7298fe5a877315293728390f73",
+        "more": "snappy project cybersec-dogfood --properties json"
+      },
+      "mef": {
+        "hash": "24b695ffc6b9b0174f793e3ade618468fc706459037e7bc62dc4565a27d3386e",
+        "more": "snappy project mef --properties json"
+      },
+      "qubes-restore": {
+        "hash": "bf484b529928484d84fefbf59d817692075b464e5cf1bef40af64ae123fa07f1",
+        "more": "snappy project qubes-restore --properties json"
+      },
+      "tcad-scrape": {
+        "hash": "2d9e35b4e57f9e50d57da70db9235a29a9ee4581529d970a762a62faa07c8fed",
+        "more": "snappy project tcad-scrape --properties json"
+      },
+      "foree-family-financials": {
+        "hash": "2cb52f352d41780f637b9859380be2f498e0187159f211f139180f54d75b9b5c",
+        "more": "snappy project foree-family-financials --properties json"
+      },
+      "nuzhat-ali-blue-creek": {
+        "hash": "326f4c9e33c0bad72e154e82f53a46773e0c8379c15285c65384c012163abc64",
+        "more": "snappy project nuzhat-ali-blue-creek --properties json"
+      }
+    },
+    "structure": {
+      "projects": {
+        "hash": "067d0126064c5ac01eaab2e160807a258864405a8c86602d17f7df6881bad125",
+        "more": "snappy database project-types projects --format json"
+      },
+      "client-projects": {
+        "hash": "be71627e8710a7f9158957aa342d80706305aa41534fd4d07a6fb11dcc564ec3",
+        "more": "snappy database project-types client-projects --format json"
+      },
+      "subscriptions": {
+        "hash": "9a1cdae74408223f3366c3213547152461a2ac2fb01216edb4dd49a3be3d7ec8",
+        "more": "snappy database project-types subscriptions --format json"
+      }
+    },
+    "cmds": {
+      "query-commands": {
+        "description": "Commands for querying data",
+        "commands": [
+          {
+            "name": "hash-status",
+            "usage": "snappy hash-status [--drill-down <section>]",
+            "description": "Check synchronization status"
+          },
+          {
+            "name": "database",
+            "usage": "snappy database [<sub-command>]",
+            "description": "View all projects or database info"
+          },
+          {
+            "name": "search",
+            "usage": "snappy search \"<query>\"",
+            "description": "Search projects and files"
+          },
+          {
+            "name": "project",
+            "usage": "snappy project <id>",
+            "description": "View project details"
+          },
+          {
+            "name": "file",
+            "usage": "snappy file <path>",
+            "description": "View documentation or project files"
+          },
+          {
+            "name": "interface",
+            "usage": "snappy interface",
+            "description": "View interface documentation"
+          }
+        ]
+      },
+      "management-commands": {
+        "description": "Commands for managing projects",
+        "commands": [
+          {
+            "name": "set-status",
+            "usage": "snappy project <id> set-status <status> [--notes \"...\"]",
+            "description": "Update project status"
+          },
+          {
+            "name": "add-expense",
+            "usage": "snappy project <id> add-expense <amount> [--description \"...\"]",
+            "description": "Add expense to project"
+          },
+          {
+            "name": "set-client",
+            "usage": "snappy project <id> set-client <name>",
+            "description": "Set client name"
+          },
+          {
+            "name": "add-note",
+            "usage": "snappy project <id> add-note <text>",
+            "description": "Add note to project"
+          },
+          {
+            "name": "set-next-action",
+            "usage": "snappy project <id> set-next-action <date>",
+            "description": "Set next action date"
+          }
+        ]
+      }
+    }
+  },
+  "data": {
+    "20250908-01-john-green-deck-demo": {
+      "id": "20250908-01-john-green-deck-demo",
+      "clientName": "John Green",
+      "projectType": "Deck Demolition",
+      "status": "payment_received",
+      "statusNotes": "Payment received.",
+      "createdAt": "2025-09-08",
+      "updatedAt": "2025-09-23",
+      "path": "/home/robforee/analyst-server/snappy/projects/20250908-01-john-green-deck-demo/project.json",
+      "name": "20250908-01-john-green-deck-demo",
+      "lastUpdate": null,
+      "nextActionDate": null,
+      "type": null,
+      "originalProjects": null,
+      "source": null,
+      "lastExpenseAdded": null,
+      "totalExpenses": null,
+      "expenseCount": null,
+      "contextSystemIntegration": null,
+      "fileSystem": [
+        {
+          "name": "invoice.txt",
+          "type": "file",
+          "hash": "3b2814ae4eecd577b0f1de7cb83352489b1206ff61d427eda2f7422de6eaa2b3",
+          "more": "snappy file 20250908-01-john-green-deck-demo/invoice.txt"
+        },
+        {
+          "name": "project.json",
+          "type": "file",
+          "hash": "375f1c6447b4ecd6121cc34c5662f1ff4b56f0464336a2701bbf96fc399728a2",
+          "more": "snappy file 20250908-01-john-green-deck-demo/project.json"
+        }
+      ]
+    },
+    "20250910-43-richard-gonzales": {
+      "id": "20250910-43-richard-gonzales",
+      "clientName": "Richard Gonzales",
+      "projectType": "Dryer Vent Repair",
+      "status": "date_set",
+      "statusNotes": "Awaiting contractor visit on 2025-09-23 between 2-4pm.",
+      "createdAt": "2025-09-10",
+      "updatedAt": "2025-09-23",
+      "path": "/home/robforee/analyst-server/snappy/projects/20250910-43-richard-gonzales/project.json",
+      "name": "20250910-43-richard-gonzales",
+      "lastUpdate": null,
+      "nextActionDate": null,
+      "type": null,
+      "originalProjects": null,
+      "source": null,
+      "lastExpenseAdded": null,
+      "totalExpenses": null,
+      "expenseCount": null,
+      "contextSystemIntegration": null,
+      "fileSystem": [
+        {
+          "name": "bid.md",
+          "type": "file",
+          "hash": "a06ff1147fc3e17a3ffd5dc259c4d1085e03e3141ba84560996e46afd46e02e3",
+          "more": "snappy file 20250910-43-richard-gonzales/bid.md"
+        },
+        {
+          "name": "project.json",
+          "type": "file",
+          "hash": "ef2215b6a07d5c0e376928ac17ccc8cf36956cfc51686b18a137e17da0df68e9",
+          "more": "snappy file 20250910-43-richard-gonzales/project.json"
+        },
+        {
+          "name": "questions.md",
+          "type": "file",
+          "hash": "38338f2665720cad9e05e447642a8b603051f0d61794d212729530e72881722b",
+          "more": "snappy file 20250910-43-richard-gonzales/questions.md"
+        },
+        {
+          "name": "work-log.md",
+          "type": "file",
+          "hash": "9b51f512684d441606fe5e7023dc5d49b1e4c73c1f0cc76bb331302c1ed0b704",
+          "more": "snappy file 20250910-43-richard-gonzales/work-log.md"
+        }
+      ]
+    },
+    "20250917-42-john-green": {
+      "id": "20250917-42-john-green",
+      "clientName": "John Green",
+      "projectType": "Toilet Repair",
+      "status": "payment_received",
+      "statusNotes": "Payment received, project complete.",
+      "createdAt": "2025-09-17",
+      "updatedAt": "2025-09-23",
+      "path": "/home/robforee/analyst-server/snappy/projects/20250917-42-john-green/project.json",
+      "name": "20250917-42-john-green",
+      "lastUpdate": null,
+      "nextActionDate": null,
+      "type": null,
+      "originalProjects": null,
+      "source": null,
+      "lastExpenseAdded": null,
+      "totalExpenses": null,
+      "expenseCount": null,
+      "contextSystemIntegration": null,
+      "fileSystem": [
+        {
+          "name": "bid.md",
+          "type": "file",
+          "hash": "ee777a8237ae5c1bcd7b45bb230392be614465fcf989deeb37e116b0a8c67b7e",
+          "more": "snappy file 20250917-42-john-green/bid.md"
+        },
+        {
+          "name": "notes.md",
+          "type": "file",
+          "hash": "4a68c5e37a31aabc3b1234fa676b27ab0f20cfd85ad30552aec8d578ade30079",
+          "more": "snappy file 20250917-42-john-green/notes.md"
+        },
+        {
+          "name": "project.json",
+          "type": "file",
+          "hash": "63505a1e72be67b5eb01a55266dafb8e905fca4be440f91e831b6b238be6b831",
+          "more": "snappy file 20250917-42-john-green/project.json"
+        }
+      ]
+    },
+    "20250923-43-john-green-deck": {
+      "id": "20250923-43-john-green-deck",
+      "clientName": "John Green",
+      "projectType": "Deck Repair",
+      "status": "awaiting_client_approval",
+      "createdAt": "2025-09-23",
+      "updatedAt": "2025-09-23",
+      "path": "/home/robforee/analyst-server/snappy/projects/20250923-43-john-green-deck/project.json",
+      "name": "20250923-43-john-green-deck",
+      "lastUpdate": null,
+      "nextActionDate": null,
+      "type": null,
+      "statusNotes": null,
+      "originalProjects": null,
+      "source": null,
+      "lastExpenseAdded": null,
+      "totalExpenses": null,
+      "expenseCount": null,
+      "contextSystemIntegration": null,
+      "fileSystem": [
+        {
+          "name": "awaiting.md",
+          "type": "file",
+          "hash": "1a5ff27967b4d310224bb1ea4d769d5bdacebbc3e4b50397a6362aded805eebc",
+          "more": "snappy file 20250923-43-john-green-deck/awaiting.md"
+        },
+        {
+          "name": "awaiting.pdf",
+          "type": "file",
+          "hash": "975321209302b4cd766d3f624f9404f91703e484c7c2fc1064119ff0903b0a71",
+          "more": "snappy file 20250923-43-john-green-deck/awaiting.pdf"
+        },
+        {
+          "name": "bid.md",
+          "type": "file",
+          "hash": "ecb5206ebe54fbcca6c923cb0e914ff01227b48f7968d9ba9bc1a54aa468a9b0",
+          "more": "snappy file 20250923-43-john-green-deck/bid.md"
+        },
+        {
+          "name": "bid.pdf",
+          "type": "file",
+          "hash": "9025739319d04fedc509a62158524a3cadd1144109a219e25222c77a754d94d8",
+          "more": "snappy file 20250923-43-john-green-deck/bid.pdf"
+        },
+        {
+          "name": "cost-breakdown-calculated.md",
+          "type": "file",
+          "hash": "db32050e782371a65dcba6ed753cd396de771853d559bd8bc3c30bb890345475",
+          "more": "snappy file 20250923-43-john-green-deck/cost-breakdown-calculated.md"
+        },
+        {
+          "name": "cost-breakdown-calculated.pdf",
+          "type": "file",
+          "hash": "b7e83c6e1cd107f1068e0808209867e7571c9d8425e4f7d97c8dbc8bec9cefab",
+          "more": "snappy file 20250923-43-john-green-deck/cost-breakdown-calculated.pdf"
+        },
+        {
+          "name": "cost-sheet.md",
+          "type": "file",
+          "hash": "e9e780f52b569e2e65c8bdc995bdbcca64bf2fe09fbfe670bfb6774aa7f0ac8f",
+          "more": "snappy file 20250923-43-john-green-deck/cost-sheet.md"
+        },
+        {
+          "name": "cost-sheet.pdf",
+          "type": "file",
+          "hash": "7a1a755755ed86c549388993edad055782b0bdf7ce17b3da7e311680f94cd7a2",
+          "more": "snappy file 20250923-43-john-green-deck/cost-sheet.pdf"
+        },
+        {
+          "name": "project.json",
+          "type": "file",
+          "hash": "82121885885d4cd111b7476f7a1ab421a815e56d301dedd312845ad5727e7c30",
+          "more": "snappy file 20250923-43-john-green-deck/project.json"
+        },
+        {
+          "name": "statements.md",
+          "type": "file",
+          "hash": "ba5488bae9f0302b499aaf8582f4f230a5435aa63442d86b688bab856d00433d",
+          "more": "snappy file 20250923-43-john-green-deck/statements.md"
+        },
+        {
+          "name": "statements.pdf",
+          "type": "file",
+          "hash": "d6b69cc0dbe0d84ef1f02c776d90ca19081afb582e532f923732552cfafa502c",
+          "more": "snappy file 20250923-43-john-green-deck/statements.pdf"
+        }
+      ]
+    },
+    "20250924-44-john-green-combined": {
+      "id": "20250924-44-john-green-combined",
+      "clientName": "John Green",
+      "projectType": "Combined: Toilet Repair + Deck Repair",
+      "status": "completed_paid",
+      "statusNotes": "Invoice generated and marked as paid on 2025-09-30. Combined bid created from projects 20250917-42 (toilet repair - completed) and 20250923-43 (deck repair - awaiting approval)",
+      "originalProjects": [
+        "20250917-42-john-green",
+        "20250923-43-john-green-deck"
+      ],
+      "invoiceNumber": "20250924-44",
+      "invoiceDate": "2025-09-30",
+      "paidDate": "2025-09-30",
+      "totalAmount": 1170.88,
+      "createdAt": "2025-09-24",
+      "updatedAt": "2025-09-30",
+      "path": "/home/robforee/analyst-server/snappy/projects/20250924-44-john-green-combined/project.json",
+      "name": "20250924-44-john-green-combined",
+      "lastUpdate": null,
+      "nextActionDate": null,
+      "type": null,
+      "source": null,
+      "lastExpenseAdded": null,
+      "totalExpenses": null,
+      "expenseCount": null,
+      "contextSystemIntegration": null,
+      "fileSystem": [
+        {
+          "name": "bid-o.md",
+          "type": "file",
+          "hash": "008c03812de11df739b7397f9b9992d75690ce89d716c414d17c68616d974b1e",
+          "more": "snappy file 20250924-44-john-green-combined/bid-o.md"
+        },
+        {
+          "name": "bid-o.pdf",
+          "type": "file",
+          "hash": "705b70a4aa91825718748ffcf31c27d29a7b0abe5e9c790015f3b13e154dea11",
+          "more": "snappy file 20250924-44-john-green-combined/bid-o.pdf"
+        },
+        {
+          "name": "bid.md",
+          "type": "file",
+          "hash": "5f4a0e3fa10b59694d504406b2c104fba42c3da579ea8b97fe71896cc3912ed7",
+          "more": "snappy file 20250924-44-john-green-combined/bid.md"
+        },
+        {
+          "name": "bid.pdf",
+          "type": "file",
+          "hash": "1827048d35214189d3d0fd2d815a897078da8dfed23ea3aba0141e9ec9a018f7",
+          "more": "snappy file 20250924-44-john-green-combined/bid.pdf"
+        },
+        {
+          "name": "cost-breakdown-calculated.md",
+          "type": "file",
+          "hash": "ecfadf7e54e22e6b134fbd3383f7f832d6be6e62fa0c2009d091303c3088c806",
+          "more": "snappy file 20250924-44-john-green-combined/cost-breakdown-calculated.md"
+        },
+        {
+          "name": "cost-breakdown-calculated.pdf",
+          "type": "file",
+          "hash": "ca9428ac5ddca8d68e3912125baad78a9faf053bc5f1ffacf272ef141859fd2b",
+          "more": "snappy file 20250924-44-john-green-combined/cost-breakdown-calculated.pdf"
+        },
+        {
+          "name": "cost-breakdown.md",
+          "type": "file",
+          "hash": "f2c61d78f379ddc69678da5a538c02df3d4438cdb89e92f7da75cb9263bf5592",
+          "more": "snappy file 20250924-44-john-green-combined/cost-breakdown.md"
+        },
+        {
+          "name": "cost-breakdown.pdf",
+          "type": "file",
+          "hash": "369c2e5504e5073e3942036d27486789974276e3871fea00a3bd89fdacf34ad4",
+          "more": "snappy file 20250924-44-john-green-combined/cost-breakdown.pdf"
+        },
+        {
+          "name": "email-template.md",
+          "type": "file",
+          "hash": "dc1ba981eb93904afaa95299a3b817a4066e66ae78eb2804d1477ff7a84abfad",
+          "more": "snappy file 20250924-44-john-green-combined/email-template.md"
+        },
+        {
+          "name": "email-template.pdf",
+          "type": "file",
+          "hash": "356edb5d28df6e1208ef7b18b2b35563435bf460d772e4cb72ae58da3e6d16be",
+          "more": "snappy file 20250924-44-john-green-combined/email-template.pdf"
+        },
+        {
+          "name": "invoice-email.md",
+          "type": "file",
+          "hash": "4687c051a46d66089c59042371b7c80dd7dd41a77f12161a7e260a68ed14e960",
+          "more": "snappy file 20250924-44-john-green-combined/invoice-email.md"
+        },
+        {
+          "name": "invoice.md",
+          "type": "file",
+          "hash": "1bf87944c815569bd28aa1231b527ea901c2dfb3b29cce0cff3135fc071721c9",
+          "more": "snappy file 20250924-44-john-green-combined/invoice.md"
+        },
+        {
+          "name": "invoice.pdf",
+          "type": "file",
+          "hash": "e591062c5a1045dcac36f41e0ae4f2ea76756d4f1f53ac438cc9cb01f6823269",
+          "more": "snappy file 20250924-44-john-green-combined/invoice.pdf"
+        },
+        {
+          "name": "measurements.md",
+          "type": "file",
+          "hash": "4a823e67f40885cc6c28c93a58351aa041f1be1a7e9e763b2f9419b0bc732064",
+          "more": "snappy file 20250924-44-john-green-combined/measurements.md"
+        },
+        {
+          "name": "measurements.pdf",
+          "type": "file",
+          "hash": "48350ceeda52504b0b889b8f2b2647bffbf5cb0ed68041394af1f7719f704150",
+          "more": "snappy file 20250924-44-john-green-combined/measurements.pdf"
+        },
+        {
+          "name": "notes.md",
+          "type": "file",
+          "hash": "86ef0a1453cc9f8dcc8a48b6a1fdb6638c09475c8dd60a4485c14be30850ef37",
+          "more": "snappy file 20250924-44-john-green-combined/notes.md"
+        },
+        {
+          "name": "notes.pdf",
+          "type": "file",
+          "hash": "02d9ff0aa8a7d9c721cb9aec3f8bff2d755f45ef1f7534e5f374f0710071a5d4",
+          "more": "snappy file 20250924-44-john-green-combined/notes.pdf"
+        },
+        {
+          "name": "project.json",
+          "type": "file",
+          "hash": "2bef04171db42b30826389d0c09b1f5b7a25e29bb0c59a7c5795a53b14a55494",
+          "more": "snappy file 20250924-44-john-green-combined/project.json"
+        }
+      ]
+    },
+    "garage-project": {
+      "name": "garage-project",
+      "createdAt": "2025-09-27T23:11:53.601Z",
+      "updatedAt": "2025-09-30T00:50:32.357Z",
+      "status": "bid_writing",
+      "projectType": "context-created",
+      "source": "context-management-system",
+      "lastExpenseAdded": "2025-09-30T00:50:20.777Z",
+      "totalExpenses": 225.5,
+      "expenseCount": 2,
+      "contextSystemIntegration": {
+        "enabled": true,
+        "firstExpense": "2025-09-27T23:11:53.599Z",
+        "totalFromContext": 150,
+        "expenseCountFromContext": 1
+      },
+      "statusNotes": "Preparing detailed cost breakdown",
+      "clientName": "John Smith",
+      "nextActionDate": "2025-10-15T00:00:00.000Z",
+      "path": "/home/robforee/analyst-server/snappy/projects/garage-project/project.json",
+      "id": "garage-project",
+      "lastUpdate": null,
+      "type": null,
+      "originalProjects": null,
+      "fileSystem": [
+        {
+          "name": "cost-breakdown.md",
+          "type": "file",
+          "hash": "347ee4deead1736ea5f142d42ec3909f1eec79ca2d1cfb8af134f4505dce30d9",
+          "more": "snappy file garage-project/cost-breakdown.md"
+        },
+        {
+          "name": "notes.md",
+          "type": "file",
+          "hash": "f17d903b14cf81750d99cfe968f3737a16c4a28cf3cb0fcc1e264686a2b4f2f8",
+          "more": "snappy file garage-project/notes.md"
+        },
+        {
+          "name": "project.json",
+          "type": "file",
+          "hash": "02059f8b17d14c5832f9d0092b82cef0af6552a7bad22d6301bbb158f32e162c",
+          "more": "snappy file garage-project/project.json"
+        }
+      ]
+    },
+    "john-deck-project": {
+      "name": "john-deck-project",
+      "createdAt": "2025-09-27T22:59:16.951Z",
+      "updatedAt": "2025-09-27T22:59:16.997Z",
+      "status": "active",
+      "projectType": "context-created",
+      "source": "context-management-system",
+      "lastExpenseAdded": "2025-09-27T22:59:16.949Z",
+      "totalExpenses": 0,
+      "expenseCount": 1,
+      "contextSystemIntegration": {
+        "enabled": true,
+        "firstExpense": "2025-09-27T22:59:16.949Z",
+        "totalFromContext": 0,
+        "expenseCountFromContext": 1
+      },
+      "path": "/home/robforee/analyst-server/snappy/projects/john-deck-project/project.json",
+      "id": "john-deck-project",
+      "clientName": null,
+      "lastUpdate": null,
+      "nextActionDate": null,
+      "type": null,
+      "statusNotes": null,
+      "originalProjects": null,
+      "fileSystem": [
+        {
+          "name": "cost-breakdown.md",
+          "type": "file",
+          "hash": "684012f03ded08e85d75a1ad46df53f2ec514b3ed2ce12d3bc40abe7ecf3ff57",
+          "more": "snappy file john-deck-project/cost-breakdown.md"
+        },
+        {
+          "name": "notes.md",
+          "type": "file",
+          "hash": "9084e5852812393591593ff23c2b1ef2f5e660409424ae20b9f66c33da6b6d0b",
+          "more": "snappy file john-deck-project/notes.md"
+        },
+        {
+          "name": "project.json",
+          "type": "file",
+          "hash": "df00345261c3f0698829ed1833234c2566e4447952182fc5d60775dbd18d618c",
+          "more": "snappy file john-deck-project/project.json"
+        }
+      ]
+    },
+    "cybersec-dogfood": {
+      "id": "cybersec-dogfood",
+      "clientName": "Cybersec Dogfood",
+      "projectType": "client-project",
+      "status": "in_progress",
+      "createdAt": "2025-09-23",
+      "updatedAt": "2025-09-23",
+      "path": "/home/robforee/analyst-server/snappy/client-projects/cybersec-dogfood/project.json",
+      "name": "cybersec-dogfood",
+      "lastUpdate": null,
+      "fileSystem": [
+        {
+          "name": "CONTEXT-RESTART.md",
+          "type": "file",
+          "hash": "7ccddbae243337a1c7cb9794614a6bbd7f7d09a55e86eac633ca921055d8993f",
+          "more": "snappy file cybersec-dogfood/CONTEXT-RESTART.md"
+        },
+        {
+          "name": "CORPUS-REQUEST.md",
+          "type": "file",
+          "hash": "a22cdff0b7a811530e60a5029b5b10be760bc0fb03b6a421e9dc24e1b8904a6e",
+          "more": "snappy file cybersec-dogfood/CORPUS-REQUEST.md"
+        },
+        {
+          "name": "corpus",
+          "type": "directory",
+          "hash": "81876f0a31a25031e2879004ea508aeeffb552276a3eedb137161949013c151d",
+          "more": "snappy file cybersec-dogfood/corpus/"
+        },
+        {
+          "name": "notes.txt",
+          "type": "file",
+          "hash": "4958ff06cc9bfcadf19ac8669e8a904756f5824022b9d7fc8c16c3b744495e8a",
+          "more": "snappy file cybersec-dogfood/notes.txt"
+        },
+        {
+          "name": "project.json",
+          "type": "file",
+          "hash": "c712f9508b765bb8ecad1735e3cc89bf9427502bc153f9aa937661f7e635b4e2",
+          "more": "snappy file cybersec-dogfood/project.json"
+        },
+        {
+          "name": "test-simple.md",
+          "type": "file",
+          "hash": "0d5be8b23c6042a952d4e4680e50956d01a3ba9e4be16f1a11d1920de1ac8272",
+          "more": "snappy file cybersec-dogfood/test-simple.md"
+        }
+      ]
+    },
+    "mef": {
+      "id": "mef",
+      "clientName": "Mef",
+      "projectType": "client-project",
+      "status": "in_progress",
+      "createdAt": "1970-01-01",
+      "updatedAt": "1970-01-01",
+      "path": "/home/robforee/analyst-server/snappy/client-projects/mef/project.json",
+      "name": "mef",
+      "lastUpdate": null,
+      "fileSystem": [
+        {
+          "name": "professional-summary",
+          "type": "directory",
+          "hash": null,
+          "more": "snappy file mef/professional-summary/"
+        },
+        {
+          "name": "project.json",
+          "type": "file",
+          "hash": "3b7c9445a1c9b3b249811c0c2bd04bc102abfd42955ae7a37085ea56b08f70d7",
+          "more": "snappy file mef/project.json"
+        }
+      ]
+    },
+    "qubes-restore": {
+      "id": "qubes-restore",
+      "clientName": "Qubes Restore",
+      "projectType": "client-project",
+      "status": "in_progress",
+      "createdAt": "2025-09-14",
+      "updatedAt": "2025-09-14",
+      "path": "/home/robforee/analyst-server/snappy/client-projects/qubes-restore/project.json",
+      "name": "qubes-restore",
+      "lastUpdate": null,
+      "fileSystem": [
+        {
+          "name": "generate-report.sh",
+          "type": "file",
+          "hash": "7f348f6648718aa4b3e4dc32e25df0e05a51baa79cbcc8e84115f96e1a9dee63",
+          "more": "snappy file qubes-restore/generate-report.sh"
+        },
+        {
+          "name": "git-list-report.md",
+          "type": "file",
+          "hash": "e978225cddb1ef1c7bcf336b27d1de8a74b1ff90e92289fd4cddd60217391ad8",
+          "more": "snappy file qubes-restore/git-list-report.md"
+        },
+        {
+          "name": "git-list.txt",
+          "type": "file",
+          "hash": "901b107f755ca48bcb083114831dfe1c7b5ba0e8305f4bf60fa91f0d1664e6d6",
+          "more": "snappy file qubes-restore/git-list.txt"
+        },
+        {
+          "name": "project.json",
+          "type": "file",
+          "hash": "ade3733b8d8c77b8fcc7b19890b0f0d37c3486bf9a079b312bf94cab46932194",
+          "more": "snappy file qubes-restore/project.json"
+        }
+      ]
+    },
+    "tcad-scrape": {
+      "id": "tcad-scrape",
+      "clientName": "Tcad Scrape",
+      "projectType": "client-project",
+      "status": "in_progress",
+      "createdAt": "2025-09-18",
+      "updatedAt": "2025-09-18",
+      "path": "/home/robforee/analyst-server/snappy/client-projects/tcad-scrape/project.json",
+      "name": "tcad-scrape",
+      "lastUpdate": null,
+      "fileSystem": [
+        {
+          "name": "README.md",
+          "type": "file",
+          "hash": "50d89cfedafe28cd741eefd15603ac982e72bc7c38431eb1aaddff804296dabc",
+          "more": "snappy file tcad-scrape/README.md"
+        },
+        {
+          "name": "error.png",
+          "type": "file",
+          "hash": "118db426563a4bd22834df3a5a202648c19e43e183cb6d685dc196540d14b18c",
+          "more": "snappy file tcad-scrape/error.png"
+        },
+        {
+          "name": "project.json",
+          "type": "file",
+          "hash": "48ffe91eecb58002e72c70a06d00999f49b6666cf44e3625351a580de6ae71a1",
+          "more": "snappy file tcad-scrape/project.json"
+        },
+        {
+          "name": "scrape-data.json",
+          "type": "file",
+          "hash": "2092c70d297e23428e056e4b28542d627bf39e3eb0214b39c2136f6ceacfba64",
+          "more": "snappy file tcad-scrape/scrape-data.json"
+        },
+        {
+          "name": "scrape-property.js",
+          "type": "file",
+          "hash": "144a4e492f0b53a9ec02f04a2406e19ca00c6abe887bd141847fc473561fb0d9",
+          "more": "snappy file tcad-scrape/scrape-property.js"
+        },
+        {
+          "name": "tcad-quail-creek-numbers.md",
+          "type": "file",
+          "hash": "ead6e76b8e9fba6035b5554bed3ba81ac369d099d96a9fe86f40ce2ad94acf7c",
+          "more": "snappy file tcad-scrape/tcad-quail-creek-numbers.md"
+        },
+        {
+          "name": "tcad-quail-creek.png",
+          "type": "file",
+          "hash": "ac577484ed52c16834e550dd58fc17048e3631cab42269f0f7d918681dedb30f",
+          "more": "snappy file tcad-scrape/tcad-quail-creek.png"
+        }
+      ]
+    },
+    "foree-family-financials": {
+      "id": "foree-family-financials",
+      "clientName": "Foree Family",
+      "description": "Weekly review of financial records",
+      "type": "subscription",
+      "status": "active",
+      "frequency": "weekly",
+      "dayOfWeek": 3,
+      "lastServiceDate": null,
+      "nextDueDate": "2025-09-24",
+      "path": "/home/robforee/analyst-server/snappy/subscriptions/foree-family-financials/subscription.json",
+      "name": "foree-family-financials",
+      "lastUpdate": null,
+      "createdAt": null,
+      "nextActionDate": null,
+      "dayOfMonth": null,
+      "fileSystem": [
+        {
+          "name": "subscription.json",
+          "type": "file",
+          "hash": "208ca21659e3c28a92557b7f67ba234f25aa150cb375d61b2b47f9a2b305ec78",
+          "more": "snappy file foree-family-financials/subscription.json"
+        }
+      ]
+    },
+    "nuzhat-ali-blue-creek": {
+      "id": "nuzhat-ali-blue-creek",
+      "clientName": "Nuzhat Ali",
+      "description": "Monthly rent collection & property inspection at Blue Creek Condos",
+      "type": "subscription",
+      "status": "active",
+      "frequency": "monthly",
+      "dayOfMonth": 1,
+      "lastServiceDate": null,
+      "nextDueDate": "2025-10-01",
+      "path": "/home/robforee/analyst-server/snappy/subscriptions/nuzhat-ali-blue-creek/subscription.json",
+      "name": "nuzhat-ali-blue-creek",
+      "lastUpdate": null,
+      "createdAt": null,
+      "nextActionDate": null,
+      "dayOfWeek": null,
+      "fileSystem": [
+        {
+          "name": "subscription.json",
+          "type": "file",
+          "hash": "16dc54b38fa78d5ef4aa36b6455a965c05e7663025ddad732fcfca57f1f94305",
+          "more": "snappy file nuzhat-ali-blue-creek/subscription.json"
+        }
+      ]
+    }
+  },
+  "lastUpdate": "2025-10-01T12:31:03.590Z"
+}

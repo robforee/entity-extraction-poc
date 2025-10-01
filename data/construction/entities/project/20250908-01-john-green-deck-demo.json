@@ -1,0 +1,68 @@
+{
+  "name": "20250908-01-john-green-deck-demo",
+  "type": "project",
+  "domain": "construction",
+  "data": {
+    "id": "20250908-01-john-green-deck-demo",
+    "clientName": "John Green",
+    "projectType": "Deck Demolition",
+    "status": "payment_received",
+    "statusNotes": "Payment received.",
+    "createdAt": "2025-09-08",
+    "updatedAt": "2025-09-23",
+    "path": "/home/robforee/analyst-server/snappy/projects/20250908-01-john-green-deck-demo/project.json",
+    "name": "20250908-01-john-green-deck-demo",
+    "lastUpdate": null,
+    "nextActionDate": null,
+    "type": null,
+    "originalProjects": null,
+    "source": null,
+    "lastExpenseAdded": null,
+    "totalExpenses": null,
+    "expenseCount": null,
+    "contextSystemIntegration": null,
+    "hash": "318c5ed8c035e65f416e80d09a988dca75c13681f19dd2d06be75cc1b43a8dcc",
+    "fileSystem": [
+      {
+        "name": "invoice.txt",
+        "type": "file",
+        "hash": "3b2814ae4eecd577b0f1de7cb83352489b1206ff61d427eda2f7422de6eaa2b3"
+      },
+      {
+        "name": "project.json",
+        "type": "file",
+        "hash": "375f1c6447b4ecd6121cc34c5662f1ff4b56f0464336a2701bbf96fc399728a2"
+      }
+    ],
+    "sourceExecution": {
+      "name": "exec-1759158534730",
+      "type": "command_execution",
+      "domain": "system",
+      "command_string": "node snappy.js project 20250908-01-john-green-deck-demo --format json",
+      "timestamp": "2025-09-29T15:08:54.730Z",
+      "status": "success",
+      "output_summary": "stdout: {\n  \"id\": \"20250908-01-john-green-deck-demo\",\n  \"clientName\": \"John Green\",\n  \"projectType\": \"Deck Demolition\",\n  \"status\": \"payment_received\",\n  \"statusNotes\": \"Payment received.\",\n  \"createdAt\": \"20...",
+      "relationships": []
+    }
+  },
+  "source": "snappy-on-demand-cache",
+  "relationships": [
+    {
+      "type": "generates",
+      "target": "exec-1759158534730",
+      "target_type": "command_execution"
+    },
+    {
+      "type": "owned_by",
+      "target": "John Green",
+      "target_type": "person",
+      "confidence": 0.95
+    },
+    {
+      "type": "located_at",
+      "target": "20250908-01-john-green-deck-demo",
+      "target_type": "location",
+      "confidence": 0.95
+    }
+  ]
+}

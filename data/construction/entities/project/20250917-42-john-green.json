@@ -1,0 +1,73 @@
+{
+  "name": "20250917-42-john-green",
+  "type": "project",
+  "domain": "construction",
+  "data": {
+    "id": "20250917-42-john-green",
+    "clientName": "John Green",
+    "projectType": "Toilet Repair",
+    "status": "payment_received",
+    "statusNotes": "Payment received, project complete.",
+    "createdAt": "2025-09-17",
+    "updatedAt": "2025-09-23",
+    "path": "/home/robforee/analyst-server/snappy/projects/20250917-42-john-green/project.json",
+    "name": "20250917-42-john-green",
+    "lastUpdate": null,
+    "nextActionDate": null,
+    "type": null,
+    "originalProjects": null,
+    "source": null,
+    "lastExpenseAdded": null,
+    "totalExpenses": null,
+    "expenseCount": null,
+    "contextSystemIntegration": null,
+    "hash": "bdc57252d3b00741a037d38d0d7cfa4a2be28f27a024144a1b28412f5a2cd35e",
+    "fileSystem": [
+      {
+        "name": "bid.md",
+        "type": "file",
+        "hash": "ee777a8237ae5c1bcd7b45bb230392be614465fcf989deeb37e116b0a8c67b7e"
+      },
+      {
+        "name": "notes.md",
+        "type": "file",
+        "hash": "4a68c5e37a31aabc3b1234fa676b27ab0f20cfd85ad30552aec8d578ade30079"
+      },
+      {
+        "name": "project.json",
+        "type": "file",
+        "hash": "63505a1e72be67b5eb01a55266dafb8e905fca4be440f91e831b6b238be6b831"
+      }
+    ],
+    "sourceExecution": {
+      "name": "exec-1759158535224",
+      "type": "command_execution",
+      "domain": "system",
+      "command_string": "node snappy.js project 20250917-42-john-green --format json",
+      "timestamp": "2025-09-29T15:08:55.224Z",
+      "status": "success",
+      "output_summary": "stdout: {\n  \"id\": \"20250917-42-john-green\",\n  \"clientName\": \"John Green\",\n  \"projectType\": \"Toilet Repair\",\n  \"status\": \"payment_received\",\n  \"statusNotes\": \"Payment received, project complete.\",\n  \"createdAt...",
+      "relationships": []
+    }
+  },
+  "source": "snappy-on-demand-cache",
+  "relationships": [
+    {
+      "type": "generates",
+      "target": "exec-1759158535224",
+      "target_type": "command_execution"
+    },
+    {
+      "type": "owned_by",
+      "target": "John Green",
+      "target_type": "person",
+      "confidence": 0.95
+    },
+    {
+      "type": "located_at",
+      "target": "20250917-42-john-green",
+      "target_type": "location",
+      "confidence": 0.95
+    }
+  ]
+}

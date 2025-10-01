@@ -1,0 +1,136 @@
+{
+  "name": "20250924-44-john-green-combined",
+  "type": "project",
+  "domain": "construction",
+  "data": {
+    "id": "20250924-44-john-green-combined",
+    "clientName": "John Green",
+    "projectType": "Combined: Toilet Repair + Deck Repair",
+    "status": "bid_prepared",
+    "statusNotes": "Combined bid created from projects 20250917-42 (toilet repair - completed) and 20250923-43 (deck repair - awaiting approval)",
+    "originalProjects": [
+      "20250917-42-john-green",
+      "20250923-43-john-green-deck"
+    ],
+    "createdAt": "2025-09-24",
+    "updatedAt": "2025-09-24",
+    "path": "/home/robforee/analyst-server/snappy/projects/20250924-44-john-green-combined/project.json",
+    "name": "20250924-44-john-green-combined",
+    "lastUpdate": null,
+    "nextActionDate": null,
+    "type": null,
+    "source": null,
+    "lastExpenseAdded": null,
+    "totalExpenses": null,
+    "expenseCount": null,
+    "contextSystemIntegration": null,
+    "hash": "f6e6d43cbe0c24b42ed210021384ca240d30e4cd868371521e0ca7aec832e2c3",
+    "fileSystem": [
+      {
+        "name": "bid-o.md",
+        "type": "file",
+        "hash": "008c03812de11df739b7397f9b9992d75690ce89d716c414d17c68616d974b1e"
+      },
+      {
+        "name": "bid-o.pdf",
+        "type": "file",
+        "hash": "f5a266d8c78223373ce5053d2bed6d72aa719f6da81a3a689137a9aa840f9ab1"
+      },
+      {
+        "name": "bid.md",
+        "type": "file",
+        "hash": "5f4a0e3fa10b59694d504406b2c104fba42c3da579ea8b97fe71896cc3912ed7"
+      },
+      {
+        "name": "bid.pdf",
+        "type": "file",
+        "hash": "f8ece1207ee89c4034cf5f03352f7e9cd649a39ea30235529c16926c358291df"
+      },
+      {
+        "name": "cost-breakdown-calculated.md",
+        "type": "file",
+        "hash": "ecfadf7e54e22e6b134fbd3383f7f832d6be6e62fa0c2009d091303c3088c806"
+      },
+      {
+        "name": "cost-breakdown-calculated.pdf",
+        "type": "file",
+        "hash": "56cb6f11be0b0cfb1e7ea245509aa7aa77f0a310477c5ce40ced40a01adaac9f"
+      },
+      {
+        "name": "cost-breakdown.md",
+        "type": "file",
+        "hash": "f2c61d78f379ddc69678da5a538c02df3d4438cdb89e92f7da75cb9263bf5592"
+      },
+      {
+        "name": "cost-breakdown.pdf",
+        "type": "file",
+        "hash": "5685b8c49019fcf2e6150b6e73aa7ea401882bed0e06e79077a59dcf16f09422"
+      },
+      {
+        "name": "email-template.md",
+        "type": "file",
+        "hash": "dc1ba981eb93904afaa95299a3b817a4066e66ae78eb2804d1477ff7a84abfad"
+      },
+      {
+        "name": "email-template.pdf",
+        "type": "file",
+        "hash": "3e5d103abb0164b21f6d76956243cf6ee56daefaba2f1fdc02530e8edda60d38"
+      },
+      {
+        "name": "measurements.md",
+        "type": "file",
+        "hash": "4a823e67f40885cc6c28c93a58351aa041f1be1a7e9e763b2f9419b0bc732064"
+      },
+      {
+        "name": "measurements.pdf",
+        "type": "file",
+        "hash": "95705f97c5b7c4fae81e3c5a7821853ffd1113dcf70c30df20d07dadab178d67"
+      },
+      {
+        "name": "notes.md",
+        "type": "file",
+        "hash": "86ef0a1453cc9f8dcc8a48b6a1fdb6638c09475c8dd60a4485c14be30850ef37"
+      },
+      {
+        "name": "notes.pdf",
+        "type": "file",
+        "hash": "52b9dd19778c5c63e0e2abe3587321cfddd3f37cab8d2788a8fc8ab3f5f0eb37"
+      },
+      {
+        "name": "project.json",
+        "type": "file",
+        "hash": "1e7a7eeec1e250112e766bde5b35c2c640ddac838e1baa8def736a1985108b99"
+      }
+    ],
+    "sourceExecution": {
+      "name": "exec-1759158532254",
+      "type": "command_execution",
+      "domain": "system",
+      "command_string": "node snappy.js project 20250924-44-john-green-combined --format json",
+      "timestamp": "2025-09-29T15:08:52.254Z",
+      "status": "success",
+      "output_summary": "stdout: {\n  \"id\": \"20250924-44-john-green-combined\",\n  \"clientName\": \"John Green\",\n  \"projectType\": \"Combined: Toilet Repair + Deck Repair\",\n  \"status\": \"bid_prepared\",\n  \"statusNotes\": \"Combined bid created ...",
+      "relationships": []
+    }
+  },
+  "source": "snappy-on-demand-cache",
+  "relationships": [
+    {
+      "type": "generates",
+      "target": "exec-1759158532254",
+      "target_type": "command_execution"
+    },
+    {
+      "type": "owned_by",
+      "target": "John Green",
+      "target_type": "person",
+      "confidence": 0.95
+    },
+    {
+      "type": "located_at",
+      "target": "20250924-44-john-green-combined",
+      "target_type": "location",
+      "confidence": 0.95
+    }
+  ]
+}

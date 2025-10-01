@@ -1,0 +1,10 @@
+{
+  "name": "exec-1759321784197",
+  "type": "command_execution",
+  "domain": "system",
+  "command_string": "node snappy.js project john-deck-project --format json",
+  "timestamp": "2025-10-01T12:29:44.197Z",
+  "status": "success",
+  "output_summary": "stdout: {\n  \"name\": \"john-deck-project\",\n  \"createdAt\": \"2025-09-27T22:59:16.951Z\",\n  \"updatedAt\": \"2025-09-27T22:59:16.997Z\",\n  \"status\": \"active\",\n  \"projectType\": \"context-created\",\n  \"source\": \"context-ma...",
+  "relationships": []
+}

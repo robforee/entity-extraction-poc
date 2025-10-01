@@ -1,0 +1,10 @@
+{
+  "name": "exec-1759321656274",
+  "type": "command_execution",
+  "domain": "system",
+  "command_string": "node snappy.js project 20250908-01-john-green-deck-demo --format json",
+  "timestamp": "2025-10-01T12:27:36.274Z",
+  "status": "success",
+  "output_summary": "stdout: {\n  \"id\": \"20250908-01-john-green-deck-demo\",\n  \"clientName\": \"John Green\",\n  \"projectType\": \"Deck Demolition\",\n  \"status\": \"payment_received\",\n  \"statusNotes\": \"Payment received.\",\n  \"createdAt\": \"20...",
+  "relationships": []
+}

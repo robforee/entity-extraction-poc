@@ -1,0 +1,25 @@
+{
+  "name": "20250917-42-john-green",
+  "type": "location",
+  "domain": "construction",
+  "source": "snappy-on-demand-cache",
+  "relationships": [
+    {
+      "type": "generates",
+      "target": "exec-1759158535224",
+      "target_type": "command_execution"
+    },
+    {
+      "type": "has_resident",
+      "target": "John Green",
+      "target_type": "person",
+      "confidence": 0.95
+    },
+    {
+      "type": "has_project",
+      "target": "20250917-42-john-green",
+      "target_type": "project",
+      "confidence": 0.95
+    }
+  ]
+}

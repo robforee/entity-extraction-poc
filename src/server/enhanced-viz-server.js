@@ -30,7 +30,7 @@ class EnhancedVizServer {
         this.currentDomain = 'cybersec';
         this.diffMem = null;
         this.mergedPairs = new Set(); // Track merged entity pairs
-        this.mergedPairsFile = path.join(__dirname, '../../data/merged-pairs.json');
+        this.mergedPairsFile = path.join(process.cwd(), 'data/merged-pairs.json');
         
         this.diffMem = new MultiDomainDiffMem({ domain: 'cybersec' }); // Default to cybersec domain
         this.webDir = path.join(__dirname, '../../web');
@@ -1717,7 +1717,7 @@ class EnhancedVizServer {
     // Persistence methods for merged pairs
     async loadMergedPairs() {
         try {
-            const domainFile = path.join(__dirname, `../../data/merged-pairs-${this.currentDomain}.json`);
+            const domainFile = path.join(process.cwd(), `data/merged-pairs-${this.currentDomain}.json`);
             await fs.ensureDir(path.dirname(domainFile));
             if (await fs.pathExists(domainFile)) {
                 const data = await fs.readJson(domainFile);
@@ -1735,7 +1735,7 @@ class EnhancedVizServer {
 
     async saveMergedPairs() {
         try {
-            const domainFile = path.join(__dirname, `../../data/merged-pairs-${this.currentDomain}.json`);
+            const domainFile = path.join(process.cwd(), `data/merged-pairs-${this.currentDomain}.json`);
             await fs.ensureDir(path.dirname(domainFile));
             await fs.writeJson(domainFile, {
                 mergedPairs: Array.from(this.mergedPairs),

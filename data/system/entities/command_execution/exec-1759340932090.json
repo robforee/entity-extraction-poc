@@ -1,0 +1,10 @@
+{
+  "name": "exec-1759340932090",
+  "type": "command_execution",
+  "domain": "system",
+  "command_string": "node snappy.js search \"are available snappy commands\" --format json",
+  "timestamp": "2025-10-01T17:48:52.090Z",
+  "status": "success",
+  "output_summary": "stdout: []\n...",
+  "relationships": []
+}

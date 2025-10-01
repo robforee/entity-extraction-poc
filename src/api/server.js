@@ -26,7 +26,7 @@ class ProductionServer {
       port: process.env.PORT || 3000,
       host: process.env.HOST || 'localhost',
       domain: process.env.DOMAIN || 'construction',
-      dataPath: path.join(__dirname, '..', '..', 'data'),
+      dataPath: path.join(process.cwd(), 'data'),
       provider: process.env.LLM_PROVIDER || 'openai',
       model: process.env.LLM_MODEL || 'gpt-4o-mini',
     };
